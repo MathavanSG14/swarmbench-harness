@@ -1,0 +1,343 @@
+{
+  "note": "One shard of the STACKEXCHANGE-DUPLICATE-QUESTION-CLUSTER corpus: real Stack Exchange questions from the 'mathematica' community (no duplicate-cluster labels). Group questions in THIS shard that ask the same underlying thing, per instruction.md. The full set to cluster is the UNION of all part_*.json files.",
+  "part": "part_05.json",
+  "count": 56,
+  "records": [
+    {
+      "id": "se_mathematica_58258",
+      "tag_forum": "mathematica",
+      "title": "How to solve three equations with four unknowns iteratively?",
+      "body": "I have three equations of the form $\\quad \\eta = f(N1L, N2L)$ $\\quad N1L = g(\\eta, R)$ $\\quad N2L = h(\\eta, R)$ I want to eliminate $\\eta$, so that I can get $N1L$ and $N2L$ for a range of $R$. I copied my short program bellow (which can't be solved by the methods I know.) I really appreciate any help. Clear[\"Global`*\"] T = 25 + 273.15; k = 1.3806488*10^-23; theta = Degree 10; gama = 0.07199; Psat1 = 3.168*10^3; PL = 101.325*10^3; vLinf = (1/997.0479)*18.015/1000; L = 0.45; Vcontainer = L^3; N1t"
+    },
+    {
+      "id": "se_mathematica_39463",
+      "tag_forum": "mathematica",
+      "title": "Changing Default Color for Titles, Sections, Subsections, etc., and Items (bullet color)",
+      "body": "I'm new to Mathematica 9, and I assume there must be an easy fix for my problem, but I have not been able to find any yet. Essentially, I want the default color for the text of all of my titles, subtitles, sections, etc., to be colored in black and not have alternate colors (red, gray, etc.). I figured out a short fix (is it really a fix?) by trying to edit a stylesheet, but now when I make an item underneath a title or section the bullet is a different color than black. I can make the text blac"
+    },
+    {
+      "id": "se_mathematica_43954",
+      "tag_forum": "mathematica",
+      "title": "Frontend displays wrong number digits",
+      "body": "How do I change the default precision in Mathematica? Somehow the setting has been changed to 1 digit, so if I type Timing[...] I get > {1., ...} which is not very enlightening. Similarly, N[Pi] is > 3. Compare Mathematica's documentation for Numerical Precision which says of the above command \"In standard output form, Mathematica prints a number like this to six digits.\" So something isn't right with my setup. I read the guide to numerical precision but it didn't appear to address this issue. N"
+    },
+    {
+      "id": "se_mathematica_10491",
+      "tag_forum": "mathematica",
+      "title": "Using Goto and Label in compiled function?",
+      "body": "Below I post some rudimentary code to show that there is something wrong using Goto and Label commands in compiled functions (or I believe there is something wrong). It seems that the command Label is not found. Does anybody know what's going on? toy=Compile[{{x,_Real}}, Label[\"t\"]; y=RandomReal[{-1.,1.}]; If[x*y<-0.,Print[y*x];Goto[\"t\"],Print[y*x,\" \",\"done\"]] ]; toy[1.] (*Goto::nolabel: \"Label (\"t\") not found.*)"
+    },
+    {
+      "id": "se_mathematica_42298",
+      "tag_forum": "mathematica",
+      "title": "Faster evaluation of an expression for brute force optimization",
+      "body": "I'm trying to bruteforce an optimization problem and I want to generate roughly a million function evaluations. I was wondering what would be the best for me to do in terms of having the expressions evaluated faster. Curently the expressions are in plain symbolic form and I tried using the ReplaceAll[] or /. operator and it runs really slowly. My expressions are quite large, when I output them into a text file that amasses to a few thopusand lines of equations, so yeah, it's kinda slow because o"
+    },
+    {
+      "id": "se_mathematica_51335",
+      "tag_forum": "mathematica",
+      "title": "Plot has red 'film', no error message",
+      "body": "I am encountering really strange behavior: I wrote a function that plots values some data. After executing the code the resulting plot has the red 'error' colour, but only momentarily (maybe 0.1 sec). There is no error message, so the plot seems fine. However, when I export the graphic, the red colour is exported too. There seems no way to get the graphic without the red. I am (in this case) not interested in what caused the error message but want to export the graphic without te red colour. Doe"
+    },
+    {
+      "id": "se_mathematica_58143",
+      "tag_forum": "mathematica",
+      "title": "Replace Missing[Unmatched] with zero",
+      "body": "After a left `JoinAcross`, I have a number of `Missing[\"Unmatched\"]` values in my list of associations. I'd like to set them all equal to zero. I tried the following: q = JoinAcross[Normal[reported], Normal[estimates], Key[\"key\"], \"Left\"]; q1 = q /. Missing[\"Unmatched\"] -> 0; q[[100]] q1[[100]] > > <|\"key\" -> \"2009-ABCDE\", \"ActuarialEPI\" -> 26603.6, > \"ReportedEP\" -> 28535., \"ReportedLI\" -> 0., \"ELI\" -> 25619.3, > \"DLI\" -> 25619.3, \"EstimatesEP\" -> Missing[\"Unmatched\"]|> > > <|\"key\" -> \"2009-ABC"
+    },
+    {
+      "id": "se_mathematica_40046",
+      "tag_forum": "mathematica",
+      "title": "Threading a single abscissa through a list of ordinates",
+      "body": "Suppose that I have the following list, called `list`. `list` contains elements `X`, `X1`, `X2`, and `X3`: list = {X, {X1, X2, X3}} I would like a function that operates on `list` and gives the following output list: {{X, X1}, {X, X2}, {X, X3}} Is there a simple way to accomplish this with `Thread`, `MapThread`, `Inner`, `Through`, or the like? I feel like this should be simple, but I am having a lot of trouble coming up with a simple solution. So far, I have only been able to come up with rathe"
+    },
+    {
+      "id": "se_mathematica_46180",
+      "tag_forum": "mathematica",
+      "title": "Initialize table in a Module but Break if criteria not met",
+      "body": "I am initializing a table inside a function as follows: f[a1_, a2_, a3_] := Module[{RM = Table[a1+a2+a3+i1, {i1, 1, 10}]}, Plus@@RM] I am calling the function `f` multiple times with different values of `a1, a2, a3` and want the function to exit, if `300<a1+a2+a3+i1<500` How can I do it elegantly by not initializing the table and later checking to proceed or `Break`? This is what I have started to do, but could not go too far: LL[a1_, a2_, a3_, x_] := 300 < a1+a2+a3+i1 < 500; f[a1_, a2_, a3_] :="
+    },
+    {
+      "id": "se_mathematica_41817",
+      "tag_forum": "mathematica",
+      "title": "Plotting a line segment from the degenerate case of an ellipse",
+      "body": "An ellipse degenerates into a line segment when the defining constant distance from the two foci is the actual distance between the two foci. The ellipse closes into a line segment. The following code shows a family of concentric ellipses that should converge to a line segment when the constant is set to 5. However it doesn't plot the line segment even if I increase the MaxRecursion very high. ContourPlot[Evaluate[Table[Sqrt[(x + 3)^2 + y^2] + Sqrt[x^2 + (y - 4)^2] == n, {n, 5, 6, .01}]], {x, -4"
+    },
+    {
+      "id": "se_mathematica_19628",
+      "tag_forum": "mathematica",
+      "title": "Faster way to convert real strings into numbers",
+      "body": "Working with big files, I have to convert some numbers that are in string format into real MMA numbers. I know that I can use `ToExpression` but it's slow when compared to another forms. For instance, for Integer case we can compare: dataInt = ToString /@ RandomInteger[1000, {10^5}]; d1 = FromDigits /@ dataInt; // AbsoluteTiming d2 = ToExpression /@ dataInt; // AbsoluteTiming {0.050298, Null} {0.475669, Null} It's almost 10 times faster to use `FromDigits`. The question is, how can I make a equi"
+    },
+    {
+      "id": "se_mathematica_19416",
+      "tag_forum": "mathematica",
+      "title": "Pass list of options to Plot3D",
+      "body": "Consider the example plotOptions = {PlotPoints -> 10, MaxRecursion -> 2} Plot3D[x y , {x, 0, 10}, {y, 0, 10}, plotOptions] Why does this causes the error: Plot3D::nonopt: Options expected (instead of plotOptions) beyond position 3 in Plot3D[x y,{x,0,10},{y,0,10},plotOptions]. An option must be a rule or a list of rules. >> ? I would say that plotOptions _is_ as list of rules... If I use Plot3D[x y , {x, 0, 10}, {y, 0, 10}, {PlotPoints -> 10, MaxRecursion -> 2}] it works... What is then the corre"
+    },
+    {
+      "id": "se_mathematica_17206",
+      "tag_forum": "mathematica",
+      "title": "How can I view the code implementing a built-in Mathematica function?",
+      "body": "> **Possible Duplicate:** > What is the most convenient way to read definitions of in-memory symbols > when we don\u2019t have the source files? I would like to look at the code that implements `FillingTransform`. Does _Mathematica_ provide any way to do this?"
+    },
+    {
+      "id": "se_mathematica_4748",
+      "tag_forum": "mathematica",
+      "title": "Interlacing a single number into a long list",
+      "body": "This seems like it should be a simple question, but I am running into some difficulty in doing this with _Mathematica_. Right now, I have a list like this: data1={0, 0, 0, 0, 0, 0, 3, 1, 10, 3, 11, 1, 0, 0, 32, 0, 1, 0, 5, 0, 2, 0, 25, 0, 1, 0, 1, 0, 0, 0, 0, 7, 0, 0, 0, 0, 13, 4, 0, 5, 0, 0, 2, 3, 4, 0, 0, 95, 4, 16, 11, 2, 0, 0, 81, 35, 0, 0, 0, 33, 0, 0, 0, 0, 0, 5, 42, 0, 0, 0}; I want to insert \"1997\" into the list after each element and transpose it, so that it will look like so: `{{1997,0"
+    },
+    {
+      "id": "se_mathematica_19505",
+      "tag_forum": "mathematica",
+      "title": "Projecting image or contour plot on xy-plane of Histogram3D?",
+      "body": "I've generated a simple 3D histogram, where the x-y coordinates corresponding to the \"location\" of an event defined on a simple 160x160 grid, and the z-axis height is simply the count of events that occur at each x-y location. For this particular graph, I have an png image (think of it as a map) on which the 160x160 grid is defined. I'd like to use this image as the x-y floor of my Histogram3D. I'd also like to use a ListContourPlot as the x-y floor, in a companion image. Any suggestions would b"
+    },
+    {
+      "id": "se_mathematica_47743",
+      "tag_forum": "mathematica",
+      "title": "Finding simpler implied formulas while preserving contradiction",
+      "body": "I have two Presburger formulas A and B such that A\u2227B\u2261False. From these I need to find \"simpler\" formula A\u2032 (as simple as I can make it) such that A\u2192A\u2032 and A\u2032\u2227B\u2261False. Is there any simple way to automate this for largish formulas in Mathematica? The formulas start off in sum of products form, with thousands of products and less than 20 variables. I'm already using FullSimplify to simplify A and B preserving equivalence, but I need to go even simpler, hence this weaker set of conditions."
+    },
+    {
+      "id": "se_mathematica_11944",
+      "tag_forum": "mathematica",
+      "title": "Editing preset schemes",
+      "body": "_Mathematica_ has many preset schemes, for example `\"DarkRainbow\"` and `\"FadingRectangle\"`: Histogram[RandomVariate[NormalDistribution[1, 0.2], 100], ChartStyle -> \"DarkRainbow\", ChartElementFunction -> \"FadingRectangle\"] ![test](http://i.stack.imgur.com/Ocv73.png) How can I get _Mathematica_ to tell me the source code for these schemes? I want to reproduce `\"FadingRectangle\"`, with some modifications of my own."
+    },
+    {
+      "id": "se_mathematica_23363",
+      "tag_forum": "mathematica",
+      "title": "Problem with ContourPlot",
+      "body": "I tried these ContourPlot[ 1 + (1 + x)^3 - 3 (1 + x) y + y^3 == 0, {x, -3, 3}, {y, -3, 3}] ContourPlot[(x + y + 2) == 0, {x, -3, 3}, {y, -3, 3}] ContourPlot[(x + y + 2)^2 == 0, {x, -3, 3}, {y, -3, 3}] ContourPlot[(x + y + 2)^3 == 0, {x, -3, 3}, {y, -3, 3}] the third and fourth one produce graphs contrary to my mathematical common sense. Especially, the third one does not produce anything. Could someone explain why and how to fix it?"
+    },
+    {
+      "id": "se_mathematica_6994",
+      "tag_forum": "mathematica",
+      "title": "The difference between 0. and 0",
+      "body": "I have a function for which `0` is a special case: f[A___, 0, B___] := 0 But since I am doing numerics, sometimes in the course of things `f` gets called with `0.` instead of `0`. Of course I can add the line f[A___, 0., B___] := 0 But I don't understand why I need to because I don't understand the difference between `0` and `0.`. Can anyone illuminate this for me? (In addition to saving a line of code, or as Jens points out, a couple of characters, I also want to know the difference between the"
+    },
+    {
+      "id": "se_mathematica_39286",
+      "tag_forum": "mathematica",
+      "title": "What are the min and max arguments to EdgeDetect?",
+      "body": "What are the min and max arguments to `EdgeDetect`, for all methods and specifically `\"Sobel\"`? How do I find the limits or ranges of functions in the future? Or is it 255?"
+    },
+    {
+      "id": "se_mathematica_33972",
+      "tag_forum": "mathematica",
+      "title": "Use of JoinedCurve with list only",
+      "body": "When I `Import` an EPS file, bezier curves are converted into something like this: Graphics[JoinedCurve[ {{{1, 4, 3}}}, {{{0., 0.}, {1., -1.}, {2., 1.}, {3., 0.}}}, CurveClosed -> {0}]] Here `JoinedCurve` contains no curve segments but two lists, but such a representation is not documented in the reference: http://reference.wolfram.com/mathematica/ref/JoinedCurve.html I can see that the latter list represents the list of control points, and `{{1, 4, 3}}` seems to do with something like dimension"
+    },
+    {
+      "id": "se_mathematica_52102",
+      "tag_forum": "mathematica",
+      "title": "Debuging in Mathematica",
+      "body": "## Description I have using **_Mathematica_** to solve all kinds of problems that encountered in my study. However, the function that I define to solve specific problem is not always right, in other words, it will occur all kinds of unexpected error. So I think I can debug it by looking over `middle values` of function's running process. ## Example I write a function`GridLineData`to solve my data.`(the ultimate right edition as below, but I takes much time to debug it many times)` GridLineData[d"
+    },
+    {
+      "id": "se_mathematica_42063",
+      "tag_forum": "mathematica",
+      "title": "How to change the position of numbers on plot",
+      "body": "![Example of problem](http://i.stack.imgur.com/Sgyvg.jpg) How to change the position of numbers in axes on plot? I want to see the numbers on the x-axis over it, not under it as it is now to have them clearly visible."
+    },
+    {
+      "id": "se_mathematica_32681",
+      "tag_forum": "mathematica",
+      "title": "ContourPlot shows only part of the contours",
+      "body": "Consider these contour plots: f[x_,y_]:=Cos[x] + Cos[y] ContourPlot[f[x, y] == 0, {x, 0, 4 Pi}, {y, 0, 4 Pi}] ![enter image description here](http://i.stack.imgur.com/bmuys.png) ContourPlot[f[x, y]*f[x, y] == 0, {x, 0, 4 Pi}, {y, 0, 4 Pi}] ![enter image description here](http://i.stack.imgur.com/fFQP9.png) ContourPlot[Abs[f[x, y]] == 0, {x, 0, 4 Pi}, {y, 0, 4 Pi}] ![enter image description here](http://i.stack.imgur.com/Nq2xe.png) **Question** : Why the second and third contour plot don't work? "
+    },
+    {
+      "id": "se_mathematica_15918",
+      "tag_forum": "mathematica",
+      "title": "How to use version 8 default.nb style sheet in place of version 9 default.nb",
+      "body": "I do not like the new default.nb style sheet in version 9, and would like to use the older one that was used in version 8 for any new notebook and for any notebook created since I started using V9. I saw in the `StyleSheets` folder that V8 default.nb is still there ![enter image description here](http://i.stack.imgur.com/Eq7pT.png) So I went to preferences and changed the following to say `Default_8.0.nb` ![enter image description here](http://i.stack.imgur.com/7i3GA.png) And restarted Mathemati"
+    },
+    {
+      "id": "se_mathematica_35629",
+      "tag_forum": "mathematica",
+      "title": "Kernel inexplicably hangs if I define a pure function without suppressing output",
+      "body": "**Save any unsaved work before trying as it may crash Mathematica and other programs by filling up the memory!** In v9.0.1.0 on OSX 10.8.5, if I start a new session and define two functions f1P = Sin[#^Sin[Sqrt[Gamma[#]]]] &; and f2P = Sin[#^Sin[Gamma[(# + 1)]]] &; they both work fine. Now, if I quit the kernel and define _the exact same functions_ but removing the `;`s when I evaluate the cell with `f1P`: f1P = Sin[#^Sin[Sqrt[Gamma[#]]]] & I get some output (`Sin[#^Sin[Sqrt[Gamma[#]]]] &`). The"
+    },
+    {
+      "id": "se_mathematica_3736",
+      "tag_forum": "mathematica",
+      "title": "Annoying display truncation of numerical results",
+      "body": "I have a lot of data to inspect. An example of a number in my program is 123.189094 This gets displayed as 123.189 Unfortunately, most of my information is in the small digits, so, when visually inspecting this data, `123.189094` and `123.189263` are not distinguishable, in other words, a list like {123.189094, 123.189263} is displayed like {123.189, 123.189} and it looks like I have equal data when I don't. The only fix I have found for this is `FullForm`, but that explodes out all the structur"
+    },
+    {
+      "id": "se_mathematica_24043",
+      "tag_forum": "mathematica",
+      "title": "Sharing styles between notebooks (Mathematica v9)",
+      "body": "It appears from the documentation that we share styles via stylesheets. I am trying to set up a customised default stylesheet for my notebooks. I have tried simple ideas, and more complex ones, without success. 1. If I edit the provided default.nb, my changes to it are not saving. 2. If I make model notebook of my own, say aModel.nb, and customise that notebook's styles, a copy of that model does not have those styles. 3. If I \"install\" the stylesheet of aModel.nb, and apply that to some other n"
+    },
+    {
+      "id": "se_mathematica_26684",
+      "tag_forum": "mathematica",
+      "title": "Plotting equipotentials gone wrong",
+      "body": "I'm plotting the equipotential of the potential function: $$\\phi(x,y,z):=\\frac{1+x^{2}+y^{2}+z^{2}}{[\\left(1+x^{2}+y^{2}+z^{2}\\right)^{2}-4z^{2}]^{1/2}}$$ Mathematica code: \u03a6[x_, y_, z_] := (1 + x^2 + y^2 + z^2)/((1 + x^2 + y^2 + z^2)^2 - 4 z^2)^(1/2) So I write, for example ContourPlot3D[\u03a6[x, y, z] == 1, {x, -100, 100}, {y, -100, 100}, {z, -100, 100}] But, I get this image: ![enter image description here](http://i.stack.imgur.com/ElmCm.jpg) And, sometimes if I change the plot region, I get abso"
+    },
+    {
+      "id": "se_mathematica_563",
+      "tag_forum": "mathematica",
+      "title": "Undocumented syntax of FilledCurve",
+      "body": "> **Possible Duplicate:** > Undocumented form for FilledCurve[] A nice trick to get the outline paths of letters is to use the PDF exporter/importer el= First[ First[ ImportString[ ExportString[ Style[\"L\", Italic, FontSize -> 24, FontFamily -> \"Arial\"], \"PDF\" ], \"PDF\", \"TextMode\" -> \"Outlines\" ] ] ]; Graphics[{EdgeForm[Black], LightBlue, el}]; ![Mathematica graphics](http://i.stack.imgur.com/xKY39.png) The outline paths are given in a `FilledCurve` construction (new in MMA8): el (* ===> {Thickne"
+    },
+    {
+      "id": "se_mathematica_34337",
+      "tag_forum": "mathematica",
+      "title": "What are ways to debug while Mathematica is running?",
+      "body": "I would like to know if we can \"watch some values\" during running time of _Mathematica_. I remember that `C` and `Pascal` compiler allow us to \"add watch\" on some variables. Some times I use a check point \"if keypressed print...\". But the latter style is unavailable here."
+    },
+    {
+      "id": "se_mathematica_54726",
+      "tag_forum": "mathematica",
+      "title": "Initial Image Size of dynamic plot",
+      "body": "I have a dynamic plot. I want to set an initial image size and then be able to resize it by dragging with the mouse. When the image is updated, I want to maintain the \"dragged\" size. A naive attempt with a simplified example: Slider[Dynamic[n], {0, 5}] Dynamic[Plot[n (x - n)^2, {x, 0, 5}, ImageSize -> Large]] It sets ImageSize->Large. I can resize the plot by select and dragging, but as soon as I change n with the slider, the plot is evaluated and the size reverts to Large. So how can I apply se"
+    },
+    {
+      "id": "se_mathematica_23545",
+      "tag_forum": "mathematica",
+      "title": "Can I place a link to a package file (.m) in my Applications folder",
+      "body": "I am developing a package and would like to be able to test it without having to copy the package file to my `$UserBaseDirectory/Applications` folder for each change, so it would be convenient for me to just create a Finder link or symlink pointing back to my working file. So far I have not been able to convince Mathematica to treat the link as a package file. Am I missing a subtle technique that may make this possible?"
+    },
+    {
+      "id": "se_mathematica_45851",
+      "tag_forum": "mathematica",
+      "title": "Equivalence under common permutations",
+      "body": "I have lists which consists of sublists of equal length. The outer list is regarded as a multiset (that is, permutations of the sublists don't matter, but repetitions do), but the order in the sublists _does_ matter, except that if the _same_ permutation is applied to each of the sublists, it also doesn't matter. Now my problem is that I want to write a function that tests whether two lists are equivalent under those rules. An obvious solution would of course be to generate all \"inner\" permutati"
+    },
+    {
+      "id": "se_mathematica_39529",
+      "tag_forum": "mathematica",
+      "title": "Wolfram language from batch or py",
+      "body": "I would like to automate the commands in this website into a batch file, so when the batch file it runs these commands in sequence. http://community.wolfram.com/groups/-/m/t/157461 Do any of you have any ideas. I know that you can just type in wolfram in a batch file like this: #!/bin/bash wolfram It will give you this output: Wolfram Language (Raspberry Pi Pilot Release) Copyright 1988-2013 Wolfram Research Information & help: wolfram.com/raspi In[1]:= How would you enter commands in the In[1]:"
+    },
+    {
+      "id": "se_mathematica_39496",
+      "tag_forum": "mathematica",
+      "title": "RGB numbers for pastel colordata",
+      "body": "How can I get the rgb numbers for colors that show up in the colordata \"pastel\" so I can use them inside a regionplot? I am combining several regionplots and I would like each of the regionlots to be one color from the \"Pastel\" color scheme. This thread Sunset Colors tells me how to get some of the colors but it would be helpful to be able to get the codes for all possible blends on a continuum. datt = DataPaclets`ColorDataDump`getColorSchemeData[\"Pastel\"][[5]] {RGBColor[0.761959, 0.470832, 0.94"
+    },
+    {
+      "id": "se_mathematica_47896",
+      "tag_forum": "mathematica",
+      "title": "scatterplot from 3d table",
+      "body": "I am using this code: L = {1.5, 2.0, 2.5, 3.0, 3.5}; R = {0.0001, 0.001, 0.01, 0.1, 1, 10}; Y[a_, b_] = Exp[-b/a]/a; ris = Table[{L[[i]], R[[j]], NIntegrate[Y[Abs[x - 7.6], L[[i]]], {x, 0, R[[j]]}]}, {i, Length[L]}, {j, Length[R]}] to build a 3D table: the result of the numerical integration as a function of two parameters (L;R). Now I need to plot this with a scatter plot: the integral as a function of R, for different values of L, so, on the same plot, I need a different curve, one for each va"
+    },
+    {
+      "id": "se_mathematica_50903",
+      "tag_forum": "mathematica",
+      "title": "Automatic Cuda/CPU code; Fast programme run",
+      "body": "I have developed my thesis codes by means of Mathematica software in a .nb file format. Despite using the available Parallel code capabilities and doing all the numerical integrations by means of parallel programming; the duration of programme run is so so much high; something like 2 to 3 weeks; which makes the debugging and verification part of the thesis almost unavailable. My question goes to two branches: 1. How can I make my programme more efficient and run faster. 2. I have heard that by a"
+    },
+    {
+      "id": "se_mathematica_6395",
+      "tag_forum": "mathematica",
+      "title": "Is it possible to position ticklabels on the negative y axis on its right side?",
+      "body": "Is it possible to position ticklabels on negative $y$ axis on its right side? Ticklabels on positive $y$ axis should remain as usual: ![enter image description here](http://i.stack.imgur.com/Yi6Jm.png)"
+    },
+    {
+      "id": "se_mathematica_23703",
+      "tag_forum": "mathematica",
+      "title": "Table/Tree of values",
+      "body": "**My question:** Is there a way to create a tree of values? Something like the output of the command TreeForm, but with values in the nodes? **Why do I want this?** I'm trying to do a complete program to analyse the output of my labs classes. Each column of data has a symbol assigned. In general, each column is meaningful: it's not just a pile of diferent variables. What i want to say is that in general,calculations are done \"column wise\".My problem is when i need a to do a calculation that need"
+    },
+    {
+      "id": "se_mathematica_32734",
+      "tag_forum": "mathematica",
+      "title": "How to plot the contour of f[x,y]==0 if always f[x,y]>=0",
+      "body": "I've been stuck at this problem for weeks and I've asked several related questions here: ContourPlot shows only part of the contours [duplicate] How to plot the contour of the radius part of a complex function a lot of help has been kindly given but I think my problem is still not solved completely. In the first question, Jens pointed out that when a function only touch but not cross 0, `ContourPlot` would have difficulty finding the 0 contour. He then suggested to plot `f[x,y]==0.001` or some s"
+    },
+    {
+      "id": "se_mathematica_13805",
+      "tag_forum": "mathematica",
+      "title": "How to create a dynamically self-updating table of content for a notebook?",
+      "body": "> **Possible Duplicate:** > Generating a table of contents How to create a dynamically self-updating table of content for a notebook? The TOC should contain the titles for the section, subsection, subsubsection etc. and should self-update as the new sections are added, and existing ones changed. A \"dynamic self-updating\" part may be loosen from the question if it's too hard, i.e. a function that can be ran to generate a TOC which i can then manually copy."
+    },
+    {
+      "id": "se_mathematica_55611",
+      "tag_forum": "mathematica",
+      "title": "Porting code from MATLAB",
+      "body": "I'd like to switch from MATLAB to Mathematica for my research in digital signal processing. I used Mathematica a lot during the '90s but I haven't used it since then, so I might as well be a complete newbie. As a first experiment I tried to port the following MATLAB function (a slow implementation of CQT): function cq= slowQ(x, minFreq, maxFreq, bins, fs) % x must be a row vector Q = 1/(2^(1/bins)-1); maxK = ceil(bins*log2(maxFreq/minFreq)); maxN = ceil(Q*fs/minFreq); if size(x,2) < maxN x(end+1"
+    },
+    {
+      "id": "se_mathematica_476",
+      "tag_forum": "mathematica",
+      "title": "Generating a table of contents",
+      "body": "This is my oldest question on SO. It still hasn't generated a useful answer there, so I thought I'd give it a try here. The question was: I don't seem to be able to find the method to generate the table of contents for a Mathematica notebook. AuthorTools, an old v5.1 utility package is still hidden in Mathematica, but it doesn't work for me. The TOC should contain correct section numbers (if present in the stylesheet) and list page numbers (this requires taking page size settings into account)."
+    },
+    {
+      "id": "se_mathematica_10710",
+      "tag_forum": "mathematica",
+      "title": "How do I plot $x^2+y^2=1$ in 3D?",
+      "body": "How would I plot $x^2+y^2=1$ in 3D (it would form a cylinder)? Since there is no $z$ in the equation, I can't solve for it and use `Plot3D`. Or can I just put the equation into Plot3D? I am very new to Mathematica."
+    },
+    {
+      "id": "se_mathematica_31597",
+      "tag_forum": "mathematica",
+      "title": "how to round result to 64 bit double precision number?",
+      "body": "How do I round to ieee 64 bit floating point with mathematica? I've tried `N[22250738585072014/10000000000000000 10^-308, MachinePrecision]` and I get 2.22507*10^-308 as a result (0x000ffffe2e8159d0 in hex), though it should be 2.2250738585072014e-308 (0x0010000000000000 in hex). Thanks."
+    },
+    {
+      "id": "se_mathematica_3665",
+      "tag_forum": "mathematica",
+      "title": "Can 2D and 3D plots be combined so that the 2D plot is the bottom surface of the 3D plot boundary?",
+      "body": "I have a `ListlinePlot` function, that I would like to combine with both a `Graphics3D` plot and a `ListPointPlot3D` plot, in such a way that the `ListLinePlot` is the bottom of the 3D boundary cube for the 3D plots. Can this be done in Mathematica 8.0.4? Obviously the code below fails to combine the plots in `Show`, but is there another way to accomplish this? Thanks! Needs[\"TetGenLink`\"] twodPts = RandomReal[{-1, 1}, {10, 2}]; threedPts = RandomReal[{-1, 1}, {50, 3}]; {pts, surface} = TetGenCo"
+    },
+    {
+      "id": "se_mathematica_28642",
+      "tag_forum": "mathematica",
+      "title": "ReadList with type Expression unable to read scientific notation?",
+      "body": "I have a file that defines an array of numbers like this: freq[\"AQs\"] = 8.846947803007962E-4 ... I am reading the file with `ReadList[\"myfile.txt\", Expression]` but Mathematica reads the above entry as `20.0` `instead of 0.000884695`. How can I read the array correctly? Thanks."
+    },
+    {
+      "id": "se_mathematica_1737",
+      "tag_forum": "mathematica",
+      "title": "How do you convert a string containing a number in C scientific notation to a Mathematica number?",
+      "body": "Suppose I have a string containing the C-representation of a floating point number, for example s = \"1.23e-5\" and I want to convert this to a Mathematica number. How can I do this? `ToExpression[s]` gives `Plus[-5, Times[1.23`, e]]`."
+    },
+    {
+      "id": "se_mathematica_24986",
+      "tag_forum": "mathematica",
+      "title": "I can't solve this set of equations",
+      "body": "I am having trouble solving a set of equations in mathematica. I do not get any errors, but i don't get any answers as well. I have some restrictions on my parameters and variables in the equations which i try to implement too. I have tried to implement them using $Assumptions and Assuming[], but it seems like Mathematica ignore it. However, all my parameters and variables are real and non-negative. g is a known positive constant which i define earlier in my notebook. Here is what i type in Math"
+    },
+    {
+      "id": "se_mathematica_29349",
+      "tag_forum": "mathematica",
+      "title": "Performance tuning in Mathematica?",
+      "body": "What performance tuning tricks do you use to make a _Mathematica_ application faster? MATLAB has an amazing profiler, but from what I can tell, _Mathematica_ has no similar functionality."
+    },
+    {
+      "id": "se_mathematica_51950",
+      "tag_forum": "mathematica",
+      "title": "How to display the value of a very small number instead of \"0.\"",
+      "body": "I need to perform an integration. There is one particular value, which may be very small that is showing up as `0.`. Is there any command in _Mathematica_ 9 that will give me the very small value instead of `0.`? ![enter image description here](http://i.stack.imgur.com/km0SH.png)"
+    },
+    {
+      "id": "se_mathematica_34207",
+      "tag_forum": "mathematica",
+      "title": "the way to save multidimensional array in text file",
+      "body": "I have an array which is defined as a table, e.g. g = Table[ cos[l1*3.]*sqrt[l2*1.]*l3 + l1*1 , {l1, 0, 3}, {l2, 0, 3}, {l3, 0, 3}]; then, I need to save it in the following format 1 1 1 g[1,1,1] ... i1 i2 i3 g[i1,i2,i3] If I do something like Do[ Export[ file, {i, g[[i, 2, 3]]}], {i, 1, 4}]; then it saves only the last line for `i == 4`: > > 4 > 3 + 2*cos[9.]*sqrt[1.] > Another \"subquestion\" - is there a way to convert the `Table` to float? `N` doesn't help."
+    },
+    {
+      "id": "se_mathematica_44329",
+      "tag_forum": "mathematica",
+      "title": "How to get precision for a small calculation?",
+      "body": "For pc1 and pc2 this gives the answer to only four decimal places. How can I get better precision? c = N[299792458, 100] hr = N[3600, 100] da = N[24, 100] yr = N[365.25, 100] au = N[149597870700, 100] a = N[648000/Pi, 200] pc = N[au*a, 200] pc1 = N[pc/(c*hr*da*yr), 200] b = N[au/Tan[1/3600 Degree], 200] pc2 = N[b/(c*hr*da*yr), 200]"
+    },
+    {
+      "id": "se_mathematica_43966",
+      "tag_forum": "mathematica",
+      "title": "How to store standard plot settings?",
+      "body": "If I plot many graphs with some standard set of options. Is there a way to store this set so that i can have better overview/structure over my plotting commands? example, I plot a function f[x] with a set of options: Plot[f[x], {x, 0, 1}, PlotRange -> All, Axes -> False, Frame -> True, PlotStyle ->Black, LabelStyle -> Directive[FontFamily -> \"Symbol\"], FrameStyle -> AbsoluteThickness@1, BaseStyle -> {PrivateFontOptions -> {\"OperatorSubstitution\" -> False}}, AspectRatio -> 0.5/GoldenRatio, ImageS"
+    },
+    {
+      "id": "se_mathematica_1742",
+      "tag_forum": "mathematica",
+      "title": "What is the most convenient way to read definitions of in-memory symbols when we don't have the source files? (Spelunking tools)",
+      "body": "**Note:** I put Simon's implementation on GitHub. Contributions welcome! * * * When trying to read the definition of already defined (package or built-in) symbols using `Information` or `FullDefinition`, the biggest inconvenience is that lots of distracting private context names appear in front of all symbol names. Currently I am using a little function `contextFreeDefinition[]` to avoid this problem. It will attempt to hide the most frequently appearing context name in the definition. `contextF"
+    }
+  ]
+}

@@ -1,0 +1,361 @@
+{
+  "note": "One shard of the STACKEXCHANGE-DUPLICATE-QUESTION-CLUSTER corpus: real Stack Exchange questions from the 'programmers' community (no duplicate-cluster labels). Group questions in THIS shard that ask the same underlying thing, per instruction.md. The full set to cluster is the UNION of all part_*.json files.",
+  "part": "part_03.json",
+  "count": 59,
+  "records": [
+    {
+      "id": "se_programmers_73832",
+      "tag_forum": "programmers",
+      "title": "How can I get the word out about a new (open-source) library I've developed?",
+      "body": "I'm finishing up a personal project in which I've implemented a library that I expect others may want to use. Without going into too much detail, the library provides a cross-platform interface for parsing a particular type of file, where none had existed before (at least in this language). The project was fun and rewarding in itself, but I think it would be a shame if it were never considered by other developers due to ignorance. How can I appropriately spread the word about this library? My cu"
+    },
+    {
+      "id": "se_programmers_246618",
+      "tag_forum": "programmers",
+      "title": "Why shouldn't you develop on production database?",
+      "body": "I need help with organizing my arguments for why it's MADNESS to develop against production data. **Backstory:** I started working here six months ago and I noticed we're developing directly against production data. The codebase is local, but the database we're connected to is live data! So i have to be super careful constantly when doing update/store operations, so that I don't break anything. We have an annual software meeting soon and I want to raise my concerns, and come loaded with argument"
+    },
+    {
+      "id": "se_programmers_103318",
+      "tag_forum": "programmers",
+      "title": "iOS version/device statistics - where can I find?",
+      "body": "Since I am developing iOS apps I'm trying to find stats on how many iOS devices there are out there. Preferably broken down into versions: Iphone 3G, Iphone 3Gs, Iphone 4 etc. Also I'd like to know the stats on different iOS versions. After an hour of googling I found out that it is not the easiest thing to find. Anyone got some nice bookmarked links to share?"
+    },
+    {
+      "id": "se_programmers_198843",
+      "tag_forum": "programmers",
+      "title": "Should a complex unifying class be doing computation?",
+      "body": "I have a large application in Java filled with independent classes which are unified in a `PlayerCharacter` class. The class is intended to hold a character's data for a game called the Burning Wheel, and as a result, is unusually complex. The data in the class needs to have computations controlled by the UI, but needs to do so in particular ways for each of the objects in the class. There are 19 objects in the class `PlayerCharacter`. I've thought about condensing it down, but I'm pretty sure t"
+    },
+    {
+      "id": "se_programmers_80045",
+      "tag_forum": "programmers",
+      "title": "Becoming a professional programmer, without going to college?",
+      "body": "I was recently rejected from a college that had previously accepted me, on the grounds that I spent a year of high school in a foreign country and the college wasn't interested in recognizing education received in another nation. Because of this a very generous scholarship has dried up, and and financing an education is doubtful. I'm also hesitant to become a part of a system that has demonstrated what I consider to be blatant xenophobia. What I want to do is say \"Screw college\", strike out on m"
+    },
+    {
+      "id": "se_programmers_147156",
+      "tag_forum": "programmers",
+      "title": "HTML/CSS in Other Spoken languages?",
+      "body": "> **Possible Duplicate:** > Do people in non-English-speaking countries code in English? Do developers who don't natively speak English still code using english property and tag names? Like, would a Japanese front end web developer still need to know what border-radius means in English to use it, or would Japanese sites use Japanese CSS? I ask because I'm an English speaking web developer who aspires to be multilingual someday, and I might try to use that combination of skills to travel the worl"
+    },
+    {
+      "id": "se_programmers_243090",
+      "tag_forum": "programmers",
+      "title": "Recursion VS memory allocation",
+      "body": "Which approach is most popular in real-world examples: recursion or iteration? For example, simple tree preorder traversal with recursion: void preorderTraversal( Node root ){ if( root == null ) return; root.printValue(); preorderTraversal( root.getLeft() ); preorderTraversal( root.getRight() ); } and with iteration (using stack): Push the root node on the stack While the stack is not empty Pop a node Print its value If right child exists, push the node's right child If left child exists, push t"
+    },
+    {
+      "id": "se_programmers_238206",
+      "tag_forum": "programmers",
+      "title": "Diagram to express parallelism in a process workflow",
+      "body": "I'm modelling part of a software architecture on which several processes run as a workflow. The architecture involves data parallelism, where a certain serial process produces N pieces of data which need to be distributed to N processes that must run in parallel. I'm looking for a good way of expressing parallelism in a diagram. The objective of this diagram is to be informative and will be included in a paper about the system architecture. It does not need to be a formal model or strictly follo"
+    },
+    {
+      "id": "se_programmers_191998",
+      "tag_forum": "programmers",
+      "title": "Can one can survive in the IT industry without knowledge of C and C++?",
+      "body": "I am just a graduate from India and I have knowledge of Java, JSP and Servlets, Android application development and some iOS development. I do not have a background in C or C++ and a little weak background in Data Structures and Algorithms. I want to know whether I can make a successful career in the IT industry without knowledge of C or C++ but having a strong grasp on Java and Python (which is what I am thinking of learning next). As for the Data Structures and Algorithms part I am planning to"
+    },
+    {
+      "id": "se_programmers_105607",
+      "tag_forum": "programmers",
+      "title": "\"Anything can go wrong will go wrong\" - Murphy's Law. so is it necessary to test all the conditional, exception cases?",
+      "body": "If \"Anything can go wrong will go wrong\" is true, we need to test all the conditionals and exceptional cases in my code. But sometimes it's hard to find all of them since many of them are corner cases, which are hard to test. How can I go about finding corner cases better or avoiding the issue?"
+    },
+    {
+      "id": "se_programmers_190152",
+      "tag_forum": "programmers",
+      "title": "In which order should I do comparisons?",
+      "body": "I'm a strong proponent of writing if statements like this: variable == constant Because to me it just makes sense, it is more readable than the inverted: constant == variable Which seems to be used a lot by C-programmers. And I see the use, namely that the interpreter or compiler will throw an error and let you know if you're not doing a comparison. But still it is less readable, and for that reason alone I don't think comparisons should be written in the manner of the second example. **The actu"
+    },
+    {
+      "id": "se_programmers_137520",
+      "tag_forum": "programmers",
+      "title": "why do some job posts say \"high pressure environment\"?",
+      "body": "Why would there be any pressure if everyone knows what they are doing and the projects are accurately estimated? If there's pressure, or even high pressure, then it implies what they are currently doing is not working, why would any good programmer want to join a team like that? Are these kind of job posting failed at trying to show off or are they really just being honest? Or is there really some good reasons for having pressure?"
+    },
+    {
+      "id": "se_programmers_182314",
+      "tag_forum": "programmers",
+      "title": "Recursion or while loops",
+      "body": "I was reading about some development interview practices, specifically about the technical questions and tests asked at interviews and I've stumbled quite a few times over sayings of the genre \"Ok you solved the problem with a while loop, now can you do it with recursion\", or \"everyone can solve this with a 100 lines while loop, but can they do it in a 5 lines recursive function?\" etc. My question is, is recursion generally better than if/while/for constructs? I've honestly always thought that r"
+    },
+    {
+      "id": "se_programmers_245455",
+      "tag_forum": "programmers",
+      "title": "When should the programmer's spoken language be used during development?",
+      "body": "I'm an Italian developer, but I have a good understanding of English. Sometimes, when developing an application targeted for an Italian audience, I wonder whether it is correct to use the Italian language in my code or not. By \"Italian language in my code\" I mean the names of methods, classes, comments, variables and so on. For example, when I write code like this: /* Attenzione: metodo esageratamente complicato */ public double calcolaImposteDeiServizi() { ... } Do I break any sacred law of pro"
+    },
+    {
+      "id": "se_programmers_105590",
+      "tag_forum": "programmers",
+      "title": "DRY with Dynamic SQL vs. prepared statements",
+      "body": "When dealing with data, one finds that, essentially, the same code is repeated in various incarnations: -- MySQL: CREATE TABLE users ( id int NOT NULL auto_increment PRIMARY KEY, name varchar(255) NOT NULL, email varchar(255) NOT NULL, UNIQUE KEY akUser (email) ) // PHP class User extends DBModel { protected $id; protected $name; protected $email; function __construct() { $this->queries = array( 'getById' => 'SELECT id, name, email FROM users WHERE id = :id', 'addUser' => 'INSERT INTO users (nam"
+    },
+    {
+      "id": "se_programmers_237402",
+      "tag_forum": "programmers",
+      "title": "Exception when logging exception: is it correct to ignore them?",
+      "body": "My question is specific to php, but i think it can be useful in other languages. I log into a table all the exception a code can throw: try{ //Some code } catch (Exception $e) { $log = new Log(basename($_SERVER['PHP_SELF']), $_SESSION['id'], LogType::EXCEPTION, $e); try { $log ->addLog(); } catch (Exception $e2) { // } } The function addLog insert the exception informations into a database. But (by example if the connection with the database is lost) this function can throw an exception. I can't"
+    },
+    {
+      "id": "se_programmers_648",
+      "tag_forum": "programmers",
+      "title": "How to respond when you are asked for an estimate?",
+      "body": "We, as programmers, are constantly being asked 'How long will it take'? And you know, the situation is almost always like this: * The requirements are unclear. Nobody has done an in depth analysis of all the implications. * The new feature will probably break some assumptions you made in your code and you start thinking immediately of all the things you might have to refactor. * You have other things to do from past assignments and you will have to come up with an estimate that takes that other "
+    },
+    {
+      "id": "se_programmers_55536",
+      "tag_forum": "programmers",
+      "title": "How to promote an open-source project?",
+      "body": "First of all, I apologize if this is the wrong section of network to post this question. If it is, please feel free to move it to more appropriate location... Question: I would like to hear your ideas regarding the ways of open source projects being started and run. I have an open-source content management system project and here some questions arise: How should I act? Shall I come up with a viable pre-alpha edition with working front- and back-ends first and then announce the project publicly? "
+    },
+    {
+      "id": "se_programmers_220822",
+      "tag_forum": "programmers",
+      "title": "Why not free memory as soon as its reference counter hits zero",
+      "body": "A lot of languages like Java and C# have garbage collectors that free memory when that memory no longer has any reference. Yet they don't immediately free it after the reference counter hits zero but instead every once in a while they check on all the memory to see if that memory has any reference and delete it if it doesn't. What is the benefit of doing that way? The downside to doing it that way is that you lose the destructor as you can't guarantee when it will be called. I would imagine that"
+    },
+    {
+      "id": "se_programmers_55343",
+      "tag_forum": "programmers",
+      "title": "Windows Hibernate API",
+      "body": "Is it possible to programmatically trigger the Windows's Hibernate without actually Hibernating, just to take snapshot of the OS at regular intervals? So that the system can return to the previously saved state in case of any failure. This is much like System Restore, which backups system files; but the idea is to backup the complete OS's active state."
+    },
+    {
+      "id": "se_programmers_49732",
+      "tag_forum": "programmers",
+      "title": "Types of quotes for an HTML templating language",
+      "body": "I'm developing a templating language, and now I'm trying to decide on what I should do with quotes. I'm thinking about having 3 different types of quotes which are all handled differently: backtick ` double quote \" single quote ' expand variables ? yes no escape sequences no yes ? escape html no yes yes ## Backticks Backticks are meant to be used for outputting JavaScript or unescaped HTML. It's often handy to be able to pass variables into JS, but it could also cause issues with things being tr"
+    },
+    {
+      "id": "se_programmers_45202",
+      "tag_forum": "programmers",
+      "title": "Learning C, C++ and C#",
+      "body": "I'm sure you guys are tired of this question but after wading through hours of similar posts and questions I've really not made any progress to my specific concerns. I was hoping you guys could shed some light on a couple of questions I have before I decide on a course of action. BACKGROUND: I'm wanting to enroll in some type of program to learn a programming language/get a certificate/degree to work in the field. I've always been interested and bought a book on VB back in high school and dabble"
+    },
+    {
+      "id": "se_programmers_251418",
+      "tag_forum": "programmers",
+      "title": "How do you deal with clients asking for manual data edits in the database?",
+      "body": "I've recently started working on a legacy application that frankly doesn't do all that it should. It's lacking a lot of features, has barely any administration capacities and doesn't check half the data it should. As such, it's very easy for users to do something stupid and get stuck. _\"Oops, I added this item of the wrong type to this thingie and now it won't let me remove it\"_. Indeed, the application should have checked for this, but allowed adding the wrong item. And now, when it comes to de"
+    },
+    {
+      "id": "se_programmers_207987",
+      "tag_forum": "programmers",
+      "title": "Safely fixing production database data",
+      "body": "Bugs happen and sometimes data has to be fixed in production. What is the safest way to go about this from a big company standpoint? Are there tools that can help? Here are some considerations driving this requirement... 1. We need to log who ran the query and what they ran 2. Ideally we need to give the person access to only run queries against the tables of interest and only for a short time 3. Whatever is running the queries needs to have some smarts about it to not allow long running and loc"
+    },
+    {
+      "id": "se_programmers_58824",
+      "tag_forum": "programmers",
+      "title": "Good resources and tools for modern, heavy JavaScript development?",
+      "body": "I am interested in doing some projects that involve heavy use of JavaScript. Namely HTML5 based canvas games, potentially using node.js as well. I am interested in learning modern best practices, tools and resources for JavaScript. JavaScript is tough to research because you end up wading through a lot of really outdated material, hailing from the times that \"JavaScript\" was a four letter word. If you are heavily involved in JavaScript programming... * What text editor or IDE do you use? * What "
+    },
+    {
+      "id": "se_programmers_168606",
+      "tag_forum": "programmers",
+      "title": "Why am I seeing so many instantiable classes without state?",
+      "body": "I'm seeing a lot of instantiable classes in the C++ and Java world that don't have any state. I really can't figure out why people do that, they could just use a namespace with free functions in C++, or a class with a private constructor and only static methods in Java. The only benefit I can think of is that you don't have to change most of your code if you later decide that you want a different implementation in certain situations. But isn't that a case of premature design? It could be turned "
+    },
+    {
+      "id": "se_programmers_566",
+      "tag_forum": "programmers",
+      "title": "Is it ever worthwhile using goto?",
+      "body": "Goto is almost universally discouraged. Is this statement every worthwhile using?"
+    },
+    {
+      "id": "se_programmers_175570",
+      "tag_forum": "programmers",
+      "title": "How to manage product backlog/user stories",
+      "body": "We're about to start a new project using Agile (using TFS), and I have a couple of \"good practice\" questions regarding the product backlog:- When we first start adding users stories, is it a good idea to put them in (say) a \"Backlog\" iteration, or just leave their iteration blank? Obviously when the time comes to start work on a US it would be moved into the appropriate iteration backlog. When breaking an epic down into smaller USs, would I simply close the original epic, as it's no longer requi"
+    },
+    {
+      "id": "se_programmers_22854",
+      "tag_forum": "programmers",
+      "title": "How do you deal with time estimates?",
+      "body": "If given too little time, quality suffers. If given too much time, developers will find a way to use all alloted time, no matter what. What would be a good way with dealing with estimates? Are they a necessary evil?"
+    },
+    {
+      "id": "se_programmers_108546",
+      "tag_forum": "programmers",
+      "title": "Is there a need for garbage collection in a stack-based language?",
+      "body": "What is the need for garbage collection (GC) in a stack-based language? In a language like Forth or RPL (on HP calculators), is there a need for garbage collection? I would think, since output is popped off the stack, that there wouldn't be any need. Am I missing something?"
+    },
+    {
+      "id": "se_programmers_211087",
+      "tag_forum": "programmers",
+      "title": "Bits manipulation in C",
+      "body": "I am now studying computer system in my college, and now we are learning about bits manipulation in C. And I am just curios, how can by learning bits manipulation can help us to make a reliable code ? what is it for when it comes to the real world problem? and in what way it is very useful in our program ? thank you"
+    },
+    {
+      "id": "se_programmers_194765",
+      "tag_forum": "programmers",
+      "title": "What to do when your colleagues don't value code maintainability",
+      "body": "I've been working in the same software development department for a few years now. In that time, the average stay of a developer has been 6-9 months. A handful have been around for over 2 years, but the majority of our 20 or-so developers come and go at a relatively high rate. As a result, the majority of our projects have become maintenance nightmares. Contractors will come in, code a few patch releases, and leave. Our department has development guidelines (we do TDD) but they aren't enforced. "
+    },
+    {
+      "id": "se_programmers_134984",
+      "tag_forum": "programmers",
+      "title": "Getting attention for my open sourced project",
+      "body": "> **Possible Duplicate:** > How to promote an open-source project? I've done quite a lot of work in my spare time on a project that was mostly for my own learning experience and I'm quite pleased with the results. I've used github as a source control management, so the code is already public in a sense. The code in question is a library that is quite specialized in it's application, and pretty well commented and understandable. It would probably be a good resource for students learning about the"
+    },
+    {
+      "id": "se_programmers_152891",
+      "tag_forum": "programmers",
+      "title": "Non-English Naming Conventions",
+      "body": "> **Possible Duplicate:** > Do people in non-English-speaking countries code in English? I know that there are non-English based languages out there, where keywords are in some other tongue, but popular languages are in English. However, if you're a non-native English speaker, developing for a non-English market, do you use your native language when naming functions, classes, variables, etc.? If you do, what kind of morphology do you adopt? For example, functions are often named with verbs (e.g."
+    },
+    {
+      "id": "se_programmers_35208",
+      "tag_forum": "programmers",
+      "title": "Do I need to go to a big-name university?",
+      "body": "As a soon-to-be graduating high school senior in the U.S., I'm going to be facing a tough decision in a few months: which college should I go to? Will it be worth it to go to Cornell or Stanford or Carnegie Mellon (assuming I get in, of course) to get a big-name computer science degree, internships, and connections with professors, while taking on massive debt; or am I better off going to SUNY Binghamton (probably the best state school in New York) and still get a pretty decent education while s"
+    },
+    {
+      "id": "se_programmers_96421",
+      "tag_forum": "programmers",
+      "title": "Is there a book for learning Javascript -> DOM -> jQuery?",
+      "body": "> **Possible Duplicate:** > The importance of javascript and the best way to learn it? I would like to learn Javascript, the DOM model and jQuery. I've found many recommendations for books for each subject, but I wonder if there is a single book which teaches the three subjects in order and how they relate to each other. Thanks for any advice."
+    },
+    {
+      "id": "se_programmers_65384",
+      "tag_forum": "programmers",
+      "title": "What are bit operators good for?",
+      "body": "Programming languages often come with various bit operators (e.g. bitwise left- and right shift, bitwise AND, OR, XOR...). These don't get used though very much, or at least such has my experience been. They are sometimes used in programming challenges or interview questions, or the solution migh require them, e.g.: * Without using any equality operator, create a function which returns `true` when two values are equal * Without using a third variable, swap the value of two variables These then a"
+    },
+    {
+      "id": "se_programmers_28139",
+      "tag_forum": "programmers",
+      "title": "Is a big name computer science degree worth the cost?",
+      "body": "> **Possible Duplicate:** > Do I need to go to a big-name university? I'm currently in High School and trying to look into what I want to do after I graduate. I know that I will be going to college, and that I want a degree in Computer Science, however, I'm not entirely sure where I want to go (I haven't started the application process yet). I already have built up a decent amount of experience in programming (over the summers I have been hired to program at a local university), and I'm pretty c"
+    },
+    {
+      "id": "se_programmers_120281",
+      "tag_forum": "programmers",
+      "title": "When will be your project finished? How long does it take to complete it? Any idea how do you estimate such timing on the spot?",
+      "body": "> **Possible Duplicate:** > How to respond when you are asked for an estimate? In my company, i have a strange managers, they always asks me before starting how is it going? And how long it will take to finish? From Day 1 to end of the project life. Behind the screen they do not have any idea what language i will need to use. I was myself forced to use PHP, C, Java, Vala, D, Bash, many other platforms etc etc, where i was only a Visual basic 6.0 programmer. But it takes me lot of time to complet"
+    },
+    {
+      "id": "se_programmers_41990",
+      "tag_forum": "programmers",
+      "title": "Is learning how to use C (or C++) a requirement in order to be a good (excellent) programmer?",
+      "body": "When I first started to learn how to program, _real_ programmers could write assembly in their sleep. Any serious schooling in computer science would include a hefty bit of training and practice in programming using assembly. That has since changed, to the point where I see Computer Science degrees with assembly, if included at all, is relegated to one assignment, and one chapter, for a total of two weeks' work out of 4 years' schooling. C/C++ programming seems to have followed a similar path. I"
+    },
+    {
+      "id": "se_programmers_234447",
+      "tag_forum": "programmers",
+      "title": "Is Object Oriented Design necessary when building Symfony web apps?",
+      "body": "I am primarily a software developer, and as such, I do a lot of reading on the subject of Object Oriented Design; the 5 SOLID principles, design patterns, composition over inheritance etc. I currently work as a PHP developer building web applications in Symfony 2. Along with learning to use an Agile/BDD/TDD approach to building web applications, I try to incorporate some OOD by searching out the abstractions and jotting down some interfaces for classes to communicate with (dependency inversion)."
+    },
+    {
+      "id": "se_programmers_242889",
+      "tag_forum": "programmers",
+      "title": "Are there advantages for using recursion over iteration - other than sometimes readability and elegance?",
+      "body": "I am about to make two assumptions. Please correct me if they're wrong: 1. There isn't a recursive algorithm without an iterative equivalent. 2. Iteration is always cheaper performance-wise than recursion (at least in general purpose languages such as Java, C++, Python etc.). If it's true that recursion is always more costly than iteration, and that it can always be replaced with an iterative algorithm (in languages that allow it) - than I think that the two remaining reasons to use recursion ar"
+    },
+    {
+      "id": "se_programmers_142443",
+      "tag_forum": "programmers",
+      "title": "Why Aren't There New Versions of C?",
+      "body": "While many other languages have rapid development, such as Python, which has come out with a whole new version in the past few years, or to use a framework, Rails, which evolves super-fast (A book that was published in early 2011 is now obsolete), it seems that there are no updates for C. Why is this?"
+    },
+    {
+      "id": "se_programmers_89841",
+      "tag_forum": "programmers",
+      "title": "Advantage or disadvantages between recursive functions and for-loops",
+      "body": "Whats the difference between the two procedures? When should I be using a recursive function instead of a normal for-loop?"
+    },
+    {
+      "id": "se_programmers_1483",
+      "tag_forum": "programmers",
+      "title": "Do people in non-English-speaking countries code in English?",
+      "body": "I've heard it said (by coworkers) that everyone \"codes in English\" regardless of where they're from. I find that difficult to believe, however I wouldn't be surprised if, for most programming languages, the supported character set is relatively narrow. Have you ever worked in a country where English is not the primary language? If so, what did their code look like?"
+    },
+    {
+      "id": "se_programmers_216312",
+      "tag_forum": "programmers",
+      "title": "How to slowly release a web application to more and more users so that too many concurrent users don't crash your site?",
+      "body": "I have a web application that I expect to go viral pretty quickly. How can I control traffic to it so that it doesn't crash under too much load? This application doesn't require user login. It will be properly load tested, but I am not really sure what kind of traffic to expect until I make it live."
+    },
+    {
+      "id": "se_programmers_14033",
+      "tag_forum": "programmers",
+      "title": "Where Can I List My Opensource Project?",
+      "body": "> **Possible Duplicate:** > How can I get the word out about a new (open-source) library I've > developed? I have hosted my latest project, a JVM-based MIDI processor/API called Mjdj MIDI Morph, on Github (here and here). Now I need to bring some interest to it, even if it's negative interest (so I can improve it). I've looked up open source list on Google and end up with such things as this page on Wikipedia, which makes it quite clear that they don't want your project if it's new. Where should"
+    },
+    {
+      "id": "se_programmers_21697",
+      "tag_forum": "programmers",
+      "title": "When do I need to use a framework?",
+      "body": "I am new to web programming and at this time I am learning about PHP. I would like to know when do I need to use a PHP framework such as CakePHP? What are things that this and other similar PHP frameworks offer for me? And is it really important to use a framework to be a professional? * And can I create my own framework to provide the features I like into it?"
+    },
+    {
+      "id": "se_programmers_113936",
+      "tag_forum": "programmers",
+      "title": "Is it a good practice to code in English?",
+      "body": "> **Possible Duplicate:** > Do people in non-English-speaking countries code in English? I have a development comming that is intended to be sold across Latin America (Spanish speakers), but I've heard from some partners that is a good practice to always code in English, I mean just code (methods, classes, pages names, etc), labels on GUI are going to be all in Spanish... Code will be edited in the future by developer of companies across Latin America and just maybe some from outside. What do yo"
+    },
+    {
+      "id": "se_programmers_30254",
+      "tag_forum": "programmers",
+      "title": "Why Garbage Collection if smart pointers are there",
+      "body": "These days, so many languages are garbage collected. It is even available for C++ by third parties. But C++ has RAII and smart pointers. So what's the point of using garbage collection? Is it doing something extra? And in other languages like C#, if all the references are treated as smart pointers(keeping RAII aside), by specification and by implementation, will there still be any need of garbage collectors? If no, then why is this not so?"
+    },
+    {
+      "id": "se_programmers_181837",
+      "tag_forum": "programmers",
+      "title": "I released open source code that is useable to other programmers. How do I let them know about it?",
+      "body": "I have a tiny project (<1k but let's say its <5k of lines). I made it open source and put it on github. I did this once before and I didn't get a single download nor fork but that was very specific and this tiny project is very useable to other programmers. It's open source (let's say LGPL, GPL, public domain or somewhere in between these). What can I do other than let it rot on my computer/online while only I use it? I'll keep this as generic as possible and won't link my stuff."
+    },
+    {
+      "id": "se_programmers_121073",
+      "tag_forum": "programmers",
+      "title": "Would refusing to use a PHP framework be a bad idea?",
+      "body": "> **Possible Duplicate:** > When do I need to use a framework? I feel fairly competent at creating a number of applications in PHP and thus far have not seen the need to use one of the popular frameworks (CakePHP, Zend, etc). As a programmer it gives me comfort to know exactly what my code is doing and I suppose before now that has made sense since I've been learning the language. Is it ignorant of me to not want to use one of these mainstream frameworks? **Will it hurt my productivity? Why shou"
+    },
+    {
+      "id": "se_programmers_139377",
+      "tag_forum": "programmers",
+      "title": "Current iOS version/device statistics?",
+      "body": "The answer to this SO question has become stale: iOS version/device statistics - where can i find? because time currency wasn't part of that question, and iOS version updates have been release since this question was asked. Is there a web site or other publicly available source which keeps a current or frequently updated list of the percentages of iOS devices and OS versions in use, perhaps by continual monitoring of app analytics or web site logs or other means? And what device or OS informatio"
+    },
+    {
+      "id": "se_programmers_173627",
+      "tag_forum": "programmers",
+      "title": "Why do browsers leak memory?",
+      "body": "A colleague and I were speaking about browsers (using a browser control object in a project), and it appears as plain as day that all browsers (Firefox, Chrome, IE, Opera) display the same characteristic or side-effect from their usage and that being 'Leaking Memory'. Can someone explain why that is the case? Surely as with any form of code, there should be proper garbage collection? PS. I've read about some defensive patterns on why this can happen from a developer's perspective. I am aware of "
+    },
+    {
+      "id": "se_programmers_238749",
+      "tag_forum": "programmers",
+      "title": "How to effectively cooperate in a team having mixed background/mindset regarding OOP?",
+      "body": "I've been recently assigned for a new high-performance C++ project (finance) together with 3 other guys who, like, me, refer to themselves as \"primarily C/C++ programmers\", meaning, all of us have also done Java & other stuff, we all have comparable experience (8 to 10 years) and have successfully collaborated for the making of other projects (not C/C++). I soon found out we have such different mindsets when it comes to our \"mother programming tongue\" that it risks not only the good delivery of "
+    },
+    {
+      "id": "se_programmers_213411",
+      "tag_forum": "programmers",
+      "title": "Making programming a career\u2014 without a degree. Is this smart?",
+      "body": "I asked this before and go downvoted hard so someone said I should try posting here... Any help would be MASSIVELY helpful. I'm doing Udacity, Udemy, Codecademy, Lynda, and edX. I'm learning Java (my favorite), MySQL, Python (the hardest), Javascript, HTML, CSS, and just began to learn C. I work hard on them and I love doing it. OK, so I was visiting my bro and his family last week, and I told them I was doing online courses for programming. And they basically laughed their asses off at \"free ed"
+    },
+    {
+      "id": "se_programmers_143825",
+      "tag_forum": "programmers",
+      "title": "What are the advantages of mainframes?",
+      "body": "The downsides of Mainframes is well trodden ground; expensive, legacy, dwindling community, etc. I'm not particularly interested in the downsides, but I am curious if there are any benefits to mainframe hardware/software over the current Intel/AMD & Linux/Windows environment. I've been told that MFs are particularly good (and better than current servers) at heavy I/O loads. Is this still true?"
+    },
+    {
+      "id": "se_programmers_219747",
+      "tag_forum": "programmers",
+      "title": "How to make my open source project known?",
+      "body": "I have a simple project, which enable to record the voice and execute associated commands. I think it can be an interesting and useful project. I don't know how to make it known. I already wrote an article and I published it on hackernews but it wasn't very popular. What can I do to make my project known?"
+    },
+    {
+      "id": "se_programmers_147537",
+      "tag_forum": "programmers",
+      "title": "What is the canonical reference on probabilistic data structures?",
+      "body": "I've heard of probabilistic data structures like Skip Lists and Bloom Filters being immensely useful and I'd like to learn more about them in general. Is there a canonical reference on the subject on the level of Cormen et al.?"
+    }
+  ]
+}

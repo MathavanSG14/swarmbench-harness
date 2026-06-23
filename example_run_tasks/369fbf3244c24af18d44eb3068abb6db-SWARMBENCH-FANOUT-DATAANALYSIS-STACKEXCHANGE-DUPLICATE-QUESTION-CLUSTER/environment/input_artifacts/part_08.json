@@ -1,0 +1,295 @@
+{
+  "note": "One shard of the STACKEXCHANGE-DUPLICATE-QUESTION-CLUSTER corpus: real Stack Exchange questions from the 'gis' community (no duplicate-cluster labels). Group questions in THIS shard that ask the same underlying thing, per instruction.md. The full set to cluster is the UNION of all part_*.json files.",
+  "part": "part_08.json",
+  "count": 48,
+  "records": [
+    {
+      "id": "se_gis_721",
+      "tag_forum": "gis",
+      "title": "What are some best practices for managing large amounts of geospatial data?",
+      "body": "How do you manage your geospatial data? I have terabytes of data spread out over hundreds of datasets, and have an ad-hoc solution using symbolic links within projects which link back to an domain-name based archive directory for each dataset. This works mostly, but has its own issues. I'm also keen to hear if anyone manages their geospatial data in a revision control system; I currently use one for my code and small datasets, but not for full datasets."
+    },
+    {
+      "id": "se_gis_60858",
+      "tag_forum": "gis",
+      "title": "Raster Version of Spatial Join (one to many)",
+      "body": "I have two raster layers that are identical in shape (they overlap exactly) and I need to perform the raster equivalent of a Spatial Join (one to many). My files need to stay in raster format otherwise I would just do everything in vector. I'm using ArcMap 10.1. My \"buffrast\" raster contains the land cover value for each pixel within a circular buffer of 150m around a bunch of pointa. My \"rr1\" raster contains the identities for individual 150m radius circles around various points (e.g. NR0602), "
+    },
+    {
+      "id": "se_gis_17368",
+      "tag_forum": "gis",
+      "title": "Inserting newlines in Rectangle Text elements via ArcPy causes overlap?",
+      "body": "I ran across an issue the other day when I tried to use ArcPython's mapping module to edit rectangle text elements with newlines (\\n) in an ArcMap document. Here's what the output looked like: ![enter image description here](http://i.stack.imgur.com/mt2OH.png) Here's the code I used to generate that output. The first column are rectangle text elements Text1, Text2, Text3 going down; the second column are \"plain\" text elements Text4, Text5, and Text6 going down. import os import arcpy HomeDir = r"
+    },
+    {
+      "id": "se_gis_80",
+      "tag_forum": "gis",
+      "title": "Accessing additional ArcObjects from Python (i.e. without ArcPy)?",
+      "body": "I would like to be able to script some things that are not exposed via `arcgisscripting` or ArcPy. How do I access ArcObjects from Python? I'm working with ArcGIS Desktop 9.3.1 right now, but will be upgrading to version 10 in the next few months."
+    },
+    {
+      "id": "se_gis_62442",
+      "tag_forum": "gis",
+      "title": "Unable to install QGIS 1.8 on Ubuntu",
+      "body": "Can someone please walk me through installing qgis on Ubuntu 13.04. I keep getting 1.7 no matter what I do and I would like 1.8 if possible. I am a new Linux user. This was addressed in a previous post but it still did not fix my problem. I was still getting the same errors even when I followed this post: Cannot fix QGIS after upgrade to Ubuntu 13.04 Raring * * * I was finally able to figure it out: On the QGIS website I installed this http://hub.qgis.org/projects/quantum- gis/wiki/Download#262-"
+    },
+    {
+      "id": "se_gis_85991",
+      "tag_forum": "gis",
+      "title": "ArcGIS multiple scripts conflict",
+      "body": "I am developing separate javascript widgets in different scripts and they work independently. However, when I try and put both scripts together, neither script works at all. So this brings me to my question, is there any way for me to _easily_ integrate multiple Javascript ArcGIS scripts? For example, if I only change the require statements from: require([ \"esri/map\", \"esri/layers/FeatureLayer\", \"esri/dijit/PopupTemplate\", \"esri/request\", \"esri/geometry/Point\", \"esri/graphic\", \"dojo/on\", \"dojo/_"
+    },
+    {
+      "id": "se_gis_60494",
+      "tag_forum": "gis",
+      "title": "How to convert .adf files to shapefiles in ArcGIS",
+      "body": "how do you convert a .adf file to a shapefile in ArcGIS?"
+    },
+    {
+      "id": "se_gis_76681",
+      "tag_forum": "gis",
+      "title": "How do use the Shapefile Converter in Oracle 12c to load a Shapefile?",
+      "body": "**Update:** I resolved the service name issue. At some point I put in the right combo of parameters (or maybe I omitted some) and this message was displayed: `The following key/value is missing: -s db_sid OR -sn db_service_name` The `-sn` option isn't in the docs as far as I can tell. In my case, I replace the `-s GDSRV` with `-sn pdborcl`. Now I'm getting all sorts of errors: Connecting to Oracle Database using... localhost, 1521, null pdborcl, GISD, ********, shapes, tl_2013_us_state, null, 0 "
+    },
+    {
+      "id": "se_gis_80089",
+      "tag_forum": "gis",
+      "title": "Change symbology of layer of unique symbol to unique with python",
+      "body": "I have a problem concerning how can I change the symbology of a layer with unique symbole to unique values. I don't know how to update it. I used this code: import arcpy mxd = arcpy.mapping.MapDocument(\"CURRENT\") lyr = arcpy.mapping.ListLayers(mxd,\"region\")[0] if lyr.symbologyType == \"UNIQUE_SYMBOLE\": lyr.symbology.valueField = \"REGION\" lyr.symbology.addAllValues() arcpy.RefreshActiveView() arcpy.RefreshTOC() del mxd * * * it does not give me an error message and the version I'm working on arcgi"
+    },
+    {
+      "id": "se_gis_30526",
+      "tag_forum": "gis",
+      "title": "Precision of x decimal points in meters?",
+      "body": "Is there a handy reference that corelates the number of decimal points in a coordinate to the precision in meters? I had discussions like \"4 decimal places will place you within a 500 meter radius\" and \"6 decimal places will place you in a house\". I want a reference that can clear up such facts and requirements."
+    },
+    {
+      "id": "se_gis_101866",
+      "tag_forum": "gis",
+      "title": "SHP to DWF with centerline and annotation (labels)",
+      "body": "I am looking for a way to dump a street network (shp) into CAD but also include a text layer for street names (labels). Is this possible? I feel like there is likely an easy solution but I can't seem to figure it out."
+    },
+    {
+      "id": "se_gis_73526",
+      "tag_forum": "gis",
+      "title": "How to flip line based on a distance with another feature class",
+      "body": "I have two feature classes Line and point. So what I need is to change the flow direction based on a distance with a point feature class. If the start vertices is far from the point, the system should flip the line. So I want the starting for all line features to be near the point feature class. what shall i do? Shall I do a model builder or python script?"
+    },
+    {
+      "id": "se_gis_91720",
+      "tag_forum": "gis",
+      "title": "How to install GeoNetwork 2.10 on Ubuntu Server 12.04?",
+      "body": "I am trying to install GeoNetwork 2.10 on Ubuntu Server 12.04 using the following XML install file: <AutomatedInstallation langpack=\"eng\"> <com.izforge.izpack.panels.HelloPanel/> <com.izforge.izpack.panels.HTMLLicencePanel/> <com.izforge.izpack.panels.TargetPanel> <installpath>/usr/share/geonetwork</installpath> </com.izforge.izpack.panels.TargetPanel> <com.izforge.izpack.panels.PacksPanel> <selected> <pack index=\"0\"/> </selected> </com.izforge.izpack.panels.PacksPanel> <com.izforge.izpack.panel"
+    },
+    {
+      "id": "se_gis_8650",
+      "tag_forum": "gis",
+      "title": "How to measure the accuracy of latitude and longitude?",
+      "body": "I am very new to GPS stuff. Suppose I have latitude and longitude as `19.0649070739746` and `73.1308670043945` respectively. In this case both coordinates are `13` decimal places long, but sometimes I also get coordinates which are `6` decimal places long. Does fewer decimal points affect accuracy? What does every digit after the decimal place signify?"
+    },
+    {
+      "id": "se_gis_82872",
+      "tag_forum": "gis",
+      "title": "Export ArcGIS labels to CAD - need help troubleshooting",
+      "body": "I know this question has been answered before on various forums (also here1), but I have followed the instructions step by step and understand them completely yet still can not seem to get labels to export to DWG properly. I have a street centerline shapefile, have created a geodatabase, converted the street labels and saved them in the database, and taken the street certline and the annotation and converted them into a DWG with the Convert to CAD tool. It shows that it works properly but produc"
+    },
+    {
+      "id": "se_gis_30006",
+      "tag_forum": "gis",
+      "title": "How to calculate polygon areas and perimeters?",
+      "body": "If I load a polygon layer and make a new column, how do I fill that column with the 1) area of each polygon and another column with 2) the length of the perimeter of each polygon?"
+    },
+    {
+      "id": "se_gis_20742",
+      "tag_forum": "gis",
+      "title": "Using newline/page break tag in ArcGIS Desktop Text_Element in arcpy.mapping?",
+      "body": "I want to update a Text_Element with a newline or page break using ArcGIS Desktop 10.0. Does anyone know the tag or syntax?"
+    },
+    {
+      "id": "se_gis_48914",
+      "tag_forum": "gis",
+      "title": "Problems with NAD27 projection in QGIS",
+      "body": "I have some data that is in NAD27, but I am having a hard time displaying it in QGIS. I think that the problem is with the CRS. I cannot seem to find the correct NAD27 option. The closest one seems to be EPSG:2027 (NAD27(76)/UTM zone 15N), but my data points are still about 25 meters off. This data plots up just fine in ArcGIS, and I have transformed it to NAD83, which I can use with no problem in QGIS, but this is an awkward workaround, and I would like to migrate this project into QGIS entirel"
+    },
+    {
+      "id": "se_gis_6848",
+      "tag_forum": "gis",
+      "title": "How to develop GUI in Python for geoprocessing?",
+      "body": "I want to develop GUI in Python for geoprocessing, but I don't know what is the best GUI tool or library (Tkinter, PyQT, wxPython) for geoprocessing? Can I use PyQT for GUI programming in ArcGIS?"
+    },
+    {
+      "id": "se_gis_91462",
+      "tag_forum": "gis",
+      "title": "Leaflet snap circle draw to marker",
+      "body": "I am looking for ideas/libraries that enable snapping when I create a circle with leaflet draw. There is the libaray Leaflet snap, that enables snapping of draggable markers to polylines and other layers. But I am looking for an option to snap to markers when creating a circle. So basically create a circle around the marker. ![enter image description here](http://i.stack.imgur.com/E9L8k.png)"
+    },
+    {
+      "id": "se_gis_97872",
+      "tag_forum": "gis",
+      "title": "In arcgis10.2, can I access arcobjects using python?",
+      "body": "I am using python in Arcgis 10.2, but it seems Python cannot meet all my developing demands, from the forum, others recommend to use python to access arc objects,but what they mentioned is the old version, so I want to confirm whether I can make it in 10.2, any extension needed? If can, I can use vb.net and c# right? Everybody has experience on it?"
+    },
+    {
+      "id": "se_gis_22929",
+      "tag_forum": "gis",
+      "title": "Use arcpy.SearchCursor with raster",
+      "body": "How can I efficiently subdivide one raster into multiple rasters using the arcpy.SearchCursor? For example if I have a slope and I was to subdivide into 3 rasters: slope1 with values between 0 and 25degress slope2 with values between 25 and 50degress slope3 with values > 50degress Here I should easily solve the problem with **arcpy.AddFieldDelimiters** If for example i have one categorical file and I also want to do the same thing? If the file I have has only one field with the identification of"
+    },
+    {
+      "id": "se_gis_88403",
+      "tag_forum": "gis",
+      "title": "ArcMap UI with Python",
+      "body": "I want to add a UI to my arc map using Python. Yes, Arc Map GP is not enough in my case... Thing is, i want to migrate all my VBA to Python. Here are what i already have : 1. Input forms (combo box,text box etc) 2. Data integration with SAP. The existing VBA can take feedback from SAP Web Service and then processed in Arc Map. So i need more than just GP (???). Right.. ? Please kindly give me suggestions.. Thanks"
+    },
+    {
+      "id": "se_gis_84130",
+      "tag_forum": "gis",
+      "title": "How can I tell the accuracy of coordinates conversion by cs2cs?",
+      "body": "For example, when I try this: cs2cs +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +to +proj=tmerc +lat_ 0=22.31213333333334 +lon_0=114.1785555555556 +k=1 +x_0=836694.05 +y_0=819069.8 + ellps=intl +towgs84=-162.619,-276.959,-161.764,0.067753,-2.24365,-1.15883,-1.094 25 +units=m +no_defs When I put > 114.1689 22.4518 It outputs > 835447.18 834705.40 3.11 Can I tell from the result, the accuracy and possible numeric error of the result? Some meters or some percent?"
+    },
+    {
+      "id": "se_gis_65702",
+      "tag_forum": "gis",
+      "title": "Which application generates *.MAG, *.MOB and *.CAR files?",
+      "body": "I have following type of files (I have tried FME too.I think they are DGPS generated file?) 1. \".MAG\" , \".MOB\" and \".CAR\" extension files many more 2. \".SES\" ,\"ERR\", \"LOG\" several I have attached files in the link Or see the Snapshots ![Snap1](http://i.stack.imgur.com/VnNvR.png) ![Snap2](http://i.stack.imgur.com/1ZdGE.png) ![Snap3](http://i.stack.imgur.com/OTyuj.png) Now i want to know: 1. Which application generates these files? 2. How to read these files (esp \".MAG\", \".MOB\" and \".CAR\") and 3. "
+    },
+    {
+      "id": "se_gis_102531",
+      "tag_forum": "gis",
+      "title": "Generating Custom Map image using Python with small installation footprint?",
+      "body": "As a part of reporting requirements there is a need to generate region maps. These highlight various regions (countries or states/provinces) with different colors (or shades of a color) depending on the input data. Usually those are maps of the whole world with the country granularity. For some countries, however, the requirement is to have state/province granularity and highlight regions (states, provinces) rather than the whole country. The output should be similar to the image shown here, but"
+    },
+    {
+      "id": "se_gis_109192",
+      "tag_forum": "gis",
+      "title": "How to make reclassified raster layers automatically display break values in their attribute tables?",
+      "body": "I am using `ArcGIS 10.2.` I have many raster layers which I need to reclassify (using the quantile method), I Also need to know the break values of these reclassifications. I know that the break values can be viewed in the reclassify dialog box, however, due to the sheer number of layers I am dealing with, I do not have time to copy these values from this dialog box, before copying them again into the attribute tables of the reclassified layers. Is there some way that I can have the break values"
+    },
+    {
+      "id": "se_gis_102643",
+      "tag_forum": "gis",
+      "title": "Export a large raster to a comma or tab delimited text file in ArcGIS 10.2 for Desktop",
+      "body": "I have a large raster with multiple attributes in 200-meter cells, and I would like to export this to a tab or comma delimited file which contains the X,Y coordinates and all of the attributes. If it's possible I'd also like to have the file arranged so it goes East to West across the whole raster like a typewriter. Thanks for looking and thanks in advance for any help you can provide. I'm currently in the process of trying raster to point, assigning X,Y, to the points and exporting the table."
+    },
+    {
+      "id": "se_gis_60998",
+      "tag_forum": "gis",
+      "title": "Assign value to raster cells within masked area",
+      "body": "The answer I previously received for this question did not solve my problem...please keep in mind that I am a GIS beginner, and it's quite likely that I carried out the proposed solution (using Combine tool) incorrectly. Detailed instructions on how to carry it out would be much appreciated. In ArcMap 10.1 I am trying to assign a single value (i.e. label) for raster cells within various 150m radius circles (about 1900 of them). I have one layer \"rr1.tif\" that contains the land cover values for e"
+    },
+    {
+      "id": "se_gis_52091",
+      "tag_forum": "gis",
+      "title": "gdalwarp cant find libproj.dlib",
+      "body": "Thought I had finally got Python, gdal and QGIS to play nicely together but just tried to do a batch transform using a bash script to call gdalwarp and it claimed it couldn't read the libproj.dlib file. Tried the exact same transformation in QGIS and it worked. Copied the code from QGIS into bash shell and it failed. QGIS is calling the same gdal library so I don't get this at all. Anyone got any ideas? This seems to be connected somehow, not sure how, to the epsg codes for Swedish grids being c"
+    },
+    {
+      "id": "se_gis_62288",
+      "tag_forum": "gis",
+      "title": "query syntax to select every multiple of nn record (shapefile)",
+      "body": "I have data like multiples of 40. 40 80 120 160 200 and so on. I would like to label every record that is a multiple of 100. I have tried a couple of methods and cant get them to work either as a query in the label or as a select statement. \"STATION\" = %00 RIGHT (\"STATION\", 2) = 00 ![enter image description here](http://i.stack.imgur.com/LFlMU.png) I get invalid sql statement. Does anyone see what I am doing wrong? respectfully I did search and did not see any of the example questions you presen"
+    },
+    {
+      "id": "se_gis_64658",
+      "tag_forum": "gis",
+      "title": "No fetch Python plugins in qgis 1.8 + ubuntu 13.04",
+      "body": "I tried to install qgis 1.8 to ubuntu 13.04 but when installation finished I couldn't find \"Fetch python plugin\" button in plugin menu. I didn't find any soloution for this problem. Any idea what's the problem?"
+    },
+    {
+      "id": "se_gis_77007",
+      "tag_forum": "gis",
+      "title": "Python3 libraries for GIS analysis",
+      "body": "I am trying to do some spatial data analysis in Python 3 now, and I was wondering what the best libraries are for GIS in Python 3. The Fiona library was developed with Python 3.3 but the Python 3+ version of Shapely is still in development. Other libraries have been ported over to Python3 but I am not sure if they have been thoroughly tested and validated compared to their Python2 counterparts. I was hoping that other developers out there could provide some suggestions. The basic functionalities"
+    },
+    {
+      "id": "se_gis_74780",
+      "tag_forum": "gis",
+      "title": "QGIS 2.0 have a Legend Limiter feature?",
+      "body": "I found this old post (concerning QGIS 1.x) Is ther a Legend Limiter in QGIS? and was wondering whether this had been solved in QGIS 2.0. Is there a way of only showing the attributes in the legend that are visible on the map? It seems to me that this is not straightforward in ArcGIS either and I think it would make sense to impement this (in QGIS as I'm trying to use ArcGIS as little as possible). Imagine how useful it would be when you have a geology maps and you don't want to show hundreds of"
+    },
+    {
+      "id": "se_gis_70219",
+      "tag_forum": "gis",
+      "title": "How to select all tenth in a field?",
+      "body": "I want to select all tenth in a field! :( I know this way; \"Km\" = 10 or \"Km\" = 20 ... and so, but I am pretty sure theres other way. I am not SQL literate, but with your help in this forums I have managed to do some things, however the most basic are missing in different posts and I would like to find a place with basic (and medium) SQL expressions with practical examples to look for. I don\u00b4t usually post, but this could be of interest for some people outside. * * * Para los que hablan espa\u00f1ol, "
+    },
+    {
+      "id": "se_gis_62001",
+      "tag_forum": "gis",
+      "title": "How to merge multiple ADF files to a single shape file?",
+      "body": "I have a set of adf file which use the same structure. How can I merge all ADF to shp file? Does the ogr2ogr command can help in this case?"
+    },
+    {
+      "id": "se_gis_89439",
+      "tag_forum": "gis",
+      "title": "How to calculate raster class metrics by polygon zone?",
+      "body": "I have a raster of morphology data where each bin has a code. I want to count the number of each code that fall under a polygon from another file. Zonal stats as table only gives me the min/max occuring codes and not count of each code. Can anyone suggest how to get count of each code for each polygon?"
+    },
+    {
+      "id": "se_gis_54394",
+      "tag_forum": "gis",
+      "title": "Is ArcFM or ArcMap leaking memory when switching between page templates?",
+      "body": "Can anyone else reproduce the memory leak described below? Any insight into what may be causing the leak is appreciated. I have custom code that swaps between landscape and portrait templates and exports a large number of maps to PDF. Unfortunately, there is a memory leak occurring when I swap from template to template that eventually causes the ArcMap to crash. I can reproduce the memory leak using the Minerville data and workflow described below. **Configuration:** ArcFM Solution Desktop 10.1 "
+    },
+    {
+      "id": "se_gis_8844",
+      "tag_forum": "gis",
+      "title": "Get list of coordinates for points in a layer?",
+      "body": "I've got a layer in **QGIS** that is comprised of points. Its attribute table doesn't have (show) the corresponding **x** and **y** coordinates for each point. Is there a way for me to extract a list of coordinates for those points? (ideally into a **CSV** , but not required) Also, for the exported list of coordinates (say, in a **CSV** file), how do I include the existing attribute table with it? Thanks. For your information, I am running **QGIS** on **Mac OS X 10.6.7**."
+    },
+    {
+      "id": "se_gis_31605",
+      "tag_forum": "gis",
+      "title": "Is there a Legend Limiter in QGIS?",
+      "body": "Is there in QGIS a function or a plugin that works similar to Legend Limiter in ArcGIS? The attribute I want to show in my legend has many possible values, I want my legend to only show those values that are visible on my view in the print composer."
+    },
+    {
+      "id": "se_gis_98146",
+      "tag_forum": "gis",
+      "title": "POSTGIS - calculating percent area of intersection in where clause",
+      "body": "I have a table of polygons (census block groups) in postgres. I want to tag each block group with the town (another polygon table) it mainly resides within. Is this possible? I'm thinking I'd need to essentially create something like: select b.*,t.name from blockgroups b, towns t where (st_area(st_intersection(b.wkb_geometry, t.wkb_geometry))/st_area(b.wkb_geometry)) > .5 but this query is taking forever (I've got about 5,000 block groups and 375 towns...). Any suggestions on how to make this qu"
+    },
+    {
+      "id": "se_gis_34423",
+      "tag_forum": "gis",
+      "title": "Advice regarding set up of GIS/CAD directories",
+      "body": "> **Possible Duplicate:** > Best practices for managing geospatial data I'm seeking input on the most practical way to set up a directory system for AutoCAD and GIS projects. I want a basic folder template I can copy and paste each time I have a new project. I can modify the contents of each sub- directory on an \"as-needed\" basis, but I want to set up something I will use consistently (in a fashion that makes the most sense). I will working from an external hard drive so I can go to my clients w"
+    },
+    {
+      "id": "se_gis_92957",
+      "tag_forum": "gis",
+      "title": "How to calculate area in km2 Qgis 2.0",
+      "body": "I have a simple question. I have calculated the area of the polygons in my shapefile, but the number seems confusing for me. I need the area to be shown in km2 but instead I get numbers like:0.004008 What are the units of this number? When I used the \"measure area\" icon, that is, when I measured the same polygon manually the size of the polygon shows me: 50.342km2 See, the two numbers are completely different. How is that?? Thanks for any help!!"
+    },
+    {
+      "id": "se_gis_57997",
+      "tag_forum": "gis",
+      "title": "Exporting QGIS attribute table to excel",
+      "body": "I have a million rows in the attribute table, with lat/lon columns that I want to export to Excel. Selecting all the rows causes QGIS to crash. Is there another way to do the export? The million rows are for a million points on the map. Can the lat/lng be extracted from the shape file using another method?"
+    },
+    {
+      "id": "se_gis_27179",
+      "tag_forum": "gis",
+      "title": "How to find polygons centroids?",
+      "body": "> **Possible Duplicate:** > Get list of coordinates for points in a layer? Sorry for another basic question - my map is almost done but now my boss wants me to enter new outbreaks (that we don't have coordinates for) into a map that has animal population data for several provinces (one shapefile for each country). At this point all I have for these newer outbreaks is the province that the outbreak was in - my boss has said that I can input the coordinates (roughly) for each outbreak by finding t"
+    },
+    {
+      "id": "se_gis_17065",
+      "tag_forum": "gis",
+      "title": "How to fix a raster with wrong Eastings?",
+      "body": "I get an error when trying to warp a tif file in QGIS: ERROR 1: Too many points (35721 out of 35721) failed to transform, unable to compute output bounds. I am using QGIS 1.7.0 Wroclaw with gdal 1.8. I am trying to reproject from ETRS89 to HD72 EOV. There was an error in the data, with the UTM zone added to the eastings. That is, the x coordinates read 34327213.050 when they should read 327213.050 in UTM zone 34N. I have tried changing the .tfw file but this did not help. Then I translated the t"
+    },
+    {
+      "id": "se_gis_29443",
+      "tag_forum": "gis",
+      "title": "Interpolating and infilling a raster from 5km pixels to 100m pixels in Arcmap 10",
+      "body": "I am trying to refine a raster dataset of annual rainfall from a 5km grid down to a 100m grid. Before I continue, I am aware that this could result in some uncertainty regarding the data. However, the data is only available in the 5km grids, and this is of no use to me, as I am looking to compare rainfall to landuse, and the landuse map is to a 100m grid. To get around this, I thought I would be able to infill the data through the use of contours (as rainfall data is generally gradient based, ra"
+    },
+    {
+      "id": "se_gis_26399",
+      "tag_forum": "gis",
+      "title": "Filter Points Layer by Polygon Layer",
+      "body": "I come from the Java world and go straight to C# and ArcGis 10 (I have to make a simple task for the university). So this means I don't really know much of C# but I can live with it and don't know ArcGis API at all. All I have is an example from the classes. It is about how to filter the cities by coordinates X and Y and a `Buffer`. So we have layers `City`(Point) and `States`(Polygon). My task is to make other functionality, and by functionality I mean method, that takes the name of 1 state and"
+    }
+  ]
+}

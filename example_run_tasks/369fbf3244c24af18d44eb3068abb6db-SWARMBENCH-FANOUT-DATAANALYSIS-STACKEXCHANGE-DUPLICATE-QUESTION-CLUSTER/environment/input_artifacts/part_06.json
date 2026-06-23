@@ -1,0 +1,313 @@
+{
+  "note": "One shard of the STACKEXCHANGE-DUPLICATE-QUESTION-CLUSTER corpus: real Stack Exchange questions from the 'unix' community (no duplicate-cluster labels). Group questions in THIS shard that ask the same underlying thing, per instruction.md. The full set to cluster is the UNION of all part_*.json files.",
+  "part": "part_06.json",
+  "count": 51,
+  "records": [
+    {
+      "id": "se_unix_24396",
+      "tag_forum": "unix",
+      "title": "Finding Linux distribution with proper hardware driver support",
+      "body": "To me it is a jungle to find what Linux distribution to choose... Of course one would like to use as much performance as possible from the machine. In my case I have a HP Pavilion dv6-6008eo - in particular I am a bit worried that the graphics card AMD Radeon HD 6490M (1 GB DDR5) will not work. Do you have any suggestion on how to proceed to find a Linux distribution that should support the hardware? (I would prefer to know that it works before installation)."
+    },
+    {
+      "id": "se_unix_46305",
+      "tag_forum": "unix",
+      "title": "Is there a way to retrieve the name of the Desktop Environment?",
+      "body": "The title is quite exhaustive: is there a way to retrieve the desktop environment name (e.g. Gnome, Unity, XFCE, LXDE, KDE...) from the command line or using Python?"
+    },
+    {
+      "id": "se_unix_120750",
+      "tag_forum": "unix",
+      "title": "location of the \"disk identifier\"",
+      "body": "According to Wikipedia, \"disk signature\" is a 32 bit value stored in MBR on bytes 440 - 443. According to `fdisk`, my \"disk identifier\" is _00043afc_ in hex: # fdisk -lu /dev/sda | grep identi Disk identifier: 0x00043afc # However, I can not confirm this with `dd`: # dd if=/dev/sda skip=439 bs=1 count=4 2>/dev/null | xxd -ps c3fc3a04 # Even if I check the entire MBR, I do not see the \"disk identifier\": # dd if=/dev/sda bs=512 count=1 2>/dev/null | xxd -ps | grep 43a # Where is the \"disk identifi"
+    },
+    {
+      "id": "se_unix_52385",
+      "tag_forum": "unix",
+      "title": "What is the difference between ./script and . ./script?",
+      "body": "> **Possible Duplicate:** > Using \u2018.\u2019 to execute files in bash I was trying to figure out how to export my environmental via script instead of changing my .bashrc file. I found this old useful post that said: > Variables can only be exported to subordinate processes, you can't pass them > back up to the parent. If you really want your script to affect the parent > shell's environment, run the script as > > > . ./yourprogram > I just want to know what the difference is between `. ./script` and `."
+    },
+    {
+      "id": "se_unix_5251",
+      "tag_forum": "unix",
+      "title": "Can one PC be used by two users at the same time via dual-monitor?",
+      "body": "Since modern PCs can use two screens at the same time I wonder if it is possible to plug in two keyboards and mouses as well to have the two screens run two (more or less) independent X-sessions at once?"
+    },
+    {
+      "id": "se_unix_71168",
+      "tag_forum": "unix",
+      "title": "What are TTYs >12 used for?",
+      "body": "Related to TTY numbers, it looks like there are 64 TTYs (`find /dev -name 'tty[0-9]*' | cut -c 9- | sort -n | tail -n 1` and documentation). tty0 is the current virtual console, `Ctrl`+`Meta`+`F1` reports that it's connected to `tty1`, and `tty` in a GNOME terminal reports that it's connected to `/dev/pts/N`. So what are `/dev/ttyN` for 12<N<64 used for?"
+    },
+    {
+      "id": "se_unix_130630",
+      "tag_forum": "unix",
+      "title": "`sort` disregards question mark",
+      "body": "I need to sort a file based on names in the first column. Some of the names end in a question mark. `sort` persistently ignores this question mark during sorting: sort -k 1 -t , <<TEST a?,1 a,2 b?,2 b,1 TEST a?,1 a,2 b,1 b?,2 I don\u2019t really care about how `sort` orders the question mark, if it only did it _consistently_. But it doesn\u2019t, it seems to consider the second column instead, _even_ if I tell `sort` explicitly only to use the first column as key. Version info: $ sort --version sort (GNU "
+    },
+    {
+      "id": "se_unix_9853",
+      "tag_forum": "unix",
+      "title": "Restricting an SSH/SCP/SFTP user to a directory",
+      "body": "Is there a simple way to restrict an SCP/SFTP user to a directory? All methods that I've come across require me to set a chroot jail up by copying binaries, but I don't think that should be necessary."
+    },
+    {
+      "id": "se_unix_78752",
+      "tag_forum": "unix",
+      "title": "why bash history overlap the prompt when scroll up in the history?",
+      "body": "I customized my bash prompt, PS1 value. `~/.bashrc`: Color_Off='\\e[0m' # Text Reset BGreen='\\e[1;32m' # Green BPurple='\\e[1;35m' # Purple BWhite='\\e[1;37m' # White BIBlue='\\e[1;94m' # Blue PS1=\"[\\[$BGreen\\w\\]\\[$Color_Off\\]]\\n[\\[$BPurple\\u\\]\\[$BWhite\\]@\\[$BIBlue\\h\\]\\[$Color_Off\\]]\\$ \" When I scroll up in the history with up arrow from the keyboard, after a lot of command I can see these: [/etc] [bicocca@bicoccag]$ vi [/etc] [bicocca@bicoccag]$ vim [/etc] [bicoclear The command overlaps the prompt"
+    },
+    {
+      "id": "se_unix_63062",
+      "tag_forum": "unix",
+      "title": "Resize ext4 partition to create more inodes?",
+      "body": "> **Possible Duplicate:** > How can I increase the number of inodes in an ext4 filesystem? An old headless no-X backup server I use has a small hard drive with three primary ext4 partitions: `/`, `/home` and `/swap`. The system is unable to run updates, as there are insufficient inodes available on the 1.5GB `/` partition. There is unused space available on `/home`. Would resizing the `/` partition from a live GParted environment solve this? Would more inodes be created by this process? This ans"
+    },
+    {
+      "id": "se_unix_65634",
+      "tag_forum": "unix",
+      "title": "Difference between \". myscript\" and \"./myscript\"",
+      "body": "I am confused by \"one only dot - space - shell script name\" (like `. myshellscript`) and \"path to shell script\" (like `./myshellscript`) commands. What for they are? I noticed the command `. myshellscript` executes shell script even with -rw-rw-r--. But `./myshellscript` doesn't. So I am confused."
+    },
+    {
+      "id": "se_unix_72767",
+      "tag_forum": "unix",
+      "title": "What does `chown root.root $file` mean?",
+      "body": "I'm trying to install `colordiff` in a custom directory because I do not have `sudo` privileges. I did make the directories hard-coded in the Makefile as stated in the README, but I'm getting this error: ... chown root.root /share/edu-mei/colordiff/1.0.13/etc/colordiffrc chown: changing ownership of `/share/edu-mei/colordiff/1.0.13/etc/colordiffrc': Operation not permitted make: [install] Error 1 (ignored) ... Changing this file ownership is not really a problem (probably the reason that the aut"
+    },
+    {
+      "id": "se_unix_152808",
+      "tag_forum": "unix",
+      "title": "What's with `-` in filename affecting sorting order depending on platform?",
+      "body": "I just checked if contents of directory on my cygwin/Win7 development system, and test embedded platform running Linux+Busybox are the same. Simple, `cat * | md5sum` on both (RXVT/Bash on Cygwin, serial console on Busybox/Bash), compare. And... mismatch. So I went manually file-by-file, doing `md5sum *` and... Cygwin: c69a7926998066fcb79aad3e2fc0c33f *blankpack 5866f29a5bc74f741bcc1074c883abaa *cleanup.sh d4923d7df2540e279664b0633784f1c4 *clean-www.sh c44ab61b62af040ee55a3e4ddc271299 *d Linux: c"
+    },
+    {
+      "id": "se_unix_92076",
+      "tag_forum": "unix",
+      "title": "How can I check for bad blocks on an LVM physical volume?",
+      "body": "When you're using ext4, you can check for badblocks with the command `e2fsck -c /dev/sda1 # or whatever`. This will \"blacklist\" the blocks by adding them to the bad block inode. What is the equivalent of this for an LVM2 physical volume? The filesystem on it is ext4, but presumably, the bad blocks that are detected will become invalid as the underlying LVM setup moves data around on the physical disk. In other words, how can I check for bad blocks to not use in LVM?"
+    },
+    {
+      "id": "se_unix_76466",
+      "tag_forum": "unix",
+      "title": "find command: how to ignore pathname?",
+      "body": "I have to find some type of files in a directory and it's subdirectories and I only have to print out the filenames. So here's the main command: `find -type f -name \"*.c\"` Now, how could I cut the paths from each result? (it possibily could be done with awk, but I hope, that there's an easier way to do that)."
+    },
+    {
+      "id": "se_unix_88864",
+      "tag_forum": "unix",
+      "title": "Write a zsh method the responds to a `cd` command",
+      "body": "I'm trying to write a script that will be called when navigating into certain directories. What I'd want is to have a message appear when I enter certain (not every) directories based on what it finds in there. Is there any way to write a function in my .zshrc that will respond to cd commands into certain directories, or do I simply have to alias cd?"
+    },
+    {
+      "id": "se_unix_115509",
+      "tag_forum": "unix",
+      "title": "How to allow user to only rsync/download only one directory through SSH",
+      "body": "What I want to do is to give to user a simple script to run, that will sync some directory from my VPS to their machine, authentication would be done by using pubkey, and I would like to have control on what dirs what users can download. I know I can achieve that by using simply FTP, but it's not secure and I would rather rely on pubkey authentication rather than passwords, so I would like to use SSH. However I don't want to allow user to do anything more in shell than syncing that one specific "
+    },
+    {
+      "id": "se_unix_134136",
+      "tag_forum": "unix",
+      "title": "How to access and manage a large mailbox (11 GB)",
+      "body": "I've inherited a server which on the whole has been very well maintained. There are a few oddities which are no doubt the result of some executive decision taken by \"someone who is not here now\". One of them is the way email is used most of the system notices are fired off as emails. This has for reasons that I'd rather not get into left the server with a large mail box which contains probably a lot of junk but also some important information as it was used as a catch all to allow for impromptu "
+    },
+    {
+      "id": "se_unix_98795",
+      "tag_forum": "unix",
+      "title": "Whys is there extra dot at the start of some command I'm supposed to execute",
+      "body": "I've downloaded an installation package of weblogic server and in the README, there's this command to execute: Linux/Mac $ . ./configure.sh It's not the first time I see this. Why is there an extra dot at the start of the command? When I do only `./configure.sh`, the result is the same"
+    },
+    {
+      "id": "se_unix_28827",
+      "tag_forum": "unix",
+      "title": "Why is my bash prompt getting bugged when I browse the history?",
+      "body": "Often when I start looking at history of commands some of the characters from a command displayed aren't erased, for example: What's happening: prompt$ some_command prompt$ some_commanother_command What should have happened: prompt$ some_command prompt$ another_command I can't erase those characters and bash ignores them when executing the command. They also disappear when a new prompt is being displayed (after pressing `Enter` for example). I asked other people who work on Linux at my workplace"
+    },
+    {
+      "id": "se_unix_49263",
+      "tag_forum": "unix",
+      "title": "recursive mkdir",
+      "body": "Is there a linux command that I'm overlooking that makes it possible to do something along the lines of: (pseudo) $ mkdir -R foo/bar/zoo/andsoforth Or is there no alternative but to make the directories one at a time?"
+    },
+    {
+      "id": "se_unix_98909",
+      "tag_forum": "unix",
+      "title": "Can't create a minimal chroot jail",
+      "body": "Was trying to create a minimal `chroot` jail. The steps followed was: 1. Created a folder `chroot` 2. Copied bash to the folder `chroot` 3. Run `ldd bash` to know the dependencies ldd /bin/bash linux-vdso.so.1 => (0x00007fff645e2000) libtinfo.so.5 => /lib/x86_64-linux-gnu/libtinfo.so.5 (0x00007f9155f75000) libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f9155d71000) libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f91559e6000) /lib64/ld-linux-x86-64.so.2 (0x00007f91561bb000) 4. Then I"
+    },
+    {
+      "id": "se_unix_87442",
+      "tag_forum": "unix",
+      "title": "Create user who can only access one directory",
+      "body": "I would like to create a user that only has access to one folder and nothing else whatsoever. I have already created a user but he has access to other parts of the system according to corresponding file settings. I don't want him to have that, I want him only to have access to one folder and nothing else. Everything else should preferably be just invisible to him. Is it possible to create such a user,and if so, how do I go about doing that? p.s. Removing 'other' privileges of other users home di"
+    },
+    {
+      "id": "se_unix_63826",
+      "tag_forum": "unix",
+      "title": "How to stop apt from uninstalling the packages while updating",
+      "body": "I using apt in terminal to install an update. When i used `apt-get -f install` it showed 0 upgraded, 7 newly installed, 428 to remove and 3 not upgraded. 4 not fully installed or removed. Need to get 5691kB of archives. After this operation, 451MB disk space will be freed. Do you want to continue [Y/n]? I dont want to remove 428 packages. These are linked with other applications. (Some packages are Ruby1.8, Perl, python libraries and so on). How should i install the 7 packages without removing 4"
+    },
+    {
+      "id": "se_unix_6870",
+      "tag_forum": "unix",
+      "title": "How do I upgrade OpenSSL?",
+      "body": "According to these instructions: http://wiki.apache.org/httpd/NameBasedSSLVHostsWithSNI I need to use OpenSSL 0.9.8k or later (right now it's on 1.0.0c) to use name based virtual hosts in apache. Right now I have version 0.9.8e. I'm running CentOS with a 64 bit version of a Linux 2.6 build. I thought an upgrade like this would be simple but apparently it's not some package that rpm can install. Where should I start?"
+    },
+    {
+      "id": "se_unix_67134",
+      "tag_forum": "unix",
+      "title": "-p and -o comm doesn't work together?",
+      "body": "I'm trying to get CPU usage of a process by, `ps -p 12990 -o comm=comm,pcpu` But that only print the command name (the process does exist), what's wrong with it?"
+    },
+    {
+      "id": "se_unix_74797",
+      "tag_forum": "unix",
+      "title": "Is it possible to make multi-level directory?",
+      "body": "Using `mkdir()` (the C function) I can create a 1-level directory, if I want to create multi_level directory like: folder/subfolder/subsubfolder is it possible? if so, how?"
+    },
+    {
+      "id": "se_unix_76705",
+      "tag_forum": "unix",
+      "title": "How to get name of Display Manager on Linux?",
+      "body": "I want to see `Display Manager` name (Gnome, KDE etc.) via python or bash script. Is there any command for it as `uname`? (I try fedora and Debian)"
+    },
+    {
+      "id": "se_unix_33557",
+      "tag_forum": "unix",
+      "title": "Using an already established SSH channel",
+      "body": "I have an already established ssh connection between two machines. Is there a way to send commands to the remote machine from a shell script that is run on the local machine, using the already open connection, and without starting another ssh session?"
+    },
+    {
+      "id": "se_unix_86733",
+      "tag_forum": "unix",
+      "title": "Why command `ls -d` only print the `.` directory?",
+      "body": "I have tried `man ls`, and then I got > > -d, --directory > > > list directory entries instead of contents, and do not dereference symbolic > links As the manual says, `-d` means listing all the directories, but when I type `ls -d` I got drwxr-xr-x 35 *user group* 4.0K *date* 00:16 ."
+    },
+    {
+      "id": "se_unix_38175",
+      "tag_forum": "unix",
+      "title": "Difference between Login Shell and Non-Login Shell?",
+      "body": "I understand the basic difference between an interactive shell and a non- interactive shell. But what exactly differentiates a login shell from a non- login shell? Can you give examples for uses of a **_non-login interactive_** shell?"
+    },
+    {
+      "id": "se_unix_13876",
+      "tag_forum": "unix",
+      "title": "minimal install, still want gnome!",
+      "body": "I'm at the stage of the install of Fedora 15 where I choose what software to install. I want less so I'm going for \"minimal\" and \"Customize now\". What do I need to tick to get the machine to boot gnome at startup? Last time I chose minimal gnome did not load and I got stuck at terminal (or whatever you wizards call it)."
+    },
+    {
+      "id": "se_unix_62842",
+      "tag_forum": "unix",
+      "title": "How can I change screen's hardstatus color based on the logged in user?",
+      "body": "I haven't edited/created a .screenrc file in a while, but this is what I'm currently using: # Turn off the screen startup message startup_message off # Define format of bottom navigation/status/date/etc. line hardstatus alwayslastline \"%{yk}[ %H ] %-Lw%50>%{gk}(%{-}%n-%t%{gk})%{-}%+Lw%< %=%{yk}[ %c %d.%m.%Y ]\" # Increase scrollback buffer to 30000 lines defscrollback 30000 I honestly don't remember what everything in my hardstatus line stands for, but I want to figure out how I could change the "
+    },
+    {
+      "id": "se_unix_56072",
+      "tag_forum": "unix",
+      "title": "Why does this PS1 value cause unexpected behaviour?",
+      "body": "> **Possible Duplicate:** > Why is my bash prompt getting bugged when I browse the history? I have set my `PS1` variable in `.bashrc` to be the following: `PS1='\\e[35m[\\W]:\\e[0m '` It achieved what it was intended to (change the color of the prompt which displays `cwd` inside `[]` and before `:`), but when I search through my command history, sometimes parts of commands that I cycle over become attached to the prompt. For example: [~]: echo \"something\" something [~]: date Sun Nov 18 17:07:54 PST"
+    },
+    {
+      "id": "se_unix_57807",
+      "tag_forum": "unix",
+      "title": "Copy over ssh and execute commands in one session",
+      "body": "> **Possible Duplicate:** > Using an already established SSH channel Here is my sync script: ssh user@remote.host /etc/init.d/some_service stop scp user@remote.host:/var/some_service/events ./events scp ./new_data user@remote.host:/var/some_service/new_data ssh user@remote.host /etc/init.d/some_service start As You can see, it stops service, perform some copies with scp and starts service back. The problem: it \"costs\" 4 \"similar\" ssh connections in a row. Is there any way to make all the work, u"
+    },
+    {
+      "id": "se_unix_8999",
+      "tag_forum": "unix",
+      "title": "Please recommend a GUI telnet client",
+      "body": "I'm looking for a simple GUI telnet client. I only ever used the CLI one, simply named **`telnet`**."
+    },
+    {
+      "id": "se_unix_50665",
+      "tag_forum": "unix",
+      "title": "What is the difference between interactive shells, login shells, non-login shell and their use cases?",
+      "body": "> **Possible Duplicate:** > Difference between Login Shell and Non-Login Shell? I have been looking at /etc/profile. bash.bashrc to see how they are run, and notice that some are executed by non-login shells, some work with interactive shells etc. What are the differences in this type of shells, ie interactive & non- interactive, login & non-login etc? The question may be pretty basic,but it seems I need to ask what a shell is, first and foremost. What is a shell, what is its relevance, how do y"
+    },
+    {
+      "id": "se_unix_136701",
+      "tag_forum": "unix",
+      "title": "Get command PID and send to another",
+      "body": "I wanted to know if I can execute a command from the terminal and right after the command started I send its PID to another command to be monitored. I need to do something like this, dd if=/path/of/file of=/path/of/destination And then I need to monitor its execution using `pidstat`, but `pidstat` takes a pid and I don't know how to make one send the pid to the other. I need to monitor disk usage, memory usage, cpu usage and time elapsed. Does any one know of a way to do that?"
+    },
+    {
+      "id": "se_unix_20728",
+      "tag_forum": "unix",
+      "title": "Using syslog from a kernel module",
+      "body": "I am writing a linux kernel module to report statistics and send some log messages. Can I use syslog to accomplish this job? Or is `printk` the only way?"
+    },
+    {
+      "id": "se_unix_118609",
+      "tag_forum": "unix",
+      "title": "Separate SSHD Authpriv logs into /var/log/sshd, all other authpriv logging goes to messages",
+      "body": "Right now, sshd is using the `authpriv` facility. The level of logging is fine, but I don't want it in the syslog, I want it to go to `/var/log/sshd` (which doesn't yet exist) on Red Hat Linux/Enterprise Linux. `authpriv` is configured to go to syslog by `syslogd.conf`. Do I need to change the facility on sshd to `local2` (or any other unused local) for instance, and then direct `local2` to `/var/log/sshd` or is there a better way?"
+    },
+    {
+      "id": "se_unix_119114",
+      "tag_forum": "unix",
+      "title": "Custom help / man -like command (for reminders)",
+      "body": "I often end up in a situation, where I don't use a command for a while, but then suddenly need to use it; and I need to wade through several help pages until constructing the command line I want. Case in point: occasionally I need to use `nmcli`; and then I need to re-check `nmcli nm help` and `nmcli con help` several times, until I remember what sort of a command I need. What I have done then, is basically document some of this in a text file; the problem is then I usually save it on Desktop; t"
+    },
+    {
+      "id": "se_unix_24112",
+      "tag_forum": "unix",
+      "title": "\"cd //\" and \"cd /\" what is the difference?",
+      "body": "> **Possible Duplicate:** > unix, difference between path starting with '/' and '//' If I make a `cd //` followed by a `pwd` I see: # cd // # pwd // why is that? what's the differece with: cd / pwd / Everything looks the same to me..."
+    },
+    {
+      "id": "se_unix_143794",
+      "tag_forum": "unix",
+      "title": "Replace columns using a shell",
+      "body": "How could I replace column 1 in `File1` with column 2 in `File2`, when a match is found? File1 id1 36987 id2 75685 id3 12345 id4 12896 File2 id1 ID1 id2 ID2 id3 ID3 id5 ID5 I'd like to write this on another `File3`, that should look like: File3 ID1 36987 ID2 75685 ID3 12345 id4 12896 I'm currently (unsuccessfully) trying: sed `File2.txt | awk '{print \"-e s/\"$1\"/\"$2\"}'`<<< \"File1.txt\""
+    },
+    {
+      "id": "se_unix_21363",
+      "tag_forum": "unix",
+      "title": "Execute bash scripts on entering a directory",
+      "body": "What is the best way to execute a script when entering into a directory? When I move into a new directory I would like bash to execute the projectSettings.bash script much like RVM does."
+    },
+    {
+      "id": "se_unix_45107",
+      "tag_forum": "unix",
+      "title": "Is it possible to change Inode count on an ext4 filesystem?",
+      "body": "> **Possible Duplicate:** > How can I increase the number of inodes in an ext4 filesystem? I have a homemade NAS with Debian Wheezy 64bit. It has three disks - 2x2TB and 1.5TB, pooled together using RAID1/5 and LVM. The result is a LVM Logical Volume, about 3.16TB in size, formatted as ext4 and mounted as /home. However I just found out that roughly 50GB of this capacity is used by Inodes (exact count being 212 459 520, with 256B in size or to put it in another way - one Inode per every 16k of t"
+    },
+    {
+      "id": "se_unix_43882",
+      "tag_forum": "unix",
+      "title": "Using '.' to execute files in bash",
+      "body": "What's the difference between executing a script like this: `./test.sh` and executing a script like this: `. test.sh`? I tried a simple, two-line script to see if I could find if there was a difference: #!/bin/bash ls But both `. test.sh` and `./test.sh` returned the same information. Thanks."
+    },
+    {
+      "id": "se_unix_66262",
+      "tag_forum": "unix",
+      "title": "Best way of updating Openssl on Linux machine",
+      "body": "I have a confusion to choose the best way for upgrading the OpenSSL on my Linux machine. **1* _Through the yum Update._ *** # yum update I know this will update the entire packages. But If I want to specifically update OpenSSL Can I use # yum update OpenSSL **2. Through the commands** $ openssl version $ wget http://www.openssl.org/source/openssl-1.0.0i.tar.gz $ tar xzvf openssl-1.0.0i.tar.gz $ cd openssl-1.0.0i $ make clean $ ./config --prefix=/usr/local --openssldir=/usr/local/openssl $ make $"
+    },
+    {
+      "id": "se_unix_109806",
+      "tag_forum": "unix",
+      "title": "Different representation of bash in 'ps -f' command",
+      "body": "![enter image description here](http://i.stack.imgur.com/WYouU.png) I have two bash running; one is Terminal application that runs bash, the other one is xterm application that runs bash. With `ps -f`, I have `-bash` one, and `bash` at the other. What makes this difference?"
+    },
+    {
+      "id": "se_unix_22265",
+      "tag_forum": "unix",
+      "title": "Why does cd // work?",
+      "body": "> **Possible Duplicate:** > unix, difference between path starting with '/' and '//' On my Mac OS X Lion box, with Bash: $ cd // $ pwd // $ ls Applications System cores mach_kernel sbin Developer Users dev net tmp Library Volumes etc opt usr Network bin home private var This has to be some mysterious backwards-compatibility thing, but what is it?"
+    },
+    {
+      "id": "se_unix_30370",
+      "tag_forum": "unix",
+      "title": "How to get the pid of the last executed command in shell script?",
+      "body": "I want to have a shell script like this: my-app & echo $my-app-pid But I do not know how the get the pid of the just executed command. I know I can just use the `jobs -p my-app` command to grep the pid. But if I want to execute the shell multiple times, this method will not work. Because the _jobspec_ is ambiguous."
+    },
+    {
+      "id": "se_unix_100671",
+      "tag_forum": "unix",
+      "title": "How can I set up multiseat/separate X sessions with gnome 3?",
+      "body": "With classic Gnome, if one had two monitors, one could set up \"separate X sessions\" for each monitor. In this configuration, each monitor had a separate user login session and application windows were captive to the X session they were launched from. Is something similar possible with Gnome 3? If so, how do you go about setting it up?"
+    }
+  ]
+}
