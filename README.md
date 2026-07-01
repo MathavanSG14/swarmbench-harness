@@ -20,9 +20,18 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 ## Setup
 
-### 1. Clone Harbor and apply SwarmBench patches
+### 1. Clone this repo
 
-Clone and pin to the exact commit the diffs target:
+```bash
+git clone https://github.com/MathavanSG14/swarmbench-harness.git
+cd swarmbench-harness
+```
+
+This gives you the diff files (`swarmbench-kimi/` and `swarmbench-opencode/`) needed in the next step.
+
+### 2. Clone Harbor inside it and apply the patch
+
+Clone Harbor and pin to the exact commit the diff targets:
 
 ```bash
 git clone https://github.com/harbor-framework/harbor.git
@@ -30,33 +39,27 @@ cd harbor
 git checkout e70d5f060ffeb4525f320669d50b290925b55425
 ```
 
-> The commit SHA is pinned to ensure the diffs apply cleanly. Do not skip `git checkout`.
+> The commit SHA is pinned to ensure the diff applies cleanly. Do not skip `git checkout`.
 
-Apply the patches in order — the opencode diff builds on top of the kimi diff:
+Apply the single combined patch from inside `harbor/`:
 
 #### macOS / Linux
 
 ```bash
-# Step 1: apply kimi base changes
-git apply ../swarmbench-kimi/swarmbench_harbor_changes.diff
-
-# Step 2: apply opencode agent changes
-git apply ../swarmbench-opencode/swarmbench_harbor_changes.diff
-
+git apply ../swarmbench_harbor_changes.diff
 uv sync --all-extras
 ```
 
 #### Windows (PowerShell, from inside `harbor\`)
 
-`git apply` requires LF line endings. If your browser or editor converted the diffs to CRLF, normalize them first:
+`git apply` requires LF line endings. If your browser or editor converted the diff to CRLF, normalize it first:
 
 ```powershell
-foreach ($diff in @("..\swarmbench-kimi\swarmbench_harbor_changes_windows.diff", "..\swarmbench-opencode\swarmbench_harbor_changes.diff")) {
-    $lf = $diff -replace "\.diff$", ".lf.diff"
-    $text = [System.IO.File]::ReadAllText((Resolve-Path $diff)) -replace "`r`n", "`n"
-    [System.IO.File]::WriteAllText($lf, $text, (New-Object System.Text.UTF8Encoding $false))
-    git apply $lf
-}
+$diff = "..\swarmbench_harbor_changes.diff"
+$lf = $diff -replace "\.diff$", ".lf.diff"
+$text = [System.IO.File]::ReadAllText((Resolve-Path $diff)) -replace "`r`n", "`n"
+[System.IO.File]::WriteAllText($lf, $text, (New-Object System.Text.UTF8Encoding $false))
+git apply $lf
 uv sync --all-extras
 ```
 
@@ -193,7 +196,7 @@ cd harbor && uv run harbor view ../example_tasks/
 ## Troubleshooting
 
 **Patch fails to apply**  
-Make sure you ran `git checkout e70d5f060ffeb4525f320669d50b290925b55425` before applying diffs, and that you applied the kimi diff before the opencode diff.
+Make sure you ran `git checkout e70d5f060ffeb4525f320669d50b290925b55425` before running `git apply`. The diff must be applied against that exact commit.
 
 **`NonZeroAgentExitCodeError` / `curl: (6) Could not resolve host`**  
 The Docker container needs outbound internet access to install opencode via `nvm`/`npm`. Check Docker network settings — containers must reach `raw.githubusercontent.com`, `nodejs.org`, and `registry.npmjs.org`.
