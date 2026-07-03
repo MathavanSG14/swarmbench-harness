@@ -675,10 +675,10 @@ index 00000000..3ac00b4d
 \ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/multi_opencode.py b/src/harbor/agents/installed/swarmbench/multi_opencode.py
 new file mode 100644
-index 00000000..64ccb417
+index 00000000..57bcb8de
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/multi_opencode.py
-@@ -0,0 +1,678 @@
+@@ -0,0 +1,688 @@
 +import asyncio
 +import copy
 +import json
@@ -708,6 +708,16 @@ index 00000000..64ccb417
 +_OUTPUT_FILENAME = "opencode.txt"
 +_PROMPTS_DIR = Path(__file__).parent / "prompts"
 +_FIREWORKS_BASE_URL = "https://api.fireworks.ai/inference/v1"
++
++# Must match the OPENCODE_EXPERIMENTAL_OUTPUT_TOKEN_MAX env var below -- this
++# is the actual enforced per-request output cap, not the model's raw context
++# size. Kimi K2's output isn't a separate quota from input (Fireworks docs:
++# "max output length is 256*1024 - prompt_tokens" -- one shared pool), so
++# declaring limit.output as the full context window would make
++# maxOutputTokens() return the context size once nothing else clamps it,
++# collapsing overflow.ts's usable() to 0 and permanently disabling
++# compaction again -- the exact failure this fix exists to prevent.
++_FIREWORKS_OUTPUT_TOKEN_MAX = 131072
 +
 +# opencode has no models.dev catalog entry for these Fireworks account-specific
 +# deployment names (they're registered under the generic "openai" provider
@@ -951,7 +961,7 @@ index 00000000..64ccb417
 +        for key in keys:
 +            if key in os.environ:
 +                env[key] = os.environ[key]
-+        env["OPENCODE_EXPERIMENTAL_OUTPUT_TOKEN_MAX"] = "131072"
++        env["OPENCODE_EXPERIMENTAL_OUTPUT_TOKEN_MAX"] = str(_FIREWORKS_OUTPUT_TOKEN_MAX)
 +        env["OPENCODE_FAKE_VCS"] = "git"
 +        return env
 +
@@ -1005,7 +1015,7 @@ index 00000000..64ccb417
 +                if context_limit:
 +                    provider_config["models"][model_id]["limit"] = {
 +                        "context": context_limit,
-+                        "output": context_limit,
++                        "output": _FIREWORKS_OUTPUT_TOKEN_MAX,
 +                    }
 +            elif orig_provider == "openai":
 +                base_url = os.environ.get("OPENAI_BASE_URL")
@@ -2411,10 +2421,10 @@ index 00000000..1e4cb19b
 +        )
 diff --git a/src/harbor/agents/installed/swarmbench/single_opencode.py b/src/harbor/agents/installed/swarmbench/single_opencode.py
 new file mode 100644
-index 00000000..4c1682f2
+index 00000000..ef60780e
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/single_opencode.py
-@@ -0,0 +1,594 @@
+@@ -0,0 +1,604 @@
 +import asyncio
 +import copy
 +import json
@@ -2444,6 +2454,16 @@ index 00000000..4c1682f2
 +_OUTPUT_FILENAME = "opencode.txt"
 +_PROMPTS_DIR = Path(__file__).parent / "prompts"
 +_FIREWORKS_BASE_URL = "https://api.fireworks.ai/inference/v1"
++
++# Must match the OPENCODE_EXPERIMENTAL_OUTPUT_TOKEN_MAX env var below -- this
++# is the actual enforced per-request output cap, not the model's raw context
++# size. Kimi K2's output isn't a separate quota from input (Fireworks docs:
++# "max output length is 256*1024 - prompt_tokens" -- one shared pool), so
++# declaring limit.output as the full context window would make
++# maxOutputTokens() return the context size once nothing else clamps it,
++# collapsing overflow.ts's usable() to 0 and permanently disabling
++# compaction again -- the exact failure this fix exists to prevent.
++_FIREWORKS_OUTPUT_TOKEN_MAX = 131072
 +
 +# opencode has no models.dev catalog entry for these Fireworks account-specific
 +# deployment names (they're registered under the generic "openai" provider
@@ -2643,7 +2663,7 @@ index 00000000..4c1682f2
 +        for key in keys:
 +            if key in os.environ:
 +                env[key] = os.environ[key]
-+        env["OPENCODE_EXPERIMENTAL_OUTPUT_TOKEN_MAX"] = "131072"
++        env["OPENCODE_EXPERIMENTAL_OUTPUT_TOKEN_MAX"] = str(_FIREWORKS_OUTPUT_TOKEN_MAX)
 +        env["OPENCODE_FAKE_VCS"] = "git"
 +        return env
 +
@@ -2697,7 +2717,7 @@ index 00000000..4c1682f2
 +                if context_limit:
 +                    provider_config["models"][model_id]["limit"] = {
 +                        "context": context_limit,
-+                        "output": context_limit,
++                        "output": _FIREWORKS_OUTPUT_TOKEN_MAX,
 +                    }
 +            elif orig_provider == "openai":
 +                base_url = os.environ.get("OPENAI_BASE_URL")
