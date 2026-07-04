@@ -95,7 +95,7 @@ TASK=../example_tasks/template-llm-judge/4c3c848bb2f9459cb908d78f02897c6f-SWARMB
 ### Oracle Validation (expected reward = 1.0)
 
 ```bash
-uv run harbor run -t $TASK -a oracle \
+uv run harbor run -p $TASK -a oracle \
   --ve FIREWORKS_API_KEY=$FIREWORKS_API_KEY
 ```
 
@@ -103,7 +103,7 @@ uv run harbor run -t $TASK -a oracle \
 
 ```bash
 uv run harbor run \
-  -t $TASK \
+  -p $TASK \
   -a swarm-opencode-single \
   -m fireworks_ai/accounts/fireworks/models/kimi-k2p7-code \
   -k 1 -n 1 \
@@ -118,7 +118,7 @@ uv run harbor run \
 
 ```bash
 uv run harbor run \
-  -t $TASK \
+  -p $TASK \
   -a swarm-opencode-multi \
   -m fireworks_ai/accounts/fireworks/models/kimi-k2p7-code \
   -k 1 -n 1 \

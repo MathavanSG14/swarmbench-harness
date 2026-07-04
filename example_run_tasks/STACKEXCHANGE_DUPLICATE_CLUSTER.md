@@ -15,7 +15,7 @@
 
 ```bash
 cd /path/to/multi-agent-swarm-bench && harbor run \
-  -t issue_tasks/<batch>/<task-dir> \
+  -p issue_tasks/<batch>/<task-dir> \
   --agent swarm-opencode-multi \
   --model fireworks_ai/accounts/fireworks/models/kimi-k2p7-code \
   --ae FIREWORKS_API_KEY=$FIREWORKS_API_KEY
@@ -25,7 +25,7 @@ cd /path/to/multi-agent-swarm-bench && harbor run \
 
 ```bash
 cd /path/to/multi-agent-swarm-bench && harbor run \
-  -t issue_tasks/<batch>/<task-dir> \
+  -p issue_tasks/<batch>/<task-dir> \
   --agent swarm-opencode-single \
   --model fireworks_ai/accounts/fireworks/models/kimi-k2p7-code \
   --ae FIREWORKS_API_KEY=$FIREWORKS_API_KEY
