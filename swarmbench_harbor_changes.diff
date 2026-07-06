@@ -1940,10 +1940,10 @@ index 00000000..1611ca1c
 \ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/opencode_debate.md b/src/harbor/agents/installed/swarmbench/prompts/opencode_debate.md
 new file mode 100644
-index 00000000..6fbf4872
+index 00000000..df3a0f32
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/opencode_debate.md
-@@ -0,0 +1,54 @@
+@@ -0,0 +1,63 @@
 +You are an orchestrator for a **debate / consensus** workflow.
 +
 +Your working directory is: /workspace
@@ -1957,6 +1957,15 @@ index 00000000..6fbf4872
 +- **Dispatch each expert as a `task` call.** After all experts return, YOU (the orchestrator) resolve disagreements and produce the final output — do NOT spawn a separate resolver unless `decomposition.yaml` explicitly defines one.
 +- **Respect `depends_on`.** Do not dispatch a sub-task until every sub-task in its `depends_on` list has completed and returned its result.
 +- **Sub-agents run in isolated contexts** — include ALL necessary information in each `task` prompt. They cannot see your conversation.
++
++## Non-Interactive Execution
++
++This is a headless run. There is no user available to respond — this applies to you and to every sub-agent you dispatch.
++
++- Never end a turn with a question, a plan awaiting approval, or a "would you like me to continue?" style check-in. No one will answer, and the run will simply end there.
++- Do not stop partway through to summarize progress and ask what to do next. Decide on your own judgment and keep going.
++- A task is only done when every required deliverable has actually been produced. Progress notes and proposed next steps are not a substitute for finishing the work.
++- Pass this rule to sub-agents by including it in their task prompt.
 +
 +## Context
 +- The task instruction, output format, and save location are above.
@@ -2001,10 +2010,10 @@ index 00000000..6fbf4872
 \ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/opencode_fan_out.md b/src/harbor/agents/installed/swarmbench/prompts/opencode_fan_out.md
 new file mode 100644
-index 00000000..0b1f30fb
+index 00000000..37bfaf7c
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/opencode_fan_out.md
-@@ -0,0 +1,35 @@
+@@ -0,0 +1,44 @@
 +You are an orchestrator for a **fan-out and synthesis** workflow.
 +
 +Your working directory is: /workspace
@@ -2018,6 +2027,15 @@ index 00000000..0b1f30fb
 +- **Spawn the synthesizer as a sub-agent.** If `decomposition.yaml` defines a sub-task with `parallel_group: reduce` or `parallel_group: synthesize`, you MUST dispatch it as a `task` call. Do NOT perform synthesis yourself inside the orchestrator.
 +- **Respect `depends_on`.** Do not dispatch a sub-task until every sub-task in its `depends_on` list has completed and returned its result.
 +- **Sub-agents run in isolated contexts** — include ALL necessary information in each `task` prompt. They cannot see your conversation.
++
++## Non-Interactive Execution
++
++This is a headless run. There is no user available to respond — this applies to you and to every sub-agent you dispatch.
++
++- Never end a turn with a question, a plan awaiting approval, or a "would you like me to continue?" style check-in. No one will answer, and the run will simply end there.
++- Do not stop partway through to summarize progress and ask what to do next. Decide on your own judgment and keep going.
++- A task is only done when every required deliverable has actually been produced. Progress notes and proposed next steps are not a substitute for finishing the work.
++- Pass this rule to sub-agents by including it in their task prompt.
 +
 +## Context
 +- The task instruction, output format, and save location are above.
@@ -2042,10 +2060,10 @@ index 00000000..0b1f30fb
 +Pass this rule to sub-agents by including it in their task prompt.
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/opencode_hierarchical.md b/src/harbor/agents/installed/swarmbench/prompts/opencode_hierarchical.md
 new file mode 100644
-index 00000000..ee322e8e
+index 00000000..d9cf43b8
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/opencode_hierarchical.md
-@@ -0,0 +1,36 @@
+@@ -0,0 +1,45 @@
 +You are a lead orchestrator for a **hierarchical decomposition** workflow.
 +
 +Your working directory is: /workspace
@@ -2060,6 +2078,15 @@ index 00000000..ee322e8e
 +- **Dispatch managers as `task` calls with `subagent_type: "general"`.** Managers further spawn their leaf workers as `task` calls with `subagent_type: "explore"`.
 +- **Respect `depends_on`.** Do not dispatch a sub-task until every sub-task in its `depends_on` list has completed and returned its result.
 +- **Sub-agents run in isolated contexts** — include ALL necessary information in each `task` prompt. They cannot see your conversation.
++
++## Non-Interactive Execution
++
++This is a headless run. There is no user available to respond — this applies to you and to every sub-agent you dispatch.
++
++- Never end a turn with a question, a plan awaiting approval, or a "would you like me to continue?" style check-in. No one will answer, and the run will simply end there.
++- Do not stop partway through to summarize progress and ask what to do next. Decide on your own judgment and keep going.
++- A task is only done when every required deliverable has actually been produced. Progress notes and proposed next steps are not a substitute for finishing the work.
++- Pass this rule to sub-agents by including it in their task prompt.
 +
 +## Context
 +- The task instruction, output format, and save location are above.
@@ -2084,10 +2111,10 @@ index 00000000..ee322e8e
 +Pass this rule to sub-agents by including it in their task prompt.
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/opencode_map_reduce.md b/src/harbor/agents/installed/swarmbench/prompts/opencode_map_reduce.md
 new file mode 100644
-index 00000000..6d06e364
+index 00000000..c2b89297
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/opencode_map_reduce.md
-@@ -0,0 +1,37 @@
+@@ -0,0 +1,46 @@
 +You are an orchestrator for a **map-reduce** workflow.
 +
 +Your working directory is: /workspace
@@ -2102,6 +2129,15 @@ index 00000000..6d06e364
 +- **Respect wave ordering.** A wave is a group of sub-tasks whose `depends_on` lists are all satisfied at the same time. Dispatch all sub-tasks in a wave simultaneously, wait for ALL to complete, then proceed to the next wave.
 +- **Respect `depends_on`.** Do not dispatch a sub-task until every sub-task in its `depends_on` list has completed and returned its result.
 +- **Sub-agents run in isolated contexts** — include ALL necessary information in each `task` prompt. They cannot see your conversation.
++
++## Non-Interactive Execution
++
++This is a headless run. There is no user available to respond — this applies to you and to every sub-agent you dispatch.
++
++- Never end a turn with a question, a plan awaiting approval, or a "would you like me to continue?" style check-in. No one will answer, and the run will simply end there.
++- Do not stop partway through to summarize progress and ask what to do next. Decide on your own judgment and keep going.
++- A task is only done when every required deliverable has actually been produced. Progress notes and proposed next steps are not a substitute for finishing the work.
++- Pass this rule to sub-agents by including it in their task prompt.
 +
 +## Context
 +- The task instruction, output format, and save location are above.
@@ -2127,10 +2163,10 @@ index 00000000..6d06e364
 +Pass this rule to sub-agents by including it in their task prompt.
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/opencode_pipeline.md b/src/harbor/agents/installed/swarmbench/prompts/opencode_pipeline.md
 new file mode 100644
-index 00000000..f34902be
+index 00000000..ef74d18b
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/opencode_pipeline.md
-@@ -0,0 +1,34 @@
+@@ -0,0 +1,43 @@
 +You are an orchestrator for a **pipeline / sequential** workflow.
 +
 +Your working directory is: /workspace
@@ -2144,6 +2180,15 @@ index 00000000..f34902be
 +- **Execute stages in strict order.** Dispatch each stage as a `task` call only after the previous stage has completed and returned its result. Pass the previous stage's output explicitly in the next stage's prompt.
 +- **Respect `depends_on`.** Do not dispatch a sub-task until every sub-task in its `depends_on` list has completed and returned its result.
 +- **Sub-agents run in isolated contexts** — include ALL necessary information in each `task` prompt. They cannot see your conversation.
++
++## Non-Interactive Execution
++
++This is a headless run. There is no user available to respond — this applies to you and to every sub-agent you dispatch.
++
++- Never end a turn with a question, a plan awaiting approval, or a "would you like me to continue?" style check-in. No one will answer, and the run will simply end there.
++- Do not stop partway through to summarize progress and ask what to do next. Decide on your own judgment and keep going.
++- A task is only done when every required deliverable has actually been produced. Progress notes and proposed next steps are not a substitute for finishing the work.
++- Pass this rule to sub-agents by including it in their task prompt.
 +
 +## Context
 +- The task instruction, output format, and save location are above.
@@ -2167,10 +2212,10 @@ index 00000000..f34902be
 +Pass this rule to sub-agents by including it in their task prompt.
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/opencode_specialist.md b/src/harbor/agents/installed/swarmbench/prompts/opencode_specialist.md
 new file mode 100644
-index 00000000..f7111de0
+index 00000000..1275bcc9
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/opencode_specialist.md
-@@ -0,0 +1,36 @@
+@@ -0,0 +1,45 @@
 +You are an orchestrator that **routes sub-tasks to domain specialists**.
 +
 +Your working directory is: /workspace
@@ -2184,6 +2229,15 @@ index 00000000..f7111de0
 +- **Dispatch each specialist as a `task` call.** Give each specialist a clear role identity in their prompt (e.g., "You are a security analyst", "You are a database expert"). Specialists with independent domains can be dispatched in parallel.
 +- **Respect `depends_on`.** Do not dispatch a sub-task until every sub-task in its `depends_on` list has completed and returned its result.
 +- **Sub-agents run in isolated contexts** — include ALL necessary information in each `task` prompt. They cannot see your conversation.
++
++## Non-Interactive Execution
++
++This is a headless run. There is no user available to respond — this applies to you and to every sub-agent you dispatch.
++
++- Never end a turn with a question, a plan awaiting approval, or a "would you like me to continue?" style check-in. No one will answer, and the run will simply end there.
++- Do not stop partway through to summarize progress and ask what to do next. Decide on your own judgment and keep going.
++- A task is only done when every required deliverable has actually been produced. Progress notes and proposed next steps are not a substitute for finishing the work.
++- Pass this rule to sub-agents by including it in their task prompt.
 +
 +## Context
 +- The task instruction, output format, and save location are above.
@@ -2209,10 +2263,10 @@ index 00000000..f7111de0
 +Pass this rule to sub-agents by including it in their task prompt.
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/single_agent.md b/src/harbor/agents/installed/swarmbench/prompts/single_agent.md
 new file mode 100644
-index 00000000..c36a7fe4
+index 00000000..cddd4c2e
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/single_agent.md
-@@ -0,0 +1,27 @@
+@@ -0,0 +1,35 @@
 +You are a helpful assistant solving a benchmark task.
 +
 +Your working directory is: /workspace
@@ -2223,6 +2277,14 @@ index 00000000..c36a7fe4
 +- All input data files are in the `/input_artifacts/` directory.
 +- The task, required output format, and save location are in your instruction above.
 +- You must solve the task **entirely on your own** — you cannot delegate to sub-agents.
++
++## Non-Interactive Execution
++
++This is a headless run. There is no user available to respond.
++
++- Never end your turn with a question, a plan awaiting approval, or a "would you like me to continue?" style check-in. No one will answer, and the run will simply end there.
++- Do not stop partway through to summarize progress and ask what to do next. Decide on your own judgment and keep going.
++- A task is only done when every required deliverable has actually been produced. Progress notes and proposed next steps are not a substitute for finishing the work.
 +
 +## Workflow
 +
