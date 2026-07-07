@@ -675,10 +675,10 @@ index 00000000..3ac00b4d
 \ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/multi_opencode.py b/src/harbor/agents/installed/swarmbench/multi_opencode.py
 new file mode 100644
-index 00000000..b35ce840
+index 00000000..0114b1f6
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/multi_opencode.py
-@@ -0,0 +1,717 @@
+@@ -0,0 +1,814 @@
 +import asyncio
 +import copy
 +import json
@@ -734,6 +734,28 @@ index 00000000..b35ce840
 +    "accounts/fireworks/models/kimi-k2p6": 262144,
 +    "accounts/fireworks/models/kimi-k2p7-code": 262144,
 +}
++
++# opencode's retry.ts only retries an APIError when its statusCode >= 500 or the
++# provider SDK explicitly marked it isRetryable=true. Neither @ai-sdk/openai nor
++# @ai-sdk/openai-compatible (what Fireworks uses here, registered under the generic
++# "openai" provider bucket) ever sets isRetryable for a 429 -- so a Fireworks rate
++# limit is never retried by opencode itself: the session ends instantly with a
++# step_finish reason="error" carrying zero tokens, and the CLI process exits cleanly
++# with no error text on stdout/stderr (prompt.ts's finish-surfacing branch only
++# handles "content-filter" and structured-output failures, not "error"). Since this
++# can silently drop an entire trial's work (including every sub-agent spawned so far)
++# after just one transient provider error on the orchestrator's own stream, detect
++# that exact signature after the run and resume the SAME opencode session via
++# `run --continue` instead of losing everything. Confirmed via run.ts's session()
++# helper: --continue (without --fork) reuses the existing root session's ID rather
++# than creating a new one, so the resumed session keeps full prior context and our
++# per-session-id SQLite export just overwrites the same file with more messages.
++_MAX_CONTINUE_ATTEMPTS = 2
++_CONTINUE_BACKOFF_SEC = 30
++_CONTINUE_PROMPT = (
++    "Continue the task from where you left off. Check which deliverable files "
++    "already exist under /logs/agent/ before redoing any completed work."
++)
 +
 +_PATTERN_TO_PROMPT: dict[str, str] = {
 +    "map-reduce": "opencode_map_reduce.md",
@@ -980,6 +1002,12 @@ index 00000000..b35ce840
 +        # ANY session (root or subagent). Setting OPENCODE_CLIENT outside
 +        # {"app","cli","desktop"} is the only way to keep it out of the tool list entirely.
 +        env["OPENCODE_CLIENT"] = "harness"
++        # Without this, a provider/stream error (see _MAX_CONTINUE_ATTEMPTS above) is only
++        # ever written to the batched ~/.local/share/opencode/log/opencode.log inside the
++        # container -- which gets deleted with the environment -- and never reaches stdout.
++        # This makes opencode print it to stderr synchronously, which the run command's
++        # `2>&1 | tee` already captures into opencode.txt for later inspection.
++        env["OPENCODE_PRINT_LOGS"] = "1"
 +        return env
 +
 +    def _effective_provider_and_model(self) -> tuple[str, str] | None:
@@ -1129,6 +1157,66 @@ index 00000000..b35ce840
 +            context.n_output_tokens = fm.total_completion_tokens or 0
 +            context.n_cache_tokens = fm.total_cached_tokens or 0
 +
++    def _opencode_run_errored(self) -> bool:
++        """True if opencode's last emitted --format=json line was step_finish
++        reason="error" (see _MAX_CONTINUE_ATTEMPTS comment above).
++
++        Deliberately independent of _parse_stdout()/_convert_events_to_trajectory():
++        this only needs to know whether to retry, not build the trajectory, and it
++        runs inside run() -- before populate_context_post_run ever touches the file.
++        opencode's CLI process exits right after this event, so it's always the last
++        parseable line in opencode.txt when it occurs -- true for the orchestrator's
++        own stream regardless of how many sub-agents it spawned internally, since a
++        sub-agent's failure surfaces back to the root session before the CLI exits.
++        """
++        output_path = self.logs_dir / self._OUTPUT_FILENAME
++        if not output_path.exists():
++            return False
++        for line in reversed(output_path.read_text().splitlines()):
++            line = line.strip()
++            if not line:
++                continue
++            try:
++                event = json.loads(line)
++            except json.JSONDecodeError:
++                # OPENCODE_PRINT_LOGS=1 interleaves plain logfmt lines into this
++                # same file; skip back past them to the last JSON event.
++                continue
++            return (
++                event.get("type") == "step_finish"
++                and event.get("part", {}).get("reason") == "error"
++            )
++        return False
++
++    async def _exec_opencode(
++        self,
++        environment: BaseEnvironment,
++        command: str,
++        env: dict[str, str],
++        export_cmd: str,
++    ) -> None:
++        """Run one opencode invocation, always exporting SQLite trajectories and
++        internal logs afterward -- even if Harbor's own timeout cancels mid-flight."""
++        try:
++            await self.exec_as_agent(environment, command=command, env=env)
++        except asyncio.CancelledError:
++            # Harbor timeout fired while opencode was running. Temporarily lift the
++            # pending cancellation so we can await the SQLite export, then restore the
++            # cancel count so asyncio.timeout() still converts it to TimeoutError.
++            _task = asyncio.current_task()
++            if _task is not None:
++                _task.uncancel()
++            try:
++                await self.exec_as_agent(environment, command=export_cmd, env={})
++            except BaseException:
++                pass
++            finally:
++                if _task is not None:
++                    _task.cancel()
++            raise
++        # Normal completion: export runs after opencode finishes.
++        await self.exec_as_agent(environment, command=export_cmd, env={})
++
 +    async def run(
 +        self,
 +        instruction: str,
@@ -1181,37 +1269,46 @@ index 00000000..b35ce840
 +
 +        _export_cmd = (
 +            f"printf '%s' {shlex.quote(_EXPORT_SCRIPT)} > /tmp/_oc_export.py && "
-+            "python3 /tmp/_oc_export.py"
++            "python3 /tmp/_oc_export.py; "
++            # Best-effort: also grab opencode's own internal log (everything
++            # OPENCODE_PRINT_LOGS=1 mirrors to stderr, plus anything still sitting in
++            # the file logger's batch window) as a clean, non-interleaved copy.
++            # Re-running this after every attempt is harmless -- it just re-copies
++            # the same append-only file, now larger.
++            "cp -f ~/.local/share/opencode/log/opencode.log "
++            "/logs/agent/opencode-internal.log 2>/dev/null || true"
 +        )
-+        try:
-+            await self.exec_as_agent(
-+                environment,
-+                command=(
-+                    ". ~/.nvm/nvm.sh; "
-+                    f"opencode --model={model_flag} run --format=json --thinking --dangerously-skip-permissions "
-+                    "< /tmp/oc-instruction.txt "
-+                    f"2>&1 | stdbuf -oL tee /logs/agent/{_OUTPUT_FILENAME}"
-+                ),
-+                env=env,
-+            )
-+        except asyncio.CancelledError:
-+            # Harbor timeout fired while opencode was running. Temporarily lift the
-+            # pending cancellation so we can await the SQLite export, then restore the
-+            # cancel count so asyncio.timeout() still converts it to TimeoutError.
-+            _task = asyncio.current_task()
-+            if _task is not None:
-+                _task.uncancel()
-+            try:
-+                await self.exec_as_agent(environment, command=_export_cmd, env={})
-+            except BaseException:
-+                pass
-+            finally:
-+                if _task is not None:
-+                    _task.cancel()
-+            raise
 +
-+        # Normal completion: export runs after opencode finishes.
-+        await self.exec_as_agent(environment, command=_export_cmd, env={})
++        initial_command = (
++            ". ~/.nvm/nvm.sh; "
++            f"opencode --model={model_flag} run --format=json --thinking --dangerously-skip-permissions "
++            "< /tmp/oc-instruction.txt "
++            f"2>&1 | stdbuf -oL tee /logs/agent/{_OUTPUT_FILENAME}"
++        )
++        await self._exec_opencode(environment, initial_command, env, _export_cmd)
++
++        attempt = 0
++        while attempt < _MAX_CONTINUE_ATTEMPTS and self._opencode_run_errored():
++            attempt += 1
++            self.logger.warning(
++                "opencode session ended with step_finish reason='error' (likely an "
++                "unretried provider-side error, e.g. a Fireworks rate limit -- see "
++                "_MAX_CONTINUE_ATTEMPTS comment above); resuming via --continue, "
++                f"attempt {attempt}/{_MAX_CONTINUE_ATTEMPTS} after "
++                f"{_CONTINUE_BACKOFF_SEC}s backoff"
++            )
++            await asyncio.sleep(_CONTINUE_BACKOFF_SEC)
++            continue_command = (
++                ". ~/.nvm/nvm.sh; "
++                f"opencode --model={model_flag} run --continue --format=json --thinking "
++                f"--dangerously-skip-permissions -- {shlex.quote(_CONTINUE_PROMPT)} "
++                # Append, not truncate: the retried session's events must stack onto
++                # the original attempt's so populate_context_post_run (which runs once,
++                # after run() returns -- see trial.py's _execute_agent/_maybe_populate_
++                # agent_context ordering) builds one trajectory from the whole thing.
++                f"2>&1 </dev/null | stdbuf -oL tee -a /logs/agent/{_OUTPUT_FILENAME}"
++            )
++            await self._exec_opencode(environment, continue_command, env, _export_cmd)
 +
 +    def _parse_stdout(self) -> list[dict[str, Any]]:
 +        output_path = self.logs_dir / self._OUTPUT_FILENAME
@@ -2512,10 +2609,10 @@ index 00000000..1e4cb19b
 +        )
 diff --git a/src/harbor/agents/installed/swarmbench/single_opencode.py b/src/harbor/agents/installed/swarmbench/single_opencode.py
 new file mode 100644
-index 00000000..dd651b58
+index 00000000..f896c7d7
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/single_opencode.py
-@@ -0,0 +1,620 @@
+@@ -0,0 +1,711 @@
 +import asyncio
 +import copy
 +import json
@@ -2571,6 +2668,24 @@ index 00000000..dd651b58
 +    "accounts/fireworks/models/kimi-k2p6": 262144,
 +    "accounts/fireworks/models/kimi-k2p7-code": 262144,
 +}
++
++# opencode's retry.ts only retries an APIError when its statusCode >= 500 or the
++# provider SDK explicitly marked it isRetryable=true. Neither @ai-sdk/openai nor
++# @ai-sdk/openai-compatible (what Fireworks uses here, registered under the generic
++# "openai" provider bucket) ever sets isRetryable for a 429 -- so a Fireworks rate
++# limit is never retried by opencode itself: the session ends instantly with a
++# step_finish reason="error" carrying zero tokens, and the CLI process exits cleanly
++# with no error text on stdout/stderr (prompt.ts's finish-surfacing branch only
++# handles "content-filter" and structured-output failures, not "error"). Since this
++# can silently drop an entire trial's work after just one transient provider error,
++# detect that exact signature after the run and resume the SAME opencode session via
++# `run --continue` instead of losing everything.
++_MAX_CONTINUE_ATTEMPTS = 2
++_CONTINUE_BACKOFF_SEC = 30
++_CONTINUE_PROMPT = (
++    "Continue the task from where you left off. Check which deliverable files "
++    "already exist under /logs/agent/ before redoing any completed work."
++)
 +
 +# Denies sub-agent spawning — equivalent to kimi's single_agent.yaml exclude_tools.
 +# opencode.json "permission" is an object: {"tool": "action"}, not an array.
@@ -2772,6 +2887,12 @@ index 00000000..dd651b58
 +        # ANY session (root or subagent). Setting OPENCODE_CLIENT outside
 +        # {"app","cli","desktop"} is the only way to keep it out of the tool list entirely.
 +        env["OPENCODE_CLIENT"] = "harness"
++        # Without this, a provider/stream error (see _MAX_CONTINUE_ATTEMPTS above) is only
++        # ever written to the batched ~/.local/share/opencode/log/opencode.log inside the
++        # container -- which gets deleted with the environment -- and never reaches stdout.
++        # This makes opencode print it to stderr synchronously, which the run command's
++        # `2>&1 | tee` already captures into opencode.txt for later inspection.
++        env["OPENCODE_PRINT_LOGS"] = "1"
 +        return env
 +
 +    def _effective_provider_and_model(self) -> tuple[str, str] | None:
@@ -2870,6 +2991,64 @@ index 00000000..dd651b58
 +            context.n_input_tokens = fm.total_prompt_tokens or 0
 +            context.n_output_tokens = fm.total_completion_tokens or 0
 +            context.n_cache_tokens = fm.total_cached_tokens or 0
++
++    def _opencode_run_errored(self) -> bool:
++        """True if opencode's last emitted --format=json line was step_finish
++        reason="error" (see _MAX_CONTINUE_ATTEMPTS comment above).
++
++        Deliberately independent of _parse_stdout()/_convert_events_to_trajectory():
++        this only needs to know whether to retry, not build the trajectory, and it
++        runs inside run() -- before populate_context_post_run ever touches the file.
++        opencode's CLI process exits right after this event, so it's always the last
++        parseable line in opencode.txt when it occurs.
++        """
++        output_path = self.logs_dir / self._OUTPUT_FILENAME
++        if not output_path.exists():
++            return False
++        for line in reversed(output_path.read_text().splitlines()):
++            line = line.strip()
++            if not line:
++                continue
++            try:
++                event = json.loads(line)
++            except json.JSONDecodeError:
++                # OPENCODE_PRINT_LOGS=1 interleaves plain logfmt lines into this
++                # same file; skip back past them to the last JSON event.
++                continue
++            return (
++                event.get("type") == "step_finish"
++                and event.get("part", {}).get("reason") == "error"
++            )
++        return False
++
++    async def _exec_opencode(
++        self,
++        environment: BaseEnvironment,
++        command: str,
++        env: dict[str, str],
++        export_cmd: str,
++    ) -> None:
++        """Run one opencode invocation, always exporting SQLite trajectories and
++        internal logs afterward -- even if Harbor's own timeout cancels mid-flight."""
++        try:
++            await self.exec_as_agent(environment, command=command, env=env)
++        except asyncio.CancelledError:
++            # Harbor timeout fired while opencode was running. Temporarily lift the
++            # pending cancellation so we can await the SQLite export, then restore the
++            # cancel count so asyncio.timeout() still converts it to TimeoutError.
++            _task = asyncio.current_task()
++            if _task is not None:
++                _task.uncancel()
++            try:
++                await self.exec_as_agent(environment, command=export_cmd, env={})
++            except BaseException:
++                pass
++            finally:
++                if _task is not None:
++                    _task.cancel()
++            raise
++        # Normal completion: export runs after opencode finishes.
++        await self.exec_as_agent(environment, command=export_cmd, env={})
 +
 +    def _parse_stdout(self) -> list[dict[str, Any]]:
 +        output_path = self.logs_dir / self._OUTPUT_FILENAME
@@ -3105,37 +3284,46 @@ index 00000000..dd651b58
 +
 +        _export_cmd = (
 +            f"printf '%s' {shlex.quote(_EXPORT_SCRIPT)} > /tmp/_oc_export.py && "
-+            "python3 /tmp/_oc_export.py"
++            "python3 /tmp/_oc_export.py; "
++            # Best-effort: also grab opencode's own internal log (everything
++            # OPENCODE_PRINT_LOGS=1 mirrors to stderr, plus anything still sitting in
++            # the file logger's batch window) as a clean, non-interleaved copy.
++            # Re-running this after every attempt is harmless -- it just re-copies
++            # the same append-only file, now larger.
++            "cp -f ~/.local/share/opencode/log/opencode.log "
++            "/logs/agent/opencode-internal.log 2>/dev/null || true"
 +        )
-+        try:
-+            await self.exec_as_agent(
-+                environment,
-+                command=(
-+                    ". ~/.nvm/nvm.sh; "
-+                    f"opencode --model={model_flag} run --format=json --thinking --dangerously-skip-permissions -- "
-+                    '"$(cat /tmp/oc-instruction.txt)" '
-+                    f"2>&1 </dev/null | stdbuf -oL tee /logs/agent/{_OUTPUT_FILENAME}"
-+                ),
-+                env=env,
-+            )
-+        except asyncio.CancelledError:
-+            # Harbor timeout fired while opencode was running. Temporarily lift the
-+            # pending cancellation so we can await the SQLite export, then restore the
-+            # cancel count so asyncio.timeout() still converts it to TimeoutError.
-+            _task = asyncio.current_task()
-+            if _task is not None:
-+                _task.uncancel()
-+            try:
-+                await self.exec_as_agent(environment, command=_export_cmd, env={})
-+            except BaseException:
-+                pass
-+            finally:
-+                if _task is not None:
-+                    _task.cancel()
-+            raise
 +
-+        # Normal completion: export runs after opencode finishes.
-+        await self.exec_as_agent(environment, command=_export_cmd, env={})
++        initial_command = (
++            ". ~/.nvm/nvm.sh; "
++            f"opencode --model={model_flag} run --format=json --thinking --dangerously-skip-permissions -- "
++            '"$(cat /tmp/oc-instruction.txt)" '
++            f"2>&1 </dev/null | stdbuf -oL tee /logs/agent/{_OUTPUT_FILENAME}"
++        )
++        await self._exec_opencode(environment, initial_command, env, _export_cmd)
++
++        attempt = 0
++        while attempt < _MAX_CONTINUE_ATTEMPTS and self._opencode_run_errored():
++            attempt += 1
++            self.logger.warning(
++                "opencode session ended with step_finish reason='error' (likely an "
++                "unretried provider-side error, e.g. a Fireworks rate limit -- see "
++                "_MAX_CONTINUE_ATTEMPTS comment above); resuming via --continue, "
++                f"attempt {attempt}/{_MAX_CONTINUE_ATTEMPTS} after "
++                f"{_CONTINUE_BACKOFF_SEC}s backoff"
++            )
++            await asyncio.sleep(_CONTINUE_BACKOFF_SEC)
++            continue_command = (
++                ". ~/.nvm/nvm.sh; "
++                f"opencode --model={model_flag} run --continue --format=json --thinking "
++                f"--dangerously-skip-permissions -- {shlex.quote(_CONTINUE_PROMPT)} "
++                # Append, not truncate: the retried session's events must stack onto
++                # the original attempt's so populate_context_post_run (which runs once,
++                # after run() returns -- see trial.py's _execute_agent/_maybe_populate_
++                # agent_context ordering) builds one trajectory from the whole thing.
++                f"2>&1 </dev/null | stdbuf -oL tee -a /logs/agent/{_OUTPUT_FILENAME}"
++            )
++            await self._exec_opencode(environment, continue_command, env, _export_cmd)
 diff --git a/src/harbor/models/agent/name.py b/src/harbor/models/agent/name.py
 index 4b252a9e..249d69c9 100644
 --- a/src/harbor/models/agent/name.py
