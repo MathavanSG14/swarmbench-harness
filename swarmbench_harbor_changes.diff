@@ -675,10 +675,10 @@ index 00000000..3ac00b4d
 \ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/multi_opencode.py b/src/harbor/agents/installed/swarmbench/multi_opencode.py
 new file mode 100644
-index 00000000..0114b1f6
+index 00000000..c18a27a5
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/multi_opencode.py
-@@ -0,0 +1,814 @@
+@@ -0,0 +1,921 @@
 +import asyncio
 +import copy
 +import json
@@ -752,9 +752,39 @@ index 00000000..0114b1f6
 +# per-session-id SQLite export just overwrites the same file with more messages.
 +_MAX_CONTINUE_ATTEMPTS = 2
 +_CONTINUE_BACKOFF_SEC = 30
++
++# This is a genuine infra-recovery resume, not a model decision -- resuming a session
++# after a technical failure risks the model re-doing or duplicating work it already
++# finished before the failure, so telling it to check existing deliverables first is
++# operational housekeeping for OUR retry mechanism, not task-execution coaching.
 +_CONTINUE_PROMPT = (
 +    "Continue the task from where you left off. Check which deliverable files "
-+    "already exist under /logs/agent/ before redoing any completed work."
++    "already exist under /logs/agent/ before redoing any completed work.\n\n"
++    "Note: This is a fully autonomous run. No one is here to answer questions or "
++    "confirm anything. If there is more to do, continue on your own judgment. If "
++    "you believe the task is complete, then it is done."
++)
++
++# opencode's built-in auto-compaction injects a synthetic message after summarizing --
++# "Continue if you have next steps, or stop and ask for clarification if you are unsure
++# how to proceed." (opencode's compaction.ts). We've observed the model respond to this
++# by ending its turn with a literal question instead of continuing, since it's headless
++# with no one to answer. This is a distinct failure from the rate-limit case above --
++# it's a model decision, not an infra error, so it gets a much larger attempt budget:
++# retrying it costs nothing external, unlike retrying into a live rate limit, and this
++# task's task.toml sets no [agent] timeout, so nothing else bounds an unlucky run except
++# this cap.
++#
++# Deliberately minimal, unlike _CONTINUE_PROMPT above: no "check existing files" hint
++# here. This benchmark is specifically measuring whether the agent swarm's coordination
++# holds up over a long task; when the model itself chose to stop and ask rather than
++# continue, our fix's job is only to correct its "no one will answer" assumption, not
++# to coach it into being more careful or thorough than it would be on its own.
++_MAX_OPEN_QUESTION_ATTEMPTS = 10
++_CONTINUE_PROMPT_NO_QUESTIONS = (
++    "This is a fully autonomous run. No one is here to answer questions or confirm "
++    "anything. If there is more to do, continue on your own judgment. If you believe "
++    "the task is complete, then it is done."
 +)
 +
 +_PATTERN_TO_PROMPT: dict[str, str] = {
@@ -1121,6 +1151,17 @@ index 00000000..0114b1f6
 +            },
 +        }
 +
++        # Instruction.system() (opencode's session/instruction.ts) re-reads this file from
++        # disk on every single turn -- for the orchestrator AND every sub-agent it spawns,
++        # regardless of agent type -- and injects its contents into that turn's system
++        # prompt, entirely separate from the conversation history and independent of the
++        # agent.prompt overrides above (a different, additive injection point). Unlike the
++        # coordination-pattern text prepended to the first user message, this survives
++        # auto-compaction summarizing the history away. "AGENTS.md" also auto-discovers at
++        # /workspace/AGENTS.md with no config needed; listing it here too is just
++        # belt-and-suspenders.
++        config["instructions"] = ["AGENTS.md"]
++
 +        config = self._deep_merge(copy.deepcopy(self._DEFAULT_CONFIG), config)
 +        config = self._deep_merge(config, self._opencode_config)
 +
@@ -1186,6 +1227,44 @@ index 00000000..0114b1f6
 +                event.get("type") == "step_finish"
 +                and event.get("part", {}).get("reason") == "error"
 +            )
++        return False
++
++    def _opencode_stopped_with_open_question(self) -> bool:
++        """True if opencode ended cleanly (step_finish reason="stop") right after the
++        model's own reply text ends in a question mark -- e.g. opencode's auto-compaction
++        nudge ("Continue if you have next steps, or stop and ask for clarification...")
++        getting answered with a check-in question instead of continued work. Headless,
++        so nobody answers and the run just ends there. Applies the same regardless of
++        how many sub-agents were spawned internally -- this only looks at the root
++        session's own final reply, which is what ends the CLI process.
++
++        Deliberately a single mechanical signal (trailing "?"), not a phrase list --
++        phrase-matching prose is unreliable in both directions (misses check-ins with no
++        "?" at all, like "please let me know where to find them."; matches legitimate
++        text that happens to end in "?"). Cheap either way: see _CONTINUE_PROMPT, which
++        handles a false-positive retry by just letting the model confirm and stop again.
++        """
++        output_path = self.logs_dir / self._OUTPUT_FILENAME
++        if not output_path.exists():
++            return False
++        found_stop = False
++        for line in reversed(output_path.read_text().splitlines()):
++            line = line.strip()
++            if not line:
++                continue
++            try:
++                event = json.loads(line)
++            except json.JSONDecodeError:
++                continue
++            if not found_stop:
++                if event.get("type") != "step_finish":
++                    return False
++                if event.get("part", {}).get("reason") != "stop":
++                    return False
++                found_stop = True
++                continue
++            if event.get("type") == "text":
++                return event.get("part", {}).get("text", "").rstrip().endswith("?")
 +        return False
 +
 +    async def _exec_opencode(
@@ -1265,6 +1344,13 @@ index 00000000..0114b1f6
 +        finally:
 +            tmp_instruction_path.unlink(missing_ok=True)
 +
++        # /workspace is the project root (Dockerfile sets WORKDIR /workspace) --
++        # Instruction.system() auto-discovers AGENTS.md there and re-reads it fresh on
++        # every turn, for the orchestrator and every sub-agent (see config["instructions"]
++        # comment in _build_register_config_command).
++        agents_md_path = Path(_PROMPTS_DIR / "AGENTS.md")
++        await environment.upload_file(agents_md_path, "/workspace/AGENTS.md")
++
 +        model_flag = self._effective_model_flag()
 +
 +        _export_cmd = (
@@ -1287,21 +1373,42 @@ index 00000000..0114b1f6
 +        )
 +        await self._exec_opencode(environment, initial_command, env, _export_cmd)
 +
-+        attempt = 0
-+        while attempt < _MAX_CONTINUE_ATTEMPTS and self._opencode_run_errored():
-+            attempt += 1
-+            self.logger.warning(
-+                "opencode session ended with step_finish reason='error' (likely an "
-+                "unretried provider-side error, e.g. a Fireworks rate limit -- see "
-+                "_MAX_CONTINUE_ATTEMPTS comment above); resuming via --continue, "
-+                f"attempt {attempt}/{_MAX_CONTINUE_ATTEMPTS} after "
-+                f"{_CONTINUE_BACKOFF_SEC}s backoff"
-+            )
++        attempts_errored = 0
++        attempts_open_question = 0
++        while True:
++            if (
++                attempts_errored < _MAX_CONTINUE_ATTEMPTS
++                and self._opencode_run_errored()
++            ):
++                attempts_errored += 1
++                prompt = _CONTINUE_PROMPT
++                self.logger.warning(
++                    "opencode session ended with step_finish reason='error' (likely an "
++                    "unretried provider-side error, e.g. a Fireworks rate limit -- see "
++                    "_CONTINUE_PROMPT comment above); resuming via --continue, "
++                    f"attempt {attempts_errored}/{_MAX_CONTINUE_ATTEMPTS} after "
++                    f"{_CONTINUE_BACKOFF_SEC}s backoff"
++                )
++            elif (
++                attempts_open_question < _MAX_OPEN_QUESTION_ATTEMPTS
++                and self._opencode_stopped_with_open_question()
++            ):
++                attempts_open_question += 1
++                prompt = _CONTINUE_PROMPT_NO_QUESTIONS
++                self.logger.warning(
++                    "opencode session ended cleanly right after the model's own reply "
++                    "ended in a question mark (likely a check-in nobody could answer -- "
++                    "see _MAX_OPEN_QUESTION_ATTEMPTS comment above); resuming via "
++                    f"--continue, attempt {attempts_open_question}/"
++                    f"{_MAX_OPEN_QUESTION_ATTEMPTS} after {_CONTINUE_BACKOFF_SEC}s backoff"
++                )
++            else:
++                break
 +            await asyncio.sleep(_CONTINUE_BACKOFF_SEC)
 +            continue_command = (
 +                ". ~/.nvm/nvm.sh; "
 +                f"opencode --model={model_flag} run --continue --format=json --thinking "
-+                f"--dangerously-skip-permissions -- {shlex.quote(_CONTINUE_PROMPT)} "
++                f"--dangerously-skip-permissions -- {shlex.quote(prompt)} "
 +                # Append, not truncate: the retried session's events must stack onto
 +                # the original attempt's so populate_context_post_run (which runs once,
 +                # after run() returns -- see trial.py's _execute_agent/_maybe_populate_
@@ -1493,6 +1600,19 @@ index 00000000..0114b1f6
 +            steps=steps,
 +            final_metrics=final_metrics,
 +        )
+diff --git a/src/harbor/agents/installed/swarmbench/prompts/AGENTS.md b/src/harbor/agents/installed/swarmbench/prompts/AGENTS.md
+new file mode 100644
+index 00000000..31b06500
+--- /dev/null
++++ b/src/harbor/agents/installed/swarmbench/prompts/AGENTS.md
+@@ -0,0 +1,7 @@
++## Non-Interactive Execution
++
++This is a fully autonomous run. No one is here to answer questions or confirm anything.
++
++Never end a turn with a question or a status check-in expecting a reply. If there is
++more work to do, continue autonomously. If the task is genuinely finished, simply say
++so and stop — do not ask what to do next.
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/multi_agent_debate.md b/src/harbor/agents/installed/swarmbench/prompts/multi_agent_debate.md
 new file mode 100644
 index 00000000..14fd800e
@@ -2609,10 +2729,10 @@ index 00000000..1e4cb19b
 +        )
 diff --git a/src/harbor/agents/installed/swarmbench/single_opencode.py b/src/harbor/agents/installed/swarmbench/single_opencode.py
 new file mode 100644
-index 00000000..f896c7d7
+index 00000000..78178880
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/single_opencode.py
-@@ -0,0 +1,711 @@
+@@ -0,0 +1,814 @@
 +import asyncio
 +import copy
 +import json
@@ -2682,9 +2802,40 @@ index 00000000..f896c7d7
 +# `run --continue` instead of losing everything.
 +_MAX_CONTINUE_ATTEMPTS = 2
 +_CONTINUE_BACKOFF_SEC = 30
++
++# This is a genuine infra-recovery resume, not a model decision -- resuming a session
++# after a technical failure risks the model re-doing or duplicating work it already
++# finished before the failure, so telling it to check existing deliverables first is
++# operational housekeeping for OUR retry mechanism, not task-execution coaching.
 +_CONTINUE_PROMPT = (
 +    "Continue the task from where you left off. Check which deliverable files "
-+    "already exist under /logs/agent/ before redoing any completed work."
++    "already exist under /logs/agent/ before redoing any completed work.\n\n"
++    "Note: This is a fully autonomous run. No one is here to answer questions or "
++    "confirm anything. If there is more to do, continue on your own judgment. If "
++    "you believe the task is complete, then it is done."
++)
++
++# opencode's built-in auto-compaction injects a synthetic message after summarizing --
++# "Continue if you have next steps, or stop and ask for clarification if you are unsure
++# how to proceed." (opencode's compaction.ts). We've observed the model respond to this
++# by ending its turn with a literal question instead of continuing, since it's headless
++# with no one to answer. This is a distinct failure from the rate-limit case above --
++# it's a model decision, not an infra error, so it gets a much larger attempt budget:
++# retrying it costs nothing external, unlike retrying into a live rate limit, and this
++# task's task.toml sets no [agent] timeout, so nothing else bounds an unlucky run except
++# this cap.
++#
++# Deliberately minimal, unlike _CONTINUE_PROMPT above: no "check existing files" hint
++# here. This benchmark is specifically measuring whether a single agent's context/
++# judgment holds up over a long task; when the model itself chose to stop and ask
++# rather than continue, our fix's job is only to correct its "no one will answer"
++# assumption, not to coach it into being more careful or thorough than it would be
++# on its own.
++_MAX_OPEN_QUESTION_ATTEMPTS = 10
++_CONTINUE_PROMPT_NO_QUESTIONS = (
++    "This is a fully autonomous run. No one is here to answer questions or confirm "
++    "anything. If there is more to do, continue on your own judgment. If you believe "
++    "the task is complete, then it is done."
 +)
 +
 +# Denies sub-agent spawning — equivalent to kimi's single_agent.yaml exclude_tools.
@@ -2956,6 +3107,15 @@ index 00000000..f896c7d7
 +        # Single agent: explicitly deny task permission so sub-agent spawning is blocked.
 +        config["permission"] = _SINGLE_AGENT_PERMISSION
 +
++        # Instruction.system() (opencode's session/instruction.ts) re-reads this file from
++        # disk on every single turn and injects its contents into that turn's system
++        # prompt, entirely separate from the conversation history -- so unlike the
++        # single_agent.md text prepended to the first user message, this survives
++        # auto-compaction summarizing the history away. "AGENTS.md" also auto-discovers
++        # at /workspace/AGENTS.md with no config needed; listing it here too is just
++        # belt-and-suspenders.
++        config["instructions"] = ["AGENTS.md"]
++
 +        config = self._deep_merge(copy.deepcopy(self._DEFAULT_CONFIG), config)
 +        config = self._deep_merge(config, self._opencode_config)
 +
@@ -3019,6 +3179,42 @@ index 00000000..f896c7d7
 +                event.get("type") == "step_finish"
 +                and event.get("part", {}).get("reason") == "error"
 +            )
++        return False
++
++    def _opencode_stopped_with_open_question(self) -> bool:
++        """True if opencode ended cleanly (step_finish reason="stop") right after the
++        model's own reply text ends in a question mark -- e.g. opencode's auto-compaction
++        nudge ("Continue if you have next steps, or stop and ask for clarification...")
++        getting answered with a check-in question instead of continued work. Headless,
++        so nobody answers and the run just ends there.
++
++        Deliberately a single mechanical signal (trailing "?"), not a phrase list --
++        phrase-matching prose is unreliable in both directions (misses check-ins with no
++        "?" at all, like "please let me know where to find them."; matches legitimate
++        text that happens to end in "?"). Cheap either way: see _CONTINUE_PROMPT, which
++        handles a false-positive retry by just letting the model confirm and stop again.
++        """
++        output_path = self.logs_dir / self._OUTPUT_FILENAME
++        if not output_path.exists():
++            return False
++        found_stop = False
++        for line in reversed(output_path.read_text().splitlines()):
++            line = line.strip()
++            if not line:
++                continue
++            try:
++                event = json.loads(line)
++            except json.JSONDecodeError:
++                continue
++            if not found_stop:
++                if event.get("type") != "step_finish":
++                    return False
++                if event.get("part", {}).get("reason") != "stop":
++                    return False
++                found_stop = True
++                continue
++            if event.get("type") == "text":
++                return event.get("part", {}).get("text", "").rstrip().endswith("?")
 +        return False
 +
 +    async def _exec_opencode(
@@ -3280,6 +3476,12 @@ index 00000000..f896c7d7
 +        finally:
 +            tmp_instruction_path.unlink(missing_ok=True)
 +
++        # /workspace is the project root (Dockerfile sets WORKDIR /workspace) --
++        # Instruction.system() auto-discovers AGENTS.md there and re-reads it fresh on
++        # every turn (see config["instructions"] comment in _build_register_config_command).
++        agents_md_path = Path(_PROMPTS_DIR / "AGENTS.md")
++        await environment.upload_file(agents_md_path, "/workspace/AGENTS.md")
++
 +        model_flag = self._effective_model_flag()
 +
 +        _export_cmd = (
@@ -3302,21 +3504,42 @@ index 00000000..f896c7d7
 +        )
 +        await self._exec_opencode(environment, initial_command, env, _export_cmd)
 +
-+        attempt = 0
-+        while attempt < _MAX_CONTINUE_ATTEMPTS and self._opencode_run_errored():
-+            attempt += 1
-+            self.logger.warning(
-+                "opencode session ended with step_finish reason='error' (likely an "
-+                "unretried provider-side error, e.g. a Fireworks rate limit -- see "
-+                "_MAX_CONTINUE_ATTEMPTS comment above); resuming via --continue, "
-+                f"attempt {attempt}/{_MAX_CONTINUE_ATTEMPTS} after "
-+                f"{_CONTINUE_BACKOFF_SEC}s backoff"
-+            )
++        attempts_errored = 0
++        attempts_open_question = 0
++        while True:
++            if (
++                attempts_errored < _MAX_CONTINUE_ATTEMPTS
++                and self._opencode_run_errored()
++            ):
++                attempts_errored += 1
++                prompt = _CONTINUE_PROMPT
++                self.logger.warning(
++                    "opencode session ended with step_finish reason='error' (likely an "
++                    "unretried provider-side error, e.g. a Fireworks rate limit -- see "
++                    "_CONTINUE_PROMPT comment above); resuming via --continue, "
++                    f"attempt {attempts_errored}/{_MAX_CONTINUE_ATTEMPTS} after "
++                    f"{_CONTINUE_BACKOFF_SEC}s backoff"
++                )
++            elif (
++                attempts_open_question < _MAX_OPEN_QUESTION_ATTEMPTS
++                and self._opencode_stopped_with_open_question()
++            ):
++                attempts_open_question += 1
++                prompt = _CONTINUE_PROMPT_NO_QUESTIONS
++                self.logger.warning(
++                    "opencode session ended cleanly right after the model's own reply "
++                    "ended in a question mark (likely a check-in nobody could answer -- "
++                    "see _MAX_OPEN_QUESTION_ATTEMPTS comment above); resuming via "
++                    f"--continue, attempt {attempts_open_question}/"
++                    f"{_MAX_OPEN_QUESTION_ATTEMPTS} after {_CONTINUE_BACKOFF_SEC}s backoff"
++                )
++            else:
++                break
 +            await asyncio.sleep(_CONTINUE_BACKOFF_SEC)
 +            continue_command = (
 +                ". ~/.nvm/nvm.sh; "
 +                f"opencode --model={model_flag} run --continue --format=json --thinking "
-+                f"--dangerously-skip-permissions -- {shlex.quote(_CONTINUE_PROMPT)} "
++                f"--dangerously-skip-permissions -- {shlex.quote(prompt)} "
 +                # Append, not truncate: the retried session's events must stack onto
 +                # the original attempt's so populate_context_post_run (which runs once,
 +                # after run() returns -- see trial.py's _execute_agent/_maybe_populate_
