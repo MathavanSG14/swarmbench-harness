@@ -675,10 +675,10 @@ index 00000000..3ac00b4d
 \ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/multi_opencode.py b/src/harbor/agents/installed/swarmbench/multi_opencode.py
 new file mode 100644
-index 00000000..c18a27a5
+index 00000000..682c1cf0
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/multi_opencode.py
-@@ -0,0 +1,921 @@
+@@ -0,0 +1,994 @@
 +import asyncio
 +import copy
 +import json
@@ -1169,6 +1169,62 @@ index 00000000..c18a27a5
 +        escaped = shlex.quote(config_json)
 +        return f"mkdir -p ~/.config/opencode && echo {escaped} > ~/.config/opencode/opencode.json"
 +
++    def _aggregate_raw_trajectory_tokens(self) -> dict[str, int] | None:
++        """Sum token fields across EVERY exported opencode session --
++        orchestrator_ses_*.json AND subagent_ses_*.json under raw_trajectory/.
++
++        _EXPORT_SCRIPT dumps one file per opencode session (straight from
++        opencode's SQLite `session` table), each already carrying its own
++        tokens_input/tokens_output/tokens_cache_read/tokens_cache_write
++        at the top level (the `cost` field is always 0 for Fireworks-routed
++        models -- not in opencode's models.dev pricing catalog -- so it's
++        not worth aggregating here). But the orchestrator's own opencode.txt
++        stdout
++        stream -- what _convert_events_to_trajectory parses below -- only
++        ever contains the ROOT session's step_finish events: every sub-agent
++        spawned via the task tool runs as its own separate opencode session,
++        and its events never reach the orchestrator's stdout stream at all.
++        So trajectory.final_metrics (and, before this fix, context.n_*_tokens)
++        silently reflect the orchestrator alone, undercounting true MA cost
++        by up to ~49x in the SwarmBench pilot. Summing every raw_trajectory
++        file is the only way to see the real cross-session total.
++        """
++        raw_dir = self.logs_dir / "raw_trajectory"
++        try:
++            files = sorted(raw_dir.glob("*.json")) if raw_dir.is_dir() else []
++        except OSError:
++            return None
++        if not files:
++            return None
++
++        total_input = total_output = 0
++        total_cache_read = total_cache_write = 0
++        n_sessions = 0
++        for path in files:
++            try:
++                session = json.loads(path.read_text())
++            except (OSError, json.JSONDecodeError):
++                continue
++            if not isinstance(session, dict):
++                continue
++            total_input += session.get("tokens_input") or 0
++            total_output += session.get("tokens_output") or 0
++            total_cache_read += session.get("tokens_cache_read") or 0
++            total_cache_write += session.get("tokens_cache_write") or 0
++            n_sessions += 1
++
++        if not n_sessions:
++            return None
++        return {
++            # Matches _convert_events_to_trajectory's own convention below:
++            # cache reads are billed as input tokens, so they're folded in.
++            "n_input_tokens": total_input + total_cache_read,
++            "n_output_tokens": total_output,
++            "n_cache_tokens": total_cache_read,
++            "cache_write_tokens": total_cache_write,
++            "n_sessions": n_sessions,
++        }
++
 +    def populate_context_post_run(self, context: AgentContext) -> None:
 +        events = self._parse_stdout()
 +        if not events:
@@ -1197,6 +1253,23 @@ index 00000000..c18a27a5
 +            context.n_input_tokens = fm.total_prompt_tokens or 0
 +            context.n_output_tokens = fm.total_completion_tokens or 0
 +            context.n_cache_tokens = fm.total_cached_tokens or 0
++
++        # Overwrite the orchestrator-only numbers above with the true
++        # cross-session total, summed from every exported raw_trajectory
++        # file (orchestrator + all sub-agents). See
++        # _aggregate_raw_trajectory_tokens for why the trajectory-derived
++        # numbers above undercount every multi-agent run.
++        raw_totals = self._aggregate_raw_trajectory_tokens()
++        if raw_totals:
++            context.n_input_tokens = raw_totals["n_input_tokens"]
++            context.n_output_tokens = raw_totals["n_output_tokens"]
++            context.n_cache_tokens = raw_totals["n_cache_tokens"]
++            self.logger.debug(
++                f"Aggregated tokens across {raw_totals['n_sessions']} "
++                f"opencode session(s) from raw_trajectory/: "
++                f"input={raw_totals['n_input_tokens']} "
++                f"output={raw_totals['n_output_tokens']}"
++            )
 +
 +    def _opencode_run_errored(self) -> bool:
 +        """True if opencode's last emitted --format=json line was step_finish
