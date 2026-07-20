@@ -2,144 +2,103 @@
 
 Evaluation harness for SwarmBench — runs single-agent and multi-agent benchmarks using [Harbor](https://github.com/harbor-framework/harbor).
 
-> **Active agent:** `swarm-opencode-single` / `swarm-opencode-multi` (OpenCode, Fireworks Kimi K2.7)  
-> **Kimi-CLI agent:** stalled — `swarm-kimi-single` / `swarm-kimi-multi` are available in `swarmbench-kimi/` but not actively used.
+> **Active agent:** `swarm-opencode-single` / `swarm-opencode-multi` (OpenCode, Fireworks Kimi K2.6)
 
 ---
 
-## Prerequisites
+## How tasks actually run now — no local Docker, no API key
 
-- Docker Desktop running
-- [uv](https://docs.astral.sh/uv/) installed
+Trainers no longer clone Harbor or hold a Fireworks API key. Instead, the
+**`mascloud` client** uploads your task folder to our managed control plane,
+which runs it in the cloud (Harbor + Daytona on the server side) and streams
+progress back live. The key lives only on the server — this machine never
+touches it.
 
-```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+you (mascloud CLI) ──upload/run──▶ MAS Cloud Run server ──▶ cloud sandbox ──▶ Fireworks
+                    ◀──live logs──                          (Harbor + Daytona)
+                    ◀──result.zip──
 ```
 
+> The old local-Harbor-plus-your-own-key workflow is deprecated but kept for
+> reference/fallback in [`old_method/`](old_method/README.md).
+
 ---
 
-## Setup
+## Setup (one time)
 
-### 1. Clone this repo
+You need Python 3.9+ and [`pipx`](https://pipx.pypa.io).
 
 ```bash
 git clone https://github.com/MathavanSG14/swarmbench-harness.git
-cd swarmbench-harness
-```
-
-This gives you the diff files (`swarmbench-kimi/` and `swarmbench-opencode/`) needed in the next step.
-
-### 2. Clone Harbor inside it and apply the patch
-
-Clone Harbor and pin to the exact commit the diff targets:
-
-```bash
-git clone https://github.com/harbor-framework/harbor.git
-cd harbor
-git checkout e70d5f060ffeb4525f320669d50b290925b55425
-```
-
-> The commit SHA is pinned to ensure the diff applies cleanly. Do not skip `git checkout`.
-
-Apply the single combined patch from inside `harbor/`:
-
-#### macOS / Linux
-
-```bash
-git apply ../swarmbench_harbor_changes.diff
-uv sync --all-extras
-```
-
-#### Windows (PowerShell, from inside `harbor\`)
-
-`git apply` requires LF line endings. If your browser or editor converted the diff to CRLF, normalize it first:
-
-```powershell
-$diff = "..\swarmbench_harbor_changes.diff"
-$lf = $diff -replace "\.diff$", ".lf.diff"
-$text = [System.IO.File]::ReadAllText((Resolve-Path $diff)) -replace "`r`n", "`n"
-[System.IO.File]::WriteAllText($lf, $text, (New-Object System.Text.UTF8Encoding $false))
-git apply $lf
-uv sync --all-extras
+cd swarmbench-harness/mascloud_client
+pipx install .
 ```
 
 Verify:
-```bash
-uv run harbor --version
-```
-
-### 2. Set API Key
 
 ```bash
-export FIREWORKS_API_KEY=your_fireworks_api_key_here
+mascloud --help
 ```
+
+Log in (your password is in the credentials sheet you were given):
+
+```bash
+mascloud login --email you@turing.com
+```
+
+Your session token is stored locally in `~/.mascloud/config.json` — this is the
+**only** thing kept on your machine. No Fireworks/Daytona key ever appears here.
 
 ---
 
-## Running Tasks
-
-All commands run from inside the `harbor/` directory.
-
-### Set your task path
+## Running a task
 
 ```bash
-TASK=../example_tasks/template-llm-judge/4c3c848bb2f9459cb908d78f02897c6f-SWARMBENCH-FANOUT-RESEARCH-MEDICALRESEARCH
+mascloud run <task_folder> --mode single
+mascloud run <task_folder> --mode multi
+```
+
+Delivery requires **both** the single-agent and multi-agent execution logs, so
+run each task in both modes. Each `run`:
+
+1. packages your task folder locally (excluding any old `execution_logs/`),
+2. uploads it and runs it on a managed cloud sandbox,
+3. streams progress to your terminal live,
+4. saves a result zip **beside your task folder** — e.g. `my-task-single.zip`,
+   `my-task-multi.zip` — containing the full task **plus** the fresh
+   `execution_logs/`.
+
+Press **`Ctrl-C`** while a run is streaming to cancel it (stops the run and
+tears down its cloud sandbox).
+
+### Other commands
+
+```bash
+mascloud runs                    # your run history — status, reward, tokens, cost
+mascloud download <run_id> [dir] # re-fetch a past result (kept 24h after the run finishes)
+mascloud logout                  # clear your local session
 ```
 
 ### Model
 
-| Pool | Model ID |
-|---|---|
-| **Fireworks Kimi K2.7** | `fireworks_ai/accounts/fireworks/models/kimi-k2p7-code` |
+| Pool                    | Model ID                                           |
+| ----------------------- | -------------------------------------------------- |
+| **Fireworks Kimi K2.6** | `fireworks_ai/accounts/fireworks/models/kimi-k2p6` |
 
-### Oracle Validation (expected reward = 1.0)
-
-```bash
-uv run harbor run -p $TASK -a oracle \
-  --ve FIREWORKS_API_KEY=$FIREWORKS_API_KEY
-```
-
-### Single Agent — OpenCode
-
-```bash
-uv run harbor run \
-  -p $TASK \
-  -a swarm-opencode-single \
-  -m fireworks_ai/accounts/fireworks/models/kimi-k2p7-code \
-  -k 1 -n 1 \
-  --job-name "single-opencode-agent" \
-  --jobs-dir "$TASK/execution_logs" \
-  --ve FIREWORKS_API_KEY=$FIREWORKS_API_KEY \
-  --ae FIREWORKS_API_KEY=$FIREWORKS_API_KEY \
-  --quiet
-```
-
-### Multi Agent — OpenCode (hierarchical)
-
-```bash
-uv run harbor run \
-  -p $TASK \
-  -a swarm-opencode-multi \
-  -m fireworks_ai/accounts/fireworks/models/kimi-k2p7-code \
-  -k 1 -n 1 \
-  --job-name "multi-opencode-agent" \
-  --jobs-dir "$TASK/execution_logs" \
-  --ve FIREWORKS_API_KEY=$FIREWORKS_API_KEY \
-  --ae FIREWORKS_API_KEY=$FIREWORKS_API_KEY \
-  --quiet
-```
+This is fixed server-side — there's no flag to change it.
 
 ---
 
 ## Agent Differences
 
-| | `swarm-opencode-single` | `swarm-opencode-multi` |
-|---|---|---|
-| `task` permission | `deny` — no subagents | `allow` — spawns subagents |
-| Agent tiers | Single session only | `general` (coordinator) + `explore` (leaf worker) |
-| `explore` can spawn | — | No (`task` hard-blocked at config level) |
-| Coordination pattern | — | Hierarchical: orchestrator → managers → workers |
-| Typical agent count | 1 | 13–20 |
+|                      | `swarm-opencode-single` | `swarm-opencode-multi`                            |
+| -------------------- | ----------------------- | ------------------------------------------------- |
+| `task` permission    | `deny` — no subagents   | `allow` — spawns subagents                        |
+| Agent tiers          | Single session only     | `general` (coordinator) + `explore` (leaf worker) |
+| `explore` can spawn  | —                       | No (`task` hard-blocked at config level)          |
+| Coordination pattern | —                       | Hierarchical: orchestrator → managers → workers   |
+| Typical agent count  | 1                       | 13–20                                             |
 
 Both agents set `external_directory: allow`, `doom_loop: allow`, `read: allow`, `question: deny` to prevent any subagent from blocking on interactive permission prompts in headless mode.
 
@@ -147,7 +106,13 @@ Both agents set `external_directory: allow`, `doom_loop: allow`, `read: allow`, 
 
 ## Example Run
 
-See [`example_run_tasks/STACKEXCHANGE_DUPLICATE_CLUSTER.md`](example_run_tasks/STACKEXCHANGE_DUPLICATE_CLUSTER.md) for a fully documented run with agent spawn diagram, reward (0.8423), and the permission fix that resolved 2-hour hangs.
+[`example_run_tasks/7cac0ea2e1d74bbd830fd0b8622e00be-SWARMBENCH-HIERARCHICAL-CODESWE-COUNTY-SERVICE-DEPENDENCY-SWEEP`](example_run_tasks/7cac0ea2e1d74bbd830fd0b8622e00be-SWARMBENCH-HIERARCHICAL-CODESWE-COUNTY-SERVICE-DEPENDENCY-SWEEP)
+is a real task package with a genuine cloud run already recorded under
+`execution_logs/` — a `swarm-opencode-multi` run executed through the managed
+`mascloud` pipeline (Harbor + Daytona), including the full `raw_trajectory/`
+session files and `result.json`. Browse it directly to see the expected task
+layout (`task.toml`, `instruction.md`, `decomposition.yaml`, `environment/`,
+`tests/`) and the exact shape of a completed run's output.
 
 ---
 
@@ -169,40 +134,21 @@ See [`example_run_tasks/STACKEXCHANGE_DUPLICATE_CLUSTER.md`](example_run_tasks/S
     └── (same structure, only orchestrator_*.json)
 ```
 
-Browse results interactively:
-```bash
-cd harbor && uv run harbor view ../example_tasks/
-```
-
----
-
-## Flag Reference
-
-| Flag | Purpose |
-|---|---|
-| `-t` | Path to task directory |
-| `-a` | Agent: `oracle`, `swarm-opencode-single`, `swarm-opencode-multi` |
-| `-m` | Model ID |
-| `-k` | Number of runs per task |
-| `-n` | Concurrent trials within the run |
-| `--job-name` | Output folder name under `--jobs-dir` |
-| `--jobs-dir` | Where Harbor saves results |
-| `--ve` | Env var passed to the verifier |
-| `--ae` | Env var passed to the agent |
-| `--quiet` | Show summary table only |
-
 ---
 
 ## Troubleshooting
 
-**Patch fails to apply**  
-Make sure you ran `git checkout e70d5f060ffeb4525f320669d50b290925b55425` before running `git apply`. The diff must be applied against that exact commit.
+| Symptom                                              | Meaning                                    | Fix                                         |
+| ----------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| `Not logged in — run mascloud login first.`          | No local token                              | `mascloud login --email you@turing.com`     |
+| `API 401: Session expired or invalid`                | Your session token expired                  | Log in again                                 |
+| `Run is still in progress — no result package yet.`  | Download attempted before the run finished  | Wait for it to finish                        |
+| `Result package has expired…`                        | More than 24h since the run finished        | Re-run the task                              |
+| `Task folder must contain task.toml`                 | You pointed `run` at the wrong folder       | Point it at the folder that has `task.toml`  |
+| A run seems stuck with no output                     | The cloud sandbox is still building         | Give it a few minutes; it streams once ready |
 
-**`NonZeroAgentExitCodeError` / `curl: (6) Could not resolve host`**  
-The Docker container needs outbound internet access to install opencode via `nvm`/`npm`. Check Docker network settings — containers must reach `raw.githubusercontent.com`, `nodejs.org`, and `registry.npmjs.org`.
-
-**Subagents hang for the full agent timeout (e.g. 2 hours) then score 0.0**  
-This was caused by `external_directory` permission being set to `ask` — opencode's `read` tool blocks indefinitely waiting for user approval when reading paths outside `/workspace/`. The permission fix is already applied in `swarmbench-opencode/swarmbench_harbor_changes.diff`. See the example run doc for the full root-cause analysis.
-
-**`trajectory.json` not created**  
-Written only after opencode runs successfully. If the agent crashed during install, fix the network issue and re-run.
+For deeper agent-behavior issues (subagents hanging, `trajectory.json` missing,
+etc.) — those are now handled server-side, since trainers no longer run Harbor
+directly. Report them to the platform team with your `run_id` from `mascloud runs`.
+For the legacy local-Harbor troubleshooting (patch application, Docker network
+access), see [`old_method/README.md`](old_method/README.md).

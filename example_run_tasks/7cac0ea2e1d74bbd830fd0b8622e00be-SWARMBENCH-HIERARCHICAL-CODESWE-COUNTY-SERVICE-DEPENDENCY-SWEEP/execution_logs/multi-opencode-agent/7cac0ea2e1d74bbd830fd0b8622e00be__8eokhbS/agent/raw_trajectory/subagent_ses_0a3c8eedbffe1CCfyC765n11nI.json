@@ -1,0 +1,1137 @@
+{
+  "id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+  "project_id": "global",
+  "workspace_id": null,
+  "parent_id": "ses_0a3cf9815ffe3qJFd7CiTcdqf2",
+  "slug": "calm-nebula",
+  "directory": "/workspace",
+  "path": "workspace",
+  "title": "Audit repo content-analysis (@general subagent)",
+  "version": "1.17.18",
+  "share_url": null,
+  "summary_additions": 0,
+  "summary_deletions": 0,
+  "summary_files": 0,
+  "summary_diffs": null,
+  "metadata": null,
+  "cost": 0.0,
+  "tokens_input": 8622,
+  "tokens_output": 4851,
+  "tokens_reasoning": 0,
+  "tokens_cache_read": 21565,
+  "tokens_cache_write": 0,
+  "revert": null,
+  "permission": "[{\"permission\":\"question\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_enter\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_exit\",\"pattern\":\"*\",\"action\":\"deny\"}]",
+  "agent": "general",
+  "model": "{\"id\":\"accounts/fireworks/models/kimi-k2p6\",\"providerID\":\"openai\",\"variant\":\"default\"}",
+  "time_created": 1783958540580,
+  "time_updated": 1783959288775,
+  "time_compacting": null,
+  "time_archived": null,
+  "messages": [
+    {
+      "id": "msg_f5c371158001OtIJcxZ4lAQBdE",
+      "session_id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+      "time_created": 1783958540641,
+      "time_updated": 1783959290508,
+      "data": {
+        "role": "user",
+        "time": {
+          "created": 1783958540641
+        },
+        "agent": "general",
+        "model": {
+          "providerID": "openai",
+          "modelID": "accounts/fireworks/models/kimi-k2p6"
+        },
+        "summary": {
+          "diffs": [
+            {
+              "file": "workspace/Open_First_Whitepaper",
+              "patch": "Index: workspace/Open_First_Whitepaper\n===================================================================\n--- workspace/Open_First_Whitepaper\t\n+++ workspace/Open_First_Whitepaper\t\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/actions_runs.json",
+              "patch": "Index: workspace/actions_runs.json\n===================================================================\n--- workspace/actions_runs.json\t\n+++ workspace/actions_runs.json\t\n@@ -0,0 +1,1 @@\n+{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/commits_main.json",
+              "patch": "Index: workspace/commits_main.json\n===================================================================\n--- workspace/commits_main.json\t\n+++ workspace/commits_main.json\t\n@@ -0,0 +1,1 @@\n+{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/commits_master.json",
+              "patch": "Index: workspace/commits_master.json\n===================================================================\n--- workspace/commits_master.json\t\n+++ workspace/commits_master.json\t\n@@ -0,0 +1,1 @@\n+{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/facts_CATS-STAE.json",
+              "patch": "Index: workspace/facts_CATS-STAE.json\n===================================================================\n--- workspace/facts_CATS-STAE.json\t\n+++ workspace/facts_CATS-STAE.json\t\n@@ -0,0 +1,15 @@\n+{\n+  \"repo_name\": \"CATS-STAE\",\n+  \"repo_url\": \"https://github.com/canada-ca/CATS-STAE\",\n+  \"primary_language\": \"Shell\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"Unknown\",\n+  \"contributing_guide\": \"Yes\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"None\",\n+  \"last_commit_date\": \"2024-03-27\",\n+  \"days_since_last_commit\": 838,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 19\n+}\n",
+              "additions": 15,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/facts_CommunicatingPublicEngagement.json",
+              "patch": "Index: workspace/facts_CommunicatingPublicEngagement.json\n===================================================================\n--- workspace/facts_CommunicatingPublicEngagement.json\t\n+++ workspace/facts_CommunicatingPublicEngagement.json\t\n@@ -0,0 +1,15 @@\n+{\n+  \"repo_name\": \"CommunicatingPublicEngagement\",\n+  \"repo_url\": \"https://github.com/canada-ca/CommunicatingPublicEngagement\",\n+  \"primary_language\": \"Unknown\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"Unknown\",\n+  \"contributing_guide\": \"No\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"None\",\n+  \"last_commit_date\": \"2018-04-30\",\n+  \"days_since_last_commit\": 2996,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 0\n+}\n",
+              "additions": 15,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/facts_HC-Technology-and-Business-Innovation_Innovations-Technologiques-et-d-Affaires-SC.json",
+              "patch": "Index: workspace/facts_HC-Technology-and-Business-Innovation_Innovations-Technologiques-et-d-Affaires-SC.json\n===================================================================\n--- workspace/facts_HC-Technology-and-Business-Innovation_Innovations-Technologiques-et-d-Affaires-SC.json\t\n+++ workspace/facts_HC-Technology-and-Business-Innovation_Innovations-Technologiques-et-d-Affaires-SC.json\t\n@@ -0,0 +1,15 @@\n+{\n+  \"repo_name\": \"HC-Technology-and-Business-Innovation_Innovations-Technologiques-et-d-Affaires-SC\",\n+  \"repo_url\": \"https://github.com/canada-ca/HC-Technology-and-Business-Innovation_Innovations-Technologiques-et-d-Affaires-SC\",\n+  \"primary_language\": \"Unknown\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"MIT\",\n+  \"contributing_guide\": \"No\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"None\",\n+  \"last_commit_date\": \"2018-03-06\",\n+  \"days_since_last_commit\": 3051,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 1\n+}\n",
+              "additions": 15,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/facts_Libraries-bibliotheque.json",
+              "patch": "Index: workspace/facts_Libraries-bibliotheque.json\n===================================================================\n--- workspace/facts_Libraries-bibliotheque.json\t\n+++ workspace/facts_Libraries-bibliotheque.json\t\n@@ -0,0 +1,15 @@\n+{\n+  \"repo_name\": \"Libraries-bibliotheque\",\n+  \"repo_url\": \"https://github.com/canada-ca/Libraries-bibliotheque\",\n+  \"primary_language\": \"Unknown\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"Unknown\",\n+  \"contributing_guide\": \"No\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"None\",\n+  \"last_commit_date\": \"2017-07-12\",\n+  \"days_since_last_commit\": 3288,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 0\n+}\n",
+              "additions": 15,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/facts_OS-Advisory_Conseil-SO.json",
+              "patch": "Index: workspace/facts_OS-Advisory_Conseil-SO.json\n===================================================================\n--- workspace/facts_OS-Advisory_Conseil-SO.json\t\n+++ workspace/facts_OS-Advisory_Conseil-SO.json\t\n@@ -0,0 +1,15 @@\n+{\n+  \"repo_name\": \"OS-Advisory_Conseil-SO\",\n+  \"repo_url\": \"https://github.com/canada-ca/OS-Advisory_Conseil-SO\",\n+  \"primary_language\": \"JavaScript\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"Apache-2.0\",\n+  \"contributing_guide\": \"No\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"Automated\",\n+  \"last_commit_date\": \"2020-06-10\",\n+  \"days_since_last_commit\": 2224,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 33\n+}\n",
+              "additions": 15,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/facts_Open_First_Whitepaper.json",
+              "patch": "Index: workspace/facts_Open_First_Whitepaper.json\n===================================================================\n--- workspace/facts_Open_First_Whitepaper.json\t\n+++ workspace/facts_Open_First_Whitepaper.json\t\n@@ -0,0 +1,15 @@\n+{\n+  \"repo_name\": \"Open_First_Whitepaper\",\n+  \"repo_url\": \"https://github.com/canada-ca/Open_First_Whitepaper\",\n+  \"primary_language\": \"JavaScript\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"NOASSERTION\",\n+  \"contributing_guide\": \"No\",\n+  \"has_security_scanning_in_ci\": \"No\",\n+  \"has_tests_in_ci\": \"No\",\n+  \"dependency_update_policy\": \"Automated\",\n+  \"last_commit_date\": \"2023-09-06\",\n+  \"days_since_last_commit\": 1041,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 13\n+}\n",
+              "additions": 15,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/facts_PCO-Public-Opinion-Research__Recherche-en-opinion-publique--BCP.json",
+              "patch": "Index: workspace/facts_PCO-Public-Opinion-Research__Recherche-en-opinion-publique--BCP.json\n===================================================================\n--- workspace/facts_PCO-Public-Opinion-Research__Recherche-en-opinion-publique--BCP.json\t\n+++ workspace/facts_PCO-Public-Opinion-Research__Recherche-en-opinion-publique--BCP.json\t\n@@ -0,0 +1,15 @@\n+{\n+  \"repo_name\": \"PCO-Public-Opinion-Research__Recherche-en-opinion-publique--BCP\",\n+  \"repo_url\": \"https://github.com/canada-ca/PCO-Public-Opinion-Research__Recherche-en-opinion-publique--BCP\",\n+  \"primary_language\": \"Unknown\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"MIT\",\n+  \"contributing_guide\": \"Yes\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"None\",\n+  \"last_commit_date\": \"2018-03-18\",\n+  \"days_since_last_commit\": \"3039\",\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": \"3\"\n+}\n",
+              "additions": 15,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/facts_alexapoc-vdpalexa.json",
+              "patch": "Index: workspace/facts_alexapoc-vdpalexa.json\n===================================================================\n--- workspace/facts_alexapoc-vdpalexa.json\t\n+++ workspace/facts_alexapoc-vdpalexa.json\t\n@@ -0,0 +1,15 @@\n+{\n+  \"repo_name\": \"alexapoc-vdpalexa\",\n+  \"repo_url\": \"https://github.com/canada-ca/alexapoc-vdpalexa\",\n+  \"primary_language\": \"Unknown\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"Unknown\",\n+  \"contributing_guide\": \"No\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"None\",\n+  \"last_commit_date\": \"2018-07-27\",\n+  \"days_since_last_commit\": 2908,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 0\n+}\n",
+              "additions": 15,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/facts_commons.json",
+              "patch": "Index: workspace/facts_commons.json\n===================================================================\n--- workspace/facts_commons.json\t\n+++ workspace/facts_commons.json\t\n@@ -0,0 +1,15 @@\n+{\n+  \"repo_name\": \"commons\",\n+  \"repo_url\": \"https://github.com/canada-ca/commons\",\n+  \"primary_language\": \"JavaScript\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"MIT\",\n+  \"contributing_guide\": \"No\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"None\",\n+  \"last_commit_date\": \"2017-11-22\",\n+  \"days_since_last_commit\": 3155,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 2\n+}\n",
+              "additions": 15,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/facts_content-analysis.json",
+              "patch": "Index: workspace/facts_content-analysis.json\n===================================================================\n--- workspace/facts_content-analysis.json\t\n+++ workspace/facts_content-analysis.json\t\n@@ -0,0 +1,15 @@\n+{\n+  \"repo_name\": \"content-analysis\",\n+  \"repo_url\": \"https://github.com/canada-ca/content-analysis\",\n+  \"primary_language\": \"Python\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"Unknown\",\n+  \"contributing_guide\": \"No\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"None\",\n+  \"last_commit_date\": \"2018-04-24\",\n+  \"days_since_last_commit\": 3002,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 0\n+}\n",
+              "additions": 15,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/facts_devex.json",
+              "patch": "Index: workspace/facts_devex.json\n===================================================================\n--- workspace/facts_devex.json\t\n+++ workspace/facts_devex.json\t\n@@ -0,0 +1,15 @@\n+{\n+  \"repo_name\": \"devex\",\n+  \"repo_url\": \"https://github.com/canada-ca/devex\",\n+  \"primary_language\": \"JavaScript\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"Apache-2.0\",\n+  \"contributing_guide\": \"Yes\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"None\",\n+  \"last_commit_date\": \"2018-08-03\",\n+  \"days_since_last_commit\": 2901,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 30\n+}\n",
+              "additions": 15,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/facts_digital-playbook-guide-numerique.json",
+              "patch": "Index: workspace/facts_digital-playbook-guide-numerique.json\n===================================================================\n--- workspace/facts_digital-playbook-guide-numerique.json\t\n+++ workspace/facts_digital-playbook-guide-numerique.json\t\n@@ -0,0 +1,15 @@\n+{\n+  \"repo_name\": \"digital-playbook-guide-numerique\",\n+  \"repo_url\": \"https://github.com/canada-ca/digital-playbook-guide-numerique\",\n+  \"primary_language\": \"HTML\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"OGL-Canada\",\n+  \"contributing_guide\": \"Yes\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"Automated\",\n+  \"last_commit_date\": \"2021-03-06\",\n+  \"days_since_last_commit\": 1955,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 19\n+}\n",
+              "additions": 15,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/facts_open-source-logiciel-libre.json",
+              "patch": "Index: workspace/facts_open-source-logiciel-libre.json\n===================================================================\n--- workspace/facts_open-source-logiciel-libre.json\t\n+++ workspace/facts_open-source-logiciel-libre.json\t\n@@ -0,0 +1,15 @@\n+{\n+  \"repo_name\": \"open-source-logiciel-libre\",\n+  \"repo_url\": \"https://github.com/canada-ca/open-source-logiciel-libre\",\n+  \"primary_language\": \"HTML\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"OGL-Canada\",\n+  \"contributing_guide\": \"Yes\",\n+  \"has_security_scanning_in_ci\": \"No\",\n+  \"has_tests_in_ci\": \"No\",\n+  \"dependency_update_policy\": \"Automated\",\n+  \"last_commit_date\": \"2026-07-05\",\n+  \"days_since_last_commit\": 8,\n+  \"maintained\": \"Yes\",\n+  \"open_issues_count\": 27\n+}\n",
+              "additions": 15,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/facts_regs-consult-wet.json",
+              "patch": "Index: workspace/facts_regs-consult-wet.json\n===================================================================\n--- workspace/facts_regs-consult-wet.json\t\n+++ workspace/facts_regs-consult-wet.json\t\n@@ -0,0 +1,15 @@\n+{\n+  \"repo_name\": \"regs-consult-wet\",\n+  \"repo_url\": \"https://github.com/canada-ca/regs-consult-wet\",\n+  \"primary_language\": \"JavaScript\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"MIT\",\n+  \"contributing_guide\": \"No\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"None\",\n+  \"last_commit_date\": \"2020-03-19\",\n+  \"days_since_last_commit\": 2307,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 1\n+}\n",
+              "additions": 15,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/facts_welcome.json",
+              "patch": "Index: workspace/facts_welcome.json\n===================================================================\n--- workspace/facts_welcome.json\t\n+++ workspace/facts_welcome.json\t\n@@ -0,0 +1,15 @@\n+{\n+  \"repo_name\": \"welcome\",\n+  \"repo_url\": \"https://github.com/canada-ca/welcome\",\n+  \"primary_language\": \"Unknown\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"OGL-Canada\",\n+  \"contributing_guide\": \"Yes\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"None\",\n+  \"last_commit_date\": \"2022-04-19\",\n+  \"days_since_last_commit\": 1546,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 7\n+}\n",
+              "additions": 15,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/github_contents.json",
+              "patch": "Index: workspace/github_contents.json\n===================================================================\n--- workspace/github_contents.json\t\n+++ workspace/github_contents.json\t\n@@ -0,0 +1,5 @@\n+{\n+  \"message\": \"Not Found\",\n+  \"documentation_url\": \"https://docs.github.com/rest/repos/contents#get-repository-content\",\n+  \"status\": \"404\"\n+}\n",
+              "additions": 5,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_CATS-STAE.json",
+              "patch": "Index: workspace/manual_CATS-STAE.json\n===================================================================\n--- workspace/manual_CATS-STAE.json\t\n+++ workspace/manual_CATS-STAE.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_CommunicatingPublicEngagement.json",
+              "patch": "Index: workspace/manual_CommunicatingPublicEngagement.json\n===================================================================\n--- workspace/manual_CommunicatingPublicEngagement.json\t\n+++ workspace/manual_CommunicatingPublicEngagement.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"No\",\n+  \"readme_clarity\": \"Poor\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"No Issues\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_HC-Technology-and-Business-Innovation_Innovations-Technologiques-et-d-Affaires-SC.json",
+              "patch": "Index: workspace/manual_HC-Technology-and-Business-Innovation_Innovations-Technologiques-et-d-Affaires-SC.json\n===================================================================\n--- workspace/manual_HC-Technology-and-Business-Innovation_Innovations-Technologiques-et-d-Affaires-SC.json\t\n+++ workspace/manual_HC-Technology-and-Business-Innovation_Innovations-Technologiques-et-d-Affaires-SC.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"No\",\n+  \"readme_clarity\": \"Fair\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_Libraries-bibliotheque.json",
+              "patch": "Index: workspace/manual_Libraries-bibliotheque.json\n===================================================================\n--- workspace/manual_Libraries-bibliotheque.json\t\n+++ workspace/manual_Libraries-bibliotheque.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Poor\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"No Issues\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_OS-Advisory_Conseil-SO.json",
+              "patch": "Index: workspace/manual_OS-Advisory_Conseil-SO.json\n===================================================================\n--- workspace/manual_OS-Advisory_Conseil-SO.json\t\n+++ workspace/manual_OS-Advisory_Conseil-SO.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_Open_First_Whitepaper.json",
+              "patch": "Index: workspace/manual_Open_First_Whitepaper.json\n===================================================================\n--- workspace/manual_Open_First_Whitepaper.json\t\n+++ workspace/manual_Open_First_Whitepaper.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Present\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_PCO-Public-Opinion-Research__Recherche-en-opinion-publique--BCP.json",
+              "patch": "Index: workspace/manual_PCO-Public-Opinion-Research__Recherche-en-opinion-publique--BCP.json\n===================================================================\n--- workspace/manual_PCO-Public-Opinion-Research__Recherche-en-opinion-publique--BCP.json\t\n+++ workspace/manual_PCO-Public-Opinion-Research__Recherche-en-opinion-publique--BCP.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"No\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"Detailed\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_PCTF-CCP.json",
+              "patch": "Index: workspace/manual_PCTF-CCP.json\n===================================================================\n--- workspace/manual_PCTF-CCP.json\t\n+++ workspace/manual_PCTF-CCP.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"No\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Present\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_alexapoc-healthcanada-recalls.json",
+              "patch": "Index: workspace/manual_alexapoc-healthcanada-recalls.json\n===================================================================\n--- workspace/manual_alexapoc-healthcanada-recalls.json\t\n+++ workspace/manual_alexapoc-healthcanada-recalls.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"No\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"No Issues\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_alexapoc-vdpalexa.json",
+              "patch": "Index: workspace/manual_alexapoc-vdpalexa.json\n===================================================================\n--- workspace/manual_alexapoc-vdpalexa.json\t\n+++ workspace/manual_alexapoc-vdpalexa.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Poor\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"No Issues\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_canada-ca.github.io.json",
+              "patch": "Index: workspace/manual_canada-ca.github.io.json\n===================================================================\n--- workspace/manual_canada-ca.github.io.json\t\n+++ workspace/manual_canada-ca.github.io.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"No\",\n+  \"readme_clarity\": \"Poor\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_commons.json",
+              "patch": "Index: workspace/manual_commons.json\n===================================================================\n--- workspace/manual_commons.json\t\n+++ workspace/manual_commons.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"No\",\n+  \"readme_clarity\": \"Fair\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_content-analysis.json",
+              "patch": "Index: workspace/manual_content-analysis.json\n===================================================================\n--- workspace/manual_content-analysis.json\t\n+++ workspace/manual_content-analysis.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"No Issues\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_digital-playbook-guide-numerique.json",
+              "patch": "Index: workspace/manual_digital-playbook-guide-numerique.json\n===================================================================\n--- workspace/manual_digital-playbook-guide-numerique.json\t\n+++ workspace/manual_digital-playbook-guide-numerique.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_open-source-logiciel-libre.json",
+              "patch": "Index: workspace/manual_open-source-logiciel-libre.json\n===================================================================\n--- workspace/manual_open-source-logiciel-libre.json\t\n+++ workspace/manual_open-source-logiciel-libre.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_ore-ero.json",
+              "patch": "Index: workspace/manual_ore-ero.json\n===================================================================\n--- workspace/manual_ore-ero.json\t\n+++ workspace/manual_ore-ero.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_regs-consult-wet.json",
+              "patch": "Index: workspace/manual_regs-consult-wet.json\n===================================================================\n--- workspace/manual_regs-consult-wet.json\t\n+++ workspace/manual_regs-consult-wet.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"No\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_welcome.json",
+              "patch": "Index: workspace/manual_welcome.json\n===================================================================\n--- workspace/manual_welcome.json\t\n+++ workspace/manual_welcome.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Present\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/open_issues.json",
+              "patch": "Index: workspace/open_issues.json\n===================================================================\n--- workspace/open_issues.json\t\n+++ workspace/open_issues.json\t\n@@ -0,0 +1,1 @@\n+{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/repo_CATS-STAE.json",
+              "patch": "Index: workspace/repo_CATS-STAE.json\n===================================================================\n--- workspace/repo_CATS-STAE.json\t\n+++ workspace/repo_CATS-STAE.json\t\n@@ -0,0 +1,27 @@\n+{\n+  \"repo_name\": \"CATS-STAE\",\n+  \"repo_url\": \"https://github.com/canada-ca/CATS-STAE\",\n+  \"primary_language\": \"Shell\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"Unknown\",\n+  \"contributing_guide\": \"Yes\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"None\",\n+  \"last_commit_date\": \"2024-03-27\",\n+  \"days_since_last_commit\": 838,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 19,\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\",\n+  \"standards_met\": 2,\n+  \"compliance_status\": \"Partial\",\n+  \"gaps\": [\n+    \"Open licence\",\n+    \"Security policy\",\n+    \"Actively maintained\"\n+  ]\n+}\n",
+              "additions": 27,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/repo_CommunicatingPublicEngagement.json",
+              "patch": "Index: workspace/repo_CommunicatingPublicEngagement.json\n===================================================================\n--- workspace/repo_CommunicatingPublicEngagement.json\t\n+++ workspace/repo_CommunicatingPublicEngagement.json\t\n@@ -0,0 +1,29 @@\n+{\n+  \"repo_name\": \"CommunicatingPublicEngagement\",\n+  \"repo_url\": \"https://github.com/canada-ca/CommunicatingPublicEngagement\",\n+  \"primary_language\": \"Unknown\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"Unknown\",\n+  \"contributing_guide\": \"No\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"None\",\n+  \"last_commit_date\": \"2018-04-30\",\n+  \"days_since_last_commit\": 2996,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 0,\n+  \"bilingual\": \"No\",\n+  \"readme_clarity\": \"Poor\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"No Issues\",\n+  \"release_notes_quality\": \"No Releases\",\n+  \"standards_met\": 0,\n+  \"compliance_status\": \"Non-compliant\",\n+  \"gaps\": [\n+    \"Bilingual README\",\n+    \"Open licence\",\n+    \"Security policy\",\n+    \"Contributing guide\",\n+    \"Actively maintained\"\n+  ]\n+}\n",
+              "additions": 29,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/repo_HC-Technology-and-Business-Innovation_Innovations-Technologiques-et-d-Affaires-SC.json",
+              "patch": "Index: workspace/repo_HC-Technology-and-Business-Innovation_Innovations-Technologiques-et-d-Affaires-SC.json\n===================================================================\n--- workspace/repo_HC-Technology-and-Business-Innovation_Innovations-Technologiques-et-d-Affaires-SC.json\t\n+++ workspace/repo_HC-Technology-and-Business-Innovation_Innovations-Technologiques-et-d-Affaires-SC.json\t\n@@ -0,0 +1,28 @@\n+{\n+  \"repo_name\": \"HC-Technology-and-Business-Innovation_Innovations-Technologiques-et-d-Affaires-SC\",\n+  \"repo_url\": \"https://github.com/canada-ca/HC-Technology-and-Business-Innovation_Innovations-Technologiques-et-d-Affaires-SC\",\n+  \"primary_language\": \"Unknown\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"MIT\",\n+  \"contributing_guide\": \"No\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"None\",\n+  \"last_commit_date\": \"2018-03-06\",\n+  \"days_since_last_commit\": 3051,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 1,\n+  \"bilingual\": \"No\",\n+  \"readme_clarity\": \"Fair\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\",\n+  \"standards_met\": 1,\n+  \"compliance_status\": \"Non-compliant\",\n+  \"gaps\": [\n+    \"Bilingual README\",\n+    \"Security policy\",\n+    \"Contributing guide\",\n+    \"Actively maintained\"\n+  ]\n+}\n",
+              "additions": 28,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/repo_Libraries-bibliotheque.json",
+              "patch": "Index: workspace/repo_Libraries-bibliotheque.json\n===================================================================\n--- workspace/repo_Libraries-bibliotheque.json\t\n+++ workspace/repo_Libraries-bibliotheque.json\t\n@@ -0,0 +1,23 @@\n+{\n+  \"repo_name\": \"Libraries-bibliotheque\",\n+  \"repo_url\": \"https://github.com/canada-ca/Libraries-bibliotheque\",\n+  \"primary_language\": \"Unknown\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"Unknown\",\n+  \"contributing_guide\": \"No\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"None\",\n+  \"last_commit_date\": \"2017-07-12\",\n+  \"days_since_last_commit\": 3288,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 0,\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Poor\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"No Issues\",\n+  \"release_notes_quality\": \"No Releases\",\n+  \"standards_met\": 1,\n+  \"compliance_status\": \"Non-compliant\",\n+  \"gaps\": [\"Open licence\", \"Security policy\", \"Contributing guide\", \"Actively maintained\"]\n+}\n",
+              "additions": 23,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/repo_OS-Advisory_Conseil-SO.json",
+              "patch": "Index: workspace/repo_OS-Advisory_Conseil-SO.json\n===================================================================\n--- workspace/repo_OS-Advisory_Conseil-SO.json\t\n+++ workspace/repo_OS-Advisory_Conseil-SO.json\t\n@@ -0,0 +1,23 @@\n+{\n+  \"repo_name\": \"OS-Advisory_Conseil-SO\",\n+  \"repo_url\": \"https://github.com/canada-ca/OS-Advisory_Conseil-SO\",\n+  \"primary_language\": \"JavaScript\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"Apache-2.0\",\n+  \"contributing_guide\": \"No\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"Automated\",\n+  \"last_commit_date\": \"2020-06-10\",\n+  \"days_since_last_commit\": 2224,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 33,\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\",\n+  \"standards_met\": 2,\n+  \"compliance_status\": \"Partial\",\n+  \"gaps\": [\"Security policy\", \"Contributing guide\", \"Actively maintained\"]\n+}\n",
+              "additions": 23,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/repo_PCO-Public-Opinion-Research__Recherche-en-opinion-publique--BCP.json",
+              "patch": "Index: workspace/repo_PCO-Public-Opinion-Research__Recherche-en-opinion-publique--BCP.json\n===================================================================\n--- workspace/repo_PCO-Public-Opinion-Research__Recherche-en-opinion-publique--BCP.json\t\n+++ workspace/repo_PCO-Public-Opinion-Research__Recherche-en-opinion-publique--BCP.json\t\n@@ -0,0 +1,27 @@\n+{\n+  \"repo_name\": \"PCO-Public-Opinion-Research__Recherche-en-opinion-publique--BCP\",\n+  \"repo_url\": \"https://github.com/canada-ca/PCO-Public-Opinion-Research__Recherche-en-opinion-publique--BCP\",\n+  \"primary_language\": \"Unknown\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"MIT\",\n+  \"contributing_guide\": \"Yes\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"None\",\n+  \"last_commit_date\": \"2018-03-18\",\n+  \"days_since_last_commit\": 3039,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 3,\n+  \"bilingual\": \"No\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"Detailed\",\n+  \"standards_met\": 2,\n+  \"compliance_status\": \"Partial\",\n+  \"gaps\": [\n+    \"Bilingual README\",\n+    \"Security policy\",\n+    \"Actively maintained\"\n+  ]\n+}\n",
+              "additions": 27,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/repo_alexapoc-vdpalexa.json",
+              "patch": "Index: workspace/repo_alexapoc-vdpalexa.json\n===================================================================\n--- workspace/repo_alexapoc-vdpalexa.json\t\n+++ workspace/repo_alexapoc-vdpalexa.json\t\n@@ -0,0 +1,28 @@\n+{\n+  \"repo_name\": \"alexapoc-vdpalexa\",\n+  \"repo_url\": \"https://github.com/canada-ca/alexapoc-vdpalexa\",\n+  \"primary_language\": \"Unknown\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"Unknown\",\n+  \"contributing_guide\": \"No\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"None\",\n+  \"last_commit_date\": \"2018-07-27\",\n+  \"days_since_last_commit\": 2908,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 0,\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Poor\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"No Issues\",\n+  \"release_notes_quality\": \"No Releases\",\n+  \"standards_met\": 1,\n+  \"compliance_status\": \"Non-compliant\",\n+  \"gaps\": [\n+    \"Open licence\",\n+    \"Security policy\",\n+    \"Contributing guide\",\n+    \"Actively maintained\"\n+  ]\n+}\n",
+              "additions": 28,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/repo_commons.json",
+              "patch": "Index: workspace/repo_commons.json\n===================================================================\n--- workspace/repo_commons.json\t\n+++ workspace/repo_commons.json\t\n@@ -0,0 +1,28 @@\n+{\n+  \"repo_name\": \"commons\",\n+  \"repo_url\": \"https://github.com/canada-ca/commons\",\n+  \"primary_language\": \"JavaScript\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"MIT\",\n+  \"contributing_guide\": \"No\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"None\",\n+  \"last_commit_date\": \"2017-11-22\",\n+  \"days_since_last_commit\": 3155,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 2,\n+  \"bilingual\": \"No\",\n+  \"readme_clarity\": \"Fair\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\",\n+  \"standards_met\": 1,\n+  \"compliance_status\": \"Non-compliant\",\n+  \"gaps\": [\n+    \"Bilingual README\",\n+    \"Security policy\",\n+    \"Contributing guide\",\n+    \"Actively maintained\"\n+  ]\n+}\n",
+              "additions": 28,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/repo_content-analysis.json",
+              "patch": "Index: workspace/repo_content-analysis.json\n===================================================================\n--- workspace/repo_content-analysis.json\t\n+++ workspace/repo_content-analysis.json\t\n@@ -0,0 +1,28 @@\n+{\n+  \"repo_name\": \"content-analysis\",\n+  \"repo_url\": \"https://github.com/canada-ca/content-analysis\",\n+  \"primary_language\": \"Python\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"Unknown\",\n+  \"contributing_guide\": \"No\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"None\",\n+  \"last_commit_date\": \"2018-04-24\",\n+  \"days_since_last_commit\": 3002,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 0,\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"No Issues\",\n+  \"release_notes_quality\": \"No Releases\",\n+  \"standards_met\": 1,\n+  \"compliance_status\": \"Non-compliant\",\n+  \"gaps\": [\n+    \"Open licence\",\n+    \"Security policy\",\n+    \"Contributing guide\",\n+    \"Actively maintained\"\n+  ]\n+}\n",
+              "additions": 28,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/repo_digital-playbook-guide-numerique.json",
+              "patch": "Index: workspace/repo_digital-playbook-guide-numerique.json\n===================================================================\n--- workspace/repo_digital-playbook-guide-numerique.json\t\n+++ workspace/repo_digital-playbook-guide-numerique.json\t\n@@ -0,0 +1,23 @@\n+{\n+  \"repo_name\": \"digital-playbook-guide-numerique\",\n+  \"repo_url\": \"https://github.com/canada-ca/digital-playbook-guide-numerique\",\n+  \"primary_language\": \"HTML\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"OGL-Canada\",\n+  \"contributing_guide\": \"Yes\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"Automated\",\n+  \"last_commit_date\": \"2021-03-06\",\n+  \"days_since_last_commit\": 1955,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 19,\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\",\n+  \"standards_met\": 3,\n+  \"compliance_status\": \"Partial\",\n+  \"gaps\": [\"Security policy\", \"Actively maintained\"]\n+}\n",
+              "additions": 23,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/repo_info.json",
+              "patch": "Index: workspace/repo_info.json\n===================================================================\n--- workspace/repo_info.json\t\n+++ workspace/repo_info.json\t\n@@ -0,0 +1,138 @@\n+{\n+  \"id\": 65482027,\n+  \"node_id\": \"MDEwOlJlcG9zaXRvcnk2NTQ4MjAyNw==\",\n+  \"name\": \"welcome\",\n+  \"full_name\": \"canada-ca/welcome\",\n+  \"private\": false,\n+  \"owner\": {\n+    \"login\": \"canada-ca\",\n+    \"id\": 20973642,\n+    \"node_id\": \"MDEyOk9yZ2FuaXphdGlvbjIwOTczNjQy\",\n+    \"avatar_url\": \"https://avatars.githubusercontent.com/u/20973642?v=4\",\n+    \"gravatar_id\": \"\",\n+    \"url\": \"https://api.github.com/users/canada-ca\",\n+    \"html_url\": \"https://github.com/canada-ca\",\n+    \"followers_url\": \"https://api.github.com/users/canada-ca/followers\",\n+    \"following_url\": \"https://api.github.com/users/canada-ca/following{/other_user}\",\n+    \"gists_url\": \"https://api.github.com/users/canada-ca/gists{/gist_id}\",\n+    \"starred_url\": \"https://api.github.com/users/canada-ca/starred{/owner}{/repo}\",\n+    \"subscriptions_url\": \"https://api.github.com/users/canada-ca/subscriptions\",\n+    \"organizations_url\": \"https://api.github.com/users/canada-ca/orgs\",\n+    \"repos_url\": \"https://api.github.com/users/canada-ca/repos\",\n+    \"events_url\": \"https://api.github.com/users/canada-ca/events{/privacy}\",\n+    \"received_events_url\": \"https://api.github.com/users/canada-ca/received_events\",\n+    \"type\": \"Organization\",\n+    \"user_view_type\": \"public\",\n+    \"site_admin\": false\n+  },\n+  \"html_url\": \"https://github.com/canada-ca/welcome\",\n+  \"description\": \"Start here! readme for our organization / Commencez ici! readme pour notre organisation\",\n+  \"fork\": false,\n+  \"url\": \"https://api.github.com/repos/canada-ca/welcome\",\n+  \"forks_url\": \"https://api.github.com/repos/canada-ca/welcome/forks\",\n+  \"keys_url\": \"https://api.github.com/repos/canada-ca/welcome/keys{/key_id}\",\n+  \"collaborators_url\": \"https://api.github.com/repos/canada-ca/welcome/collaborators{/collaborator}\",\n+  \"teams_url\": \"https://api.github.com/repos/canada-ca/welcome/teams\",\n+  \"hooks_url\": \"https://api.github.com/repos/canada-ca/welcome/hooks\",\n+  \"issue_events_url\": \"https://api.github.com/repos/canada-ca/welcome/issues/events{/number}\",\n+  \"events_url\": \"https://api.github.com/repos/canada-ca/welcome/events\",\n+  \"assignees_url\": \"https://api.github.com/repos/canada-ca/welcome/assignees{/user}\",\n+  \"branches_url\": \"https://api.github.com/repos/canada-ca/welcome/branches{/branch}\",\n+  \"tags_url\": \"https://api.github.com/repos/canada-ca/welcome/tags\",\n+  \"blobs_url\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs{/sha}\",\n+  \"git_tags_url\": \"https://api.github.com/repos/canada-ca/welcome/git/tags{/sha}\",\n+  \"git_refs_url\": \"https://api.github.com/repos/canada-ca/welcome/git/refs{/sha}\",\n+  \"trees_url\": \"https://api.github.com/repos/canada-ca/welcome/git/trees{/sha}\",\n+  \"statuses_url\": \"https://api.github.com/repos/canada-ca/welcome/statuses/{sha}\",\n+  \"languages_url\": \"https://api.github.com/repos/canada-ca/welcome/languages\",\n+  \"stargazers_url\": \"https://api.github.com/repos/canada-ca/welcome/stargazers\",\n+  \"contributors_url\": \"https://api.github.com/repos/canada-ca/welcome/contributors\",\n+  \"subscribers_url\": \"https://api.github.com/repos/canada-ca/welcome/subscribers\",\n+  \"subscription_url\": \"https://api.github.com/repos/canada-ca/welcome/subscription\",\n+  \"commits_url\": \"https://api.github.com/repos/canada-ca/welcome/commits{/sha}\",\n+  \"git_commits_url\": \"https://api.github.com/repos/canada-ca/welcome/git/commits{/sha}\",\n+  \"comments_url\": \"https://api.github.com/repos/canada-ca/welcome/comments{/number}\",\n+  \"issue_comment_url\": \"https://api.github.com/repos/canada-ca/welcome/issues/comments{/number}\",\n+  \"contents_url\": \"https://api.github.com/repos/canada-ca/welcome/contents/{+path}\",\n+  \"compare_url\": \"https://api.github.com/repos/canada-ca/welcome/compare/{base}...{head}\",\n+  \"merges_url\": \"https://api.github.com/repos/canada-ca/welcome/merges\",\n+  \"archive_url\": \"https://api.github.com/repos/canada-ca/welcome/{archive_format}{/ref}\",\n+  \"downloads_url\": \"https://api.github.com/repos/canada-ca/welcome/downloads\",\n+  \"issues_url\": \"https://api.github.com/repos/canada-ca/welcome/issues{/number}\",\n+  \"pulls_url\": \"https://api.github.com/repos/canada-ca/welcome/pulls{/number}\",\n+  \"milestones_url\": \"https://api.github.com/repos/canada-ca/welcome/milestones{/number}\",\n+  \"notifications_url\": \"https://api.github.com/repos/canada-ca/welcome/notifications{?since,all,participating}\",\n+  \"labels_url\": \"https://api.github.com/repos/canada-ca/welcome/labels{/name}\",\n+  \"releases_url\": \"https://api.github.com/repos/canada-ca/welcome/releases{/id}\",\n+  \"deployments_url\": \"https://api.github.com/repos/canada-ca/welcome/deployments\",\n+  \"created_at\": \"2016-08-11T15:50:07Z\",\n+  \"updated_at\": \"2026-05-24T21:56:27Z\",\n+  \"pushed_at\": \"2022-04-19T20:51:01Z\",\n+  \"git_url\": \"git://github.com/canada-ca/welcome.git\",\n+  \"ssh_url\": \"git@github.com:canada-ca/welcome.git\",\n+  \"clone_url\": \"https://github.com/canada-ca/welcome.git\",\n+  \"svn_url\": \"https://github.com/canada-ca/welcome\",\n+  \"homepage\": \"\",\n+  \"size\": 33,\n+  \"stargazers_count\": 71,\n+  \"watchers_count\": 71,\n+  \"language\": null,\n+  \"has_issues\": true,\n+  \"has_projects\": true,\n+  \"has_downloads\": true,\n+  \"has_wiki\": true,\n+  \"has_pages\": false,\n+  \"has_discussions\": true,\n+  \"forks_count\": 11,\n+  \"mirror_url\": null,\n+  \"archived\": false,\n+  \"disabled\": false,\n+  \"open_issues_count\": 8,\n+  \"license\": {\n+    \"key\": \"other\",\n+    \"name\": \"Other\",\n+    \"spdx_id\": \"NOASSERTION\",\n+    \"url\": null,\n+    \"node_id\": \"MDc6TGljZW5zZTA=\"\n+  },\n+  \"allow_forking\": true,\n+  \"is_template\": false,\n+  \"web_commit_signoff_required\": false,\n+  \"has_pull_requests\": true,\n+  \"pull_request_creation_policy\": \"all\",\n+  \"topics\": [\n+\n+  ],\n+  \"visibility\": \"public\",\n+  \"forks\": 11,\n+  \"open_issues\": 8,\n+  \"watchers\": 71,\n+  \"default_branch\": \"master\",\n+  \"temp_clone_token\": null,\n+  \"custom_properties\": {\n+\n+  },\n+  \"organization\": {\n+    \"login\": \"canada-ca\",\n+    \"id\": 20973642,\n+    \"node_id\": \"MDEyOk9yZ2FuaXphdGlvbjIwOTczNjQy\",\n+    \"avatar_url\": \"https://avatars.githubusercontent.com/u/20973642?v=4\",\n+    \"gravatar_id\": \"\",\n+    \"url\": \"https://api.github.com/users/canada-ca\",\n+    \"html_url\": \"https://github.com/canada-ca\",\n+    \"followers_url\": \"https://api.github.com/users/canada-ca/followers\",\n+    \"following_url\": \"https://api.github.com/users/canada-ca/following{/other_user}\",\n+    \"gists_url\": \"https://api.github.com/users/canada-ca/gists{/gist_id}\",\n+    \"starred_url\": \"https://api.github.com/users/canada-ca/starred{/owner}{/repo}\",\n+    \"subscriptions_url\": \"https://api.github.com/users/canada-ca/subscriptions\",\n+    \"organizations_url\": \"https://api.github.com/users/canada-ca/orgs\",\n+    \"repos_url\": \"https://api.github.com/users/canada-ca/repos\",\n+    \"events_url\": \"https://api.github.com/users/canada-ca/events{/privacy}\",\n+    \"received_events_url\": \"https://api.github.com/users/canada-ca/received_events\",\n+    \"type\": \"Organization\",\n+    \"user_view_type\": \"public\",\n+    \"site_admin\": false\n+  },\n+  \"network_count\": 11,\n+  \"subscribers_count\": 37\n+}\n",
+              "additions": 138,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/repo_open-source-logiciel-libre.json",
+              "patch": "Index: workspace/repo_open-source-logiciel-libre.json\n===================================================================\n--- workspace/repo_open-source-logiciel-libre.json\t\n+++ workspace/repo_open-source-logiciel-libre.json\t\n@@ -0,0 +1,23 @@\n+{\n+  \"repo_name\": \"open-source-logiciel-libre\",\n+  \"repo_url\": \"https://github.com/canada-ca/open-source-logiciel-libre\",\n+  \"primary_language\": \"HTML\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"OGL-Canada\",\n+  \"contributing_guide\": \"Yes\",\n+  \"has_security_scanning_in_ci\": \"No\",\n+  \"has_tests_in_ci\": \"No\",\n+  \"dependency_update_policy\": \"Automated\",\n+  \"last_commit_date\": \"2026-07-05\",\n+  \"days_since_last_commit\": 8,\n+  \"maintained\": \"Yes\",\n+  \"open_issues_count\": 27,\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\",\n+  \"standards_met\": 4,\n+  \"compliance_status\": \"Partial\",\n+  \"gaps\": [\"Security policy\"]\n+}\n",
+              "additions": 23,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/repo_regs-consult-wet.json",
+              "patch": "Index: workspace/repo_regs-consult-wet.json\n===================================================================\n--- workspace/repo_regs-consult-wet.json\t\n+++ workspace/repo_regs-consult-wet.json\t\n@@ -0,0 +1,28 @@\n+{\n+  \"repo_name\": \"regs-consult-wet\",\n+  \"repo_url\": \"https://github.com/canada-ca/regs-consult-wet\",\n+  \"primary_language\": \"JavaScript\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"MIT\",\n+  \"contributing_guide\": \"No\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"None\",\n+  \"last_commit_date\": \"2020-03-19\",\n+  \"days_since_last_commit\": 2307,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 1,\n+  \"bilingual\": \"No\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\",\n+  \"standards_met\": 1,\n+  \"compliance_status\": \"Non-compliant\",\n+  \"gaps\": [\n+    \"Bilingual README\",\n+    \"Security policy\",\n+    \"Contributing guide\",\n+    \"Actively maintained\"\n+  ]\n+}\n",
+              "additions": 28,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/root_contents.json",
+              "patch": "Index: workspace/root_contents.json\n===================================================================\n--- workspace/root_contents.json\t\n+++ workspace/root_contents.json\t\n@@ -0,0 +1,114 @@\n+[\n+  {\n+    \"name\": \"CONTRIBUTING.md\",\n+    \"path\": \"CONTRIBUTING.md\",\n+    \"sha\": \"a304f1aa3acd5b7a86ce55570e7d6db338bd6d83\",\n+    \"size\": 1268,\n+    \"url\": \"https://api.github.com/repos/canada-ca/welcome/contents/CONTRIBUTING.md?ref=master\",\n+    \"html_url\": \"https://github.com/canada-ca/welcome/blob/master/CONTRIBUTING.md\",\n+    \"git_url\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/a304f1aa3acd5b7a86ce55570e7d6db338bd6d83\",\n+    \"download_url\": \"https://raw.githubusercontent.com/canada-ca/welcome/master/CONTRIBUTING.md\",\n+    \"type\": \"file\",\n+    \"_links\": {\n+      \"self\": \"https://api.github.com/repos/canada-ca/welcome/contents/CONTRIBUTING.md?ref=master\",\n+      \"git\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/a304f1aa3acd5b7a86ce55570e7d6db338bd6d83\",\n+      \"html\": \"https://github.com/canada-ca/welcome/blob/master/CONTRIBUTING.md\"\n+    }\n+  },\n+  {\n+    \"name\": \"LICENSE.md\",\n+    \"path\": \"LICENSE.md\",\n+    \"sha\": \"6fdf065b301b947e961324344cdd2d5360b6df0e\",\n+    \"size\": 403,\n+    \"url\": \"https://api.github.com/repos/canada-ca/welcome/contents/LICENSE.md?ref=master\",\n+    \"html_url\": \"https://github.com/canada-ca/welcome/blob/master/LICENSE.md\",\n+    \"git_url\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/6fdf065b301b947e961324344cdd2d5360b6df0e\",\n+    \"download_url\": \"https://raw.githubusercontent.com/canada-ca/welcome/master/LICENSE.md\",\n+    \"type\": \"file\",\n+    \"_links\": {\n+      \"self\": \"https://api.github.com/repos/canada-ca/welcome/contents/LICENSE.md?ref=master\",\n+      \"git\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/6fdf065b301b947e961324344cdd2d5360b6df0e\",\n+      \"html\": \"https://github.com/canada-ca/welcome/blob/master/LICENSE.md\"\n+    }\n+  },\n+  {\n+    \"name\": \"OrganizationMangagementPlan.md\",\n+    \"path\": \"OrganizationMangagementPlan.md\",\n+    \"sha\": \"1d4c8c39f7394b1883dbe118cf089b7eeff02d32\",\n+    \"size\": 2952,\n+    \"url\": \"https://api.github.com/repos/canada-ca/welcome/contents/OrganizationMangagementPlan.md?ref=master\",\n+    \"html_url\": \"https://github.com/canada-ca/welcome/blob/master/OrganizationMangagementPlan.md\",\n+    \"git_url\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/1d4c8c39f7394b1883dbe118cf089b7eeff02d32\",\n+    \"download_url\": \"https://raw.githubusercontent.com/canada-ca/welcome/master/OrganizationMangagementPlan.md\",\n+    \"type\": \"file\",\n+    \"_links\": {\n+      \"self\": \"https://api.github.com/repos/canada-ca/welcome/contents/OrganizationMangagementPlan.md?ref=master\",\n+      \"git\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/1d4c8c39f7394b1883dbe118cf089b7eeff02d32\",\n+      \"html\": \"https://github.com/canada-ca/welcome/blob/master/OrganizationMangagementPlan.md\"\n+    }\n+  },\n+  {\n+    \"name\": \"Organizations-Organisations.md\",\n+    \"path\": \"Organizations-Organisations.md\",\n+    \"sha\": \"e9cae4035517e5762ca0ce1e3d2d7f3db4b272d3\",\n+    \"size\": 2471,\n+    \"url\": \"https://api.github.com/repos/canada-ca/welcome/contents/Organizations-Organisations.md?ref=master\",\n+    \"html_url\": \"https://github.com/canada-ca/welcome/blob/master/Organizations-Organisations.md\",\n+    \"git_url\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/e9cae4035517e5762ca0ce1e3d2d7f3db4b272d3\",\n+    \"download_url\": \"https://raw.githubusercontent.com/canada-ca/welcome/master/Organizations-Organisations.md\",\n+    \"type\": \"file\",\n+    \"_links\": {\n+      \"self\": \"https://api.github.com/repos/canada-ca/welcome/contents/Organizations-Organisations.md?ref=master\",\n+      \"git\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/e9cae4035517e5762ca0ce1e3d2d7f3db4b272d3\",\n+      \"html\": \"https://github.com/canada-ca/welcome/blob/master/Organizations-Organisations.md\"\n+    }\n+  },\n+  {\n+    \"name\": \"README.md\",\n+    \"path\": \"README.md\",\n+    \"sha\": \"2c84f5b4f3b8ac9d75862beca2cb93c6975b5cf8\",\n+    \"size\": 2128,\n+    \"url\": \"https://api.github.com/repos/canada-ca/welcome/contents/README.md?ref=master\",\n+    \"html_url\": \"https://github.com/canada-ca/welcome/blob/master/README.md\",\n+    \"git_url\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/2c84f5b4f3b8ac9d75862beca2cb93c6975b5cf8\",\n+    \"download_url\": \"https://raw.githubusercontent.com/canada-ca/welcome/master/README.md\",\n+    \"type\": \"file\",\n+    \"_links\": {\n+      \"self\": \"https://api.github.com/repos/canada-ca/welcome/contents/README.md?ref=master\",\n+      \"git\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/2c84f5b4f3b8ac9d75862beca2cb93c6975b5cf8\",\n+      \"html\": \"https://github.com/canada-ca/welcome/blob/master/README.md\"\n+    }\n+  },\n+  {\n+    \"name\": \"SECURITY.md\",\n+    \"path\": \"SECURITY.md\",\n+    \"sha\": \"c95f608c7a5b02ce7de1d419bc9582d97a9e398f\",\n+    \"size\": 1088,\n+    \"url\": \"https://api.github.com/repos/canada-ca/welcome/contents/SECURITY.md?ref=master\",\n+    \"html_url\": \"https://github.com/canada-ca/welcome/blob/master/SECURITY.md\",\n+    \"git_url\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/c95f608c7a5b02ce7de1d419bc9582d97a9e398f\",\n+    \"download_url\": \"https://raw.githubusercontent.com/canada-ca/welcome/master/SECURITY.md\",\n+    \"type\": \"file\",\n+    \"_links\": {\n+      \"self\": \"https://api.github.com/repos/canada-ca/welcome/contents/SECURITY.md?ref=master\",\n+      \"git\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/c95f608c7a5b02ce7de1d419bc9582d97a9e398f\",\n+      \"html\": \"https://github.com/canada-ca/welcome/blob/master/SECURITY.md\"\n+    }\n+  },\n+  {\n+    \"name\": \"consultations\",\n+    \"path\": \"consultations\",\n+    \"sha\": \"ddd5bc19802c789af5f23869811398cba606f139\",\n+    \"size\": 0,\n+    \"url\": \"https://api.github.com/repos/canada-ca/welcome/contents/consultations?ref=master\",\n+    \"html_url\": \"https://github.com/canada-ca/welcome/tree/master/consultations\",\n+    \"git_url\": \"https://api.github.com/repos/canada-ca/welcome/git/trees/ddd5bc19802c789af5f23869811398cba606f139\",\n+    \"download_url\": null,\n+    \"type\": \"dir\",\n+    \"_links\": {\n+      \"self\": \"https://api.github.com/repos/canada-ca/welcome/contents/consultations?ref=master\",\n+      \"git\": \"https://api.github.com/repos/canada-ca/welcome/git/trees/ddd5bc19802c789af5f23869811398cba606f139\",\n+      \"html\": \"https://github.com/canada-ca/welcome/tree/master/consultations\"\n+    }\n+  }\n+]\n",
+              "additions": 114,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/workflows_contents.json",
+              "patch": "Index: workspace/workflows_contents.json\n===================================================================\n--- workspace/workflows_contents.json\t\n+++ workspace/workflows_contents.json\t\n@@ -0,0 +1,5 @@\n+{\n+  \"message\": \"Not Found\",\n+  \"documentation_url\": \"https://docs.github.com/rest/repos/contents#get-repository-content\",\n+  \"status\": \"404\"\n+}\n",
+              "additions": 5,
+              "deletions": 0,
+              "status": "added"
+            }
+          ]
+        }
+      },
+      "parts": [
+        {
+          "id": "prt_f5c3711720014BkHeNqj9R943P",
+          "message_id": "msg_f5c371158001OtIJcxZ4lAQBdE",
+          "session_id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+          "time_created": 1783958540673,
+          "time_updated": 1783958540682,
+          "data": {
+            "type": "text",
+            "text": "You are a manager sub-agent responsible for auditing exactly one repository: `content-analysis` at `https://github.com/canada-ca/content-analysis`.\n\nYour job is to produce a complete, accurate row of data for this repository, covering every column listed in the compliance matrix. You must do this by spawning exactly two workers using the task tool, waiting for both, and synthesizing their outputs.\n\n**Worker A** (`subagent_type: explore`): Responsible for metadata and structural facts. It should inspect the repository via the GitHub public API and HTML pages. Write results to `/workspace/facts_content-analysis.json`.\n\nWorker A must determine:\n- `repo_name`: `content-analysis`\n- `repo_url`: `https://github.com/canada-ca/content-analysis`\n- `primary_language`: The language GitHub reports as primary (from API `language` field). If null, write `Unknown`.\n- `readme_exists`: Check if a README file exists (API endpoint `contents` for root). Allowed: `Yes`/`No`/`Unknown`.\n- `licence`: Check the license via API `license.spdx_id` or by reading the LICENSE file. If none or undetermined, `Unknown`. Use short name like `MIT`, `Apache-2.0`, `OGL-Canada`, etc.\n- `contributing_guide`: Check if `CONTRIBUTING.md` exists at repo root (via API). Allowed: `Yes`/`No`/`Unknown`.\n- `has_security_scanning_in_ci`: Check GitHub Actions workflows. If no `.github/workflows` directory or no workflow files, write `No CI`. If workflow files exist, check the GitHub Actions tab for run history. If zero runs ever (e.g., Actions disabled), write `No CI`. If runs exist but none include a security scanner (CodeQL, npm audit, pip-audit, Snyk, Trivy), write `No`. If at least one run includes a scanner, write `Yes`. Allowed: `Yes`/`No`/`No CI`/`Unknown`.\n- `has_tests_in_ci`: Same logic but look for test steps (pytest, jest, npm test, go test). Allowed: `Yes`/`No`/`No CI`/`Unknown`.\n- `dependency_update_policy`: Check for `.github/dependabot.yml` or Renovate config. If found and configured for the right ecosystem, write `Automated`. Else if there are dependency update commits but no config, write `Manual`. Else `None`. Allowed: `Automated`/`Manual`/`None`/`Unknown`.\n- `last_commit_date`: Date of the most recent commit on the default branch (from API `commits` endpoint or `commit.committer.date`). Format `YYYY-MM-DD`.\n- `days_since_last_commit`: Integer days since that date (from 2026-07-13). If `last_commit_date` is `Unknown`, write `Unknown`.\n- `maintained`: `Yes` if `days_since_last_commit` <= 365, else `No`. If `days_since_last_commit` is `Unknown`, write `Unknown`.\n- `open_issues_count`: Count actual open issues, not pull requests. Use the API `issues?state=open` and filter out items where `pull_request` key is present. Allowed: integer or `Unknown`.\n\n**Worker B** (`subagent_type: explore`): Responsible for content judgments. It must read files and discussions. Write results to `/workspace/manual_content-analysis.json`.\n\nWorker B must determine:\n- `bilingual`: Read the README (or at least the first few hundred lines). Does it contain meaningful content in both English and French? Look for French words/phrases, French section headers, or a clear French translation. Allowed: `Yes`/`No`/`Unknown`.\n- `readme_clarity`: Read the README. Does it clearly explain what the project is, who it's for, and how to use it? `Poor`/`Fair`/`Good`/`Unknown`.\n- `security_policy`: Check for `SECURITY.md` in root, `.github/`, and `docs/`. If not found, write `Missing`. If found, read it. If it contains real responsible disclosure instructions (contact info, how to report, PGP key, etc.), write `Present`. If it exists but is just a placeholder or links without real instructions, write `Incomplete`. Allowed: `Present`/`Incomplete`/`Missing`/`Unknown`.\n- `issue_response_quality`: Look at the 5 most recently updated open issues (API `issues?state=open&sort=updated&direction=desc`, filter out PRs). For each, check if anyone other than the original reporter commented within the last 6 months (from 2026-07-13). If at least one issue has such a comment, write `Active`. If none, write `Stale`. If there are no open issues, write `No Issues`. Allowed: `Active`/`Stale`/`No Issues`/`Unknown`.\n- `release_notes_quality`: Check the Releases page (API `releases` or HTML). If no releases, write `No Releases`. If releases exist, check the latest few. If the description actually explains what changed (e.g., bullet points, changelog), write `Detailed`. If it's just a version number or tag with no description, write `Version-only`. Allowed: `Detailed`/`Version-only`/`No Releases`/`Unknown`.\n\n**Important constraints for both workers:**\n- Use ONLY the exact allowed values for each column.\n- If you cannot determine a value, write exactly `Unknown`.\n- Never derive a column from another `Unknown` column.\n- Prefer public HTML page scraping over GitHub API where possible to avoid rate limits. If using API, add `sleep 1` between requests.\n- If a worker fails or returns incomplete data, retry it or spawn a replacement worker before reporting back.\n\n**Synthesis:**\nOnce both workers have produced valid JSON files, read them. Combine them into one JSON object with all keys. Compute `standards_met`: count of the 5 standards (bilingual == Yes, licence != Unknown, security_policy == Present, contributing_guide == Yes, maintained == Yes). Compute `compliance_status`: `Full` if standards_met == 5, `Partial` if 2-4, `Non-compliant` if 0-1. Compute `gaps`: list the specific failing standards by name (e.g., \"Bilingual README\", \"Open licence\", \"Security policy\", \"Contributing guide\", \"Actively maintained\"). Write the final combined JSON object to `/workspace/repo_content-analysis.json` and return the full JSON content in your final message."
+          }
+        }
+      ]
+    },
+    {
+      "id": "msg_f5c37154a001bDAFMqo4RvAq2N",
+      "session_id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+      "time_created": 1783958541642,
+      "time_updated": 1783959245530,
+      "data": {
+        "parentID": "msg_f5c371158001OtIJcxZ4lAQBdE",
+        "role": "assistant",
+        "mode": "general",
+        "agent": "general",
+        "path": {
+          "cwd": "/workspace",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 9100,
+          "input": 1361,
+          "output": 3344,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 4395
+          }
+        },
+        "modelID": "accounts/fireworks/models/kimi-k2p6",
+        "providerID": "openai",
+        "time": {
+          "created": 1783958541642,
+          "completed": 1783959245529
+        },
+        "finish": "tool-calls"
+      },
+      "parts": [
+        {
+          "id": "prt_f5c37b1da001339iFmBysgBe5r",
+          "message_id": "msg_f5c37154a001bDAFMqo4RvAq2N",
+          "session_id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+          "time_created": 1783958581723,
+          "time_updated": 1783958581724,
+          "data": {
+            "snapshot": "19918bad6607334a1ca8c02946beba523c01f89a",
+            "type": "step-start"
+          }
+        },
+        {
+          "id": "prt_f5c37bb8e001lAbmsPX0EPepkR",
+          "message_id": "msg_f5c37154a001bDAFMqo4RvAq2N",
+          "session_id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+          "time_created": 1783958584206,
+          "time_updated": 1783958614224,
+          "data": {
+            "type": "reasoning",
+            "text": "We need to audit repository content-analysis at https://github.com/canada-ca/content-analysis. Need to produce two workers: Worker A (explore) for metadata/structural facts, Worker B (explore) for content judgments. Both should write JSON files. Then we synthesize.\n\nWe must spawn exactly two workers using the task tool. Both subagent_type: explore. Need to provide detailed prompts for each, specifying output file path and required fields.\n\nWe should also ensure that if a worker fails, we retry or spawn replacement before reporting. Since we are the manager, we can spawn them and wait. The task tool will run them concurrently. We'll need to read their output files once done. Then synthesize.\n\nWe need to be careful with the task description lengths. The prompt for each worker should be very detailed. We need to include the specific allowed values, instructions for scraping, etc.\n\nLet's craft prompts.\n\nWorker A prompt:\n- Inspect the repository `https://github.com/canada-ca/content-analysis` using GitHub public API and HTML pages.\n- Determine the fields listed.\n- Write a JSON file to `/workspace/facts_content-analysis.json`.\n- Must include all fields with exact keys.\n- For each field, allowed values and instructions.\n- Use webfetch or bash with curl to fetch API endpoints.\n- Prefer HTML page scraping to avoid rate limits. If using API, sleep 1 between requests.\n- If cannot determine, write exactly `Unknown`.\n- Must not derive values from other Unknowns.\n\nWorker B prompt:\n- Inspect the repository content for judgments.\n- Read README, SECURITY.md, issues, releases.\n- Determine the fields listed.\n- Write a JSON file to `/workspace/manual_content-analysis.json`.\n- Same constraints.\n\nWe need to spawn both concurrently.\n\nLet's prepare the prompts.\n\nFirst, let's draft Worker A prompt.\n\n\"Worker A: Metadata and Structural Facts for canada-ca/content-analysis\n\nYour job is to inspect the public GitHub repository `https://github.com/canada-ca/content-analysis` and produce a JSON file at `/workspace/facts_content-analysis.json`.\n\nYou must determine these exact fields with the exact keys:\n\n1. `repo_name`: Must be `content-analysis`.\n2. `repo_url`: Must be `https://github.com/canada-ca/content-analysis`.\n3. `primary_language`: Use the GitHub API repository endpoint `https://api.github.com/repos/canada-ca/content-analysis` and read the `language` field. If null or missing, write `Unknown`.\n4. `readme_exists`: Check the root contents via API `https://api.github.com/repos/canada-ca/content-analysis/contents` or HTML. If a README file (case-insensitive) exists, write `Yes`. Otherwise `No`. If cannot determine, `Unknown`.\n5. `licence`: Check the API `license.spdx_id` field from the repo endpoint, or read the `LICENSE` file if present. Use short SPDX name (e.g., `MIT`, `Apache-2.0`, `OGL-Canada`). If none or undetermined, write `Unknown`.\n6. `contributing_guide`: Check if `CONTRIBUTING.md` exists at the root via API or HTML. Allowed: `Yes`/`No`/`Unknown`.\n7. `has_security_scanning_in_ci`: Check for `.github/workflows` directory. If no workflows or no directory, write `No CI`. If workflow files exist, check the GitHub Actions run history (API `https://api.github.com/repos/canada-ca/content-analysis/actions/runs` or HTML Actions tab). If zero runs ever or Actions disabled, write `No CI`. If runs exist but none include a security scanner (CodeQL, npm audit, pip-audit, Snyk, Trivy), write `No`. If at least one run includes a scanner, write `Yes`.\n8. `has_tests_in_ci`: Same logic as above but look for test steps (pytest, jest, npm test, go test, etc.). Allowed: `Yes`/`No`/`No CI`/`Unknown`.\n9. `dependency_update_policy`: Check for `.github/dependabot.yml` or Renovate config files (e.g., `renovate.json`). If found and configured for the relevant ecosystem, write `Automated`. Else if there are dependency update commits but no config, write `Manual`. Else `None`. Allowed: `Automated`/`Manual`/`None`/`Unknown`.\n10. `last_commit_date`: Date of the most recent commit on the default branch from API `https://api.github.com/repos/canada-ca/content-analysis/commits?sha=main` (or master). Use `commit.committer.date` or `commit.author.date`. Format `YYYY-MM-DD`.\n11. `days_since_last_commit`: Integer days since that date from 2026-07-13. If `last_commit_date` is `Unknown`, write `Unknown`.\n12. `maintained`: `Yes` if `days_since_last_commit` <= 365, else `No`. If `days_since_last_commit` is `Unknown`, write `Unknown`.\n13. `open_issues_count`: Count actual open issues, not pull requests. Use API `https://api.github.com/repos/canada-ca/content-analysis/issues?state=open` and filter out items where `pull_request` key is present. Allowed: integer or `Unknown`.\n\nRules:\n- Use ONLY the exact allowed values.\n- If you cannot determine a value, write exactly `Unknown`.\n- Never derive a column from another `Unknown` column.\n- Prefer public HTML page scraping over GitHub API where possible to avoid rate limits. If using API, add `sleep 1` between requests.\n- Write the final JSON to `/workspace/facts_content-analysis.json`.\n\nReturn the JSON content in your final message.\"\n\nNow Worker B prompt.\n\n\"Worker B: Content Judgments for canada-ca/content-analysis\n\nYour job is to inspect the public GitHub repository `https://github.com/canada-ca/content-analysis` and produce a JSON file at `/workspace/manual_content-analysis.json`.\n\nYou must determine these exact fields with the exact keys:\n\n1. `bilingual`: Read the README (or at least the first few hundred lines). Does it contain meaningful content in both English and French? Look for French words/phrases, French section headers, or a clear French translation. Allowed: `Yes`/`No`/`Unknown`.\n2. `readme_clarity`: Read the README. Does it clearly explain what the project is, who it's for, and how to use it? Allowed: `Poor`/`Fair`/`Good`/`Unknown`.\n3. `security_policy`: Check for `SECURITY.md` in root, `.github/`, and `docs/`. If not found, write `Missing`. If found, read it. If it contains real responsible disclosure instructions (contact info, how to report, PGP key, etc.), write `Present`. If it exists but is just a placeholder or links without real instructions, write `Incomplete`. Allowed: `Present`/`Incomplete`/`Missing`/`Unknown`.\n4. `issue_response_quality`: Look at the 5 most recently updated open issues (API `https://api.github.com/repos/canada-ca/content-analysis/issues?state=open&sort=updated&direction=desc`, filter out PRs). For each, check if anyone other than the original reporter commented within the last 6 months (from 2026-07-13). If at least one issue has such a comment, write `Active`. If none, write `Stale`. If there are no open issues, write `No Issues`. Allowed: `Active`/`Stale`/`No Issues`/`Unknown`.\n5. `release_notes_quality`: Check the Releases page (API `https://api.github.com/repos/canada-ca/content-analysis/releases` or HTML). If no releases, write `No Releases`. If releases exist, check the latest few. If the description actually explains what changed (e.g., bullet points, changelog), write `Detailed`. If it's just a version number or tag with no description, write `Version-only`. Allowed: `Detailed`/`Version-only`/`No Releases`/`Unknown`.\n\nRules:\n- Use ONLY the exact allowed values.\n- If you cannot determine a value, write exactly `Unknown`.\n- Never derive a column from another `Unknown` column.\n- Prefer public HTML page scraping over GitHub API where possible to avoid rate limits. If using API, add `sleep 1` between requests.\n- Write the final JSON to `/workspace/manual_content-analysis.json`.\n\nReturn the JSON content in your final message.\"\n\nWe need to make sure the workers use the correct tools. They are explore agents, which have Read, Grep, Glob, Bash, Webfetch. They cannot use task tool. They can use webfetch to fetch GitHub pages, and bash with curl to fetch API. They should be able to parse JSON.\n\nLet's spawn both.",
+            "time": {
+              "start": 1783958584206,
+              "end": 1783958614221
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "rs_f5c6ed054a6c4e7c94baaf166651d05a",
+                "reasoningEncryptedContent": null
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c37fd94001s9xAcihogbGF11",
+          "message_id": "msg_f5c37154a001bDAFMqo4RvAq2N",
+          "session_id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+          "time_created": 1783958601108,
+          "time_updated": 1783959245402,
+          "data": {
+            "type": "tool",
+            "tool": "task",
+            "callID": "task_0",
+            "state": {
+              "status": "completed",
+              "input": {
+                "description": "Worker A: content-analysis facts",
+                "prompt": "Worker A: Metadata and Structural Facts for canada-ca/content-analysis\n\nYour job is to inspect the public GitHub repository `https://github.com/canada-ca/content-analysis` and produce a JSON file at `/workspace/facts_content-analysis.json`.\n\nYou must determine these exact fields with the exact keys:\n\n1. `repo_name`: Must be `content-analysis`.\n2. `repo_url`: Must be `https://github.com/canada-ca/content-analysis`.\n3. `primary_language`: Use the GitHub API repository endpoint `https://api.github.com/repos/canada-ca/content-analysis` and read the `language` field. If null or missing, write `Unknown`.\n4. `readme_exists`: Check the root contents via API `https://api.github.com/repos/canada-ca/content-analysis/contents` or HTML. If a README file (case-insensitive) exists, write `Yes`. Otherwise `No`. If cannot determine, `Unknown`.\n5. `licence`: Check the API `license.spdx_id` field from the repo endpoint, or read the `LICENSE` file if present. Use short SPDX name (e.g., `MIT`, `Apache-2.0`, `OGL-Canada`). If none or undetermined, write `Unknown`.\n6. `contributing_guide`: Check if `CONTRIBUTING.md` exists at the root via API or HTML. Allowed: `Yes`/`No`/`Unknown`.\n7. `has_security_scanning_in_ci`: Check for `.github/workflows` directory. If no workflows or no directory, write `No CI`. If workflow files exist, check the GitHub Actions run history (API `https://api.github.com/repos/canada-ca/content-analysis/actions/runs` or HTML Actions tab). If zero runs ever or Actions disabled, write `No CI`. If runs exist but none include a security scanner (CodeQL, npm audit, pip-audit, Snyk, Trivy), write `No`. If at least one run includes a scanner, write `Yes`.\n8. `has_tests_in_ci`: Same logic as above but look for test steps (pytest, jest, npm test, go test, etc.). Allowed: `Yes`/`No`/`No CI`/`Unknown`.\n9. `dependency_update_policy`: Check for `.github/dependabot.yml` or Renovate config files (e.g., `renovate.json`). If found and configured for the relevant ecosystem, write `Automated`. Else if there are dependency update commits but no config, write `Manual`. Else `None`. Allowed: `Automated`/`Manual`/`None`/`Unknown`.\n10. `last_commit_date`: Date of the most recent commit on the default branch from API `https://api.github.com/repos/canada-ca/content-analysis/commits?sha=main` (or master). Use `commit.committer.date` or `commit.author.date`. Format `YYYY-MM-DD`.\n11. `days_since_last_commit`: Integer days since that date from 2026-07-13. If `last_commit_date` is `Unknown`, write `Unknown`.\n12. `maintained`: `Yes` if `days_since_last_commit` <= 365, else `No`. If `days_since_last_commit` is `Unknown`, write `Unknown`.\n13. `open_issues_count`: Count actual open issues, not pull requests. Use API `https://api.github.com/repos/canada-ca/content-analysis/issues?state=open` and filter out items where `pull_request` key is present. Allowed: integer or `Unknown`.\n\nRules:\n- Use ONLY the exact allowed values.\n- If you cannot determine a value, write exactly `Unknown`.\n- Never derive a column from another `Unknown` column.\n- Prefer public HTML page scraping over GitHub API where possible to avoid rate limits. If using API, add `sleep 1` between requests.\n- Write the final JSON to `/workspace/facts_content-analysis.json`.\n\nReturn the JSON content in your final message.",
+                "subagent_type": "explore"
+              },
+              "output": "<task id=\"ses_0a3c7cf1affe2wWpvgfQoYU6qz\" state=\"completed\">\n<task_result>\n```json\n{\n    \"repo_name\": \"content-analysis\",\n    \"repo_url\": \"https://github.com/canada-ca/content-analysis\",\n    \"primary_language\": \"Python\",\n    \"readme_exists\": \"Yes\",\n    \"licence\": \"Unknown\",\n    \"contributing_guide\": \"No\",\n    \"has_security_scanning_in_ci\": \"No CI\",\n    \"has_tests_in_ci\": \"No CI\",\n    \"dependency_update_policy\": \"None\",\n    \"last_commit_date\": \"2018-04-24\",\n    \"days_since_last_commit\": 3002,\n    \"maintained\": \"No\",\n    \"open_issues_count\": 0\n}\n```\n</task_result>\n</task>",
+              "metadata": {
+                "parentSessionId": "ses_0a3c8eedbffe1CCfyC765n11nI",
+                "sessionId": "ses_0a3c7cf1affe2wWpvgfQoYU6qz",
+                "model": {
+                  "modelID": "accounts/fireworks/models/kimi-k2p6",
+                  "providerID": "openai"
+                },
+                "truncated": false
+              },
+              "title": "Worker A: content-analysis facts",
+              "time": {
+                "start": 1783958614250,
+                "end": 1783959245400
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_cb3b14e0d09f478fb185b83d54886adc"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c3819c9001y7DZjhxGQmBW8l",
+          "message_id": "msg_f5c37154a001bDAFMqo4RvAq2N",
+          "session_id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+          "time_created": 1783958608329,
+          "time_updated": 1783958885651,
+          "data": {
+            "type": "tool",
+            "tool": "task",
+            "callID": "task_1",
+            "state": {
+              "status": "completed",
+              "input": {
+                "description": "Worker B: content-analysis judgments",
+                "prompt": "Worker B: Content Judgments for canada-ca/content-analysis\n\nYour job is to inspect the public GitHub repository `https://github.com/canada-ca/content-analysis` and produce a JSON file at `/workspace/manual_content-analysis.json`.\n\nYou must determine these exact fields with the exact keys:\n\n1. `bilingual`: Read the README (or at least the first few hundred lines). Does it contain meaningful content in both English and French? Look for French words/phrases, French section headers, or a clear French translation. Allowed: `Yes`/`No`/`Unknown`.\n2. `readme_clarity`: Read the README. Does it clearly explain what the project is, who it's for, and how to use it? Allowed: `Poor`/`Fair`/`Good`/`Unknown`.\n3. `security_policy`: Check for `SECURITY.md` in root, `.github/`, and `docs/`. If not found, write `Missing`. If found, read it. If it contains real responsible disclosure instructions (contact info, how to report, PGP key, etc.), write `Present`. If it exists but is just a placeholder or links without real instructions, write `Incomplete`. Allowed: `Present`/`Incomplete`/`Missing`/`Unknown`.\n4. `issue_response_quality`: Look at the 5 most recently updated open issues (API `https://api.github.com/repos/canada-ca/content-analysis/issues?state=open&sort=updated&direction=desc`, filter out PRs). For each, check if anyone other than the original reporter commented within the last 6 months (from 2026-07-13). If at least one issue has such a comment, write `Active`. If none, write `Stale`. If there are no open issues, write `No Issues`. Allowed: `Active`/`Stale`/`No Issues`/`Unknown`.\n5. `release_notes_quality`: Check the Releases page (API `https://api.github.com/repos/canada-ca/content-analysis/releases` or HTML). If no releases, write `No Releases`. If releases exist, check the latest few. If the description actually explains what changed (e.g., bullet points, changelog), write `Detailed`. If it's just a version number or tag with no description, write `Version-only`. Allowed: `Detailed`/`Version-only`/`No Releases`/`Unknown`.\n\nRules:\n- Use ONLY the exact allowed values.\n- If you cannot determine a value, write exactly `Unknown`.\n- Never derive a column from another `Unknown` column.\n- Prefer public HTML page scraping over GitHub API where possible to avoid rate limits. If using API, add `sleep 1` between requests.\n- Write the final JSON to `/workspace/manual_content-analysis.json`.\n\nReturn the JSON content in your final message.",
+                "subagent_type": "explore"
+              },
+              "output": "<task id=\"ses_0a3c7cef3ffeLUCNMPSMuEOnnI\" state=\"completed\">\n<task_result>\nThe JSON file has been written to `/workspace/manual_content-analysis.json`. Here are the content judgments for `canada-ca/content-analysis`:\n\n```json\n{\n  \"bilingual\": \"Yes\",\n  \"readme_clarity\": \"Good\",\n  \"security_policy\": \"Missing\",\n  \"issue_response_quality\": \"No Issues\",\n  \"release_notes_quality\": \"No Releases\"\n}\n```\n\n**Rationale:**\n\n- **bilingual**: `Yes` \u2014 The README contains full, meaningful content in both English and French. The French section \"Analyse du contenu des consultations (pilote)\" is a complete translation with its own explanatory paragraph and step labels (g\u00e9n\u00e9rer \u2192 d\u00e9crire \u2192 pr\u00e9traiter \u2192 analyse).\n- **readme_clarity**: `Good` \u2014 The README clearly states what the project is (preprocessing and content analysis of public consultation comments), who it's for (OpenNorth, working with CSV datasets), and how to use it (a documented pipeline: generate \u2192 describe \u2192 preprocessing \u2192 analyze, with instructions on changing script variables).\n- **security_policy**: `Missing` \u2014 No `SECURITY.md` file exists in the root, `.github/`, or `docs/` directories.\n- **issue_response_quality**: `No Issues` \u2014 The repository has 0 open issues.\n- **release_notes_quality**: `No Releases` \u2014 The Releases page shows \"There aren't any releases here\" and the repo summary states \"No releases published\".\n</task_result>\n</task>",
+              "metadata": {
+                "parentSessionId": "ses_0a3c8eedbffe1CCfyC765n11nI",
+                "sessionId": "ses_0a3c7cef3ffeLUCNMPSMuEOnnI",
+                "model": {
+                  "modelID": "accounts/fireworks/models/kimi-k2p6",
+                  "providerID": "openai"
+                },
+                "truncated": false
+              },
+              "title": "Worker B: content-analysis judgments",
+              "time": {
+                "start": 1783958614287,
+                "end": 1783958885650
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_5fdc594694094aabad473ab879e653c7"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c41d2ae001WzL6rtTs0qmkdA",
+          "message_id": "msg_f5c37154a001bDAFMqo4RvAq2N",
+          "session_id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+          "time_created": 1783959245487,
+          "time_updated": 1783959245488,
+          "data": {
+            "reason": "tool-calls",
+            "snapshot": "7e1d98d9135ea537b4a7fca1d02f29923f03e025",
+            "type": "step-finish",
+            "tokens": {
+              "total": 9100,
+              "input": 1361,
+              "output": 3344,
+              "reasoning": 0,
+              "cache": {
+                "write": 0,
+                "read": 4395
+              }
+            },
+            "cost": 0
+          }
+        },
+        {
+          "id": "prt_f5c41d2d6001kS3JJddScnFp92",
+          "message_id": "msg_f5c37154a001bDAFMqo4RvAq2N",
+          "session_id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+          "time_created": 1783959245526,
+          "time_updated": 1783959245527,
+          "data": {
+            "type": "patch",
+            "hash": "19918bad6607334a1ca8c02946beba523c01f89a",
+            "files": [
+              "/workspace/Open_First_Whitepaper",
+              "/workspace/actions_runs.json",
+              "/workspace/commits_main.json",
+              "/workspace/commits_master.json",
+              "/workspace/facts_CATS-STAE.json",
+              "/workspace/facts_CommunicatingPublicEngagement.json",
+              "/workspace/facts_HC-Technology-and-Business-Innovation_Innovations-Technologiques-et-d-Affaires-SC.json",
+              "/workspace/facts_Libraries-bibliotheque.json",
+              "/workspace/facts_OS-Advisory_Conseil-SO.json",
+              "/workspace/facts_Open_First_Whitepaper.json",
+              "/workspace/facts_PCO-Public-Opinion-Research__Recherche-en-opinion-publique--BCP.json",
+              "/workspace/facts_alexapoc-vdpalexa.json",
+              "/workspace/facts_commons.json",
+              "/workspace/facts_content-analysis.json",
+              "/workspace/facts_devex.json",
+              "/workspace/facts_digital-playbook-guide-numerique.json",
+              "/workspace/facts_open-source-logiciel-libre.json",
+              "/workspace/facts_regs-consult-wet.json",
+              "/workspace/github_contents.json",
+              "/workspace/manual_CATS-STAE.json",
+              "/workspace/manual_CommunicatingPublicEngagement.json",
+              "/workspace/manual_HC-Technology-and-Business-Innovation_Innovations-Technologiques-et-d-Affaires-SC.json",
+              "/workspace/manual_Libraries-bibliotheque.json",
+              "/workspace/manual_OS-Advisory_Conseil-SO.json",
+              "/workspace/manual_Open_First_Whitepaper.json",
+              "/workspace/manual_PCO-Public-Opinion-Research__Recherche-en-opinion-publique--BCP.json",
+              "/workspace/manual_PCTF-CCP.json",
+              "/workspace/manual_alexapoc-healthcanada-recalls.json",
+              "/workspace/manual_alexapoc-vdpalexa.json",
+              "/workspace/manual_canada-ca.github.io.json",
+              "/workspace/manual_commons.json",
+              "/workspace/manual_content-analysis.json",
+              "/workspace/manual_digital-playbook-guide-numerique.json",
+              "/workspace/manual_open-source-logiciel-libre.json",
+              "/workspace/manual_ore-ero.json",
+              "/workspace/manual_regs-consult-wet.json",
+              "/workspace/manual_welcome.json",
+              "/workspace/open_issues.json",
+              "/workspace/repo_CATS-STAE.json",
+              "/workspace/repo_CommunicatingPublicEngagement.json",
+              "/workspace/repo_HC-Technology-and-Business-Innovation_Innovations-Technologiques-et-d-Affaires-SC.json",
+              "/workspace/repo_Libraries-bibliotheque.json",
+              "/workspace/repo_OS-Advisory_Conseil-SO.json",
+              "/workspace/repo_PCO-Public-Opinion-Research__Recherche-en-opinion-publique--BCP.json",
+              "/workspace/repo_alexapoc-vdpalexa.json",
+              "/workspace/repo_digital-playbook-guide-numerique.json",
+              "/workspace/repo_info.json",
+              "/workspace/repo_open-source-logiciel-libre.json",
+              "/workspace/repo_regs-consult-wet.json",
+              "/workspace/root_contents.json",
+              "/workspace/workflows_contents.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "msg_f5c41d2e1001yEmrVpA6115VYC",
+      "session_id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+      "time_created": 1783959245538,
+      "time_updated": 1783959256931,
+      "data": {
+        "parentID": "msg_f5c371158001OtIJcxZ4lAQBdE",
+        "role": "assistant",
+        "mode": "general",
+        "agent": "general",
+        "path": {
+          "cwd": "/workspace",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 8366,
+          "input": 6597,
+          "output": 563,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 1206
+          }
+        },
+        "modelID": "accounts/fireworks/models/kimi-k2p6",
+        "providerID": "openai",
+        "time": {
+          "created": 1783959245538,
+          "completed": 1783959256930
+        },
+        "finish": "tool-calls"
+      },
+      "parts": [
+        {
+          "id": "prt_f5c41d5ea0016n1yLhAStT7LzO",
+          "message_id": "msg_f5c41d2e1001yEmrVpA6115VYC",
+          "session_id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+          "time_created": 1783959246315,
+          "time_updated": 1783959246315,
+          "data": {
+            "snapshot": "7e1d98d9135ea537b4a7fca1d02f29923f03e025",
+            "type": "step-start"
+          }
+        },
+        {
+          "id": "prt_f5c41d9b2001msfiLANsa8lZ32",
+          "message_id": "msg_f5c41d2e1001yEmrVpA6115VYC",
+          "session_id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+          "time_created": 1783959247282,
+          "time_updated": 1783959252706,
+          "data": {
+            "type": "reasoning",
+            "text": "Now I have both outputs. Let me read the files to be safe, then synthesize.\n\nWorker A facts:\n- repo_name: content-analysis\n- repo_url: https://github.com/canada-ca/content-analysis\n- primary_language: Python\n- readme_exists: Yes\n- licence: Unknown\n- contributing_guide: No\n- has_security_scanning_in_ci: No CI\n- has_tests_in_ci: No CI\n- dependency_update_policy: None\n- last_commit_date: 2018-04-24\n- days_since_last_commit: 3002\n- maintained: No\n- open_issues_count: 0\n\nWorker B content:\n- bilingual: Yes\n- readme_clarity: Good\n- security_policy: Missing\n- issue_response_quality: No Issues\n- release_notes_quality: No Releases\n\nNow I need to compute:\n- standards_met: count of 5 standards (bilingual == Yes, licence != Unknown, security_policy == Present, contributing_guide == Yes, maintained == Yes)\n\nLet's check:\n1. bilingual == Yes? Yes (1)\n2. licence != Unknown? No, licence is Unknown (0)\n3. security_policy == Present? No, Missing (0)\n4. contributing_guide == Yes? No, No (0)\n5. maintained == Yes? No, No (0)\n\nstandards_met = 1\n\ncompliance_status: Full if 5, Partial if 2-4, Non-compliant if 0-1.\nSo Non-compliant.\n\ngaps: list specific failing standards by name:\n- \"Open licence\" (since licence != Unknown failed)\n- \"Security policy\" (since security_policy == Present failed)\n- \"Contributing guide\" (since contributing_guide == Yes failed)\n- \"Actively maintained\" (since maintained == Yes failed)\n\nWait, the instruction says \"list the specific failing standards by name (e.g., \"Bilingual README\", \"Open licence\", \"Security policy\", \"Contributing guide\", \"Actively maintained\")\". So I should list the ones that failed.\n\nFailing standards:\n- Bilingual README: No, it passed (Yes)\n- Open licence: Failed (Unknown)\n- Security policy: Failed (Missing)\n- Contributing guide: Failed (No)\n- Actively maintained: Failed (No)\n\ngaps = [\"Open licence\", \"Security policy\", \"Contributing guide\", \"Actively maintained\"]\n\nNow I need to write the combined JSON to `/workspace/repo_content-analysis.json` and return the full JSON content.\n\nLet me read the files first to be safe.",
+            "time": {
+              "start": 1783959247282,
+              "end": 1783959252704
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "rs_ffa4f9fd6b904f6684d879c0571976b2",
+                "reasoningEncryptedContent": null
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c41eeb8001MYZn3jUJZL1Whf",
+          "message_id": "msg_f5c41d2e1001yEmrVpA6115VYC",
+          "session_id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+          "time_created": 1783959252665,
+          "time_updated": 1783959253685,
+          "data": {
+            "type": "tool",
+            "tool": "read",
+            "callID": "read_2",
+            "state": {
+              "status": "completed",
+              "input": {
+                "filePath": "/workspace/facts_content-analysis.json"
+              },
+              "output": "<path>/workspace/facts_content-analysis.json</path>\n<type>file</type>\n<content>\n1: {\n2:   \"repo_name\": \"content-analysis\",\n3:   \"repo_url\": \"https://github.com/canada-ca/content-analysis\",\n4:   \"primary_language\": \"Python\",\n5:   \"readme_exists\": \"Yes\",\n6:   \"licence\": \"Unknown\",\n7:   \"contributing_guide\": \"No\",\n8:   \"has_security_scanning_in_ci\": \"No CI\",\n9:   \"has_tests_in_ci\": \"No CI\",\n10:   \"dependency_update_policy\": \"None\",\n11:   \"last_commit_date\": \"2018-04-24\",\n12:   \"days_since_last_commit\": 3002,\n13:   \"maintained\": \"No\",\n14:   \"open_issues_count\": 0\n15: }\n\n(End of file - total 15 lines)\n</content>",
+              "metadata": {
+                "preview": "{\n  \"repo_name\": \"content-analysis\",\n  \"repo_url\": \"https://github.com/canada-ca/content-analysis\",\n  \"primary_language\": \"Python\",\n  \"readme_exists\": \"Yes\",\n  \"licence\": \"Unknown\",\n  \"contributing_guide\": \"No\",\n  \"has_security_scanning_in_ci\": \"No CI\",\n  \"has_tests_in_ci\": \"No CI\",\n  \"dependency_update_policy\": \"None\",\n  \"last_commit_date\": \"2018-04-24\",\n  \"days_since_last_commit\": 3002,\n  \"maintained\": \"No\",\n  \"open_issues_count\": 0\n}",
+                "truncated": false,
+                "loaded": [],
+                "display": {
+                  "type": "file",
+                  "path": "/workspace/facts_content-analysis.json",
+                  "text": "{\n  \"repo_name\": \"content-analysis\",\n  \"repo_url\": \"https://github.com/canada-ca/content-analysis\",\n  \"primary_language\": \"Python\",\n  \"readme_exists\": \"Yes\",\n  \"licence\": \"Unknown\",\n  \"contributing_guide\": \"No\",\n  \"has_security_scanning_in_ci\": \"No CI\",\n  \"has_tests_in_ci\": \"No CI\",\n  \"dependency_update_policy\": \"None\",\n  \"last_commit_date\": \"2018-04-24\",\n  \"days_since_last_commit\": 3002,\n  \"maintained\": \"No\",\n  \"open_issues_count\": 0\n}",
+                  "lineStart": 1,
+                  "lineEnd": 15,
+                  "totalLines": 15,
+                  "truncated": false
+                }
+              },
+              "title": "workspace/facts_content-analysis.json",
+              "time": {
+                "start": 1783959252719,
+                "end": 1783959253683
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_2ff55bd7b9b84867b90de24fa48881de"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c41eeca001GeF1Mxspkieet7",
+          "message_id": "msg_f5c41d2e1001yEmrVpA6115VYC",
+          "session_id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+          "time_created": 1783959252682,
+          "time_updated": 1783959253694,
+          "data": {
+            "type": "tool",
+            "tool": "read",
+            "callID": "read_3",
+            "state": {
+              "status": "completed",
+              "input": {
+                "filePath": "/workspace/manual_content-analysis.json"
+              },
+              "output": "<path>/workspace/manual_content-analysis.json</path>\n<type>file</type>\n<content>\n1: {\n2:   \"bilingual\": \"Yes\",\n3:   \"readme_clarity\": \"Good\",\n4:   \"security_policy\": \"Missing\",\n5:   \"issue_response_quality\": \"No Issues\",\n6:   \"release_notes_quality\": \"No Releases\"\n7: }\n\n(End of file - total 7 lines)\n</content>",
+              "metadata": {
+                "preview": "{\n  \"bilingual\": \"Yes\",\n  \"readme_clarity\": \"Good\",\n  \"security_policy\": \"Missing\",\n  \"issue_response_quality\": \"No Issues\",\n  \"release_notes_quality\": \"No Releases\"\n}",
+                "truncated": false,
+                "loaded": [],
+                "display": {
+                  "type": "file",
+                  "path": "/workspace/manual_content-analysis.json",
+                  "text": "{\n  \"bilingual\": \"Yes\",\n  \"readme_clarity\": \"Good\",\n  \"security_policy\": \"Missing\",\n  \"issue_response_quality\": \"No Issues\",\n  \"release_notes_quality\": \"No Releases\"\n}",
+                  "lineStart": 1,
+                  "lineEnd": 7,
+                  "totalLines": 7,
+                  "truncated": false
+                }
+              },
+              "title": "workspace/manual_content-analysis.json",
+              "time": {
+                "start": 1783959252933,
+                "end": 1783959253691
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_3590b777d7fc49da809e5b0dc9fa9b2a"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c41ff34001IeWKDPKiiyklf8",
+          "message_id": "msg_f5c41d2e1001yEmrVpA6115VYC",
+          "session_id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+          "time_created": 1783959256884,
+          "time_updated": 1783959256885,
+          "data": {
+            "reason": "tool-calls",
+            "snapshot": "c0502f19baceafaa26b6a69b87dbf19353aadcfc",
+            "type": "step-finish",
+            "tokens": {
+              "total": 8366,
+              "input": 6597,
+              "output": 563,
+              "reasoning": 0,
+              "cache": {
+                "write": 0,
+                "read": 1206
+              }
+            },
+            "cost": 0
+          }
+        },
+        {
+          "id": "prt_f5c41ff5c001nIXWBIhaeq7nJ0",
+          "message_id": "msg_f5c41d2e1001yEmrVpA6115VYC",
+          "session_id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+          "time_created": 1783959256924,
+          "time_updated": 1783959256925,
+          "data": {
+            "type": "patch",
+            "hash": "7e1d98d9135ea537b4a7fca1d02f29923f03e025",
+            "files": [
+              "/workspace/facts_welcome.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "msg_f5c41ff69001Bra4I5V5SHiOOl",
+      "session_id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+      "time_created": 1783959256937,
+      "time_updated": 1783959277867,
+      "data": {
+        "parentID": "msg_f5c371158001OtIJcxZ4lAQBdE",
+        "role": "assistant",
+        "mode": "general",
+        "agent": "general",
+        "path": {
+          "cwd": "/workspace",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 8687,
+          "input": 361,
+          "output": 524,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 7802
+          }
+        },
+        "modelID": "accounts/fireworks/models/kimi-k2p6",
+        "providerID": "openai",
+        "time": {
+          "created": 1783959256937,
+          "completed": 1783959277865
+        },
+        "finish": "tool-calls"
+      },
+      "parts": [
+        {
+          "id": "prt_f5c4202bc001Hvkb2NCr8sa8l7",
+          "message_id": "msg_f5c41ff69001Bra4I5V5SHiOOl",
+          "session_id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+          "time_created": 1783959257788,
+          "time_updated": 1783959257789,
+          "data": {
+            "snapshot": "c0502f19baceafaa26b6a69b87dbf19353aadcfc",
+            "type": "step-start"
+          }
+        },
+        {
+          "id": "prt_f5c421517001tkzPr8GQXjVPxO",
+          "message_id": "msg_f5c41ff69001Bra4I5V5SHiOOl",
+          "session_id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+          "time_created": 1783959262488,
+          "time_updated": 1783959269776,
+          "data": {
+            "type": "reasoning",
+            "text": "Both workers have completed successfully and produced valid JSON files. Now I need to:\n1. Combine the two JSON objects into one\n2. Compute `standards_met`: count of 5 standards (bilingual == Yes, licence != Unknown, security_policy == Present, contributing_guide == Yes, maintained == Yes)\n3. Compute `compliance_status`: `Full` if standards_met == 5, `Partial` if 2-4, `Non-compliant` if 0-1\n4. Compute `gaps`: list the specific failing standards by name\n\nLet me evaluate:\n- bilingual == Yes \u2713 (1 point)\n- licence != Unknown \u2192 licence is \"Unknown\" \u2717\n- security_policy == Present \u2192 security_policy is \"Missing\" \u2717\n- contributing_guide == Yes \u2192 contributing_guide is \"No\" \u2717\n- maintained == Yes \u2192 maintained is \"No\" \u2717\n\nstandards_met = 1\ncompliance_status = Non-compliant (0-1)\ngaps = [\"Open licence\", \"Security policy\", \"Contributing guide\", \"Actively maintained\"]\n\nNow I need to write the combined JSON to `/workspace/repo_content-analysis.json`.",
+            "time": {
+              "start": 1783959262487,
+              "end": 1783959269762
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "rs_439d17fb7cf64a85a7e82ef11f802991",
+                "reasoningEncryptedContent": null
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c421e5d001A08uLCprndd3Rf",
+          "message_id": "msg_f5c41ff69001Bra4I5V5SHiOOl",
+          "session_id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+          "time_created": 1783959264861,
+          "time_updated": 1783959275475,
+          "data": {
+            "type": "tool",
+            "tool": "write",
+            "callID": "write_4",
+            "state": {
+              "status": "completed",
+              "input": {
+                "content": "{\n  \"repo_name\": \"content-analysis\",\n  \"repo_url\": \"https://github.com/canada-ca/content-analysis\",\n  \"primary_language\": \"Python\",\n  \"readme_exists\": \"Yes\",\n  \"licence\": \"Unknown\",\n  \"contributing_guide\": \"No\",\n  \"has_security_scanning_in_ci\": \"No CI\",\n  \"has_tests_in_ci\": \"No CI\",\n  \"dependency_update_policy\": \"None\",\n  \"last_commit_date\": \"2018-04-24\",\n  \"days_since_last_commit\": 3002,\n  \"maintained\": \"No\",\n  \"open_issues_count\": 0,\n  \"bilingual\": \"Yes\",\n  \"readme_clarity\": \"Good\",\n  \"security_policy\": \"Missing\",\n  \"issue_response_quality\": \"No Issues\",\n  \"release_notes_quality\": \"No Releases\",\n  \"standards_met\": 1,\n  \"compliance_status\": \"Non-compliant\",\n  \"gaps\": [\n    \"Open licence\",\n    \"Security policy\",\n    \"Contributing guide\",\n    \"Actively maintained\"\n  ]\n}\n",
+                "filePath": "/workspace/repo_content-analysis.json"
+              },
+              "output": "Wrote file successfully.",
+              "metadata": {
+                "diagnostics": {},
+                "filepath": "/workspace/repo_content-analysis.json",
+                "exists": false,
+                "truncated": false
+              },
+              "title": "workspace/repo_content-analysis.json",
+              "time": {
+                "start": 1783959269837,
+                "end": 1783959275474
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_4ba1817b25c647d0b4659ca1196dfca5"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c42509e001D63GZcHbMmcfkd",
+          "message_id": "msg_f5c41ff69001Bra4I5V5SHiOOl",
+          "session_id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+          "time_created": 1783959277727,
+          "time_updated": 1783959277728,
+          "data": {
+            "reason": "tool-calls",
+            "snapshot": "c5053c42fcd02b115098a986276d8c22407d170f",
+            "type": "step-finish",
+            "tokens": {
+              "total": 8687,
+              "input": 361,
+              "output": 524,
+              "reasoning": 0,
+              "cache": {
+                "write": 0,
+                "read": 7802
+              }
+            },
+            "cost": 0
+          }
+        },
+        {
+          "id": "prt_f5c42511e001Pu54W3l0s5egai",
+          "message_id": "msg_f5c41ff69001Bra4I5V5SHiOOl",
+          "session_id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+          "time_created": 1783959277855,
+          "time_updated": 1783959277858,
+          "data": {
+            "type": "patch",
+            "hash": "c0502f19baceafaa26b6a69b87dbf19353aadcfc",
+            "files": [
+              "/workspace/repo_content-analysis.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "msg_f5c425159001DqILiTHFIULKkh",
+      "session_id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+      "time_created": 1783959277913,
+      "time_updated": 1783959288711,
+      "data": {
+        "parentID": "msg_f5c371158001OtIJcxZ4lAQBdE",
+        "role": "assistant",
+        "mode": "general",
+        "agent": "general",
+        "path": {
+          "cwd": "/workspace",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 8885,
+          "input": 303,
+          "output": 420,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 8162
+          }
+        },
+        "modelID": "accounts/fireworks/models/kimi-k2p6",
+        "providerID": "openai",
+        "time": {
+          "created": 1783959277913,
+          "completed": 1783959288710
+        },
+        "finish": "stop"
+      },
+      "parts": [
+        {
+          "id": "prt_f5c42548a001WnK8oYK6i0x2UG",
+          "message_id": "msg_f5c425159001DqILiTHFIULKkh",
+          "session_id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+          "time_created": 1783959278731,
+          "time_updated": 1783959278733,
+          "data": {
+            "snapshot": "c5053c42fcd02b115098a986276d8c22407d170f",
+            "type": "step-start"
+          }
+        },
+        {
+          "id": "prt_f5c425776001xcamHIIMOSPQ3W",
+          "message_id": "msg_f5c425159001DqILiTHFIULKkh",
+          "session_id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+          "time_created": 1783959279478,
+          "time_updated": 1783959283466,
+          "data": {
+            "type": "reasoning",
+            "text": "Worker A and Worker B have both completed successfully. I have read both JSON files and synthesized the results. Let me verify the standards:\n\n- bilingual == Yes: Yes (1 point)\n- licence != Unknown: licence is \"Unknown\" \u2192 fail\n- security_policy == Present: \"Missing\" \u2192 fail\n- contributing_guide == Yes: \"No\" \u2192 fail\n- maintained == Yes: \"No\" \u2192 fail\n\nSo standards_met = 1 (only bilingual passes).\ncompliance_status = Non-compliant (0-1).\ngaps = [\"Open licence\", \"Security policy\", \"Contributing guide\", \"Actively maintained\"].\n\nI have written the final JSON to /workspace/repo_content-analysis.json. I should return the full JSON content in my final message.",
+            "time": {
+              "start": 1783959279478,
+              "end": 1783959283464
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "rs_da7c6e4894894fab8571213165b93e12",
+                "reasoningEncryptedContent": null
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c425e32001tybm6zk4VhtSKW",
+          "message_id": "msg_f5c425159001DqILiTHFIULKkh",
+          "session_id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+          "time_created": 1783959281202,
+          "time_updated": 1783959283474,
+          "data": {
+            "type": "text",
+            "text": "Both workers completed successfully. I synthesized their outputs and wrote the final combined JSON to `/workspace/repo_content-analysis.json`.\n\nHere is the full JSON content:\n\n```json\n{\n  \"repo_name\": \"content-analysis\",\n  \"repo_url\": \"https://github.com/canada-ca/content-analysis\",\n  \"primary_language\": \"Python\",\n  \"readme_exists\": \"Yes\",\n  \"licence\": \"Unknown\",\n  \"contributing_guide\": \"No\",\n  \"has_security_scanning_in_ci\": \"No CI\",\n  \"has_tests_in_ci\": \"No CI\",\n  \"dependency_update_policy\": \"None\",\n  \"last_commit_date\": \"2018-04-24\",\n  \"days_since_last_commit\": 3002,\n  \"maintained\": \"No\",\n  \"open_issues_count\": 0,\n  \"bilingual\": \"Yes\",\n  \"readme_clarity\": \"Good\",\n  \"security_policy\": \"Missing\",\n  \"issue_response_quality\": \"No Issues\",\n  \"release_notes_quality\": \"No Releases\",\n  \"standards_met\": 1,\n  \"compliance_status\": \"Non-compliant\",\n  \"gaps\": [\n    \"Open licence\",\n    \"Security policy\",\n    \"Contributing guide\",\n    \"Actively maintained\"\n  ]\n}\n```",
+            "time": {
+              "start": 1783959281202,
+              "end": 1783959283472
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "msg_308ea252c4a84d35bdd8225719ad5072"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c427b49001Uflqweqz1RCSfX",
+          "message_id": "msg_f5c425159001DqILiTHFIULKkh",
+          "session_id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+          "time_created": 1783959288649,
+          "time_updated": 1783959288650,
+          "data": {
+            "reason": "stop",
+            "snapshot": "5a2efe153945f9722caff76894c1ec836bd5293b",
+            "type": "step-finish",
+            "tokens": {
+              "total": 8885,
+              "input": 303,
+              "output": 420,
+              "reasoning": 0,
+              "cache": {
+                "write": 0,
+                "read": 8162
+              }
+            },
+            "cost": 0
+          }
+        },
+        {
+          "id": "prt_f5c427b810010bvsN65QqTcPDV",
+          "message_id": "msg_f5c425159001DqILiTHFIULKkh",
+          "session_id": "ses_0a3c8eedbffe1CCfyC765n11nI",
+          "time_created": 1783959288705,
+          "time_updated": 1783959288707,
+          "data": {
+            "type": "patch",
+            "hash": "c5053c42fcd02b115098a986276d8c22407d170f",
+            "files": [
+              "/workspace/repo_commons.json"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

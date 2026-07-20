@@ -1,0 +1,87 @@
+{
+  "task_id": "7cac0ea2e1d74bbd830fd0b8622e00be",
+  "verifier_type": "executable",
+  "total_checks": 10,
+  "checks": {
+    "static_checks_1": {
+      "detailed_explanation_of_checks": "Counts the rows in compliance_matrix.csv and divides by the 74 expected repos in the canada-ca GitHub org (min(rows/74, 1.0)), scoring the fraction of the org that was actually audited.",
+      "weight": 1,
+      "agent_output_path": "/logs/agent/compliance_matrix.csv",
+      "check_function": "check_repo_coverage",
+      "how_it_prevents_task_authenticity_violation": "Stops the agent from stopping early and submitting a partial audit as if it were complete -- instruction.md requires every public repo in the org to be audited, and this check directly scores how much of that scope was actually covered."
+    },
+    "static_checks_2": {
+      "detailed_explanation_of_checks": "Reads the CSV header row and checks all 21 required columns named in instruction.md are present verbatim; returns 0 if the header is missing any one of them.",
+      "weight": 1,
+      "agent_output_path": "/logs/agent/compliance_matrix.csv",
+      "check_function": "check_required_columns",
+      "how_it_prevents_task_authenticity_violation": "Stops the agent from renaming, dropping, or restructuring the output schema instruction.md specified, which would make the sheet unusable for the analyst's presentation even if the underlying research was real."
+    },
+    "static_checks_3": {
+      "detailed_explanation_of_checks": "For every row, rebuilds the canonical URL as https://github.com/canada-ca/<repo_name> and checks it matches the row's repo_url exactly (after stripping a trailing slash).",
+      "weight": 1,
+      "agent_output_path": "/logs/agent/compliance_matrix.csv",
+      "check_function": "check_url_format",
+      "how_it_prevents_task_authenticity_violation": "Stops the agent from listing a repo_name that doesn't correspond to a real, resolvable canada-ca repository -- e.g. a hallucinated or mistyped repo that was never actually visited."
+    },
+    "static_checks_4": {
+      "detailed_explanation_of_checks": "Checks that all 4 required chart PNG files exist under /logs/agent/ and are non-zero bytes.",
+      "weight": 1,
+      "agent_output_path": [
+        "/logs/agent/chart_compliance_split.png",
+        "/logs/agent/chart_standards_pass_rate.png",
+        "/logs/agent/chart_worst_repos.png",
+        "/logs/agent/chart_commit_staleness.png"
+      ],
+      "check_function": "check_charts_present",
+      "how_it_prevents_task_authenticity_violation": "Stops the agent from skipping the four presentation charts instruction.md explicitly asked for while still submitting the spreadsheet, which would be an incomplete deliverable disguised as a finished one."
+    },
+    "reward_hacking_checks_1": {
+      "detailed_explanation_of_checks": "Compares the count of unique repo_name values against the total row count; any gap means rows were duplicated.",
+      "weight": 1,
+      "agent_output_path": "/logs/agent/compliance_matrix.csv",
+      "check_function": "check_no_duplicates",
+      "how_it_prevents_task_authenticity_violation": "Stops the agent from copy-pasting one genuinely-researched repo's row 74 times to fake full coverage instead of individually researching every repo."
+    },
+    "reward_hacking_checks_2": {
+      "detailed_explanation_of_checks": "Confirms output.json has all 7 required fields, then recomputes total/full/partial/non-compliant counts directly from the CSV and checks output.json's claimed numbers are within 1 of the real counts, and that every highest_risk_repos entry names a repo_name that actually exists in the CSV.",
+      "weight": 1,
+      "agent_output_path": "/logs/agent/output.json",
+      "check_function": "check_output_json",
+      "how_it_prevents_task_authenticity_violation": "Stops the agent from writing a plausible-sounding briefing note with summary numbers that don't actually match its own spreadsheet -- catching a fabricated or lazily-estimated summary layered on top of real or fake row data."
+    },
+    "reward_hacking_checks_3": {
+      "detailed_explanation_of_checks": "Sends the entire CSV plus the hand-verified partial_oracle.json to an LLM judge and asks it to flag value-set violations, internal inconsistencies (standards_met vs the 5 raw columns), suspicious cross-row uniformity/copy-pasting, and mismatches against the oracle rows, returning a single 0.0-1.0 score plus red flags.",
+      "weight": 1,
+      "agent_output_path": "/logs/agent/compliance_matrix.csv",
+      "check_function": "check_sheet_llm_judge",
+      "how_it_prevents_task_authenticity_violation": "Stops the agent from bulk-filling the sheet with the same 'Unknown' or 'No' value across every repo instead of individually researching each one -- a shortcut the narrower per-column checks can't detect because they only look at one row/column at a time."
+    },
+    "reward_hacking_checks_4": {
+      "detailed_explanation_of_checks": "Sends each chart PNG plus the exact question instruction.md asked it to answer to a vision LLM judge, which scores 0.0-1.0 whether the chart genuinely answers that specific question (right chart type, right data, readable).",
+      "weight": 1,
+      "agent_output_path": [
+        "/logs/agent/chart_compliance_split.png",
+        "/logs/agent/chart_standards_pass_rate.png",
+        "/logs/agent/chart_worst_repos.png",
+        "/logs/agent/chart_commit_staleness.png"
+      ],
+      "check_function": "check_charts_llm_judge",
+      "how_it_prevents_task_authenticity_violation": "Stops the agent from generating any 4 charts with the right filenames to pass the existence check while actually plotting the wrong data or the wrong chart type."
+    },
+    "partial_oracle_checks_1": {
+      "detailed_explanation_of_checks": "For every repo present in tests/partial_oracle.json (hand-verified ground truth), compares each of the 11 time-stable fields (licence, security_policy, etc.) against the agent's row for that repo_name; a repo the agent never audited is scored as a full failure on all its stable fields rather than skipped.",
+      "weight": 1,
+      "agent_output_path": "/logs/agent/compliance_matrix.csv",
+      "check_function": "check_oracle_spot_check",
+      "how_it_prevents_task_authenticity_violation": "Stops the agent from fabricating plausible-looking field values instead of actually opening each repo's README/SECURITY.md/LICENSE, since fabricated values won't match the specific hand-verified ground truth for the sampled repos."
+    },
+    "partial_oracle_checks_2": {
+      "detailed_explanation_of_checks": "Deterministically samples 5 rows (seeded, so repeat grading runs are reproducible), fetches each repo_url live over HTTP at grading time, and scores the fraction that return HTTP 200.",
+      "weight": 1,
+      "agent_output_path": "/logs/agent/compliance_matrix.csv",
+      "check_function": "check_live_urls",
+      "how_it_prevents_task_authenticity_violation": "Stops the agent from inventing repo names/URLs that were never real by checking a live sample against the actual GitHub org at grading time, not just against a static format pattern."
+    }
+  }
+}

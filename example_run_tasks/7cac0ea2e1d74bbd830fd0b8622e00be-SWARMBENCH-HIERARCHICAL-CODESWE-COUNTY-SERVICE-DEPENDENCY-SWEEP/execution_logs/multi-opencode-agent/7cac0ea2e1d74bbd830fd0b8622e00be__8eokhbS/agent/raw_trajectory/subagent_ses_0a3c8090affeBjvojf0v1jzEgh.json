@@ -1,0 +1,1228 @@
+{
+  "id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+  "project_id": "global",
+  "workspace_id": null,
+  "parent_id": "ses_0a3c8ed7fffeASaYXBrH3u1BMh",
+  "slug": "silent-cactus",
+  "directory": "/workspace",
+  "path": "workspace",
+  "title": "Worker B content judgments (@explore subagent)",
+  "version": "1.17.18",
+  "share_url": null,
+  "summary_additions": 0,
+  "summary_deletions": 0,
+  "summary_files": 0,
+  "summary_diffs": null,
+  "metadata": null,
+  "cost": 0.0,
+  "tokens_input": 17964,
+  "tokens_output": 3018,
+  "tokens_reasoning": 0,
+  "tokens_cache_read": 60448,
+  "tokens_cache_write": 0,
+  "revert": null,
+  "permission": "[{\"permission\":\"question\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_enter\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_exit\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"todowrite\",\"pattern\":\"*\",\"action\":\"deny\"}]",
+  "agent": "explore",
+  "model": "{\"id\":\"accounts/fireworks/models/kimi-k2p6\",\"providerID\":\"openai\",\"variant\":\"default\"}",
+  "time_created": 1783958599413,
+  "time_updated": 1783958849302,
+  "time_compacting": null,
+  "time_archived": null,
+  "messages": [
+    {
+      "id": "msg_f5c37f700001ThpiaDiNarQdy0",
+      "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+      "time_created": 1783958599425,
+      "time_updated": 1783958883399,
+      "data": {
+        "role": "user",
+        "time": {
+          "created": 1783958599425
+        },
+        "agent": "explore",
+        "model": {
+          "providerID": "openai",
+          "modelID": "accounts/fireworks/models/kimi-k2p6"
+        },
+        "summary": {
+          "diffs": [
+            {
+              "file": "workspace/Open_First_Whitepaper",
+              "patch": "Index: workspace/Open_First_Whitepaper\n===================================================================\n--- workspace/Open_First_Whitepaper\t\n+++ workspace/Open_First_Whitepaper\t\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/actions_runs.json",
+              "patch": "Index: workspace/actions_runs.json\n===================================================================\n--- workspace/actions_runs.json\t\n+++ workspace/actions_runs.json\t\n@@ -0,0 +1,1 @@\n+{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/commits_main.json",
+              "patch": "Index: workspace/commits_main.json\n===================================================================\n--- workspace/commits_main.json\t\n+++ workspace/commits_main.json\t\n@@ -0,0 +1,1 @@\n+{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/commits_master.json",
+              "patch": "Index: workspace/commits_master.json\n===================================================================\n--- workspace/commits_master.json\t\n+++ workspace/commits_master.json\t\n@@ -0,0 +1,1 @@\n+{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/facts_Libraries-bibliotheque.json",
+              "patch": "Index: workspace/facts_Libraries-bibliotheque.json\n===================================================================\n--- workspace/facts_Libraries-bibliotheque.json\t\n+++ workspace/facts_Libraries-bibliotheque.json\t\n@@ -0,0 +1,15 @@\n+{\n+  \"repo_name\": \"Libraries-bibliotheque\",\n+  \"repo_url\": \"https://github.com/canada-ca/Libraries-bibliotheque\",\n+  \"primary_language\": \"Unknown\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"Unknown\",\n+  \"contributing_guide\": \"No\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"None\",\n+  \"last_commit_date\": \"2017-07-12\",\n+  \"days_since_last_commit\": 3288,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 0\n+}\n",
+              "additions": 15,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/github_contents.json",
+              "patch": "Index: workspace/github_contents.json\n===================================================================\n--- workspace/github_contents.json\t\n+++ workspace/github_contents.json\t\n@@ -0,0 +1,5 @@\n+{\n+  \"message\": \"Not Found\",\n+  \"documentation_url\": \"https://docs.github.com/rest/repos/contents#get-repository-content\",\n+  \"status\": \"404\"\n+}\n",
+              "additions": 5,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_CommunicatingPublicEngagement.json",
+              "patch": "Index: workspace/manual_CommunicatingPublicEngagement.json\n===================================================================\n--- workspace/manual_CommunicatingPublicEngagement.json\t\n+++ workspace/manual_CommunicatingPublicEngagement.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"No\",\n+  \"readme_clarity\": \"Poor\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"No Issues\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_Libraries-bibliotheque.json",
+              "patch": "Index: workspace/manual_Libraries-bibliotheque.json\n===================================================================\n--- workspace/manual_Libraries-bibliotheque.json\t\n+++ workspace/manual_Libraries-bibliotheque.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Poor\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"No Issues\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_Open_First_Whitepaper.json",
+              "patch": "Index: workspace/manual_Open_First_Whitepaper.json\n===================================================================\n--- workspace/manual_Open_First_Whitepaper.json\t\n+++ workspace/manual_Open_First_Whitepaper.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Present\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_alexapoc-healthcanada-recalls.json",
+              "patch": "Index: workspace/manual_alexapoc-healthcanada-recalls.json\n===================================================================\n--- workspace/manual_alexapoc-healthcanada-recalls.json\t\n+++ workspace/manual_alexapoc-healthcanada-recalls.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"No\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"No Issues\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_alexapoc-vdpalexa.json",
+              "patch": "Index: workspace/manual_alexapoc-vdpalexa.json\n===================================================================\n--- workspace/manual_alexapoc-vdpalexa.json\t\n+++ workspace/manual_alexapoc-vdpalexa.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Poor\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"No Issues\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_commons.json",
+              "patch": "Index: workspace/manual_commons.json\n===================================================================\n--- workspace/manual_commons.json\t\n+++ workspace/manual_commons.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"No\",\n+  \"readme_clarity\": \"Fair\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_content-analysis.json",
+              "patch": "Index: workspace/manual_content-analysis.json\n===================================================================\n--- workspace/manual_content-analysis.json\t\n+++ workspace/manual_content-analysis.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"No Issues\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_open-source-logiciel-libre.json",
+              "patch": "Index: workspace/manual_open-source-logiciel-libre.json\n===================================================================\n--- workspace/manual_open-source-logiciel-libre.json\t\n+++ workspace/manual_open-source-logiciel-libre.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_ore-ero.json",
+              "patch": "Index: workspace/manual_ore-ero.json\n===================================================================\n--- workspace/manual_ore-ero.json\t\n+++ workspace/manual_ore-ero.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_regs-consult-wet.json",
+              "patch": "Index: workspace/manual_regs-consult-wet.json\n===================================================================\n--- workspace/manual_regs-consult-wet.json\t\n+++ workspace/manual_regs-consult-wet.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"No\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_welcome.json",
+              "patch": "Index: workspace/manual_welcome.json\n===================================================================\n--- workspace/manual_welcome.json\t\n+++ workspace/manual_welcome.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Present\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/open_issues.json",
+              "patch": "Index: workspace/open_issues.json\n===================================================================\n--- workspace/open_issues.json\t\n+++ workspace/open_issues.json\t\n@@ -0,0 +1,1 @@\n+{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/repo_Libraries-bibliotheque.json",
+              "patch": "Index: workspace/repo_Libraries-bibliotheque.json\n===================================================================\n--- workspace/repo_Libraries-bibliotheque.json\t\n+++ workspace/repo_Libraries-bibliotheque.json\t\n@@ -0,0 +1,23 @@\n+{\n+  \"repo_name\": \"Libraries-bibliotheque\",\n+  \"repo_url\": \"https://github.com/canada-ca/Libraries-bibliotheque\",\n+  \"primary_language\": \"Unknown\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"Unknown\",\n+  \"contributing_guide\": \"No\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"None\",\n+  \"last_commit_date\": \"2017-07-12\",\n+  \"days_since_last_commit\": 3288,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 0,\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Poor\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"No Issues\",\n+  \"release_notes_quality\": \"No Releases\",\n+  \"standards_met\": 1,\n+  \"compliance_status\": \"Non-compliant\",\n+  \"gaps\": [\"Open licence\", \"Security policy\", \"Contributing guide\", \"Actively maintained\"]\n+}\n",
+              "additions": 23,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/repo_info.json",
+              "patch": "Index: workspace/repo_info.json\n===================================================================\n--- workspace/repo_info.json\t\n+++ workspace/repo_info.json\t\n@@ -0,0 +1,138 @@\n+{\n+  \"id\": 65482027,\n+  \"node_id\": \"MDEwOlJlcG9zaXRvcnk2NTQ4MjAyNw==\",\n+  \"name\": \"welcome\",\n+  \"full_name\": \"canada-ca/welcome\",\n+  \"private\": false,\n+  \"owner\": {\n+    \"login\": \"canada-ca\",\n+    \"id\": 20973642,\n+    \"node_id\": \"MDEyOk9yZ2FuaXphdGlvbjIwOTczNjQy\",\n+    \"avatar_url\": \"https://avatars.githubusercontent.com/u/20973642?v=4\",\n+    \"gravatar_id\": \"\",\n+    \"url\": \"https://api.github.com/users/canada-ca\",\n+    \"html_url\": \"https://github.com/canada-ca\",\n+    \"followers_url\": \"https://api.github.com/users/canada-ca/followers\",\n+    \"following_url\": \"https://api.github.com/users/canada-ca/following{/other_user}\",\n+    \"gists_url\": \"https://api.github.com/users/canada-ca/gists{/gist_id}\",\n+    \"starred_url\": \"https://api.github.com/users/canada-ca/starred{/owner}{/repo}\",\n+    \"subscriptions_url\": \"https://api.github.com/users/canada-ca/subscriptions\",\n+    \"organizations_url\": \"https://api.github.com/users/canada-ca/orgs\",\n+    \"repos_url\": \"https://api.github.com/users/canada-ca/repos\",\n+    \"events_url\": \"https://api.github.com/users/canada-ca/events{/privacy}\",\n+    \"received_events_url\": \"https://api.github.com/users/canada-ca/received_events\",\n+    \"type\": \"Organization\",\n+    \"user_view_type\": \"public\",\n+    \"site_admin\": false\n+  },\n+  \"html_url\": \"https://github.com/canada-ca/welcome\",\n+  \"description\": \"Start here! readme for our organization / Commencez ici! readme pour notre organisation\",\n+  \"fork\": false,\n+  \"url\": \"https://api.github.com/repos/canada-ca/welcome\",\n+  \"forks_url\": \"https://api.github.com/repos/canada-ca/welcome/forks\",\n+  \"keys_url\": \"https://api.github.com/repos/canada-ca/welcome/keys{/key_id}\",\n+  \"collaborators_url\": \"https://api.github.com/repos/canada-ca/welcome/collaborators{/collaborator}\",\n+  \"teams_url\": \"https://api.github.com/repos/canada-ca/welcome/teams\",\n+  \"hooks_url\": \"https://api.github.com/repos/canada-ca/welcome/hooks\",\n+  \"issue_events_url\": \"https://api.github.com/repos/canada-ca/welcome/issues/events{/number}\",\n+  \"events_url\": \"https://api.github.com/repos/canada-ca/welcome/events\",\n+  \"assignees_url\": \"https://api.github.com/repos/canada-ca/welcome/assignees{/user}\",\n+  \"branches_url\": \"https://api.github.com/repos/canada-ca/welcome/branches{/branch}\",\n+  \"tags_url\": \"https://api.github.com/repos/canada-ca/welcome/tags\",\n+  \"blobs_url\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs{/sha}\",\n+  \"git_tags_url\": \"https://api.github.com/repos/canada-ca/welcome/git/tags{/sha}\",\n+  \"git_refs_url\": \"https://api.github.com/repos/canada-ca/welcome/git/refs{/sha}\",\n+  \"trees_url\": \"https://api.github.com/repos/canada-ca/welcome/git/trees{/sha}\",\n+  \"statuses_url\": \"https://api.github.com/repos/canada-ca/welcome/statuses/{sha}\",\n+  \"languages_url\": \"https://api.github.com/repos/canada-ca/welcome/languages\",\n+  \"stargazers_url\": \"https://api.github.com/repos/canada-ca/welcome/stargazers\",\n+  \"contributors_url\": \"https://api.github.com/repos/canada-ca/welcome/contributors\",\n+  \"subscribers_url\": \"https://api.github.com/repos/canada-ca/welcome/subscribers\",\n+  \"subscription_url\": \"https://api.github.com/repos/canada-ca/welcome/subscription\",\n+  \"commits_url\": \"https://api.github.com/repos/canada-ca/welcome/commits{/sha}\",\n+  \"git_commits_url\": \"https://api.github.com/repos/canada-ca/welcome/git/commits{/sha}\",\n+  \"comments_url\": \"https://api.github.com/repos/canada-ca/welcome/comments{/number}\",\n+  \"issue_comment_url\": \"https://api.github.com/repos/canada-ca/welcome/issues/comments{/number}\",\n+  \"contents_url\": \"https://api.github.com/repos/canada-ca/welcome/contents/{+path}\",\n+  \"compare_url\": \"https://api.github.com/repos/canada-ca/welcome/compare/{base}...{head}\",\n+  \"merges_url\": \"https://api.github.com/repos/canada-ca/welcome/merges\",\n+  \"archive_url\": \"https://api.github.com/repos/canada-ca/welcome/{archive_format}{/ref}\",\n+  \"downloads_url\": \"https://api.github.com/repos/canada-ca/welcome/downloads\",\n+  \"issues_url\": \"https://api.github.com/repos/canada-ca/welcome/issues{/number}\",\n+  \"pulls_url\": \"https://api.github.com/repos/canada-ca/welcome/pulls{/number}\",\n+  \"milestones_url\": \"https://api.github.com/repos/canada-ca/welcome/milestones{/number}\",\n+  \"notifications_url\": \"https://api.github.com/repos/canada-ca/welcome/notifications{?since,all,participating}\",\n+  \"labels_url\": \"https://api.github.com/repos/canada-ca/welcome/labels{/name}\",\n+  \"releases_url\": \"https://api.github.com/repos/canada-ca/welcome/releases{/id}\",\n+  \"deployments_url\": \"https://api.github.com/repos/canada-ca/welcome/deployments\",\n+  \"created_at\": \"2016-08-11T15:50:07Z\",\n+  \"updated_at\": \"2026-05-24T21:56:27Z\",\n+  \"pushed_at\": \"2022-04-19T20:51:01Z\",\n+  \"git_url\": \"git://github.com/canada-ca/welcome.git\",\n+  \"ssh_url\": \"git@github.com:canada-ca/welcome.git\",\n+  \"clone_url\": \"https://github.com/canada-ca/welcome.git\",\n+  \"svn_url\": \"https://github.com/canada-ca/welcome\",\n+  \"homepage\": \"\",\n+  \"size\": 33,\n+  \"stargazers_count\": 71,\n+  \"watchers_count\": 71,\n+  \"language\": null,\n+  \"has_issues\": true,\n+  \"has_projects\": true,\n+  \"has_downloads\": true,\n+  \"has_wiki\": true,\n+  \"has_pages\": false,\n+  \"has_discussions\": true,\n+  \"forks_count\": 11,\n+  \"mirror_url\": null,\n+  \"archived\": false,\n+  \"disabled\": false,\n+  \"open_issues_count\": 8,\n+  \"license\": {\n+    \"key\": \"other\",\n+    \"name\": \"Other\",\n+    \"spdx_id\": \"NOASSERTION\",\n+    \"url\": null,\n+    \"node_id\": \"MDc6TGljZW5zZTA=\"\n+  },\n+  \"allow_forking\": true,\n+  \"is_template\": false,\n+  \"web_commit_signoff_required\": false,\n+  \"has_pull_requests\": true,\n+  \"pull_request_creation_policy\": \"all\",\n+  \"topics\": [\n+\n+  ],\n+  \"visibility\": \"public\",\n+  \"forks\": 11,\n+  \"open_issues\": 8,\n+  \"watchers\": 71,\n+  \"default_branch\": \"master\",\n+  \"temp_clone_token\": null,\n+  \"custom_properties\": {\n+\n+  },\n+  \"organization\": {\n+    \"login\": \"canada-ca\",\n+    \"id\": 20973642,\n+    \"node_id\": \"MDEyOk9yZ2FuaXphdGlvbjIwOTczNjQy\",\n+    \"avatar_url\": \"https://avatars.githubusercontent.com/u/20973642?v=4\",\n+    \"gravatar_id\": \"\",\n+    \"url\": \"https://api.github.com/users/canada-ca\",\n+    \"html_url\": \"https://github.com/canada-ca\",\n+    \"followers_url\": \"https://api.github.com/users/canada-ca/followers\",\n+    \"following_url\": \"https://api.github.com/users/canada-ca/following{/other_user}\",\n+    \"gists_url\": \"https://api.github.com/users/canada-ca/gists{/gist_id}\",\n+    \"starred_url\": \"https://api.github.com/users/canada-ca/starred{/owner}{/repo}\",\n+    \"subscriptions_url\": \"https://api.github.com/users/canada-ca/subscriptions\",\n+    \"organizations_url\": \"https://api.github.com/users/canada-ca/orgs\",\n+    \"repos_url\": \"https://api.github.com/users/canada-ca/repos\",\n+    \"events_url\": \"https://api.github.com/users/canada-ca/events{/privacy}\",\n+    \"received_events_url\": \"https://api.github.com/users/canada-ca/received_events\",\n+    \"type\": \"Organization\",\n+    \"user_view_type\": \"public\",\n+    \"site_admin\": false\n+  },\n+  \"network_count\": 11,\n+  \"subscribers_count\": 37\n+}\n",
+              "additions": 138,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/root_contents.json",
+              "patch": "Index: workspace/root_contents.json\n===================================================================\n--- workspace/root_contents.json\t\n+++ workspace/root_contents.json\t\n@@ -0,0 +1,114 @@\n+[\n+  {\n+    \"name\": \"CONTRIBUTING.md\",\n+    \"path\": \"CONTRIBUTING.md\",\n+    \"sha\": \"a304f1aa3acd5b7a86ce55570e7d6db338bd6d83\",\n+    \"size\": 1268,\n+    \"url\": \"https://api.github.com/repos/canada-ca/welcome/contents/CONTRIBUTING.md?ref=master\",\n+    \"html_url\": \"https://github.com/canada-ca/welcome/blob/master/CONTRIBUTING.md\",\n+    \"git_url\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/a304f1aa3acd5b7a86ce55570e7d6db338bd6d83\",\n+    \"download_url\": \"https://raw.githubusercontent.com/canada-ca/welcome/master/CONTRIBUTING.md\",\n+    \"type\": \"file\",\n+    \"_links\": {\n+      \"self\": \"https://api.github.com/repos/canada-ca/welcome/contents/CONTRIBUTING.md?ref=master\",\n+      \"git\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/a304f1aa3acd5b7a86ce55570e7d6db338bd6d83\",\n+      \"html\": \"https://github.com/canada-ca/welcome/blob/master/CONTRIBUTING.md\"\n+    }\n+  },\n+  {\n+    \"name\": \"LICENSE.md\",\n+    \"path\": \"LICENSE.md\",\n+    \"sha\": \"6fdf065b301b947e961324344cdd2d5360b6df0e\",\n+    \"size\": 403,\n+    \"url\": \"https://api.github.com/repos/canada-ca/welcome/contents/LICENSE.md?ref=master\",\n+    \"html_url\": \"https://github.com/canada-ca/welcome/blob/master/LICENSE.md\",\n+    \"git_url\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/6fdf065b301b947e961324344cdd2d5360b6df0e\",\n+    \"download_url\": \"https://raw.githubusercontent.com/canada-ca/welcome/master/LICENSE.md\",\n+    \"type\": \"file\",\n+    \"_links\": {\n+      \"self\": \"https://api.github.com/repos/canada-ca/welcome/contents/LICENSE.md?ref=master\",\n+      \"git\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/6fdf065b301b947e961324344cdd2d5360b6df0e\",\n+      \"html\": \"https://github.com/canada-ca/welcome/blob/master/LICENSE.md\"\n+    }\n+  },\n+  {\n+    \"name\": \"OrganizationMangagementPlan.md\",\n+    \"path\": \"OrganizationMangagementPlan.md\",\n+    \"sha\": \"1d4c8c39f7394b1883dbe118cf089b7eeff02d32\",\n+    \"size\": 2952,\n+    \"url\": \"https://api.github.com/repos/canada-ca/welcome/contents/OrganizationMangagementPlan.md?ref=master\",\n+    \"html_url\": \"https://github.com/canada-ca/welcome/blob/master/OrganizationMangagementPlan.md\",\n+    \"git_url\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/1d4c8c39f7394b1883dbe118cf089b7eeff02d32\",\n+    \"download_url\": \"https://raw.githubusercontent.com/canada-ca/welcome/master/OrganizationMangagementPlan.md\",\n+    \"type\": \"file\",\n+    \"_links\": {\n+      \"self\": \"https://api.github.com/repos/canada-ca/welcome/contents/OrganizationMangagementPlan.md?ref=master\",\n+      \"git\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/1d4c8c39f7394b1883dbe118cf089b7eeff02d32\",\n+      \"html\": \"https://github.com/canada-ca/welcome/blob/master/OrganizationMangagementPlan.md\"\n+    }\n+  },\n+  {\n+    \"name\": \"Organizations-Organisations.md\",\n+    \"path\": \"Organizations-Organisations.md\",\n+    \"sha\": \"e9cae4035517e5762ca0ce1e3d2d7f3db4b272d3\",\n+    \"size\": 2471,\n+    \"url\": \"https://api.github.com/repos/canada-ca/welcome/contents/Organizations-Organisations.md?ref=master\",\n+    \"html_url\": \"https://github.com/canada-ca/welcome/blob/master/Organizations-Organisations.md\",\n+    \"git_url\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/e9cae4035517e5762ca0ce1e3d2d7f3db4b272d3\",\n+    \"download_url\": \"https://raw.githubusercontent.com/canada-ca/welcome/master/Organizations-Organisations.md\",\n+    \"type\": \"file\",\n+    \"_links\": {\n+      \"self\": \"https://api.github.com/repos/canada-ca/welcome/contents/Organizations-Organisations.md?ref=master\",\n+      \"git\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/e9cae4035517e5762ca0ce1e3d2d7f3db4b272d3\",\n+      \"html\": \"https://github.com/canada-ca/welcome/blob/master/Organizations-Organisations.md\"\n+    }\n+  },\n+  {\n+    \"name\": \"README.md\",\n+    \"path\": \"README.md\",\n+    \"sha\": \"2c84f5b4f3b8ac9d75862beca2cb93c6975b5cf8\",\n+    \"size\": 2128,\n+    \"url\": \"https://api.github.com/repos/canada-ca/welcome/contents/README.md?ref=master\",\n+    \"html_url\": \"https://github.com/canada-ca/welcome/blob/master/README.md\",\n+    \"git_url\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/2c84f5b4f3b8ac9d75862beca2cb93c6975b5cf8\",\n+    \"download_url\": \"https://raw.githubusercontent.com/canada-ca/welcome/master/README.md\",\n+    \"type\": \"file\",\n+    \"_links\": {\n+      \"self\": \"https://api.github.com/repos/canada-ca/welcome/contents/README.md?ref=master\",\n+      \"git\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/2c84f5b4f3b8ac9d75862beca2cb93c6975b5cf8\",\n+      \"html\": \"https://github.com/canada-ca/welcome/blob/master/README.md\"\n+    }\n+  },\n+  {\n+    \"name\": \"SECURITY.md\",\n+    \"path\": \"SECURITY.md\",\n+    \"sha\": \"c95f608c7a5b02ce7de1d419bc9582d97a9e398f\",\n+    \"size\": 1088,\n+    \"url\": \"https://api.github.com/repos/canada-ca/welcome/contents/SECURITY.md?ref=master\",\n+    \"html_url\": \"https://github.com/canada-ca/welcome/blob/master/SECURITY.md\",\n+    \"git_url\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/c95f608c7a5b02ce7de1d419bc9582d97a9e398f\",\n+    \"download_url\": \"https://raw.githubusercontent.com/canada-ca/welcome/master/SECURITY.md\",\n+    \"type\": \"file\",\n+    \"_links\": {\n+      \"self\": \"https://api.github.com/repos/canada-ca/welcome/contents/SECURITY.md?ref=master\",\n+      \"git\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/c95f608c7a5b02ce7de1d419bc9582d97a9e398f\",\n+      \"html\": \"https://github.com/canada-ca/welcome/blob/master/SECURITY.md\"\n+    }\n+  },\n+  {\n+    \"name\": \"consultations\",\n+    \"path\": \"consultations\",\n+    \"sha\": \"ddd5bc19802c789af5f23869811398cba606f139\",\n+    \"size\": 0,\n+    \"url\": \"https://api.github.com/repos/canada-ca/welcome/contents/consultations?ref=master\",\n+    \"html_url\": \"https://github.com/canada-ca/welcome/tree/master/consultations\",\n+    \"git_url\": \"https://api.github.com/repos/canada-ca/welcome/git/trees/ddd5bc19802c789af5f23869811398cba606f139\",\n+    \"download_url\": null,\n+    \"type\": \"dir\",\n+    \"_links\": {\n+      \"self\": \"https://api.github.com/repos/canada-ca/welcome/contents/consultations?ref=master\",\n+      \"git\": \"https://api.github.com/repos/canada-ca/welcome/git/trees/ddd5bc19802c789af5f23869811398cba606f139\",\n+      \"html\": \"https://github.com/canada-ca/welcome/tree/master/consultations\"\n+    }\n+  }\n+]\n",
+              "additions": 114,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/workflows_contents.json",
+              "patch": "Index: workspace/workflows_contents.json\n===================================================================\n--- workspace/workflows_contents.json\t\n+++ workspace/workflows_contents.json\t\n@@ -0,0 +1,5 @@\n+{\n+  \"message\": \"Not Found\",\n+  \"documentation_url\": \"https://docs.github.com/rest/repos/contents#get-repository-content\",\n+  \"status\": \"404\"\n+}\n",
+              "additions": 5,
+              "deletions": 0,
+              "status": "added"
+            }
+          ]
+        }
+      },
+      "parts": [
+        {
+          "id": "prt_f5c37f705001sdxrGAbuh0ZRej",
+          "message_id": "msg_f5c37f700001ThpiaDiNarQdy0",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958599436,
+          "time_updated": 1783958599437,
+          "data": {
+            "type": "text",
+            "text": "You are Worker B. Your job is to gather content judgments about the GitHub repository `canada-ca/open-source-logiciel-libre` and write them to `/workspace/manual_open-source-logiciel-libre.json`.\n\nYou must determine the following fields, using ONLY the allowed values. If you cannot determine, write `Unknown`.\n\nFields:\n1. `bilingual`: Read the README (or at least the first few hundred lines). Does it contain meaningful content in both English and French? Look for French words/phrases, French section headers, or a clear French translation. Allowed: `Yes`/`No`/`Unknown`.\n2. `readme_clarity`: Read the README. Does it clearly explain what the project is, who it's for, and how to use it? `Poor`/`Fair`/`Good`/`Unknown`.\n3. `security_policy`: Check for `SECURITY.md` in root, `.github/`, and `docs/`. If not found, write `Missing`. If found, read it. If it contains real responsible disclosure instructions (contact info, how to report, PGP key, etc.), write `Present`. If it exists but is just a placeholder or links without real instructions, write `Incomplete`. Allowed: `Present`/`Incomplete`/`Missing`/`Unknown`.\n4. `issue_response_quality`: Look at the 5 most recently updated open issues (API `issues?state=open&sort=updated&direction=desc`, filter out PRs). For each, check if anyone other than the original reporter commented within the last 6 months (from 2026-07-13). If at least one issue has such a comment, write `Active`. If none, write `Stale`. If there are no open issues, write `No Issues`. Allowed: `Active`/`Stale`/`No Issues`/`Unknown`.\n5. `release_notes_quality`: Check the Releases page (API `releases` or HTML). If no releases, write `No Releases`. If releases exist, check the latest few. If the description actually explains what changed (e.g., bullet points, changelog), write `Detailed`. If it's just a version number or tag with no description, write `Version-only`. Allowed: `Detailed`/`Version-only`/`No Releases`/`Unknown`.\n\nImportant constraints:\n- Use ONLY the exact allowed values.\n- Never derive a column from another `Unknown` column.\n- Prefer public HTML page scraping over GitHub API where possible to avoid rate limits. If using API, add `sleep 1` between requests.\n- Write the results as a single JSON object to `/workspace/manual_open-source-logiciel-libre.json`.\n\nPlease return the final JSON content in your response as well."
+          }
+        }
+      ]
+    },
+    {
+      "id": "msg_f5c37fc29001My74KOWrDYOImr",
+      "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+      "time_created": 1783958600745,
+      "time_updated": 1783958657416,
+      "data": {
+        "parentID": "msg_f5c37f700001ThpiaDiNarQdy0",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "/workspace",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 4058,
+          "input": 3197,
+          "output": 861,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "modelID": "accounts/fireworks/models/kimi-k2p6",
+        "providerID": "openai",
+        "time": {
+          "created": 1783958600745,
+          "completed": 1783958657415
+        },
+        "finish": "tool-calls"
+      },
+      "parts": [
+        {
+          "id": "prt_f5c381def001nyWllLshEJ0TM3",
+          "message_id": "msg_f5c37fc29001My74KOWrDYOImr",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958609391,
+          "time_updated": 1783958609391,
+          "data": {
+            "snapshot": "19918bad6607334a1ca8c02946beba523c01f89a",
+            "type": "step-start"
+          }
+        },
+        {
+          "id": "prt_f5c381df00019q1wF4Da40Lx4s",
+          "message_id": "msg_f5c37fc29001My74KOWrDYOImr",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958609392,
+          "time_updated": 1783958619340,
+          "data": {
+            "type": "reasoning",
+            "text": "We need to gather content judgments about GitHub repository `canada-ca/open-source-logiciel-libre`. We need to write results to `/workspace/manual_open-source-logiciel-libre.json`.\n\nWe need to determine:\n\n1. `bilingual`: Read README (first few hundred lines). Does it contain meaningful content in both English and French? Look for French words/phrases, French section headers, or a clear French translation. Allowed: `Yes`/`No`/`Unknown`.\n\n2. `readme_clarity`: Read README. Does it clearly explain what the project is, who it's for, and how to use it? `Poor`/`Fair`/`Good`/`Unknown`.\n\n3. `security_policy`: Check for `SECURITY.md` in root, `.github/`, and `docs/`. If not found, write `Missing`. If found, read it. If it contains real responsible disclosure instructions (contact info, how to report, PGP key, etc.), write `Present`. If it exists but is just a placeholder or links without real instructions, write `Incomplete`. Allowed: `Present`/`Incomplete`/`Missing`/`Unknown`.\n\n4. `issue_response_quality`: Look at the 5 most recently updated open issues (API `issues?state=open&sort=updated&direction=desc`, filter out PRs). For each, check if anyone other than the original reporter commented within the last 6 months (from 2026-07-13). If at least one issue has such a comment, write `Active`. If none, write `Stale`. If there are no open issues, write `No Issues`. Allowed: `Active`/`Stale`/`No Issues`/`Unknown`.\n\n5. `release_notes_quality`: Check the Releases page (API `releases` or HTML). If no releases, write `No Releases`. If releases exist, check the latest few. If the description actually explains what changed (e.g., bullet points, changelog), write `Detailed`. If it's just a version number or tag with no description, write `Version-only`. Allowed: `Detailed`/`Version-only`/`No Releases`/`Unknown`.\n\nConstraints: Use ONLY exact allowed values. Never derive a column from another Unknown column. Prefer public HTML page scraping over GitHub API where possible to avoid rate limits. If using API, add sleep 1 between requests. Write results as a single JSON object to `/workspace/manual_open-source-logiciel-libre.json`.\n\nWe need to return the final JSON content in our response as well.\n\nWe need to be careful: We are Worker B, we need to execute ourselves using tools.\n\nWe can fetch the README via raw GitHub URL or via the webfetch tool. Let's fetch the repository's main page to get README, and also the security policy page.\n\nWe can also fetch the issues page via API or HTML. Let's use the GitHub API for issues and releases, but we might need to handle rate limits. We can also use the HTML page for releases. Let's see.\n\nBetter to use webfetch for the README HTML or raw? The raw README can be fetched at `https://raw.githubusercontent.com/canada-ca/open-source-logiciel-libre/master/README.md` or `main/README.md`. Let's first try the raw file.\n\nWe need to also check SECURITY.md in root, .github, docs. We can try to fetch raw files: `https://raw.githubusercontent.com/canada-ca/open-source-logiciel-libre/master/SECURITY.md`, etc.\n\nWe can also fetch the repository page HTML and parse. But raw is easier.\n\nLet's do it step by step.\n\nFirst, fetch README. Let's use webfetch on raw URL.",
+            "time": {
+              "start": 1783958609392,
+              "end": 1783958619339
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "rs_d3e9c8835b634b0598e45cbd368708c4",
+                "reasoningEncryptedContent": null
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c383e96001o1mHuD6eI6Fmnp",
+          "message_id": "msg_f5c37fc29001My74KOWrDYOImr",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958617751,
+          "time_updated": 1783958619813,
+          "data": {
+            "type": "tool",
+            "tool": "webfetch",
+            "callID": "webfetch_0",
+            "state": {
+              "status": "completed",
+              "input": {
+                "url": "https://raw.githubusercontent.com/canada-ca/open-source-logiciel-libre/master/README.md",
+                "format": "text"
+              },
+              "output": "([Fran\u00e7ais](#logiciels-libres))\n\n# Open Source Software\n\nTreasury Board of Canada Secretariat\u2019s **draft** standards to support the implementation of Treasury Board policy requirements related to open source use, contribution and creation.\n\nThe Government of Canada has been using Open Source Software as part of its technology ecosystem for years and is increasingly relying on them for its successful service delivery.\nAs part of its commitment to become a digital government, it has to also contribute back to external projects as well as release its own source code under Open Source Licences.\nIt is committed to doing so in a manner that is compatible with core administrative law principles such as transparency, accountability, legality and procedural fairness.\n\n## Other Information\n\nFor the purpose of the current drafts, the Standard template has been chosen to start the discussion. The final format may vary.\n\n## English Content\n\n* [OSS Standards](en/open-source-standards.md)\n\n## Translation\n\nDuring this drafting period, translation is being done manually and continuously by contributors as well as with the following tools and services:\n\n* [Termium Plus](http://www.btb.termiumplus.gc.ca/)\n* [Google Translate](https://translate.google.com/)\n* [Deepl Translator](https://www.deepl.com/translator)\n\nOfficial translation will be done once a first version is completed.\n\n## References\n\n* Canada\n  * Government of Canada: [Directive on Management of Information Technology (\u00a7C.2.3.8)](https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=15249#appC)\n  * Montr\u00e9al City (EN):\n    * [Policy concerning the use and development of Open Source Software and Hardware](https://github.com/VilledeMontreal/politique-libre/blob/master/Politique/PolitiqueDuLibre.md#english-version)\n    * [Directive on contributing to an Open Source Project](https://github.com/VilledeMontreal/politique-libre/blob/master/Directives/ContributionAProjetLibre.md#english-version)\n    * [Directive on Publication and Maintenance of an Open-Source Municipal Project](https://github.com/VilledeMontreal/politique-libre/blob/master/Directives/PublicationProjetVille.md#english-version)\n* France (EN): [DINSIC Open-source contribution policy](https://disic.github.io/politique-de-contribution-open-source/introduction.en)\n* United Kingdom Governement Digital Service (EN): [Making source code open and reusable](https://www.gov.uk/service-manual/technology/making-source-code-open-and-reusable)\n  * Government Digital Services (EN): [Guidelines](https://alphagov.github.io/)\n* United States of America (EN):\n  * [Federal Source Code Policy](https://web.archive.org/web/20200710190550/https://sourcecode.cio.gov/)\n  * [18F](https://web.archive.org/web/20250227233419/https://18f.gsa.gov/open-source-policy/)\n* Linux Foundation (EN): [Guides](https://www.linuxfoundation.org/resources/open-source-guides/)\n  * TODO Group (EN):\n    * [Guides](https://todogroup.org/guides/)\n    * [Open Source Policy Examples and Templates](https://github.com/todogroup/policies#open-source-policy-examples-and-templates)\n* Google (EN): [Open Source Policy](https://opensource.google.com/docs/)\n* SUSE (EN): [SUSE Open Source Policy](https://opensource.suse.com/suse-open-source-policy)\n* Zalando (EN): [OPEN SOURCE RULES AND STRATEGY](https://github.com/zalando/zalando-howto-open-source#open-source-rules-and-strategy)\n\n---\n\n# Logiciels libres\n\n**\u00c9bauche** des exigences et guides li\u00e9s \u00e0 l'utilisation, \u00e0 la contribution et la cr\u00e9ation des logiciels libres au Gouvernement du Canada.\n\nLe gouvernement du Canada utilise les logiciels libres dans le cadre de son \u00e9cosyst\u00e8me technologique depuis des ann\u00e9es et compte de plus en plus sur eux pour assurer le succ\u00e8s de ses services. Dans le cadre de son engagement \u00e0 devenir un gouvernement num\u00e9rique, elle doit \u00e9galement contribuer \u00e0 des projets externes et publier son propre code source sous licence Open Source. Elle s'engage \u00e0 le faire d'une mani\u00e8re compatible avec les principes fondamentaux du droit administratif tels que la transparence, la responsabilit\u00e9, la l\u00e9galit\u00e9 et l'\u00e9quit\u00e9 proc\u00e9durale.\n\nPour l'exercice d'\u00e9bauche, le format du Standard a \u00e9t\u00e9 utilis\u00e9 pour commencer la discussion. Le format final pourrait changer.\n\n## Contenu fran\u00e7ais\n\n* [Guides](fr/guides)\n  * [Utilisation de logiciels libres](fr/guides/utilisation-logiciels-libres.md)\n  * [Contribution aux logiciels libres](fr/guides/contribution-\u00e0-des-logiciels-libres.md)\n  * [Publication de code source libre](fr/guides/publication-code-source-ouvert.md)\n\n## Traduction\n\nDurant la p\u00e9riode d'\u00e9bauche, la traduction du contenu est faite de fa\u00e7on manuelle et continuelle par les contributrices et les contributeurs ainsi qu'avec l'aide des outils et services suivants:\n\n* [Termium Plus](http://www.btb.termiumplus.gc.ca/)\n* [Google Translate](https://translate.google.com/)\n* [Deepl Translator](https://www.deepl.com/translator)\n\nLa traduction officielle sera effectu\u00e9e une fois la premi\u00e8re version termin\u00e9e.\n\n## R\u00e9f\u00e9rences\n\n* Canada\n  * Gouvernement du Canada: [Directive sur la gestion des technologies de l'information (\u00a7C.2.3.8)](https://www.tbs-sct.gc.ca/pol/doc-fra.aspx?id=15249#appC)\n  * Ville de Montr\u00e9al (FR):\n    * [POLITIQUE SUR L\u2019UTILISATION ET LE D\u00c9VELOPPEMENT DES LOGICIELS ET DU MAT\u00c9RIEL LIBRES](https://github.com/VilledeMontreal/politique-libre/blob/master/Politique/PolitiqueDuLibre.md)\n    * [Directive sur la publication et le maintien d\u2019un projet Ville en libre](https://github.com/VilledeMontreal/politique-libre/tree/master/Directives)\n* France (FR): [Politique de contribution open-source de la DINSIC](https://disic.github.io/politique-de-contribution-open-source)\n* Gouvernement de la Grande-Bretagne (EN): [Making source code open and reusable](https://www.gov.uk/service-manual/technology/making-source-code-open-and-reusable)\n  * Services num\u00e9riques gouvernementaux (EN): [Guidelines](https://alphagov.github.io/)\n* Gouvernement f\u00e9d\u00e9ral des \u00c9tats-Unis d'Am\u00e9rique (EN):\n  * [Federal Source Code Policy](https://web.archive.org/web/20200710190550/https://sourcecode.cio.gov/)\n  * [18F](https://web.archive.org/web/20250227233419/https://18f.gsa.gov/open-source-policy/)\n* Fondation Linux (EN): [Guides](https://www.linuxfoundation.org/resources/open-source-guides/)\n  * Groupe TODO (EN):\n    * [Guides](https://todogroup.org/guides/)\n    * [Exemples et canevas de politique de logiciels libres](https://github.com/todogroup/policies#open-source-policy-examples-and-templates)\n* Google (EN): [Politiques de logiciels libres](https://opensource.google.com/docs/)\n* SUSE (EN): [Politique de logiciels libres SUSE](https://opensource.suse.com/suse-open-source-policy)\n* Zalando (EN): [R\u00e8gles et strat\u00e9gie pour les logiciels libres](https://github.com/zalando/zalando-howto-open-source#open-source-rules-and-strategy)\n",
+              "metadata": {
+                "truncated": false
+              },
+              "title": "https://raw.githubusercontent.com/canada-ca/open-source-logiciel-libre/master/README.md (text/plain; charset=utf-8)",
+              "time": {
+                "start": 1783958619345,
+                "end": 1783958619812
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_72b680b910b34348be900206924330ee"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c383f86001pe1PTdAjs3pcmU",
+          "message_id": "msg_f5c37fc29001My74KOWrDYOImr",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958617990,
+          "time_updated": 1783958619817,
+          "data": {
+            "type": "tool",
+            "tool": "webfetch",
+            "callID": "webfetch_1",
+            "state": {
+              "status": "error",
+              "input": {
+                "url": "https://raw.githubusercontent.com/canada-ca/open-source-logiciel-libre/main/README.md",
+                "format": "text"
+              },
+              "error": "StatusCode: non 2xx status code (404 GET https://raw.githubusercontent.com/canada-ca/open-source-logiciel-libre/main/README.md)",
+              "time": {
+                "start": 1783958619350,
+                "end": 1783958619816
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_b3d17f10de824a1eb3de911630a90923"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c3843f1001vziCJfvSF8Hetj",
+          "message_id": "msg_f5c37fc29001My74KOWrDYOImr",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958619121,
+          "time_updated": 1783958620172,
+          "data": {
+            "type": "tool",
+            "tool": "webfetch",
+            "callID": "webfetch_2",
+            "state": {
+              "status": "completed",
+              "input": {
+                "url": "https://github.com/canada-ca/open-source-logiciel-libre",
+                "format": "markdown"
+              },
+              "output": "                       GitHub - canada-ca/open-source-logiciel-libre: Open Source Software Requirements and Guidance (Draft) - Exigences et guides li\u00e9s aux logiciels libres (\u00c9bauche) \u00b7 GitHub                                             \n\n[Skip to content](#start-of-content)   \n\n## Navigation Menu\n\nToggle navigation\n\n[](/)\n\n[Sign in](/login?return_to=https%3A%2F%2Fgithub.com%2Fcanada-ca%2Fopen-source-logiciel-libre)\n\nAppearance settings\n\n  \n\n-   Platform\n    \n    -   AI CODE CREATION\n        \n        -   [\n            \n            GitHub CopilotWrite better code with AI\n            \n            ](https://github.com/features/copilot)\n        -   [\n            \n            GitHub Copilot appDirect agents from issue to merge\n            \n            ](https://github.com/features/ai/github-app)\n        -   [\n            \n            MCP RegistryNewIntegrate external tools\n            \n            ](https://github.com/mcp)\n        \n    -   DEVELOPER WORKFLOWS\n        \n        -   [\n            \n            ActionsAutomate any workflow\n            \n            ](https://github.com/features/actions)\n        -   [\n            \n            CodespacesInstant dev environments\n            \n            ](https://github.com/features/codespaces)\n        -   [\n            \n            IssuesPlan and track work\n            \n            ](https://github.com/features/issues)\n        -   [\n            \n            Code ReviewManage code changes\n            \n            ](https://github.com/features/code-review)\n        \n    -   APPLICATION SECURITY\n        \n        -   [\n            \n            GitHub Advanced SecurityFind and fix vulnerabilities\n            \n            ](https://github.com/security/advanced-security)\n        -   [\n            \n            Code securitySecure your code as you build\n            \n            ](https://github.com/security/advanced-security/code-security)\n        -   [\n            \n            Secret protectionStop leaks before they start\n            \n            ](https://github.com/security/advanced-security/secret-protection)\n        \n    -   EXPLORE\n        \n        -   [Why GitHub](https://github.com/why-github)\n        -   [Documentation](https://docs.github.com)\n        -   [Blog](https://github.blog)\n        -   [Changelog](https://github.blog/changelog)\n        -   [Marketplace](https://github.com/marketplace)\n        \n    \n    [View all features](https://github.com/features)\n    \n-   Solutions\n    \n    -   BY COMPANY SIZE\n        \n        -   [Enterprises](https://github.com/enterprise)\n        -   [Small and medium teams](https://github.com/team)\n        -   [Startups](https://github.com/enterprise/startups)\n        -   [Nonprofits](https://github.com/solutions/industry/nonprofits)\n        \n    -   BY USE CASE\n        \n        -   [App Modernization](https://github.com/solutions/use-case/app-modernization)\n        -   [DevSecOps](https://github.com/solutions/use-case/devsecops)\n        -   [DevOps](https://github.com/solutions/use-case/devops)\n        -   [CI/CD](https://github.com/solutions/use-case/ci-cd)\n        -   [View all use cases](https://github.com/solutions/use-case)\n        \n    -   BY INDUSTRY\n        \n        -   [Healthcare](https://github.com/solutions/industry/healthcare)\n        -   [Financial services](https://github.com/solutions/industry/financial-services)\n        -   [Manufacturing](https://github.com/solutions/industry/manufacturing)\n        -   [Government](https://github.com/solutions/industry/government)\n        -   [View all industries](https://github.com/solutions/industry)\n        \n    \n    [View all solutions](https://github.com/solutions)\n    \n-   Resources\n    \n    -   EXPLORE BY TOPIC\n        \n        -   [AI](https://github.com/resources/articles?topic=ai)\n        -   [Software Development](https://github.com/resources/articles?topic=software-development)\n        -   [DevOps](https://github.com/resources/articles?topic=devops)\n        -   [Security](https://github.com/resources/articles?topic=security)\n        -   [View all topics](https://github.com/resources/articles)\n        \n    -   EXPLORE BY TYPE\n        \n        -   [Customer stories](https://github.com/customer-stories)\n        -   [Events & webinars](https://github.com/resources/events)\n        -   [Ebooks & reports](https://github.com/resources/whitepapers)\n        -   [Business insights](https://github.com/solutions/executive-insights)\n        -   [GitHub Skills](https://skills.github.com)\n        \n    -   SUPPORT & SERVICES\n        \n        -   [Documentation](https://docs.github.com)\n        -   [Customer support](https://support.github.com)\n        -   [Community forum](https://github.com/orgs/community/discussions)\n        -   [Trust center](https://github.com/trust-center)\n        -   [Partners](https://github.com/partners)\n        \n    \n    [View all resources](https://github.com/resources)\n    \n-   Open Source\n    \n    -   COMMUNITY\n        \n        -   [\n            \n            GitHub SponsorsFund open source developers\n            \n            ](https://github.com/open-source/sponsors)\n        \n    -   PROGRAMS\n        \n        -   [Security Lab](https://securitylab.github.com)\n        -   [Maintainer Community](https://maintainers.github.com)\n        -   [Accelerator](https://github.com/open-source/accelerator)\n        -   [GitHub Stars](https://stars.github.com)\n        -   [Archive Program](https://archiveprogram.github.com)\n        \n    -   REPOSITORIES\n        \n        -   [Topics](https://github.com/topics)\n        -   [Trending](https://github.com/trending)\n        -   [Collections](https://github.com/collections)\n        \n    \n-   Enterprise\n    \n    -   ENTERPRISE SOLUTIONS\n        \n        -   [\n            \n            Enterprise platformAI-powered developer platform\n            \n            ](https://github.com/enterprise)\n        \n    -   AVAILABLE ADD-ONS\n        \n        -   [\n            \n            GitHub Advanced SecurityEnterprise-grade security features\n            \n            ](https://github.com/security/advanced-security)\n        -   [\n            \n            Copilot for BusinessEnterprise-grade AI features\n            \n            ](https://github.com/features/copilot/copilot-business)\n        -   [\n            \n            Premium SupportEnterprise-grade 24/7 support\n            \n            ](https://github.com/enterprise/premium-support)\n        \n    \n-   [Pricing](https://github.com/pricing)\n\nSearch or jump to...\n\n# Search code, repositories, users, issues, pull requests...\n\nSearch\n\nClear\n\n[Search syntax tips](https://docs.github.com/search-github/github-code-search/understanding-github-code-search-syntax)\n\n# Provide feedback\n\nWe read every piece of feedback, and take your input very seriously.\n\n Include my email address so I can be contacted\n\nCancel Submit feedback\n\n# Saved searches\n\n## Use saved searches to filter your results more quickly\n\nName  \n\nQuery \n\nTo see all available qualifiers, see our [documentation](https://docs.github.com/search-github/github-code-search/understanding-github-code-search-syntax).\n\nCancel Create saved search\n\n[Sign in](/login?return_to=https%3A%2F%2Fgithub.com%2Fcanada-ca%2Fopen-source-logiciel-libre)\n\n[Sign up](/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E&source=header-repo&source_repo=canada-ca%2Fopen-source-logiciel-libre)\n\nAppearance settings\n\nResetting focus\n\nYou signed in with another tab or window. Reload to refresh your session. You signed out in another tab or window. Reload to refresh your session. You switched accounts on another tab or window. Reload to refresh your session. Dismiss alert\n\n### Uh oh!\n\nThere was an error while loading. Please reload this page.\n\n[canada-ca](/canada-ca) / **[open-source-logiciel-libre](/canada-ca/open-source-logiciel-libre)** Public\n\n-   [Notifications](/login?return_to=%2Fcanada-ca%2Fopen-source-logiciel-libre) You must be signed in to change notification settings\n-   [Fork 18](/login?return_to=%2Fcanada-ca%2Fopen-source-logiciel-libre)\n-   [Star 43](/login?return_to=%2Fcanada-ca%2Fopen-source-logiciel-libre)\n    \n\n-   [Code](/canada-ca/open-source-logiciel-libre)\n-   [Issues 27](/canada-ca/open-source-logiciel-libre/issues)\n-   [Pull requests 8](/canada-ca/open-source-logiciel-libre/pulls)\n-   [Actions](/canada-ca/open-source-logiciel-libre/actions)\n-   [Security and quality 0](/canada-ca/open-source-logiciel-libre/security)\n-   [Insights](/canada-ca/open-source-logiciel-libre/pulse)\n\nAdditional navigation options\n\n-   [Code](/canada-ca/open-source-logiciel-libre)\n-   [Issues](/canada-ca/open-source-logiciel-libre/issues)\n-   [Pull requests](/canada-ca/open-source-logiciel-libre/pulls)\n-   [Actions](/canada-ca/open-source-logiciel-libre/actions)\n-   [Security and quality](/canada-ca/open-source-logiciel-libre/security)\n-   [Insights](/canada-ca/open-source-logiciel-libre/pulse)\n\n [](/canada-ca/open-source-logiciel-libre)\n\n# canada-ca/open-source-logiciel-libre\n\n\u00a0master\n\n[Branches](/canada-ca/open-source-logiciel-libre/branches)[Tags](/canada-ca/open-source-logiciel-libre/tags)\n\n[](/canada-ca/open-source-logiciel-libre/branches)[](/canada-ca/open-source-logiciel-libre/tags)\n\nGo to file\n\nCode\n\nOpen more actions menu\n\n## Folders and files\n\nName\n\nName\n\nLast commit message\n\nLast commit date\n\n## Latest commit\n\n## History\n\n[427 Commits](/canada-ca/open-source-logiciel-libre/commits/master/)\n\n[](/canada-ca/open-source-logiciel-libre/commits/master/)427 Commits\n\n[.github](/canada-ca/open-source-logiciel-libre/tree/master/.github \".github\")\n\n[.github](/canada-ca/open-source-logiciel-libre/tree/master/.github \".github\")\n\n[\\_data/i18n](/canada-ca/open-source-logiciel-libre/tree/master/_data/i18n \"This path skips through empty directories\")\n\n[\\_data/i18n](/canada-ca/open-source-logiciel-libre/tree/master/_data/i18n \"This path skips through empty directories\")\n\n[\\_includes](/canada-ca/open-source-logiciel-libre/tree/master/_includes \"_includes\")\n\n[\\_includes](/canada-ca/open-source-logiciel-libre/tree/master/_includes \"_includes\")\n\n[\\_layouts](/canada-ca/open-source-logiciel-libre/tree/master/_layouts \"_layouts\")\n\n[\\_layouts](/canada-ca/open-source-logiciel-libre/tree/master/_layouts \"_layouts\")\n\n[assets](/canada-ca/open-source-logiciel-libre/tree/master/assets \"assets\")\n\n[assets](/canada-ca/open-source-logiciel-libre/tree/master/assets \"assets\")\n\n[en](/canada-ca/open-source-logiciel-libre/tree/master/en \"en\")\n\n[en](/canada-ca/open-source-logiciel-libre/tree/master/en \"en\")\n\n[fr](/canada-ca/open-source-logiciel-libre/tree/master/fr \"fr\")\n\n[fr](/canada-ca/open-source-logiciel-libre/tree/master/fr \"fr\")\n\n[.gitignore](/canada-ca/open-source-logiciel-libre/blob/master/.gitignore \".gitignore\")\n\n[.gitignore](/canada-ca/open-source-logiciel-libre/blob/master/.gitignore \".gitignore\")\n\n[.markdown-link-check.json](/canada-ca/open-source-logiciel-libre/blob/master/.markdown-link-check.json \".markdown-link-check.json\")\n\n[.markdown-link-check.json](/canada-ca/open-source-logiciel-libre/blob/master/.markdown-link-check.json \".markdown-link-check.json\")\n\n[.markdownlint.json](/canada-ca/open-source-logiciel-libre/blob/master/.markdownlint.json \".markdownlint.json\")\n\n[.markdownlint.json](/canada-ca/open-source-logiciel-libre/blob/master/.markdownlint.json \".markdownlint.json\")\n\n[404.html](/canada-ca/open-source-logiciel-libre/blob/master/404.html \"404.html\")\n\n[404.html](/canada-ca/open-source-logiciel-libre/blob/master/404.html \"404.html\")\n\n[CONTRIBUTING.md](/canada-ca/open-source-logiciel-libre/blob/master/CONTRIBUTING.md \"CONTRIBUTING.md\")\n\n[CONTRIBUTING.md](/canada-ca/open-source-logiciel-libre/blob/master/CONTRIBUTING.md \"CONTRIBUTING.md\")\n\n[Gemfile](/canada-ca/open-source-logiciel-libre/blob/master/Gemfile \"Gemfile\")\n\n[Gemfile](/canada-ca/open-source-logiciel-libre/blob/master/Gemfile \"Gemfile\")\n\n[LICENSE.md](/canada-ca/open-source-logiciel-libre/blob/master/LICENSE.md \"LICENSE.md\")\n\n[LICENSE.md](/canada-ca/open-source-logiciel-libre/blob/master/LICENSE.md \"LICENSE.md\")\n\n[README.md](/canada-ca/open-source-logiciel-libre/blob/master/README.md \"README.md\")\n\n[README.md](/canada-ca/open-source-logiciel-libre/blob/master/README.md \"README.md\")\n\n[\\_config.yml](/canada-ca/open-source-logiciel-libre/blob/master/_config.yml \"_config.yml\")\n\n[\\_config.yml](/canada-ca/open-source-logiciel-libre/blob/master/_config.yml \"_config.yml\")\n\n[cspell.json](/canada-ca/open-source-logiciel-libre/blob/master/cspell.json \"cspell.json\")\n\n[cspell.json](/canada-ca/open-source-logiciel-libre/blob/master/cspell.json \"cspell.json\")\n\n[index.html](/canada-ca/open-source-logiciel-libre/blob/master/index.html \"index.html\")\n\n[index.html](/canada-ca/open-source-logiciel-libre/blob/master/index.html \"index.html\")\n\n[package-lock.json](/canada-ca/open-source-logiciel-libre/blob/master/package-lock.json \"package-lock.json\")\n\n[package-lock.json](/canada-ca/open-source-logiciel-libre/blob/master/package-lock.json \"package-lock.json\")\n\n[package.json](/canada-ca/open-source-logiciel-libre/blob/master/package.json \"package.json\")\n\n[package.json](/canada-ca/open-source-logiciel-libre/blob/master/package.json \"package.json\")\n\nView all files\n\n## Repository files navigation\n\n-   [README](#)\n-   [Contributing](#)\n-   [License](#)\n\nMore items\n\n([Fran\u00e7ais](#logiciels-libres))\n\n# Open Source Software\n\n[](#open-source-software)\n\nTreasury Board of Canada Secretariat\u2019s **draft** standards to support the implementation of Treasury Board policy requirements related to open source use, contribution and creation.\n\nThe Government of Canada has been using Open Source Software as part of its technology ecosystem for years and is increasingly relying on them for its successful service delivery. As part of its commitment to become a digital government, it has to also contribute back to external projects as well as release its own source code under Open Source Licences. It is committed to doing so in a manner that is compatible with core administrative law principles such as transparency, accountability, legality and procedural fairness.\n\n## Other Information\n\n[](#other-information)\n\nFor the purpose of the current drafts, the Standard template has been chosen to start the discussion. The final format may vary.\n\n## English Content\n\n[](#english-content)\n\n-   [OSS Standards](/canada-ca/open-source-logiciel-libre/blob/master/en/open-source-standards.md)\n\n## Translation\n\n[](#translation)\n\nDuring this drafting period, translation is being done manually and continuously by contributors as well as with the following tools and services:\n\n-   [Termium Plus](http://www.btb.termiumplus.gc.ca/)\n-   [Google Translate](https://translate.google.com/)\n-   [Deepl Translator](https://www.deepl.com/translator)\n\nOfficial translation will be done once a first version is completed.\n\n## References\n\n[](#references)\n\n-   Canada\n    -   Government of Canada: [Directive on Management of Information Technology (\u00a7C.2.3.8)](https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=15249#appC)\n    -   Montr\u00e9al City (EN):\n        -   [Policy concerning the use and development of Open Source Software and Hardware](https://github.com/VilledeMontreal/politique-libre/blob/master/Politique/PolitiqueDuLibre.md#english-version)\n        -   [Directive on contributing to an Open Source Project](https://github.com/VilledeMontreal/politique-libre/blob/master/Directives/ContributionAProjetLibre.md#english-version)\n        -   [Directive on Publication and Maintenance of an Open-Source Municipal Project](https://github.com/VilledeMontreal/politique-libre/blob/master/Directives/PublicationProjetVille.md#english-version)\n-   France (EN): [DINSIC Open-source contribution policy](https://disic.github.io/politique-de-contribution-open-source/introduction.en)\n-   United Kingdom Governement Digital Service (EN): [Making source code open and reusable](https://www.gov.uk/service-manual/technology/making-source-code-open-and-reusable)\n    -   Government Digital Services (EN): [Guidelines](https://alphagov.github.io/)\n-   United States of America (EN):\n    -   [Federal Source Code Policy](https://web.archive.org/web/20200710190550/https://sourcecode.cio.gov/)\n    -   [18F](https://web.archive.org/web/20250227233419/https://18f.gsa.gov/open-source-policy/)\n-   Linux Foundation (EN): [Guides](https://www.linuxfoundation.org/resources/open-source-guides/)\n    -   TODO Group (EN):\n        -   [Guides](https://todogroup.org/guides/)\n        -   [Open Source Policy Examples and Templates](https://github.com/todogroup/policies#open-source-policy-examples-and-templates)\n-   Google (EN): [Open Source Policy](https://opensource.google.com/docs/)\n-   SUSE (EN): [SUSE Open Source Policy](https://opensource.suse.com/suse-open-source-policy)\n-   Zalando (EN): [OPEN SOURCE RULES AND STRATEGY](https://github.com/zalando/zalando-howto-open-source#open-source-rules-and-strategy)\n\n---\n\n# Logiciels libres\n\n[](#logiciels-libres)\n\n**\u00c9bauche** des exigences et guides li\u00e9s \u00e0 l'utilisation, \u00e0 la contribution et la cr\u00e9ation des logiciels libres au Gouvernement du Canada.\n\nLe gouvernement du Canada utilise les logiciels libres dans le cadre de son \u00e9cosyst\u00e8me technologique depuis des ann\u00e9es et compte de plus en plus sur eux pour assurer le succ\u00e8s de ses services. Dans le cadre de son engagement \u00e0 devenir un gouvernement num\u00e9rique, elle doit \u00e9galement contribuer \u00e0 des projets externes et publier son propre code source sous licence Open Source. Elle s'engage \u00e0 le faire d'une mani\u00e8re compatible avec les principes fondamentaux du droit administratif tels que la transparence, la responsabilit\u00e9, la l\u00e9galit\u00e9 et l'\u00e9quit\u00e9 proc\u00e9durale.\n\nPour l'exercice d'\u00e9bauche, le format du Standard a \u00e9t\u00e9 utilis\u00e9 pour commencer la discussion. Le format final pourrait changer.\n\n## Contenu fran\u00e7ais\n\n[](#contenu-fran\u00e7ais)\n\n-   [Guides](/canada-ca/open-source-logiciel-libre/blob/master/fr/guides)\n    -   [Utilisation de logiciels libres](/canada-ca/open-source-logiciel-libre/blob/master/fr/guides/utilisation-logiciels-libres.md)\n    -   [Contribution aux logiciels libres](/canada-ca/open-source-logiciel-libre/blob/master/fr/guides/contribution-%C3%A0-des-logiciels-libres.md)\n    -   [Publication de code source libre](/canada-ca/open-source-logiciel-libre/blob/master/fr/guides/publication-code-source-ouvert.md)\n\n## Traduction\n\n[](#traduction)\n\nDurant la p\u00e9riode d'\u00e9bauche, la traduction du contenu est faite de fa\u00e7on manuelle et continuelle par les contributrices et les contributeurs ainsi qu'avec l'aide des outils et services suivants:\n\n-   [Termium Plus](http://www.btb.termiumplus.gc.ca/)\n-   [Google Translate](https://translate.google.com/)\n-   [Deepl Translator](https://www.deepl.com/translator)\n\nLa traduction officielle sera effectu\u00e9e une fois la premi\u00e8re version termin\u00e9e.\n\n## R\u00e9f\u00e9rences\n\n[](#r\u00e9f\u00e9rences)\n\n-   Canada\n    -   Gouvernement du Canada: [Directive sur la gestion des technologies de l'information (\u00a7C.2.3.8)](https://www.tbs-sct.gc.ca/pol/doc-fra.aspx?id=15249#appC)\n    -   Ville de Montr\u00e9al (FR):\n        -   [POLITIQUE SUR L\u2019UTILISATION ET LE D\u00c9VELOPPEMENT DES LOGICIELS ET DU MAT\u00c9RIEL LIBRES](https://github.com/VilledeMontreal/politique-libre/blob/master/Politique/PolitiqueDuLibre.md)\n        -   [Directive sur la publication et le maintien d\u2019un projet Ville en libre](https://github.com/VilledeMontreal/politique-libre/tree/master/Directives)\n-   France (FR): [Politique de contribution open-source de la DINSIC](https://disic.github.io/politique-de-contribution-open-source)\n-   Gouvernement de la Grande-Bretagne (EN): [Making source code open and reusable](https://www.gov.uk/service-manual/technology/making-source-code-open-and-reusable)\n    -   Services num\u00e9riques gouvernementaux (EN): [Guidelines](https://alphagov.github.io/)\n-   Gouvernement f\u00e9d\u00e9ral des \u00c9tats-Unis d'Am\u00e9rique (EN):\n    -   [Federal Source Code Policy](https://web.archive.org/web/20200710190550/https://sourcecode.cio.gov/)\n    -   [18F](https://web.archive.org/web/20250227233419/https://18f.gsa.gov/open-source-policy/)\n-   Fondation Linux (EN): [Guides](https://www.linuxfoundation.org/resources/open-source-guides/)\n    -   Groupe TODO (EN):\n        -   [Guides](https://todogroup.org/guides/)\n        -   [Exemples et canevas de politique de logiciels libres](https://github.com/todogroup/policies#open-source-policy-examples-and-templates)\n-   Google (EN): [Politiques de logiciels libres](https://opensource.google.com/docs/)\n-   SUSE (EN): [Politique de logiciels libres SUSE](https://opensource.suse.com/suse-open-source-policy)\n-   Zalando (EN): [R\u00e8gles et strat\u00e9gie pour les logiciels libres](https://github.com/zalando/zalando-howto-open-source#open-source-rules-and-strategy)\n\n## About\n\nOpen Source Software Requirements and Guidance (Draft) - Exigences et guides li\u00e9s aux logiciels libres (\u00c9bauche)\n\n[canada-ca.github.io/open-source-logiciel-libre/](https://canada-ca.github.io/open-source-logiciel-libre/ \"https://canada-ca.github.io/open-source-logiciel-libre/\")\n\n### Topics\n\n[government](/topics/government \"Topic: government\") [policy](/topics/policy \"Topic: policy\") [policy-as-code](/topics/policy-as-code \"Topic: policy-as-code\")\n\n### Resources\n\n[Readme](#readme-ov-file)\n\n### License\n\n[View license](#License-1-ov-file)\n\n### Contributing\n\n[Contributing](#contributing-ov-file)\n\n### Uh oh!\n\nThere was an error while loading. Please reload this page.\n\n[Activity](/canada-ca/open-source-logiciel-libre/activity)\n\n[Custom properties](/canada-ca/open-source-logiciel-libre/custom-properties)\n\n### Stars\n\n**43** stars\n\n### Watchers\n\n**11** watching\n\n### Forks\n\n[**18** forks](/canada-ca/open-source-logiciel-libre/forks)\n\n[Report repository](/contact/report-content?content_url=https%3A%2F%2Fgithub.com%2Fcanada-ca%2Fopen-source-logiciel-libre&report=canada-ca+%28user%29)\n\n## [Releases](/canada-ca/open-source-logiciel-libre/releases)\n\nNo releases published\n\n## [Packages 0](/orgs/canada-ca/packages?repo_name=open-source-logiciel-libre)\n\n### Uh oh!\n\nThere was an error while loading. Please reload this page.\n\n### Uh oh!\n\nThere was an error while loading. Please reload this page.\n\n## [Contributors](/canada-ca/open-source-logiciel-libre/graphs/contributors)\n\n### Uh oh!\n\nThere was an error while loading. Please reload this page.\n\n## Languages\n\n-   [HTML 99.0%](/canada-ca/open-source-logiciel-libre/search?l=html)\n-   Other 1.0%\n\n## Footer\n\n[](https://github.com)\u00a9 2026 GitHub,\u00a0Inc.\n\n### Footer navigation\n\n-   [Terms](https://docs.github.com/site-policy/github-terms/github-terms-of-service)\n-   [Privacy](https://docs.github.com/site-policy/privacy-policies/github-privacy-statement)\n-   [Security](https://github.com/security)\n-   [Status](https://www.githubstatus.com/)\n-   [Community](https://github.community/)\n-   [Docs](https://docs.github.com/)\n-   [Contact](https://support.github.com?tags=dotcom-footer)\n-   Manage cookies\n-   Do not share my personal information\n\nYou can\u2019t perform that action at this time.",
+              "metadata": {
+                "truncated": false
+              },
+              "title": "https://github.com/canada-ca/open-source-logiciel-libre (text/html; charset=utf-8)",
+              "time": {
+                "start": 1783958619354,
+                "end": 1783958620168
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_794207b7e2a2480f9d630f4530dd21b5"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c38a804001XxrGcDoMP5bCKk",
+          "message_id": "msg_f5c37fc29001My74KOWrDYOImr",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958644741,
+          "time_updated": 1783958644742,
+          "data": {
+            "reason": "tool-calls",
+            "snapshot": "56c03aa325c8090b267620d1edac46c988e52b2b",
+            "type": "step-finish",
+            "tokens": {
+              "total": 4058,
+              "input": 3197,
+              "output": 861,
+              "reasoning": 0,
+              "cache": {
+                "write": 0,
+                "read": 0
+              }
+            },
+            "cost": 0
+          }
+        },
+        {
+          "id": "prt_f5c38d981001RR2By84AoVY601",
+          "message_id": "msg_f5c37fc29001My74KOWrDYOImr",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958657409,
+          "time_updated": 1783958657411,
+          "data": {
+            "type": "patch",
+            "hash": "19918bad6607334a1ca8c02946beba523c01f89a",
+            "files": [
+              "/workspace/actions_runs.json",
+              "/workspace/commits_main.json",
+              "/workspace/commits_master.json",
+              "/workspace/github_contents.json",
+              "/workspace/manual_Libraries-bibliotheque.json",
+              "/workspace/open_issues.json",
+              "/workspace/repo_info.json",
+              "/workspace/root_contents.json",
+              "/workspace/workflows_contents.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "msg_f5c38d999001rLgYVW8S4oKBoW",
+      "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+      "time_created": 1783958657433,
+      "time_updated": 1783958687551,
+      "data": {
+        "parentID": "msg_f5c37f700001ThpiaDiNarQdy0",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "/workspace",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 11049,
+          "input": 7490,
+          "output": 363,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 3196
+          }
+        },
+        "modelID": "accounts/fireworks/models/kimi-k2p6",
+        "providerID": "openai",
+        "time": {
+          "created": 1783958657433,
+          "completed": 1783958687550
+        },
+        "finish": "tool-calls"
+      },
+      "parts": [
+        {
+          "id": "prt_f5c38dda8001G5jKOf1O3RL0mi",
+          "message_id": "msg_f5c38d999001rLgYVW8S4oKBoW",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958658472,
+          "time_updated": 1783958658495,
+          "data": {
+            "snapshot": "33d89c6b9c358511505a688d46c0b6a4be23d413",
+            "type": "step-start"
+          }
+        },
+        {
+          "id": "prt_f5c38ed5e0013p5CQgwe5NtsKk",
+          "message_id": "msg_f5c38d999001rLgYVW8S4oKBoW",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958662494,
+          "time_updated": 1783958667062,
+          "data": {
+            "type": "reasoning",
+            "text": "The README fetch from raw master succeeded. The HTML page also succeeded. I can determine:\n1. bilingual: README clearly contains both English and French sections with meaningful content (French words/phrases, headers, links). So Yes.\n2. readme_clarity: The README explains what the project is (draft standards for open source use/contribution/creation by Treasury Board of Canada Secretariat), who it's for (Government of Canada), and points to content files (en/open-source-standards.md, fr/guides). It's fairly clear though concise. I'd say Good.\n3. security_policy: Need to check SECURITY.md in root, .github/, docs/. Let's check.\n4. issue_response_quality: Need to check open issues. The page says 27 issues. Need to fetch the API or HTML page for issues. Let's use API with sleep or HTML page.\n5. release_notes_quality: The HTML page says \"No releases published\". So No Releases.\n\nNow let's fetch security files and issues. I'll do multiple parallel fetches.",
+            "time": {
+              "start": 1783958662494,
+              "end": 1783958667055
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "rs_a85ab4d694db4570950ad5aeb1f0d576",
+                "reasoningEncryptedContent": null
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c38f86c001wmP9vUAjSTbJ4L",
+          "message_id": "msg_f5c38d999001rLgYVW8S4oKBoW",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958665324,
+          "time_updated": 1783958667549,
+          "data": {
+            "type": "tool",
+            "tool": "webfetch",
+            "callID": "webfetch_3",
+            "state": {
+              "status": "error",
+              "input": {
+                "url": "https://raw.githubusercontent.com/canada-ca/open-source-logiciel-libre/master/SECURITY.md",
+                "format": "text"
+              },
+              "error": "StatusCode: non 2xx status code (404 GET https://raw.githubusercontent.com/canada-ca/open-source-logiciel-libre/master/SECURITY.md)",
+              "time": {
+                "start": 1783958667084,
+                "end": 1783958667546
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_6dbba627810144208ad8c50b90ebf710"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c38fa2b001A3rqBA71sfmfJg",
+          "message_id": "msg_f5c38d999001rLgYVW8S4oKBoW",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958665772,
+          "time_updated": 1783958667560,
+          "data": {
+            "type": "tool",
+            "tool": "webfetch",
+            "callID": "webfetch_4",
+            "state": {
+              "status": "error",
+              "input": {
+                "url": "https://raw.githubusercontent.com/canada-ca/open-source-logiciel-libre/master/.github/SECURITY.md",
+                "format": "text"
+              },
+              "error": "StatusCode: non 2xx status code (404 GET https://raw.githubusercontent.com/canada-ca/open-source-logiciel-libre/master/.github/SECURITY.md)",
+              "time": {
+                "start": 1783958667093,
+                "end": 1783958667556
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_4a2aab4cf90d432998ccee8018595bcb"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c38fd4d001tVV5buqWgvtved",
+          "message_id": "msg_f5c38d999001rLgYVW8S4oKBoW",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958666574,
+          "time_updated": 1783958667570,
+          "data": {
+            "type": "tool",
+            "tool": "webfetch",
+            "callID": "webfetch_5",
+            "state": {
+              "status": "error",
+              "input": {
+                "url": "https://raw.githubusercontent.com/canada-ca/open-source-logiciel-libre/master/docs/SECURITY.md",
+                "format": "text"
+              },
+              "error": "StatusCode: non 2xx status code (404 GET https://raw.githubusercontent.com/canada-ca/open-source-logiciel-libre/master/docs/SECURITY.md)",
+              "time": {
+                "start": 1783958667113,
+                "end": 1783958667567
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_addfece55b6a44edbbb68071eca6931b"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c38fd77001V6nvxUAtq9qv2j",
+          "message_id": "msg_f5c38d999001rLgYVW8S4oKBoW",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958666616,
+          "time_updated": 1783958667450,
+          "data": {
+            "type": "tool",
+            "tool": "webfetch",
+            "callID": "webfetch_6",
+            "state": {
+              "status": "error",
+              "input": {
+                "url": "https://api.github.com/repos/canada-ca/open-source-logiciel-libre/issues?state=open&sort=updated&direction=desc",
+                "format": "text"
+              },
+              "error": "StatusCode: non 2xx status code (403 GET https://api.github.com/repos/canada-ca/open-source-logiciel-libre/issues?state=open&sort=updated&direction=desc)",
+              "time": {
+                "start": 1783958667124,
+                "end": 1783958667448
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_ee9c6197e2ed49568eec3a7339fa8ca5"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c394f09001vLuH539Gn5P5ZM",
+          "message_id": "msg_f5c38d999001rLgYVW8S4oKBoW",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958687497,
+          "time_updated": 1783958687498,
+          "data": {
+            "reason": "tool-calls",
+            "snapshot": "33d89c6b9c358511505a688d46c0b6a4be23d413",
+            "type": "step-finish",
+            "tokens": {
+              "total": 11049,
+              "input": 7490,
+              "output": 363,
+              "reasoning": 0,
+              "cache": {
+                "write": 0,
+                "read": 3196
+              }
+            },
+            "cost": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "msg_f5c394f450011SG37yYmPOkGTy",
+      "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+      "time_created": 1783958687557,
+      "time_updated": 1783958721020,
+      "data": {
+        "parentID": "msg_f5c37f700001ThpiaDiNarQdy0",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "/workspace",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 11177,
+          "input": 355,
+          "output": 137,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 10685
+          }
+        },
+        "modelID": "accounts/fireworks/models/kimi-k2p6",
+        "providerID": "openai",
+        "time": {
+          "created": 1783958687557,
+          "completed": 1783958721019
+        },
+        "finish": "tool-calls"
+      },
+      "parts": [
+        {
+          "id": "prt_f5c39554c001EjL6Tec4P2PV49",
+          "message_id": "msg_f5c394f450011SG37yYmPOkGTy",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958689100,
+          "time_updated": 1783958689103,
+          "data": {
+            "snapshot": "33d89c6b9c358511505a688d46c0b6a4be23d413",
+            "type": "step-start"
+          }
+        },
+        {
+          "id": "prt_f5c39603f001P2BDWRARP8Y2tJ",
+          "message_id": "msg_f5c394f450011SG37yYmPOkGTy",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958691905,
+          "time_updated": 1783958695113,
+          "data": {
+            "type": "reasoning",
+            "text": "The API returned 403. I'll try the HTML page for issues and releases, and maybe the GitHub API with a sleep, but since I already got 403, better to use HTML scraping.\n\nLet me fetch the issues page and releases page via HTML.",
+            "time": {
+              "start": 1783958691904,
+              "end": 1783958695112
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "rs_30a9352a32064caf902e3ee4bc825d2d",
+                "reasoningEncryptedContent": null
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c3960f5001nBtEtHRwOLdKTV",
+          "message_id": "msg_f5c394f450011SG37yYmPOkGTy",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958692085,
+          "time_updated": 1783958696747,
+          "data": {
+            "type": "tool",
+            "tool": "webfetch",
+            "callID": "webfetch_7",
+            "state": {
+              "status": "completed",
+              "input": {
+                "url": "https://github.com/canada-ca/open-source-logiciel-libre/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc",
+                "format": "markdown"
+              },
+              "output": "                           Issues \u00b7 canada-ca/open-source-logiciel-libre \u00b7 GitHub                                                                                                                                              \n\n[Skip to content](#start-of-content)  \n\n## Navigation Menu\n\nToggle navigation\n\n[](/)\n\n[Sign in](/login?return_to=https%3A%2F%2Fgithub.com%2Fcanada-ca%2Fopen-source-logiciel-libre%2Fissues%3Fq%3Dis%253Aissue%2Bis%253Aopen%2Bsort%253Aupdated-desc)\n\nAppearance settings\n\n \n\n-   Platform\n    \n    -   AI CODE CREATION\n        \n        -   [\n            \n            GitHub CopilotWrite better code with AI\n            \n            ](https://github.com/features/copilot)\n        -   [\n            \n            GitHub Copilot appDirect agents from issue to merge\n            \n            ](https://github.com/features/ai/github-app)\n        -   [\n            \n            MCP RegistryNewIntegrate external tools\n            \n            ](https://github.com/mcp)\n        \n    -   DEVELOPER WORKFLOWS\n        \n        -   [\n            \n            ActionsAutomate any workflow\n            \n            ](https://github.com/features/actions)\n        -   [\n            \n            CodespacesInstant dev environments\n            \n            ](https://github.com/features/codespaces)\n        -   [\n            \n            IssuesPlan and track work\n            \n            ](https://github.com/features/issues)\n        -   [\n            \n            Code ReviewManage code changes\n            \n            ](https://github.com/features/code-review)\n        \n    -   APPLICATION SECURITY\n        \n        -   [\n            \n            GitHub Advanced SecurityFind and fix vulnerabilities\n            \n            ](https://github.com/security/advanced-security)\n        -   [\n            \n            Code securitySecure your code as you build\n            \n            ](https://github.com/security/advanced-security/code-security)\n        -   [\n            \n            Secret protectionStop leaks before they start\n            \n            ](https://github.com/security/advanced-security/secret-protection)\n        \n    -   EXPLORE\n        \n        -   [Why GitHub](https://github.com/why-github)\n        -   [Documentation](https://docs.github.com)\n        -   [Blog](https://github.blog)\n        -   [Changelog](https://github.blog/changelog)\n        -   [Marketplace](https://github.com/marketplace)\n        \n    \n    [View all features](https://github.com/features)\n    \n-   Solutions\n    \n    -   BY COMPANY SIZE\n        \n        -   [Enterprises](https://github.com/enterprise)\n        -   [Small and medium teams](https://github.com/team)\n        -   [Startups](https://github.com/enterprise/startups)\n        -   [Nonprofits](https://github.com/solutions/industry/nonprofits)\n        \n    -   BY USE CASE\n        \n        -   [App Modernization](https://github.com/solutions/use-case/app-modernization)\n        -   [DevSecOps](https://github.com/solutions/use-case/devsecops)\n        -   [DevOps](https://github.com/solutions/use-case/devops)\n        -   [CI/CD](https://github.com/solutions/use-case/ci-cd)\n        -   [View all use cases](https://github.com/solutions/use-case)\n        \n    -   BY INDUSTRY\n        \n        -   [Healthcare](https://github.com/solutions/industry/healthcare)\n        -   [Financial services](https://github.com/solutions/industry/financial-services)\n        -   [Manufacturing](https://github.com/solutions/industry/manufacturing)\n        -   [Government](https://github.com/solutions/industry/government)\n        -   [View all industries](https://github.com/solutions/industry)\n        \n    \n    [View all solutions](https://github.com/solutions)\n    \n-   Resources\n    \n    -   EXPLORE BY TOPIC\n        \n        -   [AI](https://github.com/resources/articles?topic=ai)\n        -   [Software Development](https://github.com/resources/articles?topic=software-development)\n        -   [DevOps](https://github.com/resources/articles?topic=devops)\n        -   [Security](https://github.com/resources/articles?topic=security)\n        -   [View all topics](https://github.com/resources/articles)\n        \n    -   EXPLORE BY TYPE\n        \n        -   [Customer stories](https://github.com/customer-stories)\n        -   [Events & webinars](https://github.com/resources/events)\n        -   [Ebooks & reports](https://github.com/resources/whitepapers)\n        -   [Business insights](https://github.com/solutions/executive-insights)\n        -   [GitHub Skills](https://skills.github.com)\n        \n    -   SUPPORT & SERVICES\n        \n        -   [Documentation](https://docs.github.com)\n        -   [Customer support](https://support.github.com)\n        -   [Community forum](https://github.com/orgs/community/discussions)\n        -   [Trust center](https://github.com/trust-center)\n        -   [Partners](https://github.com/partners)\n        \n    \n    [View all resources](https://github.com/resources)\n    \n-   Open Source\n    \n    -   COMMUNITY\n        \n        -   [\n            \n            GitHub SponsorsFund open source developers\n            \n            ](https://github.com/open-source/sponsors)\n        \n    -   PROGRAMS\n        \n        -   [Security Lab](https://securitylab.github.com)\n        -   [Maintainer Community](https://maintainers.github.com)\n        -   [Accelerator](https://github.com/open-source/accelerator)\n        -   [GitHub Stars](https://stars.github.com)\n        -   [Archive Program](https://archiveprogram.github.com)\n        \n    -   REPOSITORIES\n        \n        -   [Topics](https://github.com/topics)\n        -   [Trending](https://github.com/trending)\n        -   [Collections](https://github.com/collections)\n        \n    \n-   Enterprise\n    \n    -   ENTERPRISE SOLUTIONS\n        \n        -   [\n            \n            Enterprise platformAI-powered developer platform\n            \n            ](https://github.com/enterprise)\n        \n    -   AVAILABLE ADD-ONS\n        \n        -   [\n            \n            GitHub Advanced SecurityEnterprise-grade security features\n            \n            ](https://github.com/security/advanced-security)\n        -   [\n            \n            Copilot for BusinessEnterprise-grade AI features\n            \n            ](https://github.com/features/copilot/copilot-business)\n        -   [\n            \n            Premium SupportEnterprise-grade 24/7 support\n            \n            ](https://github.com/enterprise/premium-support)\n        \n    \n-   [Pricing](https://github.com/pricing)\n\nis:issue is:open sort:updated-desc\n\n# Search code, repositories, users, issues, pull requests...\n\nSearch\n\nClear\n\n[Search syntax tips](https://docs.github.com/search-github/github-code-search/understanding-github-code-search-syntax)\n\n# Provide feedback\n\nWe read every piece of feedback, and take your input very seriously.\n\n Include my email address so I can be contacted\n\nCancel Submit feedback\n\n# Saved searches\n\n## Use saved searches to filter your results more quickly\n\nName  \n\nQuery \n\nTo see all available qualifiers, see our [documentation](https://docs.github.com/search-github/github-code-search/understanding-github-code-search-syntax).\n\nCancel Create saved search\n\n[Sign in](/login?return_to=https%3A%2F%2Fgithub.com%2Fcanada-ca%2Fopen-source-logiciel-libre%2Fissues%3Fq%3Dis%253Aissue%2Bis%253Aopen%2Bsort%253Aupdated-desc)\n\n[Sign up](/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E%2Fissues%2Findex&source=header-repo&source_repo=canada-ca%2Fopen-source-logiciel-libre)\n\nAppearance settings\n\nResetting focus\n\nYou signed in with another tab or window. Reload to refresh your session. You signed out in another tab or window. Reload to refresh your session. You switched accounts on another tab or window. Reload to refresh your session. Dismiss alert\n\n### Uh oh!\n\nThere was an error while loading. Please reload this page.\n\n[canada-ca](/canada-ca) / **[open-source-logiciel-libre](/canada-ca/open-source-logiciel-libre)** Public\n\n-   [Notifications](/login?return_to=%2Fcanada-ca%2Fopen-source-logiciel-libre) You must be signed in to change notification settings\n-   [Fork 18](/login?return_to=%2Fcanada-ca%2Fopen-source-logiciel-libre)\n-   [Star 43](/login?return_to=%2Fcanada-ca%2Fopen-source-logiciel-libre)\n    \n\n-   [Code](/canada-ca/open-source-logiciel-libre)\n-   [Issues 27](/canada-ca/open-source-logiciel-libre/issues)\n-   [Pull requests 8](/canada-ca/open-source-logiciel-libre/pulls)\n-   [Actions](/canada-ca/open-source-logiciel-libre/actions)\n-   [Security and quality 0](/canada-ca/open-source-logiciel-libre/security)\n-   [Insights](/canada-ca/open-source-logiciel-libre/pulse)\n\nAdditional navigation options\n\n-   [Code](/canada-ca/open-source-logiciel-libre)\n-   [Issues](/canada-ca/open-source-logiciel-libre/issues)\n-   [Pull requests](/canada-ca/open-source-logiciel-libre/pulls)\n-   [Actions](/canada-ca/open-source-logiciel-libre/actions)\n-   [Security and quality](/canada-ca/open-source-logiciel-libre/security)\n-   [Insights](/canada-ca/open-source-logiciel-libre/pulse)\n\n-   [\n    \n    Issues\n    \n    ](/canada-ca/open-source-logiciel-libre/issues?q=is%3Aissue+state%3Aopen)\n-   [\n    \n    Assigned to me\n    \n    ](/canada-ca/open-source-logiciel-libre/issues?q=is%3Aissue+state%3Aopen+assignee%3A%40me)\n-   [\n    \n    Created by me\n    \n    ](/canada-ca/open-source-logiciel-libre/issues?q=is%3Aissue+state%3Aopen+author%3A%40me)\n-   [\n    \n    Mentioned\n    \n    ](/canada-ca/open-source-logiciel-libre/issues?q=is%3Aissue+state%3Aopen+mentions%3A%40me)\n-   [\n    \n    Recent activity\n    \n    ](/canada-ca/open-source-logiciel-libre/issues?q=is%3Aissue+updated%3A%3E%40today-1w+sort%3Aupdated-desc)\n\n---\n\n-   [Views](/canada-ca/open-source-logiciel-libre/issues/views)\n-   [Milestones](/canada-ca/open-source-logiciel-libre/milestones)\n-   [Labels](/canada-ca/open-source-logiciel-libre/labels)\n\n-   [FeedbackPreview](https://gh.io/issues-sidebar-feedback)\n\n-   Collapse sidebar\n\n# Issues\n\nSearch Issues\n\nis:issue is:open sort:updated-desc\n\nis:issue is:open sort:updated-desc\n\nSearch\n\n[Labels](/canada-ca/open-source-logiciel-libre/labels)[Milestones](/canada-ca/open-source-logiciel-libre/milestones)\n\nNew issueIssue creation is restricted in this repository\n\n## Search results\n\nOpen\n\nClosed\n\n-   ### [Banner links to Canada.ca incorrect after a content move](/canada-ca/open-source-logiciel-libre/issues/329)\n    \n    [bugSomething isn't working](/canada-ca/open-source-logiciel-libre/issues?q=is%3Aissue%20is%3Aopen%20sort%3Aupdated-desc%20label%3Abug)Something isn't working\n    \n    Status: Open.\n    \n    #329\u00a0In canada-ca/open-source-logiciel-libre;\n    \n    \u00b7 [nfee006](/canada-ca/open-source-logiciel-libre/issues?q=is%3Aissue%20is%3Aopen%20sort%3Aupdated-desc%20author%3Anfee006) opened on Jun 2, 2023\n    \n    \u00b7 Updated on Jun 19, 2023\n    \n\n-   ### [Link from pages to the repository](/canada-ca/open-source-logiciel-libre/issues/103)\n    \n    Status: Open.\n    \n    #103\u00a0In canada-ca/open-source-logiciel-libre;\n    \n    \u00b7 [gcharest](/canada-ca/open-source-logiciel-libre/issues?q=is%3Aissue%20is%3Aopen%20sort%3Aupdated-desc%20author%3Agcharest) opened on Nov 29, 2019\n    \n    \u00b7 Updated on Nov 29, 2019\n    \n\n-   ### [Why reciprocal license restrictions in \"Guide for Using Open Source Software\"?](/canada-ca/open-source-logiciel-libre/issues/62)\n    \n    Status: Open.\n    \n    #62\u00a0In canada-ca/open-source-logiciel-libre;\n    \n    \u00b7 [kfogel](/canada-ca/open-source-logiciel-libre/issues?q=is%3Aissue%20is%3Aopen%20sort%3Aupdated-desc%20author%3Akfogel) opened on May 6, 2019\n    \n    \u00b7 Updated on Nov 1, 2019\n    \n\n-   ### [Directive on Automated Decision-Making; Releasing source code.](/canada-ca/open-source-logiciel-libre/issues/72)\n    \n    Status: Open.\n    \n    #72\u00a0In canada-ca/open-source-logiciel-libre;\n    \n    \u00b7 [KingBain](/canada-ca/open-source-logiciel-libre/issues?q=is%3Aissue%20is%3Aopen%20sort%3Aupdated-desc%20author%3AKingBain) opened on Jul 30, 2019\n    \n    \u00b7 Updated on Oct 29, 2019\n    \n\n-   ### [Add redirects for renamed files](/canada-ca/open-source-logiciel-libre/issues/97)\n    \n    Status: Open.\n    \n    #97\u00a0In canada-ca/open-source-logiciel-libre;\n    \n    \u00b7 [nschonni](/canada-ca/open-source-logiciel-libre/issues?q=is%3Aissue%20is%3Aopen%20sort%3Aupdated-desc%20author%3Anschonni) opened on Oct 28, 2019\n    \n    \u00b7 Updated on Oct 29, 2019\n    \n\n-   ### [Change site theme from GCWeb](/canada-ca/open-source-logiciel-libre/issues/99)\n    \n    Status: Open.\n    \n    #99\u00a0In canada-ca/open-source-logiciel-libre;\n    \n    \u00b7 [nschonni](/canada-ca/open-source-logiciel-libre/issues?q=is%3Aissue%20is%3Aopen%20sort%3Aupdated-desc%20author%3Anschonni) opened on Oct 28, 2019\n    \n    \u00b7 Updated on Oct 28, 2019\n    \n\n-   ### [Guide for Open Source Software Acquisition and Modeling](/canada-ca/open-source-logiciel-libre/issues/95)\n    \n    Status: Open.\n    \n    #95\u00a0In canada-ca/open-source-logiciel-libre;\n    \n    \u00b7 [KingBain](/canada-ca/open-source-logiciel-libre/issues?q=is%3Aissue%20is%3Aopen%20sort%3Aupdated-desc%20author%3AKingBain) opened on Oct 4, 2019\n    \n    \u00b7 Updated on Oct 4, 2019\n    \n\n-   ### [Modeling the OSS Standard in Archimate](/canada-ca/open-source-logiciel-libre/issues/91)\n    \n    Status: Open.\n    \n    #91\u00a0In canada-ca/open-source-logiciel-libre;\n    \n    \u00b7 [KingBain](/canada-ca/open-source-logiciel-libre/issues?q=is%3Aissue%20is%3Aopen%20sort%3Aupdated-desc%20author%3AKingBain) opened on Sep 25, 2019\n    \n    \u00b7 Updated on Sep 25, 2019\n    \n\n-   ### [Additional publishing open source guidance](/canada-ca/open-source-logiciel-libre/issues/53)\n    \n    [playbookContent that may fit into playbook style guidance](/canada-ca/open-source-logiciel-libre/issues?q=is%3Aissue%20is%3Aopen%20sort%3Aupdated-desc%20label%3Aplaybook)Content that may fit into playbook style guidance\n    \n    [securitySecurity related issue](/canada-ca/open-source-logiciel-libre/issues?q=is%3Aissue%20is%3Aopen%20sort%3Aupdated-desc%20label%3Asecurity)Security related issue\n    \n    Status: Open.\n    \n    #53\u00a0In canada-ca/open-source-logiciel-libre;\n    \n    \u00b7 [NoureenS](/canada-ca/open-source-logiciel-libre/issues?q=is%3Aissue%20is%3Aopen%20sort%3Aupdated-desc%20author%3ANoureenS) opened on Mar 28, 2019\n    \n    \u00b7 Updated on Sep 12, 2019\n    \n\n-   ### [Considerations for Open Source Software Evaluation](/canada-ca/open-source-logiciel-libre/issues/76)\n    \n    Status: Open.\n    \n    #76\u00a0In canada-ca/open-source-logiciel-libre;\n    \n    \u00b7 [KingBain](/canada-ca/open-source-logiciel-libre/issues?q=is%3Aissue%20is%3Aopen%20sort%3Aupdated-desc%20author%3AKingBain) opened on Sep 9, 2019\n    \n    \u00b7 Updated on Sep 10, 2019\n    \n\n-   ### [Guide to apply specific licence needs a bit more details](/canada-ca/open-source-logiciel-libre/issues/73)\n    \n    [enhancementNew feature or request](/canada-ca/open-source-logiciel-libre/issues?q=is%3Aissue%20is%3Aopen%20sort%3Aupdated-desc%20label%3Aenhancement)New feature or request\n    \n    Status: Open.\n    \n    #73\u00a0In canada-ca/open-source-logiciel-libre;\n    \n    \u00b7 [gcharest](/canada-ca/open-source-logiciel-libre/issues?q=is%3Aissue%20is%3Aopen%20sort%3Aupdated-desc%20author%3Agcharest) opened on Aug 14, 2019\n    \n    \u00b7 Updated on Aug 14, 2019\n    \n\n-   ### [The \"open core\" section has problems and is not sufficient.](/canada-ca/open-source-logiciel-libre/issues/70)\n    \n    Status: Open.\n    \n    #70\u00a0In canada-ca/open-source-logiciel-libre;\n    \n    \u00b7 [ian-kelling](/canada-ca/open-source-logiciel-libre/issues?q=is%3Aissue%20is%3Aopen%20sort%3Aupdated-desc%20author%3Aian-kelling) opened on Jun 25, 2019\n    \n    \u00b7 Updated on Jul 8, 2019\n    \n\n## Footer\n\n[](https://github.com)\u00a9 2026 GitHub,\u00a0Inc.\n\n### Footer navigation\n\n-   [Terms](https://docs.github.com/site-policy/github-terms/github-terms-of-service)\n-   [Privacy](https://docs.github.com/site-policy/privacy-policies/github-privacy-statement)\n-   [Security](https://github.com/security)\n-   [Status](https://www.githubstatus.com/)\n-   [Community](https://github.community/)\n-   [Docs](https://docs.github.com/)\n-   [Contact](https://support.github.com?tags=dotcom-footer)\n-   Manage cookies\n-   Do not share my personal information\n\nYou can\u2019t perform that action at this time.",
+              "metadata": {
+                "truncated": false
+              },
+              "title": "https://github.com/canada-ca/open-source-logiciel-libre/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc (text/html; charset=utf-8)",
+              "time": {
+                "start": 1783958695138,
+                "end": 1783958696743
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_d26b4b6784a5491982313642915c827b"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c396cae001h4uZ4f5SeO4BGx",
+          "message_id": "msg_f5c394f450011SG37yYmPOkGTy",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958695086,
+          "time_updated": 1783958696153,
+          "data": {
+            "type": "tool",
+            "tool": "webfetch",
+            "callID": "webfetch_8",
+            "state": {
+              "status": "completed",
+              "input": {
+                "url": "https://github.com/canada-ca/open-source-logiciel-libre/releases",
+                "format": "markdown"
+              },
+              "output": "                    Releases \u00b7 canada-ca/open-source-logiciel-libre \u00b7 GitHub                                             \n\n[Skip to content](#start-of-content)   \n\n## Navigation Menu\n\nToggle navigation\n\n[](/)\n\n[Sign in](/login?return_to=https%3A%2F%2Fgithub.com%2Fcanada-ca%2Fopen-source-logiciel-libre%2Freleases)\n\nAppearance settings\n\n  \n\n-   Platform\n    \n    -   AI CODE CREATION\n        \n        -   [\n            \n            GitHub CopilotWrite better code with AI\n            \n            ](https://github.com/features/copilot)\n        -   [\n            \n            GitHub Copilot appDirect agents from issue to merge\n            \n            ](https://github.com/features/ai/github-app)\n        -   [\n            \n            MCP RegistryNewIntegrate external tools\n            \n            ](https://github.com/mcp)\n        \n    -   DEVELOPER WORKFLOWS\n        \n        -   [\n            \n            ActionsAutomate any workflow\n            \n            ](https://github.com/features/actions)\n        -   [\n            \n            CodespacesInstant dev environments\n            \n            ](https://github.com/features/codespaces)\n        -   [\n            \n            IssuesPlan and track work\n            \n            ](https://github.com/features/issues)\n        -   [\n            \n            Code ReviewManage code changes\n            \n            ](https://github.com/features/code-review)\n        \n    -   APPLICATION SECURITY\n        \n        -   [\n            \n            GitHub Advanced SecurityFind and fix vulnerabilities\n            \n            ](https://github.com/security/advanced-security)\n        -   [\n            \n            Code securitySecure your code as you build\n            \n            ](https://github.com/security/advanced-security/code-security)\n        -   [\n            \n            Secret protectionStop leaks before they start\n            \n            ](https://github.com/security/advanced-security/secret-protection)\n        \n    -   EXPLORE\n        \n        -   [Why GitHub](https://github.com/why-github)\n        -   [Documentation](https://docs.github.com)\n        -   [Blog](https://github.blog)\n        -   [Changelog](https://github.blog/changelog)\n        -   [Marketplace](https://github.com/marketplace)\n        \n    \n    [View all features](https://github.com/features)\n    \n-   Solutions\n    \n    -   BY COMPANY SIZE\n        \n        -   [Enterprises](https://github.com/enterprise)\n        -   [Small and medium teams](https://github.com/team)\n        -   [Startups](https://github.com/enterprise/startups)\n        -   [Nonprofits](https://github.com/solutions/industry/nonprofits)\n        \n    -   BY USE CASE\n        \n        -   [App Modernization](https://github.com/solutions/use-case/app-modernization)\n        -   [DevSecOps](https://github.com/solutions/use-case/devsecops)\n        -   [DevOps](https://github.com/solutions/use-case/devops)\n        -   [CI/CD](https://github.com/solutions/use-case/ci-cd)\n        -   [View all use cases](https://github.com/solutions/use-case)\n        \n    -   BY INDUSTRY\n        \n        -   [Healthcare](https://github.com/solutions/industry/healthcare)\n        -   [Financial services](https://github.com/solutions/industry/financial-services)\n        -   [Manufacturing](https://github.com/solutions/industry/manufacturing)\n        -   [Government](https://github.com/solutions/industry/government)\n        -   [View all industries](https://github.com/solutions/industry)\n        \n    \n    [View all solutions](https://github.com/solutions)\n    \n-   Resources\n    \n    -   EXPLORE BY TOPIC\n        \n        -   [AI](https://github.com/resources/articles?topic=ai)\n        -   [Software Development](https://github.com/resources/articles?topic=software-development)\n        -   [DevOps](https://github.com/resources/articles?topic=devops)\n        -   [Security](https://github.com/resources/articles?topic=security)\n        -   [View all topics](https://github.com/resources/articles)\n        \n    -   EXPLORE BY TYPE\n        \n        -   [Customer stories](https://github.com/customer-stories)\n        -   [Events & webinars](https://github.com/resources/events)\n        -   [Ebooks & reports](https://github.com/resources/whitepapers)\n        -   [Business insights](https://github.com/solutions/executive-insights)\n        -   [GitHub Skills](https://skills.github.com)\n        \n    -   SUPPORT & SERVICES\n        \n        -   [Documentation](https://docs.github.com)\n        -   [Customer support](https://support.github.com)\n        -   [Community forum](https://github.com/orgs/community/discussions)\n        -   [Trust center](https://github.com/trust-center)\n        -   [Partners](https://github.com/partners)\n        \n    \n    [View all resources](https://github.com/resources)\n    \n-   Open Source\n    \n    -   COMMUNITY\n        \n        -   [\n            \n            GitHub SponsorsFund open source developers\n            \n            ](https://github.com/open-source/sponsors)\n        \n    -   PROGRAMS\n        \n        -   [Security Lab](https://securitylab.github.com)\n        -   [Maintainer Community](https://maintainers.github.com)\n        -   [Accelerator](https://github.com/open-source/accelerator)\n        -   [GitHub Stars](https://stars.github.com)\n        -   [Archive Program](https://archiveprogram.github.com)\n        \n    -   REPOSITORIES\n        \n        -   [Topics](https://github.com/topics)\n        -   [Trending](https://github.com/trending)\n        -   [Collections](https://github.com/collections)\n        \n    \n-   Enterprise\n    \n    -   ENTERPRISE SOLUTIONS\n        \n        -   [\n            \n            Enterprise platformAI-powered developer platform\n            \n            ](https://github.com/enterprise)\n        \n    -   AVAILABLE ADD-ONS\n        \n        -   [\n            \n            GitHub Advanced SecurityEnterprise-grade security features\n            \n            ](https://github.com/security/advanced-security)\n        -   [\n            \n            Copilot for BusinessEnterprise-grade AI features\n            \n            ](https://github.com/features/copilot/copilot-business)\n        -   [\n            \n            Premium SupportEnterprise-grade 24/7 support\n            \n            ](https://github.com/enterprise/premium-support)\n        \n    \n-   [Pricing](https://github.com/pricing)\n\nSearch or jump to...\n\n# Search code, repositories, users, issues, pull requests...\n\nSearch\n\nClear\n\n[Search syntax tips](https://docs.github.com/search-github/github-code-search/understanding-github-code-search-syntax)\n\n# Provide feedback\n\nWe read every piece of feedback, and take your input very seriously.\n\n Include my email address so I can be contacted\n\nCancel Submit feedback\n\n# Saved searches\n\n## Use saved searches to filter your results more quickly\n\nName  \n\nQuery \n\nTo see all available qualifiers, see our [documentation](https://docs.github.com/search-github/github-code-search/understanding-github-code-search-syntax).\n\nCancel Create saved search\n\n[Sign in](/login?return_to=https%3A%2F%2Fgithub.com%2Fcanada-ca%2Fopen-source-logiciel-libre%2Freleases)\n\n[Sign up](/signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E%2Freleases%2Findex&source=header-repo&source_repo=canada-ca%2Fopen-source-logiciel-libre)\n\nAppearance settings\n\nResetting focus\n\nYou signed in with another tab or window. Reload to refresh your session. You signed out in another tab or window. Reload to refresh your session. You switched accounts on another tab or window. Reload to refresh your session. Dismiss alert\n\n### Uh oh!\n\nThere was an error while loading. Please reload this page.\n\n[canada-ca](/canada-ca) / **[open-source-logiciel-libre](/canada-ca/open-source-logiciel-libre)** Public\n\n-   [Notifications](/login?return_to=%2Fcanada-ca%2Fopen-source-logiciel-libre) You must be signed in to change notification settings\n-   [Fork 18](/login?return_to=%2Fcanada-ca%2Fopen-source-logiciel-libre)\n-   [Star 43](/login?return_to=%2Fcanada-ca%2Fopen-source-logiciel-libre)\n    \n\n-   [Code](/canada-ca/open-source-logiciel-libre)\n-   [Issues 27](/canada-ca/open-source-logiciel-libre/issues)\n-   [Pull requests 8](/canada-ca/open-source-logiciel-libre/pulls)\n-   [Actions](/canada-ca/open-source-logiciel-libre/actions)\n-   [Security and quality 0](/canada-ca/open-source-logiciel-libre/security)\n-   [Insights](/canada-ca/open-source-logiciel-libre/pulse)\n\nAdditional navigation options\n\n-   [Code](/canada-ca/open-source-logiciel-libre)\n-   [Issues](/canada-ca/open-source-logiciel-libre/issues)\n-   [Pull requests](/canada-ca/open-source-logiciel-libre/pulls)\n-   [Actions](/canada-ca/open-source-logiciel-libre/actions)\n-   [Security and quality](/canada-ca/open-source-logiciel-libre/security)\n-   [Insights](/canada-ca/open-source-logiciel-libre/pulse)\n\n# Releases: canada-ca/open-source-logiciel-libre\n\n[Releases](/canada-ca/open-source-logiciel-libre/releases) [Tags](/canada-ca/open-source-logiciel-libre/tags)\n\n \n\nReleases \u00b7 canada-ca/open-source-logiciel-libre\n\n## There aren\u2019t any releases here\n\nYou can create a release to package software, along with release notes and links to binary files, for other people to use. Learn more about releases in [our docs](https://docs.github.com/repositories/releasing-projects-on-github/about-releases).\n\n## Footer\n\n[](https://github.com)\u00a9 2026 GitHub,\u00a0Inc.\n\n### Footer navigation\n\n-   [Terms](https://docs.github.com/site-policy/github-terms/github-terms-of-service)\n-   [Privacy](https://docs.github.com/site-policy/privacy-policies/github-privacy-statement)\n-   [Security](https://github.com/security)\n-   [Status](https://www.githubstatus.com/)\n-   [Community](https://github.community/)\n-   [Docs](https://docs.github.com/)\n-   [Contact](https://support.github.com?tags=dotcom-footer)\n-   Manage cookies\n-   Do not share my personal information\n\nYou can\u2019t perform that action at this time.",
+              "metadata": {
+                "truncated": false
+              },
+              "title": "https://github.com/canada-ca/open-source-logiciel-libre/releases (text/html; charset=utf-8)",
+              "time": {
+                "start": 1783958695146,
+                "end": 1783958696142
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_e6847023f6a14fed8f080fb36b3ee778"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c39d1bb001O096H214SGFlJC",
+          "message_id": "msg_f5c394f450011SG37yYmPOkGTy",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958720955,
+          "time_updated": 1783958720956,
+          "data": {
+            "reason": "tool-calls",
+            "snapshot": "da9be28fd7bcbcdecd888868c2106c45b55f02ba",
+            "type": "step-finish",
+            "tokens": {
+              "total": 11177,
+              "input": 355,
+              "output": 137,
+              "reasoning": 0,
+              "cache": {
+                "write": 0,
+                "read": 10685
+              }
+            },
+            "cost": 0
+          }
+        },
+        {
+          "id": "prt_f5c39d1f4001FtsCrUdDCAd0z5",
+          "message_id": "msg_f5c394f450011SG37yYmPOkGTy",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958721012,
+          "time_updated": 1783958721013,
+          "data": {
+            "type": "patch",
+            "hash": "33d89c6b9c358511505a688d46c0b6a4be23d413",
+            "files": [
+              "/workspace/Open_First_Whitepaper",
+              "/workspace/facts_Libraries-bibliotheque.json",
+              "/workspace/manual_CommunicatingPublicEngagement.json",
+              "/workspace/manual_alexapoc-vdpalexa.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "msg_f5c39d202001dcZvMWSfo1T7kT",
+      "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+      "time_created": 1783958721026,
+      "time_updated": 1783958758433,
+      "data": {
+        "parentID": "msg_f5c37f700001ThpiaDiNarQdy0",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "/workspace",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 18394,
+          "input": 6672,
+          "output": 683,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 11039
+          }
+        },
+        "modelID": "accounts/fireworks/models/kimi-k2p6",
+        "providerID": "openai",
+        "time": {
+          "created": 1783958721026,
+          "completed": 1783958758433
+        },
+        "finish": "tool-calls"
+      },
+      "parts": [
+        {
+          "id": "prt_f5c39d51a001UtRWajYVFiZHqA",
+          "message_id": "msg_f5c39d202001dcZvMWSfo1T7kT",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958721818,
+          "time_updated": 1783958721819,
+          "data": {
+            "snapshot": "da9be28fd7bcbcdecd888868c2106c45b55f02ba",
+            "type": "step-start"
+          }
+        },
+        {
+          "id": "prt_f5c39d76e001xdGCsL1P2avcqf",
+          "message_id": "msg_f5c39d202001dcZvMWSfo1T7kT",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958722414,
+          "time_updated": 1783958731951,
+          "data": {
+            "type": "reasoning",
+            "text": "I have enough data to make the judgments now. Let me summarize:\n\n1. **bilingual**: The README clearly contains both English and French sections. There are French words, phrases, and a full French section with headers like \"Logiciels libres\", \"Contenu fran\u00e7ais\", \"Traduction\", \"R\u00e9f\u00e9rences\". So this is **Yes**.\n\n2. **readme_clarity**: The README explains what the project is (draft standards for open source use/contribution/creation by Treasury Board of Canada Secretariat), who it's for (Government of Canada), and how to use it (links to English content and French guides). It's clear and well-structured. So **Good**.\n\n3. **security_policy**: I checked root, `.github/`, and `docs/` for SECURITY.md and all returned 404. So **Missing**.\n\n4. **issue_response_quality**: Looking at the 5 most recently updated open issues (filtered out PRs):\n   - #329 Banner links to Canada.ca incorrect after a content move - opened Jun 2, 2023, updated Jun 19, 2023\n   - #103 Link from pages to the repository - opened Nov 29, 2019, updated Nov 29, 2019\n   - #62 Why reciprocal license restrictions... - opened May 6, 2019, updated Nov 1, 2019\n   - #72 Directive on Automated Decision-Making... - opened Jul 30, 2019, updated Oct 29, 2019\n   - #97 Add redirects for renamed files - opened Oct 28, 2019, updated Oct 29, 2019\n   \n   The most recent update is June 19, 2023, which is more than 6 months before 2026-07-13 (it's over 3 years ago). None of the top 5 recently updated issues have comments from anyone other than the original reporter within the last 6 months. So **Stale**.\n\n   Wait, let me double-check. The 5 most recently updated open issues are:\n   - #329 updated Jun 19, 2023\n   - #103 updated Nov 29, 2019\n   - #62 updated Nov 1, 2019\n   - #72 updated Oct 29, 2019\n   - #97 updated Oct 29, 2019\n\n   The last 6 months from 2026-07-13 would be from 2026-01-13 to 2026-07-13. None of these updates fall within that range. The most recent is June 2023, which is well over 6 months ago. So **Stale**.\n\n5. **release_notes_quality**: The releases page says \"There aren't any releases here\". So **No Releases**.\n\nNow I need to write the JSON file to `/workspace/manual_open-source-logiciel-libre.json`.",
+            "time": {
+              "start": 1783958722414,
+              "end": 1783958731947
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "rs_8c89c4cfada84705aebe5d59aa2dda6d",
+                "reasoningEncryptedContent": null
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c39f09d001oeL4xLpylgZxQY",
+          "message_id": "msg_f5c39d202001dcZvMWSfo1T7kT",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958728861,
+          "time_updated": 1783958733905,
+          "data": {
+            "type": "tool",
+            "tool": "bash",
+            "callID": "bash_9",
+            "state": {
+              "status": "completed",
+              "input": {
+                "command": "cat <<'EOF' > /workspace/manual_open-source-logiciel-libre.json\n{\n  \"bilingual\": \"Yes\",\n  \"readme_clarity\": \"Good\",\n  \"security_policy\": \"Missing\",\n  \"issue_response_quality\": \"Stale\",\n  \"release_notes_quality\": \"No Releases\"\n}\nEOF"
+              },
+              "output": "(no output)",
+              "metadata": {
+                "output": "(no output)",
+                "exit": 0,
+                "truncated": false
+              },
+              "title": "cat <<'EOF' > /workspace/manual_open-source-logiciel-libre.json\n{\n  \"bilingual\": \"Yes\",\n  \"readme_clarity\": \"Good\",\n  \"security_policy\": \"Missing\",\n  \"issue_response_quality\": \"Stale\",\n  \"release_notes_quality\": \"No Releases\"\n}\nEOF",
+              "time": {
+                "start": 1783958731976,
+                "end": 1783958733904
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_2f3dd055768b4988bb2bae53a1828a91"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c3a63d8001eQnDhlxCPYri4t",
+          "message_id": "msg_f5c39d202001dcZvMWSfo1T7kT",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958758361,
+          "time_updated": 1783958758362,
+          "data": {
+            "reason": "tool-calls",
+            "snapshot": "728efed881d34f59214ff1a87a9b7942e97c9900",
+            "type": "step-finish",
+            "tokens": {
+              "total": 18394,
+              "input": 6672,
+              "output": 683,
+              "reasoning": 0,
+              "cache": {
+                "write": 0,
+                "read": 11039
+              }
+            },
+            "cost": 0
+          }
+        },
+        {
+          "id": "prt_f5c3a641e001nJgiPl0nVevCXy",
+          "message_id": "msg_f5c39d202001dcZvMWSfo1T7kT",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958758430,
+          "time_updated": 1783958758431,
+          "data": {
+            "type": "patch",
+            "hash": "da9be28fd7bcbcdecd888868c2106c45b55f02ba",
+            "files": [
+              "/workspace/manual_content-analysis.json",
+              "/workspace/manual_open-source-logiciel-libre.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "msg_f5c3a642d001mfkq7aThtU7xGJ",
+      "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+      "time_created": 1783958758445,
+      "time_updated": 1783958781215,
+      "data": {
+        "parentID": "msg_f5c37f700001ThpiaDiNarQdy0",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "/workspace",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 18358,
+          "input": 109,
+          "output": 539,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 17710
+          }
+        },
+        "modelID": "accounts/fireworks/models/kimi-k2p6",
+        "providerID": "openai",
+        "time": {
+          "created": 1783958758445,
+          "completed": 1783958781215
+        },
+        "finish": "tool-calls"
+      },
+      "parts": [
+        {
+          "id": "prt_f5c3a6738001XkIkNewytiRijn",
+          "message_id": "msg_f5c3a642d001mfkq7aThtU7xGJ",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958759225,
+          "time_updated": 1783958759226,
+          "data": {
+            "snapshot": "728efed881d34f59214ff1a87a9b7942e97c9900",
+            "type": "step-start"
+          }
+        },
+        {
+          "id": "prt_f5c3a6947001AoJk3P76VnRLtT",
+          "message_id": "msg_f5c3a642d001mfkq7aThtU7xGJ",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958759751,
+          "time_updated": 1783958765910,
+          "data": {
+            "type": "reasoning",
+            "text": "The user asked me to gather content judgments about the GitHub repository `canada-ca/open-source-logiciel-libre` and write them to `/workspace/manual_open-source-logiciel-libre.json`.\n\nI have already collected all the necessary information:\n\n1. **bilingual**: The README clearly contains both English and French sections. It has a full English section and a full French section (\"Logiciels libres\") with substantial content in both languages. So this is `Yes`.\n\n2. **readme_clarity**: The README clearly explains what the project is (draft standards for open source use, contribution, and creation by the Treasury Board of Canada Secretariat), who it's for (Government of Canada), and how to use it (links to English and French content guides). So this is `Good`.\n\n3. **security_policy**: I checked `SECURITY.md` in root, `.github/`, and `docs/` and all returned 404. So this is `Missing`.\n\n4. **issue_response_quality**: I looked at the 5 most recently updated open issues (sorted by updated desc) from the GitHub issues page:\n   - #329: Banner links to Canada.ca incorrect after a content move. Opened Jun 2, 2023, Updated Jun 19, 2023.\n   - #103: Link from pages to the repository. Opened Nov 29, 2019, Updated Nov 29, 2019.\n   - #62: Why reciprocal license restrictions... Opened May 6, 2019, Updated Nov 1, 2019.\n   - #72: Directive on Automated Decision-Making... Opened Jul 30, 2019, Updated Oct 29, 2019.\n   - #97: Add redirects for renamed files. Opened Oct 28, 2019, Updated Oct 29, 2019.\n\n   The most recent update is Jun 19, 2023, which is more than 6 months before 2026-07-13. In fact, all updates are from 2023 or earlier. There are no comments from anyone other than the original reporter within the last 6 months. So this is `Stale`.\n\n5. **release_notes_quality**: The releases page clearly says \"There aren't any releases here\". So this is `No Releases`.\n\nI have already written the JSON file to `/workspace/manual_open-source-logiciel-libre.json`. I should verify it was written correctly, then present the final JSON content in my response.",
+            "time": {
+              "start": 1783958759751,
+              "end": 1783958765906
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "rs_31d6834ac05e43da99f000ea37cec93a",
+                "reasoningEncryptedContent": null
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c3a7fed001OIGtqNC4q5GlDl",
+          "message_id": "msg_f5c3a642d001mfkq7aThtU7xGJ",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958765549,
+          "time_updated": 1783958766589,
+          "data": {
+            "type": "tool",
+            "tool": "read",
+            "callID": "read_10",
+            "state": {
+              "status": "completed",
+              "input": {
+                "filePath": "/workspace/manual_open-source-logiciel-libre.json"
+              },
+              "output": "<path>/workspace/manual_open-source-logiciel-libre.json</path>\n<type>file</type>\n<content>\n1: {\n2:   \"bilingual\": \"Yes\",\n3:   \"readme_clarity\": \"Good\",\n4:   \"security_policy\": \"Missing\",\n5:   \"issue_response_quality\": \"Stale\",\n6:   \"release_notes_quality\": \"No Releases\"\n7: }\n\n(End of file - total 7 lines)\n</content>",
+              "metadata": {
+                "preview": "{\n  \"bilingual\": \"Yes\",\n  \"readme_clarity\": \"Good\",\n  \"security_policy\": \"Missing\",\n  \"issue_response_quality\": \"Stale\",\n  \"release_notes_quality\": \"No Releases\"\n}",
+                "truncated": false,
+                "loaded": [],
+                "display": {
+                  "type": "file",
+                  "path": "/workspace/manual_open-source-logiciel-libre.json",
+                  "text": "{\n  \"bilingual\": \"Yes\",\n  \"readme_clarity\": \"Good\",\n  \"security_policy\": \"Missing\",\n  \"issue_response_quality\": \"Stale\",\n  \"release_notes_quality\": \"No Releases\"\n}",
+                  "lineStart": 1,
+                  "lineEnd": 7,
+                  "totalLines": 7,
+                  "truncated": false
+                }
+              },
+              "title": "workspace/manual_open-source-logiciel-libre.json",
+              "time": {
+                "start": 1783958765971,
+                "end": 1783958766588
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_d78642c3675c4cf5b9db029b340fb2a6"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c3abcec001c9GIZYUC8zvW8J",
+          "message_id": "msg_f5c3a642d001mfkq7aThtU7xGJ",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958781165,
+          "time_updated": 1783958781166,
+          "data": {
+            "reason": "tool-calls",
+            "snapshot": "9ff0fde926c36f530eaaad7dd6dbda245c4e375c",
+            "type": "step-finish",
+            "tokens": {
+              "total": 18358,
+              "input": 109,
+              "output": 539,
+              "reasoning": 0,
+              "cache": {
+                "write": 0,
+                "read": 17710
+              }
+            },
+            "cost": 0
+          }
+        },
+        {
+          "id": "prt_f5c3abd1c001m5Zw0OyOIFebZn",
+          "message_id": "msg_f5c3a642d001mfkq7aThtU7xGJ",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958781212,
+          "time_updated": 1783958781213,
+          "data": {
+            "type": "patch",
+            "hash": "728efed881d34f59214ff1a87a9b7942e97c9900",
+            "files": [
+              "/workspace/manual_Open_First_Whitepaper.json",
+              "/workspace/manual_ore-ero.json",
+              "/workspace/manual_regs-consult-wet.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "msg_f5c3abd27001Ua2FASNHmmPfeG",
+      "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+      "time_created": 1783958781223,
+      "time_updated": 1783958849242,
+      "data": {
+        "parentID": "msg_f5c37f700001ThpiaDiNarQdy0",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "/workspace",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 18394,
+          "input": 141,
+          "output": 435,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 17818
+          }
+        },
+        "modelID": "accounts/fireworks/models/kimi-k2p6",
+        "providerID": "openai",
+        "time": {
+          "created": 1783958781223,
+          "completed": 1783958849242
+        },
+        "finish": "stop"
+      },
+      "parts": [
+        {
+          "id": "prt_f5c3ac2090015aQCK3sTlnyIiX",
+          "message_id": "msg_f5c3abd27001Ua2FASNHmmPfeG",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958782473,
+          "time_updated": 1783958782478,
+          "data": {
+            "snapshot": "9ff0fde926c36f530eaaad7dd6dbda245c4e375c",
+            "type": "step-start"
+          }
+        },
+        {
+          "id": "prt_f5c3ac2e20016su63MtrCuH10l",
+          "message_id": "msg_f5c3abd27001Ua2FASNHmmPfeG",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958782691,
+          "time_updated": 1783958788142,
+          "data": {
+            "type": "reasoning",
+            "text": "The task is complete. I have written the JSON file to /workspace/manual_open-source-logiciel-libre.json and verified its contents. Let me now provide the final response with the JSON content included.\n\nSummary of judgments:\n1. `bilingual`: `Yes` \u2014 The README contains both an English and a French section with meaningful content. It even has a link `([Fran\u00e7ais](#logiciels-libres))` and substantial French text.\n2. `readme_clarity`: `Good` \u2014 The README clearly explains that it is a draft standard from the Treasury Board of Canada Secretariat about open source use, contribution, and creation. It identifies who it's for (Government of Canada), and how to navigate the content (links to standards and guides). It also mentions it is a draft and links to further content.\n3. `security_policy`: `Missing` \u2014 Checked raw URLs for SECURITY.md in root, .github/, and docs/ \u2014 all returned 404.\n4. `issue_response_quality`: `Stale` \u2014 The 5 most recently updated open issues (sorted by updated desc) are #329 (updated Jun 2023), #103 (Nov 2019), #62 (Nov 2019), #72 (Oct 2019), #97 (Oct 2019). None of them have comments from anyone other than the original reporter within the last 6 months (from 2026-07-13, i.e., since Jan 2026). The most recent update is from June 2023, which is more than 6 months ago. So there are no active comments from non-reporters within the last 6 months, making it Stale.\n5. `release_notes_quality`: `No Releases` \u2014 The GitHub releases page explicitly says \"There aren't any releases here.\"",
+            "time": {
+              "start": 1783958782690,
+              "end": 1783958788133
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "rs_5bba20530004439eabd6000d59304943",
+                "reasoningEncryptedContent": null
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c3ad7cc001SxRYip0XxDLO64",
+          "message_id": "msg_f5c3abd27001Ua2FASNHmmPfeG",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958788053,
+          "time_updated": 1783958788155,
+          "data": {
+            "type": "text",
+            "text": "The file has been written and verified. Here is the final JSON content:\n\n```json\n{\n  \"bilingual\": \"Yes\",\n  \"readme_clarity\": \"Good\",\n  \"security_policy\": \"Missing\",\n  \"issue_response_quality\": \"Stale\",\n  \"release_notes_quality\": \"No Releases\"\n}\n```",
+            "time": {
+              "start": 1783958788048,
+              "end": 1783958788151
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "msg_b663c477c1864f0cbc38a0379bef622a"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c3bc6c1001i7QMSh3ehiC8J4",
+          "message_id": "msg_f5c3abd27001Ua2FASNHmmPfeG",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958849217,
+          "time_updated": 1783958849218,
+          "data": {
+            "reason": "stop",
+            "snapshot": "d5bc9825d00fbbb3f523af92102feabdfc14299b",
+            "type": "step-finish",
+            "tokens": {
+              "total": 18394,
+              "input": 141,
+              "output": 435,
+              "reasoning": 0,
+              "cache": {
+                "write": 0,
+                "read": 17818
+              }
+            },
+            "cost": 0
+          }
+        },
+        {
+          "id": "prt_f5c3bc6d6001OPM4eNVaAHbDAh",
+          "message_id": "msg_f5c3abd27001Ua2FASNHmmPfeG",
+          "session_id": "ses_0a3c8090affeBjvojf0v1jzEgh",
+          "time_created": 1783958849238,
+          "time_updated": 1783958849239,
+          "data": {
+            "type": "patch",
+            "hash": "9ff0fde926c36f530eaaad7dd6dbda245c4e375c",
+            "files": [
+              "/workspace/manual_alexapoc-healthcanada-recalls.json",
+              "/workspace/manual_commons.json",
+              "/workspace/manual_welcome.json",
+              "/workspace/repo_Libraries-bibliotheque.json"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1450 @@
+{
+  "id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+  "project_id": "global",
+  "workspace_id": null,
+  "parent_id": "ses_0a3c8f048ffe81hzrcxSi17lYn",
+  "slug": "brave-knight",
+  "directory": "/workspace",
+  "path": "workspace",
+  "title": "Worker A: metadata audit (@explore subagent)",
+  "version": "1.17.18",
+  "share_url": null,
+  "summary_additions": 0,
+  "summary_deletions": 0,
+  "summary_files": 0,
+  "summary_diffs": null,
+  "metadata": null,
+  "cost": 0.0,
+  "tokens_input": 19366,
+  "tokens_output": 7297,
+  "tokens_reasoning": 0,
+  "tokens_cache_read": 94491,
+  "tokens_cache_write": 0,
+  "revert": null,
+  "permission": "[{\"permission\":\"question\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_enter\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_exit\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"todowrite\",\"pattern\":\"*\",\"action\":\"deny\"}]",
+  "agent": "explore",
+  "model": "{\"id\":\"accounts/fireworks/models/kimi-k2p6\",\"providerID\":\"openai\",\"variant\":\"default\"}",
+  "time_created": 1783958618742,
+  "time_updated": 1783958967345,
+  "time_compacting": null,
+  "time_archived": null,
+  "messages": [
+    {
+      "id": "msg_f5c384291001K2bqvmB2yCRSIv",
+      "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+      "time_created": 1783958618772,
+      "time_updated": 1783958987752,
+      "data": {
+        "role": "user",
+        "time": {
+          "created": 1783958618772
+        },
+        "agent": "explore",
+        "model": {
+          "providerID": "openai",
+          "modelID": "accounts/fireworks/models/kimi-k2p6"
+        },
+        "summary": {
+          "diffs": [
+            {
+              "file": "workspace/Open_First_Whitepaper",
+              "patch": "Index: workspace/Open_First_Whitepaper\n===================================================================\n--- workspace/Open_First_Whitepaper\t\n+++ workspace/Open_First_Whitepaper\t\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/facts_CommunicatingPublicEngagement.json",
+              "patch": "Index: workspace/facts_CommunicatingPublicEngagement.json\n===================================================================\n--- workspace/facts_CommunicatingPublicEngagement.json\t\n+++ workspace/facts_CommunicatingPublicEngagement.json\t\n@@ -0,0 +1,15 @@\n+{\n+  \"repo_name\": \"CommunicatingPublicEngagement\",\n+  \"repo_url\": \"https://github.com/canada-ca/CommunicatingPublicEngagement\",\n+  \"primary_language\": \"Unknown\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"Unknown\",\n+  \"contributing_guide\": \"No\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"None\",\n+  \"last_commit_date\": \"2018-04-30\",\n+  \"days_since_last_commit\": 2996,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 0\n+}\n",
+              "additions": 15,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/facts_Libraries-bibliotheque.json",
+              "patch": "Index: workspace/facts_Libraries-bibliotheque.json\n===================================================================\n--- workspace/facts_Libraries-bibliotheque.json\t\n+++ workspace/facts_Libraries-bibliotheque.json\t\n@@ -0,0 +1,15 @@\n+{\n+  \"repo_name\": \"Libraries-bibliotheque\",\n+  \"repo_url\": \"https://github.com/canada-ca/Libraries-bibliotheque\",\n+  \"primary_language\": \"Unknown\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"Unknown\",\n+  \"contributing_guide\": \"No\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"None\",\n+  \"last_commit_date\": \"2017-07-12\",\n+  \"days_since_last_commit\": 3288,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 0\n+}\n",
+              "additions": 15,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/facts_alexapoc-vdpalexa.json",
+              "patch": "Index: workspace/facts_alexapoc-vdpalexa.json\n===================================================================\n--- workspace/facts_alexapoc-vdpalexa.json\t\n+++ workspace/facts_alexapoc-vdpalexa.json\t\n@@ -0,0 +1,15 @@\n+{\n+  \"repo_name\": \"alexapoc-vdpalexa\",\n+  \"repo_url\": \"https://github.com/canada-ca/alexapoc-vdpalexa\",\n+  \"primary_language\": \"Unknown\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"Unknown\",\n+  \"contributing_guide\": \"No\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"None\",\n+  \"last_commit_date\": \"2018-07-27\",\n+  \"days_since_last_commit\": 2908,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 0\n+}\n",
+              "additions": 15,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/facts_digital-playbook-guide-numerique.json",
+              "patch": "Index: workspace/facts_digital-playbook-guide-numerique.json\n===================================================================\n--- workspace/facts_digital-playbook-guide-numerique.json\t\n+++ workspace/facts_digital-playbook-guide-numerique.json\t\n@@ -0,0 +1,15 @@\n+{\n+  \"repo_name\": \"digital-playbook-guide-numerique\",\n+  \"repo_url\": \"https://github.com/canada-ca/digital-playbook-guide-numerique\",\n+  \"primary_language\": \"HTML\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"OGL-Canada\",\n+  \"contributing_guide\": \"Yes\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"Automated\",\n+  \"last_commit_date\": \"2021-03-06\",\n+  \"days_since_last_commit\": 1955,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 19\n+}\n",
+              "additions": 15,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/facts_regs-consult-wet.json",
+              "patch": "Index: workspace/facts_regs-consult-wet.json\n===================================================================\n--- workspace/facts_regs-consult-wet.json\t\n+++ workspace/facts_regs-consult-wet.json\t\n@@ -0,0 +1,15 @@\n+{\n+  \"repo_name\": \"regs-consult-wet\",\n+  \"repo_url\": \"https://github.com/canada-ca/regs-consult-wet\",\n+  \"primary_language\": \"JavaScript\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"MIT\",\n+  \"contributing_guide\": \"No\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"None\",\n+  \"last_commit_date\": \"2020-03-19\",\n+  \"days_since_last_commit\": 2307,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 1\n+}\n",
+              "additions": 15,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_CommunicatingPublicEngagement.json",
+              "patch": "Index: workspace/manual_CommunicatingPublicEngagement.json\n===================================================================\n--- workspace/manual_CommunicatingPublicEngagement.json\t\n+++ workspace/manual_CommunicatingPublicEngagement.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"No\",\n+  \"readme_clarity\": \"Poor\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"No Issues\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_Libraries-bibliotheque.json",
+              "patch": "Index: workspace/manual_Libraries-bibliotheque.json\n===================================================================\n--- workspace/manual_Libraries-bibliotheque.json\t\n+++ workspace/manual_Libraries-bibliotheque.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Poor\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"No Issues\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_Open_First_Whitepaper.json",
+              "patch": "Index: workspace/manual_Open_First_Whitepaper.json\n===================================================================\n--- workspace/manual_Open_First_Whitepaper.json\t\n+++ workspace/manual_Open_First_Whitepaper.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Present\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_PCO-Public-Opinion-Research__Recherche-en-opinion-publique--BCP.json",
+              "patch": "Index: workspace/manual_PCO-Public-Opinion-Research__Recherche-en-opinion-publique--BCP.json\n===================================================================\n--- workspace/manual_PCO-Public-Opinion-Research__Recherche-en-opinion-publique--BCP.json\t\n+++ workspace/manual_PCO-Public-Opinion-Research__Recherche-en-opinion-publique--BCP.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"No\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"Detailed\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_alexapoc-healthcanada-recalls.json",
+              "patch": "Index: workspace/manual_alexapoc-healthcanada-recalls.json\n===================================================================\n--- workspace/manual_alexapoc-healthcanada-recalls.json\t\n+++ workspace/manual_alexapoc-healthcanada-recalls.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"No\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"No Issues\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_alexapoc-vdpalexa.json",
+              "patch": "Index: workspace/manual_alexapoc-vdpalexa.json\n===================================================================\n--- workspace/manual_alexapoc-vdpalexa.json\t\n+++ workspace/manual_alexapoc-vdpalexa.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Poor\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"No Issues\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_commons.json",
+              "patch": "Index: workspace/manual_commons.json\n===================================================================\n--- workspace/manual_commons.json\t\n+++ workspace/manual_commons.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"No\",\n+  \"readme_clarity\": \"Fair\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_content-analysis.json",
+              "patch": "Index: workspace/manual_content-analysis.json\n===================================================================\n--- workspace/manual_content-analysis.json\t\n+++ workspace/manual_content-analysis.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"No Issues\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_digital-playbook-guide-numerique.json",
+              "patch": "Index: workspace/manual_digital-playbook-guide-numerique.json\n===================================================================\n--- workspace/manual_digital-playbook-guide-numerique.json\t\n+++ workspace/manual_digital-playbook-guide-numerique.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_open-source-logiciel-libre.json",
+              "patch": "Index: workspace/manual_open-source-logiciel-libre.json\n===================================================================\n--- workspace/manual_open-source-logiciel-libre.json\t\n+++ workspace/manual_open-source-logiciel-libre.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_ore-ero.json",
+              "patch": "Index: workspace/manual_ore-ero.json\n===================================================================\n--- workspace/manual_ore-ero.json\t\n+++ workspace/manual_ore-ero.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_regs-consult-wet.json",
+              "patch": "Index: workspace/manual_regs-consult-wet.json\n===================================================================\n--- workspace/manual_regs-consult-wet.json\t\n+++ workspace/manual_regs-consult-wet.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"No\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_welcome.json",
+              "patch": "Index: workspace/manual_welcome.json\n===================================================================\n--- workspace/manual_welcome.json\t\n+++ workspace/manual_welcome.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Present\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/repo_Libraries-bibliotheque.json",
+              "patch": "Index: workspace/repo_Libraries-bibliotheque.json\n===================================================================\n--- workspace/repo_Libraries-bibliotheque.json\t\n+++ workspace/repo_Libraries-bibliotheque.json\t\n@@ -0,0 +1,23 @@\n+{\n+  \"repo_name\": \"Libraries-bibliotheque\",\n+  \"repo_url\": \"https://github.com/canada-ca/Libraries-bibliotheque\",\n+  \"primary_language\": \"Unknown\",\n+  \"readme_exists\": \"Yes\",\n+  \"licence\": \"Unknown\",\n+  \"contributing_guide\": \"No\",\n+  \"has_security_scanning_in_ci\": \"No CI\",\n+  \"has_tests_in_ci\": \"No CI\",\n+  \"dependency_update_policy\": \"None\",\n+  \"last_commit_date\": \"2017-07-12\",\n+  \"days_since_last_commit\": 3288,\n+  \"maintained\": \"No\",\n+  \"open_issues_count\": 0,\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Poor\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"No Issues\",\n+  \"release_notes_quality\": \"No Releases\",\n+  \"standards_met\": 1,\n+  \"compliance_status\": \"Non-compliant\",\n+  \"gaps\": [\"Open licence\", \"Security policy\", \"Contributing guide\", \"Actively maintained\"]\n+}\n",
+              "additions": 23,
+              "deletions": 0,
+              "status": "added"
+            }
+          ]
+        }
+      },
+      "parts": [
+        {
+          "id": "prt_f5c38429a0011UQfEzeqx4hVJi",
+          "message_id": "msg_f5c384291001K2bqvmB2yCRSIv",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958618786,
+          "time_updated": 1783958618787,
+          "data": {
+            "type": "text",
+            "text": "You are an explore agent auditing the repository `digital-playbook-guide-numerique` owned by `canada-ca`.\n\nYour job is to gather metadata and structural facts and write them to `/workspace/facts_digital-playbook-guide-numerique.json` as a JSON object with the exact keys and allowed values listed below.\n\nRules:\n- Use ONLY the exact allowed values for each column. If you cannot determine a value, write exactly `Unknown`.\n- Prefer public HTML page scraping (e.g., `webfetch`) over GitHub API to avoid rate limits. If you must use the GitHub API, use `curl -s` with a `User-Agent` header and run `sleep 1` between successive API requests.\n- If an endpoint returns 403/404, treat it as missing/absent for that check.\n- Never guess a value from another `Unknown` value.\n\nFields to determine:\n\n1. `repo_name`: `digital-playbook-guide-numerique`\n2. `repo_url`: `https://github.com/canada-ca/digital-playbook-guide-numerique`\n3. `primary_language`: From the GitHub API repo endpoint (`https://api.github.com/repos/canada-ca/digital-playbook-guide-numerique`) `language` field. If `null` or missing, write `Unknown`.\n4. `readme_exists`: Check the root contents via API (`/repos/.../contents/`) or web-scrape the repo root page. If a README file (case-insensitive, e.g., `README.md`, `README`) is listed, write `Yes`; otherwise `No`.\n5. `licence`: Check the API `license.spdx_id`. If it is present and not null, use that short name (e.g., `MIT`, `Apache-2.0`, `OGL-Canada`, `CC-BY-4.0`). If `spdx_id` is null or missing, check for a `LICENSE` or `LICENSE.md` file at root via API/contents. If found, read it (first 100 lines) and deduce the short name. If none or undetermined, write `Unknown`.\n6. `contributing_guide`: Check root contents for `CONTRIBUTING.md`. If found, `Yes`; else `No`.\n7. `has_security_scanning_in_ci`: \n   - Check if `.github/workflows` directory exists (via API or root page). If no directory or no workflow files, write `No CI`.\n   - If workflows exist, check the GitHub Actions page (e.g., `https://github.com/canada-ca/digital-playbook-guide-numerique/actions`) via `webfetch` for run history. If the page shows \"0 runs\" or no workflows ever ran, write `No CI`.\n   - If runs exist, read the workflow YAML files (via API contents or raw GitHub) and check for any security scanner: CodeQL, `npm audit`, `pip-audit`, Snyk, Trivy, or similar. If at least one found, write `Yes`; else `No`.\n   - Allowed: `Yes`/`No`/`No CI`/`Unknown`.\n8. `has_tests_in_ci`: Same logic as above but look for test steps (e.g., `pytest`, `jest`, `npm test`, `go test`, `mvn test`, `gradle test`, etc.). Allowed: `Yes`/`No`/`No CI`/`Unknown`.\n9. `dependency_update_policy`: \n   - Check for `.github/dependabot.yml` or `.github/renovate.json` (or similar Renovate config) via API contents. If found and it appears configured for the repo\u2019s ecosystem, write `Automated`.\n   - If no config file, check recent commits (e.g., last 100) via API for messages like \"bump\", \"update dependency\", \"renovate\", \"dependabot\". If any such commit exists, write `Manual`.\n   - Else write `None`.\n   - Allowed: `Automated`/`Manual`/`None`/`Unknown`.\n10. `last_commit_date`: Use the API commits endpoint for the default branch (`https://api.github.com/repos/canada-ca/digital-playbook-guide-numerique/commits?sha=master&per_page=1` or `main`). Take the `commit.committer.date` of the first commit, format as `YYYY-MM-DD`. If you cannot determine it, write `Unknown`.\n11. `days_since_last_commit`: Compute integer days between `last_commit_date` and `2026-07-13`. If `last_commit_date` is `Unknown`, write `Unknown`.\n12. `maintained`: Write `Yes` if `days_since_last_commit` is an integer and <= 365; else `No`. If `days_since_last_commit` is `Unknown`, write `Unknown`.\n13. `open_issues_count`: Fetch open issues via API (`https://api.github.com/repos/canada-ca/digital-playbook-guide-numerique/issues?state=open&per_page=100`). Filter out items that contain a `pull_request` key (i.e., they are PRs). Count the remaining items. If the API is unavailable or you cannot determine the count, write `Unknown`.\n\nAfter collecting all fields, write a single JSON object to `/workspace/facts_digital-playbook-guide-numerique.json` with the exact keys above and no extra commentary. Use `bash` `echo` or `write` tool to create the file. Ensure valid JSON.\n\nReturn the JSON content in your final message to the parent agent.\n"
+          }
+        }
+      ]
+    },
+    {
+      "id": "msg_f5c38454f0017whkYwG6lvpoF6",
+      "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+      "time_created": 1783958619471,
+      "time_updated": 1783958684872,
+      "data": {
+        "parentID": "msg_f5c384291001K2bqvmB2yCRSIv",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "/workspace",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 3978,
+          "input": 1154,
+          "output": 186,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 2638
+          }
+        },
+        "modelID": "accounts/fireworks/models/kimi-k2p6",
+        "providerID": "openai",
+        "time": {
+          "created": 1783958619471,
+          "completed": 1783958684872
+        },
+        "finish": "tool-calls"
+      },
+      "parts": [
+        {
+          "id": "prt_f5c38a185001QJoaNnqZ2dNhak",
+          "message_id": "msg_f5c38454f0017whkYwG6lvpoF6",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958643078,
+          "time_updated": 1783958643079,
+          "data": {
+            "snapshot": "56c03aa325c8090b267620d1edac46c988e52b2b",
+            "type": "step-start"
+          }
+        },
+        {
+          "id": "prt_f5c38a43f001riBS5xCF05FLdI",
+          "message_id": "msg_f5c38454f0017whkYwG6lvpoF6",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958643776,
+          "time_updated": 1783958646531,
+          "data": {
+            "type": "reasoning",
+            "text": "I need to gather metadata and structural facts about the `digital-playbook-guide-numerique` repository owned by `canada-ca`. I'll use a combination of `webfetch` and `curl` to GitHub API to collect the required fields. Let me start by fetching the repository's main page and API data.",
+            "time": {
+              "start": 1783958643776,
+              "end": 1783958646526
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "rs_ff7551cda7754abe9b22c93581e002e6",
+                "reasoningEncryptedContent": null
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c38a70d001zAkqnN6fuFdEG9",
+          "message_id": "msg_f5c38454f0017whkYwG6lvpoF6",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958644493,
+          "time_updated": 1783958652456,
+          "data": {
+            "type": "tool",
+            "tool": "webfetch",
+            "callID": "webfetch_0",
+            "state": {
+              "status": "completed",
+              "input": {
+                "url": "https://github.com/canada-ca/digital-playbook-guide-numerique",
+                "format": "text"
+              },
+              "output": "GitHub - canada-ca/digital-playbook-guide-numerique: Government of Canada Digital Playbook / Guide num\u00e9rique du gouvernement du Canada \u00b7 GitHub\n\n\n\n  \n  \n  \n  \n\n    \n  \n\n\n  \n\n\n    \n\n\n  \n  \n\n  \n  \n\n    \n\n\n\n\n\n\n\n  \n\n  \n\n\n\n\n    \n\n  \n\n    \n\n    \n\n      \n\n      \n\n    \n    \n    \n\n      \n  \n  \n\n\n\n\n      \n\n\n\n        \n\n\n  \n  \n  \n  \n\n  \n\n      \n\n    \n\n  \n\n  \n  \n\n\n\n    \n\n    \n  \n\n\n  \n\n  \n\n    \n  \n\n  \n  \n  \n\n\n\n\n\n  \n\n  \n\n  \n    \n      \n      \n\n    \n      Skip to content\n\n      \n    \n      \n      \n\n\n\n  \n  \n  \n\n\n\n\n\n\n      \n\n          \n\n              \n\n\n\n\n\n\n\n  Navigation Menu\n\n  \n    Toggle navigation\n  \n\n  \n    \n      \n          \n    \n            \n            \n  \n\n      \n\n      \n        \n    \n\n      \n\n      \n          \n            Sign in\n          \n              \n    \n        \n    \n\nAppearance settings\n\n      \n        \n\n\n\n  \n  \n  \n\n\n\n      \n    \n  \n\n      \n    \n\n\n    \n      \n          \n\n\n\n  \n  \n  PlatformAI CODE CREATIONGitHub CopilotWrite better code with AIGitHub Copilot appDirect agents from issue to mergeMCP RegistryNewIntegrate external toolsDEVELOPER WORKFLOWSActionsAutomate any workflowCodespacesInstant dev environmentsIssuesPlan and track workCode ReviewManage code changesAPPLICATION SECURITYGitHub Advanced SecurityFind and fix vulnerabilitiesCode securitySecure your code as you buildSecret protectionStop leaks before they startEXPLOREWhy GitHubDocumentationBlogChangelogMarketplaceView all featuresSolutionsBY COMPANY SIZEEnterprisesSmall and medium teamsStartupsNonprofitsBY USE CASEApp ModernizationDevSecOpsDevOpsCI/CDView all use casesBY INDUSTRYHealthcareFinancial servicesManufacturingGovernmentView all industriesView all solutionsResourcesEXPLORE BY TOPICAISoftware DevelopmentDevOpsSecurityView all topicsEXPLORE BY TYPECustomer storiesEvents & webinarsEbooks & reportsBusiness insightsGitHub SkillsSUPPORT & SERVICESDocumentationCustomer supportCommunity forumTrust centerPartnersView all resourcesOpen SourceCOMMUNITYGitHub SponsorsFund open source developersPROGRAMSSecurity LabMaintainer CommunityAcceleratorGitHub StarsArchive ProgramREPOSITORIESTopicsTrendingCollectionsEnterpriseENTERPRISE SOLUTIONSEnterprise platformAI-powered developer platformAVAILABLE ADD-ONSGitHub Advanced SecurityEnterprise-grade security featuresCopilot for BusinessEnterprise-grade AI featuresPremium SupportEnterprise-grade 24/7 supportPricing\n\n\n\n\n        \n                \n\n\n\n  \n      \n        \n          \n    \n\n        \n        Search or jump to...\n          \n            \n          \n      \n\n    \n\n    \n\n  \n      Search code, repositories, users, issues, pull requests...\n    \n      \n                  \n          \n  \n    \n      \n        Search\n      \n      \n          \n            \n    \n\n          \n        \n          \n          \n            \n            \n          \n        \n          \n            Clear\n              \n    \n\n\n\n          \n      \n      \n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n        \n                        \n\n        \n      \n        \n          \n    \n\n        \n        \n    \n    \n\n          \n            Search syntax tips            \n          \n        \n\n\n    \n\n  \n  \n  \n    \n\n  \n    \n  \n    \n      \n        Provide feedback\n      \n        \n    \n    \n      \n    \n\n    \n  \n  \n\n      \n                \n          We read every piece of feedback, and take your input very seriously.\n          \n          \n          Include my email address so I can be contacted\n\n      \n                    Cancel\n\n              Submit feedback\n\n\n\n\n    \n    \n\n  \n    \n  \n    \n      \n        Saved searches\n      \n        Use saved searches to filter your results more quickly\n    \n    \n      \n    \n\n    \n  \n  \n\n      \n                \n\n        \n        \n          \n\n          \n\n          \n            Name\n            \n              \n              \n            \n          \n\n          \n            Query\n            \n          \n\n          \n            To see all available qualifiers, see our documentation.\n          \n        \n\n        \n          \n        \n\n\n      \n                    Cancel\n\n              Create saved search\n\n\n\n    \n  \n\n\n\n            \n              \n                Sign in\n              \n            \n\n              \n                Sign up\n              \n\n                \n    \n        \n    \n\nAppearance settings\n\n      \n        \n\n\n\n  \n  \n  \n\n\n\n      \n    \n  \n\n          Resetting focus\n        \n      \n    \n  \n\n\n      \n  \n        \n    \n\n        You signed in with another tab or window. Reload to refresh your session.\n        You signed out in another tab or window. Reload to refresh your session.\n        You switched accounts on another tab or window. Reload to refresh your session.\n\n      \n    \n\nDismiss alert\n\n\n  \n\n    \n\n  \n\n\n\n\n\n\n\n\n    \n\n\n\n\n  \n    \n\n  \n    \n      \n    \n\n    \n    \n      \n      {{ message }}\n\n    \n  \n\n  \n\n\n\n    \n\n\n\n\n\n\n  \n        \n    \n      \n      \n    \n\n    \n  \n  \n    \n  \n    \n      \n\n              Uh oh!\n\n              There was an error while loading. Please reload this page.\n\n\n  \n  \n\n\n    \n\n\n        \n    This repository was archived by the owner on Nov 7, 2022. It is now read-only.\n  \n\n\n\n\n\n\n  \n\n  \n\n      \n\n        \n            \n  \n      \n    \n\n    \n    \n      \n        canada-ca\n    \n    /\n    \n      digital-playbook-guide-numerique\n    \n\n    Public archive\n  \n\n\n        \n\n        \n            \n    \n      \n\n  \n                \n    \nNotifications\n    You must be signed in to change notification settings\n\n  \n\n  \n              \n    \nFork\n    21\n\n  \n\n  \n        \n            \n    \n\n          Star\n          59\n\n  \n\n\n\n        \n      \n\n        \n\n\n\n          \n\n  \n      \n  \n    \n              \n    \n\n        Code\n          \n\n\n    \n\n      \n  \n    \n              \n    \n\n        Issues\n          19\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Pull requests\n          13\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Actions\n          \n\n\n    \n\n      \n  \n    \n              \n    \n\n        Security and quality\n          0\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Insights\n          \n\n\n    \n\n\n          \n  \n      \n    \n\nAdditional navigation options\n\n\n\n  \n    \n                \n  \n    \n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Code\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Issues\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Pull requests\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Actions\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Security and quality\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Insights\n      \n\n  \n\n    \n\n\n\n\n      \n  \n\n\n\n  \n  \n\n\n\n\n    \n    \n\n\n\n    \n      \n    \n\n\n\n\n\n\n\n\n\n  \n  \n     \n\n\n\n\ncanada-ca/digital-playbook-guide-numerique\n\n\n\n\u00a0masterBranchesTagsGo to fileCodeOpen more actions menuFolders and filesNameNameLast commit messageLast commit dateLatest commit\u00a0History442 Commits442 Commits.github.github\u00a0\u00a0_data_data\u00a0\u00a0_includes_includes\u00a0\u00a0_layouts_layouts\u00a0\u00a0assets-atouts/jsassets-atouts/js\u00a0\u00a0docsdocs\u00a0\u00a0enen\u00a0\u00a0frfr\u00a0\u00a0views-vuesviews-vues\u00a0\u00a0.editorconfig.editorconfig\u00a0\u00a0.eslintrc.json.eslintrc.json\u00a0\u00a0.gitattributes.gitattributes\u00a0\u00a0.gitignore.gitignore\u00a0\u00a0.markdown-link-check.json.markdown-link-check.json\u00a0\u00a0.markdownlint.json.markdownlint.json\u00a0\u00a0.vnurc.vnurc\u00a0\u00a0404.html404.html\u00a0\u00a0CODE_OF_CONDUCT.mdCODE_OF_CONDUCT.md\u00a0\u00a0CONTRIBUTING.mdCONTRIBUTING.md\u00a0\u00a0GemfileGemfile\u00a0\u00a0Gemfile.lockGemfile.lock\u00a0\u00a0LICENSE.mdLICENSE.md\u00a0\u00a0README.mdREADME.md\u00a0\u00a0_config.yml_config.yml\u00a0\u00a0convert-to-data-set.rbconvert-to-data-set.rb\u00a0\u00a0generate-local-site.rbgenerate-local-site.rb\u00a0\u00a0import-department-names.rbimport-department-names.rb\u00a0\u00a0index.htmlindex.html\u00a0\u00a0link-check.jslink-check.js\u00a0\u00a0package-lock.jsonpackage-lock.json\u00a0\u00a0package.jsonpackage.json\u00a0\u00a0View all filesRepository files navigationREADMECode of conductContributingLicenseMore items\nFran\u00e7ais\n\nGovernment of Canada Digital Playbook (draft)\n(Website version of the Digital Playbook overview)\nProvides practical and detailed guidance to assist the Government of Canada in digital transformation and augmented service delivery, including becoming more agile, open and user-focused. Includes task-specific views and interactive features to make it easier to find relevant guidance and to apply it to day-to-day work.\nThe Digital Playbook is also an opportunity to experiment with new approaches while reusing as much as possible and contributing back reusable components for others to use (see Experimental approaches and reusable components).\nDigital Playbook views\nDigital Playbook views are generated from the Digital Playbook dataset and can make the Digital Playbook more relevant and easier to use for certain tasks by providing only the information that is relevant to the task and ordering it in a way that makes sense for the user.\nAgile views\n\nIs Agile Right for My Project? (draft)\n\nArtificial Intelligence (AI) views\n\nAlgorithmic Impact Assessment (Archived)\nHow should I implement an Automated Decision System? (draft)\n\nCloud views\n\nRight Cloud Decision Tool (draft)\n\nOpen Government views\n\nHow do I decide whether to release content on the Open Government Portal? (draft)\n\nSecurity views\n\nSecurity Categorization Tool (draft)\n\nDigital Architectural Standards views\n\nHow should I ensure my project meets GC EARB requirements? (draft)\n\nDigital Standards views\n\n1. Design with users\n2. Iterate and improve frequently\n3. Work in the open by default\n4. Use open standards and solutions\n5. Address security and privacy risks\n6. Build in accessibility from the start\n7. Empower staff to deliver better services\n8. Be good data stewards\n9. Design ethical services\n10. Collaborate widely\nDigital Standards - Single page view\n\nDevelopment stage views\n\nAlpha stage\nBeta stage\nLive stage\nDevelopment stages\nDevelopment stages - Checklists only\n\nOther views\n\nGovernment of Canada Digital Playbook comparison table\n\nAbout the Digital Playbook\nImproving government services in the Digital Age\nOur goal is to provide public services to Canadians which are simple to use and trustworthy. This Digital Playbook, and the Government of Canada's Digital Standards it is built upon, form the foundation of the Government of Canada\u2019s shift to becoming more agile, open, and user-focused. They will guide teams in designing digital services in a way that best serves Canadians.\nThe digital standards were co-created with the public and key stakeholder groups and the goal is to co-create this Digital Playbook with the same groups. They are living standards and guidance and they will continue to evolve over time as we better understand the complexities involved in putting them into practice.\nThe Government of Canada Digital Playbook is available under the Open Government Licence - Canada, except where otherwise stated.\nStructure of the Digital Playbook (draft)\nThe Digital Playbook is composed of multiple different views which are designed for certain tasks by providing only the information that is relevant to the task and ordering it in a way that makes sense for the user. Each of these views could be composed of one or more of the following:\n\nStandards are strategic and describe the expected behaviour.\nGuidelines are tactical and describe in general terms how to behave according to the standards.\nChecklists include items that are operational and describe in specific terms how to meet the guideline.\nImplementation guides provide additional, detailed information on specific sub-topics to assist with implementing the guideline.\nReusable solutions include templates, tools and other solutions to assist with implementing the guideline.\nSimilar resources are sources of information (e.g., standards from other jurisdictions) that are similar to the guideline.\n\nImplementation approach\nThe approach to developing and releasing the Digital Playbook will be similar to the Web Experience Toolkit and HTML5, where the Digital Playbook continuously evolves on GitHub and stable snapshots of that work are released as formal versions through Canada.ca. This enables the Digital Playbook to be both agile and ever-improving on GitHub while also providing a stable version through Canada.ca that can be relied upon for guidance.\nCommunity feedback and contributions to the Digital Playbook are encouraged, with designated reviewers for each part of the Digital Playbook being responsible for reviewing, responding to, requesting changes (as needed) and eventually approving or declining the feedback and contributions. The primary reviewers are individuals from the related policy areas and areas of expertise, and are also responsible for contributing content and engaging with their respective communities.\nTo ensure that the Digital Playbook is as easy to use as possible, contributors/reviewers would work with their respective communities to determine how to make the Digital Playbook more applicable to their day-to-day work, including for which tasks/scenarios personalized Digital Playbook views should be provided.\nGuide num\u00e9rique du gouvernement du Canada (\u00e9bauche)\n(Version du site web de l'aper\u00e7u du guide num\u00e9rique)\nFournit des conseils pratiques et d\u00e9taill\u00e9s pour aider le gouvernement du Canada dans la transformation num\u00e9rique et la prestation de services accrue, y compris en devenant plus agile, ouvert et ax\u00e9 sur l'utilisateur. Inclut des vues sp\u00e9cifiques aux t\u00e2ches et des fonctions interactives pour faciliter la recherche des conseils pertinents et pour les appliquer au travail quotidien.\nLe guide num\u00e9rique est \u00e9galement l\u2019occasion d\u2019exp\u00e9rimenter avec de nouvelles approches tout en r\u00e9utilisant le plus que possible et en fournissant des composants r\u00e9utilisables pour que les autres puissent les utiliser (voir Approches exp\u00e9rimentales et composants r\u00e9utilisables).\nVues du guide num\u00e9rique\nLes vues du guide num\u00e9rique sont g\u00e9n\u00e9r\u00e9s \u00e0 partir du jeu de donn\u00e9es du guide num\u00e9rique et peuvent rendre le guide num\u00e9rique plus pertinent et plus facile \u00e0 utiliser pour certaines t\u00e2ches en fournissant uniquement les informations pertinentes \u00e0 la t\u00e2che et en les ordonnant d'une mani\u00e8re logique pour l'utilisateur.\nVues bas\u00e9es sur Agile\n\nEst-ce que Agile est juste pour mon projet? (\u00e9bauche)\n\nVues bas\u00e9es sur l'intelligence artificielle (IA)\n\n\u00c9valuation d'impact algorithmique (Archiv\u00e9e)\nComment dois-je mettre en place un syst\u00e8me de d\u00e9cision automatis\u00e9? (\u00e9bauche)\n\nVues bas\u00e9es sur l'informatique en nuage\n\nOutil d\u00e9cisionnel du nuage appropri\u00e9 (\u00e9bauche)\n\nVues bas\u00e9es sur le gouvernement ouvert\n\nComment puis-je d\u00e9cider de publier du contenu dans le Portail du gouvernement ouvert? (\u00e9bauche)\n\nVues bas\u00e9es sur le s\u00e9curit\u00e9\n\nOutil de categorisation de s\u00e9curit\u00e9 (\u00e9bauche)\n\nVues bas\u00e9es sur les normes architecturales sur le num\u00e9rique\n\nComment dois-je m'assurer que mon projet respecte les exigences du CAEI GC? (\u00e9bauche)\n\u00c9valuation d'impact algorithmique (\u00e9bauche)\nComment dois-je mettre en place un syst\u00e8me de d\u00e9cision automatis\u00e9? (\u00e9bauche)\nOutil d\u00e9cisionnel du nuage appropri\u00e9 (\u00e9bauche)\n\nVues bas\u00e9es sur les normes num\u00e9riques\n\n1. Concevoir avec les utilisateurs\n2. Effectuer r\u00e9guli\u00e8rement des it\u00e9rations et des am\u00e9liorations\n3. Travailler ouvertement par d\u00e9faut\n4. Utiliser des normes et des solutions ouvertes\n5. G\u00e9rer les risques en mati\u00e8re de s\u00e9curit\u00e9 et de protection des renseignements personnels\n6. Int\u00e9grer l\u2019accessibilit\u00e9 d\u00e8s le d\u00e9part\n7. Permettre au personnel d\u2019offrir de meilleurs services\n8. \u00catre de bons utilisateurs de donn\u00e9es\n9. Concevoir des services \u00e9thiques\n10. Collaborer largement\nNormes num\u00e9riques - Affichage d'une seule page\n\nVues bas\u00e9es sur les stages de d\u00e9veloppement\n\nStage alpha\nStage b\u00eata\nStage en direct\nStages de d\u00e9veloppement\nStages de d\u00e9veloppement - Listes de contr\u00f4le seulement\n\nAutres vues\n\nTableau comparatif du guide num\u00e9rique du gouvernement du Canada\n\n\u00c0 propos du guide num\u00e9rique\nAm\u00e9liorer les services gouvernementaux \u00e0 l\u2019\u00e8re num\u00e9rique\nNotre objectif est de fournir aux Canadiens des services publics faciles \u00e0 utiliser et dignes de confiance. Ce guide num\u00e9rique, ainsi que les normes num\u00e9riques du gouvernement du Canada sur lequels ce guide est fond\u00e9, constituent le fondement du virage du gouvernement du Canada vers une plus grande souplesse, une plus grande ouverture et une plus grande attention sur l\u2019utilisateur. Elles guideront les \u00e9quipes dans la conception de services num\u00e9riques, d\u2019une fa\u00e7on qui servira le mieux les Canadiens.\nCes normes num\u00e9riques ont \u00e9t\u00e9 cr\u00e9\u00e9es conjointement avec le public et des groupes d\u2019intervenants cl\u00e9s l'objectif est de co-cr\u00e9er ce guide num\u00e9rique avec les m\u00eames groupes. Ce sont l\u00e0 des normes et conseils vivantes, et elles continueront d\u2019\u00e9voluer au fil du temps \u00e0 mesure que nous comprendrons mieux les complexit\u00e9s de leur mise en pratique.\nLe Guide num\u00e9rique du gouvernement du Canada est disponible sous la licence du gouvernement ouvert du Canada, sauf indication contraire.\nStructure du guide num\u00e9rique (\u00e9bauche)\nLe guide num\u00e9rique est compos\u00e9 de plusieurs vues diff\u00e9rentes qui sont con\u00e7ues pour certaines t\u00e2ches en fournissant uniquement les informations pertinentes \u00e0 la t\u00e2che et en les ordonnant d'une mani\u00e8re logique pour l'utilisateur. Chacune de ces vues pourrait \u00eatre compos\u00e9e d'un ou plusieurs des \u00e9l\u00e9ments suivants\u00a0:\n\nNormes sont strat\u00e9giques et d\u00e9crivent le comportement attendu.\nLignes directrices sont tactiques et d\u00e9crivent en termes g\u00e9n\u00e9raux comment se passant selon les normes.\nListes de contr\u00f4le comprennent des \u00e9l\u00e9ments qui sont op\u00e9rationnels et d\u00e9crivent en termes sp\u00e9cifiques comment satisfaire la ligne directrice.\nGuides de mise en \u0153uvre fournissent des informations suppl\u00e9mentaires et d\u00e9taill\u00e9es sur des sous-th\u00e8mes sp\u00e9cifiques pour faciliter la mise en \u0153uvre de la ligne directrice.\nSolutions r\u00e9utilisables comprennent des mod\u00e8les, des outils et d'autres solutions pour faciliter la mise en \u0153uvre de la ligne directrice.\nRessources similaires sont des sources d'informations (par exemple, des normes d'autres juridictions) qui sont similaires \u00e0 la ligne directrice.\n\nApproche de mise en \u0153uvre\nL'approche du d\u00e9veloppement et de la diffusion du guide num\u00e9rique sera similaire \u00e0 celle de la Bo\u00eete \u00e0 outils de l'exp\u00e9rience Web et de HTML5, o\u00f9 le guide num\u00e9rique \u00e9volue constamment sur GitHub et o\u00f9 des clich\u00e9s stables de ce travail sont publi\u00e9s sous forme de versions officielles sur Canada.ca. Cela permet au guide num\u00e9rique d'\u00eatre agile et de s'am\u00e9liorer constamment sur GitHub tout en offrant une version stable \u00e0 travers Canada.ca sur laquelle on peut compter pour obtenir des conseils.\nLes r\u00e9actions de la communaut\u00e9 et les contributions au guide num\u00e9rique sont encourag\u00e9es, les r\u00e9viseurs d\u00e9sign\u00e9s pour chaque partie du guide num\u00e9rique \u00e9tant charg\u00e9s d'examiner, de r\u00e9pondre, de demander des changements (au besoin) et d'approuver ou de refuser les commentaires et les contributions. Les examinateurs principaux sont des personnes provenant des secteurs de politiques connexes et des domaines d'expertise, et sont \u00e9galement charg\u00e9s de contribuer au contenu et de s'engager aupr\u00e8s de leurs communaut\u00e9s respectives.\nPour s'assurer que le guide num\u00e9rique soit aussi facile \u00e0 utiliser que possible, les contributeurs / r\u00e9viseurs travailleront avec leurs communaut\u00e9s respectives pour d\u00e9terminer comment rendre le guide num\u00e9rique plus applicable \u00e0 leur travail quotidien, y compris pour quelles t\u00e2ches / sc\u00e9narios personnalis\u00e9s les vues du guide num\u00e9rique doivent \u00eatre fournies.\n\n\n\n  \n    \n      \n  About\n\n      \n        Government of Canada Digital Playbook / Guide num\u00e9rique du gouvernement du Canada\n      \n      \n        \n    \n\n        \n          canada-ca.github.io/digital-playbook-guide-numerique/\n        \n      \n\n    Topics\n    \n        \n      \n  government\n\n      \n  data\n\n      \n  accessibility\n\n      \n  collaboration\n\n      \n  canada\n\n      \n  user-experience\n\n      \n  digital-standards\n\n      \n  open-standard\n\n      \n  gouvernement\n\n      \n  digital-playbook\n\n  \n\n    \n\n    Resources\n    \n      \n        \n    \n\n        Readme\n    \n\n  \n    License\n  \n    \n      \n    \n\n     View license\n    \n  \n\n\n    Code of conduct\n    \n      \n        \n    \n\n        Code of conduct\n      \n    \n\n\n    Contributing\n    \n      \n        \n    \n\n        Contributing\n      \n    \n\n\n  \n  \n\n  \n    \n  \n    \n      \n\n              Uh oh!\n\n              There was an error while loading. Please reload this page.\n\n\n  \n  \n\n    \n      \n    \n\n        Activity    \n\n    \n      \n    \n\n        Custom properties    \n\n    Stars\n    \n        \n          \n    \n\n            59\n            stars\n        \n    \n\n    Watchers\n    \n        \n          \n    \n\n            2\n            watching\n        \n    \n\n    Forks\n    \n      \n    \n\n        21\n        forks    \n\n\n    \n      \n          Report repository\n    \n\n\n    \n  \n\n  \n      \n        \n          \n  Releases\n\n    No releases published\n\n        \n      \n\n  \n  \n  \n      \n        \n          \n\n  \n  \n  Packages\n      0\n\n\n      \n        \n        \u00a0\n      \n      \n        \n        \u00a0\n      \n      \n        \n        \u00a0\n      \n\n\n\n  \n    \n  \n    \n      \n\n              Uh oh!\n\n              There was an error while loading. Please reload this page.\n\n\n  \n  \n\n        \n      \n\n  \n      \n        \n          \n  \n\n  \n    \n  \n    \n      \n\n              Uh oh!\n\n              There was an error while loading. Please reload this page.\n\n\n  \n  \n\n        \n      \n\n  \n    \n      \n        \n  \n  \n    Contributors  \n\n  \n      \n        \n      \n      \n        \n      \n      \n        \n      \n  \n\n  \n    \n  \n    \n      \n\n              Uh oh!\n\n              There was an error while loading. Please reload this page.\n\n\n  \n  \n\n      \n    \n\n  \n      \n        \n          Languages\n\n  \n    \n    \n    \n\n\n    \n        \n          \n    \n\n          HTML\n          82.5%\n        \n    \n    \n        \n          \n    \n\n          JavaScript\n          14.4%\n        \n    \n    \n        \n          \n    \n\n          Ruby\n          3.1%\n        \n    \n\n\n        \n      \n\n  \n  \n   \n\n\n\n\n\n  \n\n\n\n    \n  \n\n  \n\n          \n  Footer\n\n  \n\n\n  \n    \n      \n        \n    \n\n\n      \n        \u00a9 2026 GitHub,\u00a0Inc.\n      \n    \n\n    \n      Footer navigation\n\n      \n\n\n          \n            Terms\n          \n\n          \n            Privacy\n          \n\n          \n            Security\n          \n\n          \n            Status\n          \n\n          \n            Community\n          \n\n          \n            Docs\n          \n\n          \n            Contact\n          \n\n          \n  \n    \n       Manage cookies\n    \n  \n\n\n\n  \n    \n      Do not share my personal information\n    \n  \n\n\n      \n    \n  \n\n\n\n\n    \n\n\n\n\n  \n    \n    \n\n    \n      \n    \n\n    \n    You can\u2019t perform that action at this time.",
+              "metadata": {
+                "truncated": false
+              },
+              "title": "https://github.com/canada-ca/digital-playbook-guide-numerique (text/html; charset=utf-8)",
+              "time": {
+                "start": 1783958646562,
+                "end": 1783958652454
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_85d76c1ddf4f40af9d629ce7d8629573"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c38a81b001pf1qPry0TNsn7P",
+          "message_id": "msg_f5c38454f0017whkYwG6lvpoF6",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958644764,
+          "time_updated": 1783958656998,
+          "data": {
+            "type": "tool",
+            "tool": "bash",
+            "callID": "bash_1",
+            "state": {
+              "status": "completed",
+              "input": {
+                "command": "curl -s -H \"User-Agent: explore-agent\" https://api.github.com/repos/canada-ca/digital-playbook-guide-numerique"
+              },
+              "output": "{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}\n",
+              "metadata": {
+                "output": "{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}\n",
+                "exit": 0,
+                "truncated": false
+              },
+              "title": "curl -s -H \"User-Agent: explore-agent\" https://api.github.com/repos/canada-ca/digital-playbook-guide-numerique",
+              "time": {
+                "start": 1783958656989,
+                "end": 1783958656996
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_fa62e1621d3b430c8130e1bf9ff26e2d"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c38aebf001otxTWhL2BGrifC",
+          "message_id": "msg_f5c38454f0017whkYwG6lvpoF6",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958646463,
+          "time_updated": 1783958657015,
+          "data": {
+            "type": "tool",
+            "tool": "bash",
+            "callID": "bash_2",
+            "state": {
+              "status": "completed",
+              "input": {
+                "command": "curl -s -H \"User-Agent: explore-agent\" https://api.github.com/repos/canada-ca/digital-playbook-guide-numerique/contents/"
+              },
+              "output": "{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}\n",
+              "metadata": {
+                "output": "{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}\n",
+                "exit": 0,
+                "truncated": false
+              },
+              "title": "curl -s -H \"User-Agent: explore-agent\" https://api.github.com/repos/canada-ca/digital-playbook-guide-numerique/contents/",
+              "time": {
+                "start": 1783958657005,
+                "end": 1783958657012
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_ccb907c0fd9345d7895a9d4bd889764a"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c39448d0013V69H188wjVMsN",
+          "message_id": "msg_f5c38454f0017whkYwG6lvpoF6",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958684813,
+          "time_updated": 1783958684816,
+          "data": {
+            "reason": "tool-calls",
+            "snapshot": "33d89c6b9c358511505a688d46c0b6a4be23d413",
+            "type": "step-finish",
+            "tokens": {
+              "total": 3978,
+              "input": 1154,
+              "output": 186,
+              "reasoning": 0,
+              "cache": {
+                "write": 0,
+                "read": 2638
+              }
+            },
+            "cost": 0
+          }
+        },
+        {
+          "id": "prt_f5c3944c5001u5m2K63N9ZRBVn",
+          "message_id": "msg_f5c38454f0017whkYwG6lvpoF6",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958684869,
+          "time_updated": 1783958684870,
+          "data": {
+            "type": "patch",
+            "hash": "56c03aa325c8090b267620d1edac46c988e52b2b",
+            "files": [
+              "/workspace/manual_Libraries-bibliotheque.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "msg_f5c3944cc001CNBpSbnL0Iehrk",
+      "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+      "time_created": 1783958684876,
+      "time_updated": 1783958734243,
+      "data": {
+        "parentID": "msg_f5c384291001K2bqvmB2yCRSIv",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "/workspace",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 9864,
+          "input": 5112,
+          "output": 961,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 3791
+          }
+        },
+        "modelID": "accounts/fireworks/models/kimi-k2p6",
+        "providerID": "openai",
+        "time": {
+          "created": 1783958684876,
+          "completed": 1783958734242
+        },
+        "finish": "tool-calls"
+      },
+      "parts": [
+        {
+          "id": "prt_f5c39476d001LflqE0lt1iYwzN",
+          "message_id": "msg_f5c3944cc001CNBpSbnL0Iehrk",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958685549,
+          "time_updated": 1783958685550,
+          "data": {
+            "snapshot": "33d89c6b9c358511505a688d46c0b6a4be23d413",
+            "type": "step-start"
+          }
+        },
+        {
+          "id": "prt_f5c395243001PCnkFa3UqXdZoq",
+          "message_id": "msg_f5c3944cc001CNBpSbnL0Iehrk",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958688323,
+          "time_updated": 1783958698990,
+          "data": {
+            "type": "reasoning",
+            "text": "The API rate limit is exceeded. The webfetch gave me useful HTML page text. I need to gather facts via web scraping instead of GitHub API where possible.\n\nLet's parse what I got from the webfetch of the root repo page:\n- repo_name: digital-playbook-guide-numerique\n- repo_url: https://github.com/canada-ca/digital-playbook-guide-numerique\n- primary_language: From the HTML page, under \"Languages\", it shows:\n  - HTML 82.5%\n  - JavaScript 14.4%\n  - Ruby 3.1%\n  The top language is HTML. The GitHub API language field for this repo would be the top language, which is HTML. I can note that.\n- readme_exists: The page shows \"Readme\" under Resources, and there's README.md in the file list. So Yes.\n- licence: The page shows \"License\" and \"View license\" and there's a LICENSE.md file. I need to read the LICENSE.md file to deduce the short name. I can fetch the raw content via raw.githubusercontent.com.\n- contributing_guide: The page shows \"Contributing\" link and there's a CONTRIBUTING.md file in the root list. So Yes.\n- has_security_scanning_in_ci: Need to check .github/workflows. The file list shows a .github folder. I need to inspect its contents. I'll fetch the .github directory page or the raw contents. The webfetch page root showed .github as a folder. Let's fetch https://github.com/canada-ca/digital-playbook-guide-numerique/tree/master/.github\n- has_tests_in_ci: Same logic.\n- dependency_update_policy: Need to check for .github/dependabot.yml or .github/renovate.json. I'll need to inspect .github contents.\n- last_commit_date: Need commits. The API is rate-limited. I can try webfetch of the commits page: https://github.com/canada-ca/digital-playbook-guide-numerique/commits/master\n- days_since_last_commit: compute from last_commit_date.\n- maintained: compute.\n- open_issues_count: The page shows \"Issues 19\". But need to filter out PRs. The API is rate-limited. I might try the issues page via webfetch but it's harder to distinguish PRs from issues. Maybe I can fetch the API later after waiting? Or use the web page \"Issues\" tab? The web page shows \"Issues 19\". That might be the count of open issues (including PRs? No, on GitHub repo root page, the Issues count is the number of open issues, and Pull requests count is the number of open PRs. Wait, the page shows:\n  - Issues 19\n  - Pull requests 13\n  So open_issues_count is likely 19. But let's verify by trying to fetch the API after a sleep, or fetch the issues page HTML. However, the root page shows \"Issues 19\". Since PRs are listed separately, \"Issues 19\" should be just issues. But I need to be careful: GitHub sometimes counts PRs in the issues count on the API, but on the UI they are separate. The page says \"Issues 19\" and \"Pull requests 13\". So open_issues_count = 19.\n\nLet's plan the next fetches:\n1. Fetch LICENSE.md raw content: https://raw.githubusercontent.com/canada-ca/digital-playbook-guide-numerique/master/LICENSE.md\n2. Fetch .github directory contents: https://github.com/canada-ca/digital-playbook-guide-numerique/tree/master/.github\n3. Fetch commits page: https://github.com/canada-ca/digital-playbook-guide-numerique/commits/master\n4. Maybe fetch Actions page: https://github.com/canada-ca/digital-playbook-guide-numerique/actions\n\nAlso, I could try the GitHub API after some sleep, but the rate limit error might be IP-based and could take a while. Better to rely on web scraping.\n\nLet's do the fetches in parallel.",
+            "time": {
+              "start": 1783958688323,
+              "end": 1783958698988
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "rs_f59f30bfadee4725959ad0d76c445c36",
+                "reasoningEncryptedContent": null
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c39770800152viE5b9DJwvSz",
+          "message_id": "msg_f5c3944cc001CNBpSbnL0Iehrk",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958697736,
+          "time_updated": 1783958699417,
+          "data": {
+            "type": "tool",
+            "tool": "webfetch",
+            "callID": "webfetch_3",
+            "state": {
+              "status": "completed",
+              "input": {
+                "url": "https://raw.githubusercontent.com/canada-ca/digital-playbook-guide-numerique/master/LICENSE.md",
+                "format": "text"
+              },
+              "output": "# Open Government Licence - Canada\n\nCopyright (c) 2018 Government of Canada - Gouvernement du Canada\n<!-- markdownlint-disable MD034 -->\nhttps://open.canada.ca/en/open-government-licence-canada\n\n<!-- markdownlint-disable MD025 -->\n\n# Licence du gouvernement ouvert \u2013 Canada\n\n<!-- markdownlint-enable MD025 -->\n\nCopyright (c) 2018 Gouvernement du Canada - Government of Canada\n\nhttps://ouvert.canada.ca/fr/licence-du-gouvernement-ouvert-canada\n<!-- markdownlint-enable MD034 -->\n",
+              "metadata": {
+                "truncated": false
+              },
+              "title": "https://raw.githubusercontent.com/canada-ca/digital-playbook-guide-numerique/master/LICENSE.md (text/plain; charset=utf-8)",
+              "time": {
+                "start": 1783958698998,
+                "end": 1783958699415
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_bdb6b878aca649c9a8ddb0149c38639b"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c39785c001wM7qNu8U5IWzI8",
+          "message_id": "msg_f5c3944cc001CNBpSbnL0Iehrk",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958698076,
+          "time_updated": 1783958699774,
+          "data": {
+            "type": "tool",
+            "tool": "webfetch",
+            "callID": "webfetch_4",
+            "state": {
+              "status": "completed",
+              "input": {
+                "url": "https://github.com/canada-ca/digital-playbook-guide-numerique/tree/master/.github",
+                "format": "text"
+              },
+              "output": "digital-playbook-guide-numerique/.github at master \u00b7 canada-ca/digital-playbook-guide-numerique \u00b7 GitHub\n\n\n\n  \n  \n  \n  \n\n    \n  \n\n\n  \n\n\n    \n\n\n  \n  \n\n  \n  \n\n    \n\n\n\n\n\n\n\n  \n\n  \n\n\n\n\n    \n\n  \n\n    \n\n    \n\n      \n\n      \n\n    \n    \n    \n\n      \n  \n  \n\n\n\n\n      \n\n\n\n        \n\n\n  \n  \n  \n  \n\n  \n\n      \n\n    \n\n  \n\n  \n  \n\n\n\n    \n\n    \n  \n\n\n  \n\n  \n\n    \n  \n\n  \n  \n  \n\n\n\n\n\n  \n\n  \n\n  \n    \n      \n      \n\n    \n      Skip to content\n\n      \n    \n      \n      \n\n\n\n  \n  \n  \n\n\n\n\n\n\n      \n\n          \n\n              \n\n\n\n\n\n\n\n  Navigation Menu\n\n  \n    Toggle navigation\n  \n\n  \n    \n      \n          \n    \n            \n            \n  \n\n      \n\n      \n        \n    \n\n      \n\n      \n          \n            Sign in\n          \n              \n    \n        \n    \n\nAppearance settings\n\n      \n        \n\n\n\n  \n  \n  \n\n\n\n      \n    \n  \n\n      \n    \n\n\n    \n      \n          \n\n\n\n  \n  \n  PlatformAI CODE CREATIONGitHub CopilotWrite better code with AIGitHub Copilot appDirect agents from issue to mergeMCP RegistryNewIntegrate external toolsDEVELOPER WORKFLOWSActionsAutomate any workflowCodespacesInstant dev environmentsIssuesPlan and track workCode ReviewManage code changesAPPLICATION SECURITYGitHub Advanced SecurityFind and fix vulnerabilitiesCode securitySecure your code as you buildSecret protectionStop leaks before they startEXPLOREWhy GitHubDocumentationBlogChangelogMarketplaceView all featuresSolutionsBY COMPANY SIZEEnterprisesSmall and medium teamsStartupsNonprofitsBY USE CASEApp ModernizationDevSecOpsDevOpsCI/CDView all use casesBY INDUSTRYHealthcareFinancial servicesManufacturingGovernmentView all industriesView all solutionsResourcesEXPLORE BY TOPICAISoftware DevelopmentDevOpsSecurityView all topicsEXPLORE BY TYPECustomer storiesEvents & webinarsEbooks & reportsBusiness insightsGitHub SkillsSUPPORT & SERVICESDocumentationCustomer supportCommunity forumTrust centerPartnersView all resourcesOpen SourceCOMMUNITYGitHub SponsorsFund open source developersPROGRAMSSecurity LabMaintainer CommunityAcceleratorGitHub StarsArchive ProgramREPOSITORIESTopicsTrendingCollectionsEnterpriseENTERPRISE SOLUTIONSEnterprise platformAI-powered developer platformAVAILABLE ADD-ONSGitHub Advanced SecurityEnterprise-grade security featuresCopilot for BusinessEnterprise-grade AI featuresPremium SupportEnterprise-grade 24/7 supportPricing\n\n\n\n\n        \n                \n\n\n\n  \n      \n        \n          \n    \n\n        \n        Search or jump to...\n          \n            \n          \n      \n\n    \n\n    \n\n  \n      Search code, repositories, users, issues, pull requests...\n    \n      \n                  \n          \n  \n    \n      \n        Search\n      \n      \n          \n            \n    \n\n          \n        \n          \n          \n            \n            \n          \n        \n          \n            Clear\n              \n    \n\n\n\n          \n      \n      \n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n        \n                        \n\n        \n      \n        \n          \n    \n\n        \n        \n    \n    \n\n          \n            Search syntax tips            \n          \n        \n\n\n    \n\n  \n  \n  \n    \n\n  \n    \n  \n    \n      \n        Provide feedback\n      \n        \n    \n    \n      \n    \n\n    \n  \n  \n\n      \n                \n          We read every piece of feedback, and take your input very seriously.\n          \n          \n          Include my email address so I can be contacted\n\n      \n                    Cancel\n\n              Submit feedback\n\n\n\n\n    \n    \n\n  \n    \n  \n    \n      \n        Saved searches\n      \n        Use saved searches to filter your results more quickly\n    \n    \n      \n    \n\n    \n  \n  \n\n      \n                \n\n        \n        \n          \n\n          \n\n          \n            Name\n            \n              \n              \n            \n          \n\n          \n            Query\n            \n          \n\n          \n            To see all available qualifiers, see our documentation.\n          \n        \n\n        \n          \n        \n\n\n      \n                    Cancel\n\n              Create saved search\n\n\n\n    \n  \n\n\n\n            \n              \n                Sign in\n              \n            \n\n              \n                Sign up\n              \n\n                \n    \n        \n    \n\nAppearance settings\n\n      \n        \n\n\n\n  \n  \n  \n\n\n\n      \n    \n  \n\n          Resetting focus\n        \n      \n    \n  \n\n\n      \n  \n        \n    \n\n        You signed in with another tab or window. Reload to refresh your session.\n        You signed out in another tab or window. Reload to refresh your session.\n        You switched accounts on another tab or window. Reload to refresh your session.\n\n      \n    \n\nDismiss alert\n\n\n  \n\n    \n\n  \n\n\n\n\n\n\n\n\n    \n\n\n\n\n  \n    \n\n  \n    \n      \n    \n\n    \n    \n      \n      {{ message }}\n\n    \n  \n\n  \n\n\n\n    \n\n\n\n\n\n\n  \n        \n    \n      \n      \n    \n\n    \n  \n  \n    \n  \n    \n      \n\n              Uh oh!\n\n              There was an error while loading. Please reload this page.\n\n\n  \n  \n\n\n    \n\n\n        \n    This repository was archived by the owner on Nov 7, 2022. It is now read-only.\n  \n\n\n\n\n\n\n  \n\n  \n\n      \n\n        \n            \n  \n      \n    \n\n    \n    \n      \n        canada-ca\n    \n    /\n    \n      digital-playbook-guide-numerique\n    \n\n    Public archive\n  \n\n\n        \n\n        \n            \n    \n      \n\n  \n                \n    \nNotifications\n    You must be signed in to change notification settings\n\n  \n\n  \n              \n    \nFork\n    21\n\n  \n\n  \n        \n            \n    \n\n          Star\n          59\n\n  \n\n\n\n        \n      \n\n        \n\n\n\n          \n\n  \n      \n  \n    \n              \n    \n\n        Code\n          \n\n\n    \n\n      \n  \n    \n              \n    \n\n        Issues\n          19\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Pull requests\n          13\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Actions\n          \n\n\n    \n\n      \n  \n    \n              \n    \n\n        Security and quality\n          0\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Insights\n          \n\n\n    \n\n\n          \n  \n      \n    \n\nAdditional navigation options\n\n\n\n  \n    \n                \n  \n    \n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Code\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Issues\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Pull requests\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Actions\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Security and quality\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Insights\n      \n\n  \n\n    \n\n\n\n\n      \n  \n\n\n\n  \n  \n\n\n\n\n    \n    \n\n\n\n    \n      \n    \n\n\n\n\n\n\n\n\n\n  \n  \n     FilesExpand file tree\u00a0masterBreadcrumbsdigital-playbook-guide-numerique/.github/Copy pathDirectory actionsMore optionsMore optionsDirectory actionsMore optionsMore optionsLatest commit\u00a0HistoryHistoryHistory\u00a0masterBreadcrumbsdigital-playbook-guide-numerique/.github/Copy pathTopFolders and filesNameNameLast commit messageLast commit dateparent directory..workflowsworkflows\u00a0\u00a0CODEOWNERSCODEOWNERS\u00a0\u00a0dependabot.ymldependabot.yml\u00a0\u00a0View all files   \n\n\n\n\n\n  \n\n\n\n    \n  \n\n  \n\n          \n  Footer\n\n  \n\n\n  \n    \n      \n        \n    \n\n\n      \n        \u00a9 2026 GitHub,\u00a0Inc.\n      \n    \n\n    \n      Footer navigation\n\n      \n\n\n          \n            Terms\n          \n\n          \n            Privacy\n          \n\n          \n            Security\n          \n\n          \n            Status\n          \n\n          \n            Community\n          \n\n          \n            Docs\n          \n\n          \n            Contact\n          \n\n          \n  \n    \n       Manage cookies\n    \n  \n\n\n\n  \n    \n      Do not share my personal information\n    \n  \n\n\n      \n    \n  \n\n\n\n\n    \n\n\n\n\n  \n    \n    \n\n    \n      \n    \n\n    \n    You can\u2019t perform that action at this time.",
+              "metadata": {
+                "truncated": false
+              },
+              "title": "https://github.com/canada-ca/digital-playbook-guide-numerique/tree/master/.github (text/html; charset=utf-8)",
+              "time": {
+                "start": 1783958699007,
+                "end": 1783958699773
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_bfc7db80d5d14379ac0e51e894f1a490"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c3979a5001nbttNLaFQfj4m4",
+          "message_id": "msg_f5c3944cc001CNBpSbnL0Iehrk",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958698405,
+          "time_updated": 1783958699954,
+          "data": {
+            "type": "tool",
+            "tool": "webfetch",
+            "callID": "webfetch_5",
+            "state": {
+              "status": "completed",
+              "input": {
+                "url": "https://github.com/canada-ca/digital-playbook-guide-numerique/commits/master",
+                "format": "text"
+              },
+              "output": "Commits \u00b7 canada-ca/digital-playbook-guide-numerique \u00b7 GitHub\n\n\n\n  \n  \n  \n  \n\n    \n  \n\n\n  \n\n\n    \n\n\n  \n  \n\n  \n  \n\n    \n\n\n\n\n\n\n\n  \n\n  \n\n\n\n\n    \n\n  \n\n    \n\n    \n\n      \n\n      \n\n    \n    \n    \n\n      \n  \n  \n\n\n\n\n      \n\n\n\n        \n\n\n  \n  \n  \n  \n\n  \n\n      \n\n\n  \n\n  \n  \n\n\n\n    \n\n    \n  \n\n\n  \n\n  \n\n    \n  \n\n  \n  \n  \n\n\n\n\n\n  \n\n  \n\n  \n    \n      \n      \n\n    \n      Skip to content\n\n      \n    \n      \n      \n\n\n\n  \n  \n  \n\n\n\n\n\n\n      \n\n          \n\n              \n\n\n\n\n\n\n\n  Navigation Menu\n\n  \n    Toggle navigation\n  \n\n  \n    \n      \n          \n    \n            \n            \n  \n\n      \n\n      \n        \n    \n\n      \n\n      \n          \n            Sign in\n          \n              \n    \n        \n    \n\nAppearance settings\n\n      \n        \n\n\n\n  \n  \n  \n\n\n\n      \n    \n  \n\n      \n    \n\n\n    \n      \n          \n\n\n\n  \n  \n  PlatformAI CODE CREATIONGitHub CopilotWrite better code with AIGitHub Copilot appDirect agents from issue to mergeMCP RegistryNewIntegrate external toolsDEVELOPER WORKFLOWSActionsAutomate any workflowCodespacesInstant dev environmentsIssuesPlan and track workCode ReviewManage code changesAPPLICATION SECURITYGitHub Advanced SecurityFind and fix vulnerabilitiesCode securitySecure your code as you buildSecret protectionStop leaks before they startEXPLOREWhy GitHubDocumentationBlogChangelogMarketplaceView all featuresSolutionsBY COMPANY SIZEEnterprisesSmall and medium teamsStartupsNonprofitsBY USE CASEApp ModernizationDevSecOpsDevOpsCI/CDView all use casesBY INDUSTRYHealthcareFinancial servicesManufacturingGovernmentView all industriesView all solutionsResourcesEXPLORE BY TOPICAISoftware DevelopmentDevOpsSecurityView all topicsEXPLORE BY TYPECustomer storiesEvents & webinarsEbooks & reportsBusiness insightsGitHub SkillsSUPPORT & SERVICESDocumentationCustomer supportCommunity forumTrust centerPartnersView all resourcesOpen SourceCOMMUNITYGitHub SponsorsFund open source developersPROGRAMSSecurity LabMaintainer CommunityAcceleratorGitHub StarsArchive ProgramREPOSITORIESTopicsTrendingCollectionsEnterpriseENTERPRISE SOLUTIONSEnterprise platformAI-powered developer platformAVAILABLE ADD-ONSGitHub Advanced SecurityEnterprise-grade security featuresCopilot for BusinessEnterprise-grade AI featuresPremium SupportEnterprise-grade 24/7 supportPricing\n\n\n\n\n        \n                \n\n\n\n  \n      \n        \n          \n    \n\n        \n        Search or jump to...\n          \n            \n          \n      \n\n    \n\n    \n\n  \n      Search code, repositories, users, issues, pull requests...\n    \n      \n                  \n          \n  \n    \n      \n        Search\n      \n      \n          \n            \n    \n\n          \n        \n          \n          \n            \n            \n          \n        \n          \n            Clear\n              \n    \n\n\n\n          \n      \n      \n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n        \n                        \n\n        \n      \n        \n          \n    \n\n        \n        \n    \n    \n\n          \n            Search syntax tips            \n          \n        \n\n\n    \n\n  \n  \n  \n    \n\n  \n    \n  \n    \n      \n        Provide feedback\n      \n        \n    \n    \n      \n    \n\n    \n  \n  \n\n      \n                \n          We read every piece of feedback, and take your input very seriously.\n          \n          \n          Include my email address so I can be contacted\n\n      \n                    Cancel\n\n              Submit feedback\n\n\n\n\n    \n    \n\n  \n    \n  \n    \n      \n        Saved searches\n      \n        Use saved searches to filter your results more quickly\n    \n    \n      \n    \n\n    \n  \n  \n\n      \n                \n\n        \n        \n          \n\n          \n\n          \n            Name\n            \n              \n              \n            \n          \n\n          \n            Query\n            \n          \n\n          \n            To see all available qualifiers, see our documentation.\n          \n        \n\n        \n          \n        \n\n\n      \n                    Cancel\n\n              Create saved search\n\n\n\n    \n  \n\n\n\n            \n              \n                Sign in\n              \n            \n\n              \n                Sign up\n              \n\n                \n    \n        \n    \n\nAppearance settings\n\n      \n        \n\n\n\n  \n  \n  \n\n\n\n      \n    \n  \n\n          Resetting focus\n        \n      \n    \n  \n\n\n      \n  \n        \n    \n\n        You signed in with another tab or window. Reload to refresh your session.\n        You signed out in another tab or window. Reload to refresh your session.\n        You switched accounts on another tab or window. Reload to refresh your session.\n\n      \n    \n\nDismiss alert\n\n\n  \n\n    \n\n  \n\n\n\n\n\n\n\n\n    \n\n\n\n\n  \n    \n\n  \n    \n      \n    \n\n    \n    \n      \n      {{ message }}\n\n    \n  \n\n  \n\n\n\n    \n\n\n\n\n\n\n  \n        \n    \n      \n      \n    \n\n    \n  \n  \n    \n  \n    \n      \n\n              Uh oh!\n\n              There was an error while loading. Please reload this page.\n\n\n  \n  \n\n\n    \n\n\n        \n    This repository was archived by the owner on Nov 7, 2022. It is now read-only.\n  \n\n\n\n\n\n\n  \n\n  \n\n      \n\n        \n            \n  \n      \n    \n\n    \n    \n      \n        canada-ca\n    \n    /\n    \n      digital-playbook-guide-numerique\n    \n\n    Public archive\n  \n\n\n        \n\n        \n            \n    \n      \n\n  \n                \n    \nNotifications\n    You must be signed in to change notification settings\n\n  \n\n  \n              \n    \nFork\n    21\n\n  \n\n  \n        \n            \n    \n\n          Star\n          59\n\n  \n\n\n\n        \n      \n\n        \n\n\n\n          \n\n  \n      \n  \n    \n              \n    \n\n        Code\n          \n\n\n    \n\n      \n  \n    \n              \n    \n\n        Issues\n          19\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Pull requests\n          13\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Actions\n          \n\n\n    \n\n      \n  \n    \n              \n    \n\n        Security and quality\n          0\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Insights\n          \n\n\n    \n\n\n          \n  \n      \n    \n\nAdditional navigation options\n\n\n\n  \n    \n                \n  \n    \n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Code\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Issues\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Pull requests\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Actions\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Security and quality\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Insights\n      \n\n  \n\n    \n\n\n\n\n      \n  \n\n\n\n  \n  \n\n\n\n\n    \n    \n\n\n\n    \n      \n    \n\n\n\n\n\n\n\n\n\n  \n  \n    CommitsBranch selector\u00a0masterUser selectorAll usersAll timeCommit historyCommits on Mar 6, 2021Update categorization-tool.htmlptd-tbsauthored48ebbafCopy full SHA for 48ebbafUpdate categorization-tool.htmlptd-tbsauthored88530f9Copy full SHA for 88530f9Commits on Mar 2, 2021chore(deps): bump actions/setup-node from v2.1.4 to v2.1.5Show description for cd25811 dependabot[bot]authored andnschonnicommittedcd25811Copy full SHA for cd25811Commits on Feb 1, 2021chore(deps-dev): bump eslint from 7.18.0 to 7.19.0Show description for f22e78e dependabot[bot]authored andnschonnicommittedf22e78eCopy full SHA for f22e78eCommits on Jan 19, 2021chore(deps-dev): bump eslint from 7.17.0 to 7.18.0Show description for 6522eef dependabot[bot]authored andnschonnicommitted6522eefCopy full SHA for 6522eefCommits on Jan 4, 2021Bump nokogiri from 1.10.10 to 1.11.0Show description for 561dbe0 dependabot[bot]authored andnschonnicommitted561dbe0Copy full SHA for 561dbe0Bump eslint from 7.16.0 to 7.17.0Show description for 910fac7 dependabot[bot]authored andnschonnicommitted910fac7Copy full SHA for 910fac7Commits on Dec 21, 2020Bump eslint from 7.15.0 to 7.16.0Show description for 082e424 dependabot[bot]authored andnschonnicommitted082e424Copy full SHA for 082e424Commits on Dec 16, 2020Bump markdownlint-cli from 0.25.0 to 0.26.0Show description for 8a47a33 dependabot[bot]authored andnschonnicommitted8a47a33Copy full SHA for 8a47a33Bump actions/setup-node from v2.1.3 to v2.1.4Show description for 6f5c9d3 dependabot[bot]authored andnschonnicommitted6f5c9d3Copy full SHA for 6f5c9d3Commits on Dec 11, 2020Bump actions/setup-node from v2.1.2 to v2.1.3Show description for c4847f6 dependabot[bot]authored andnschonnicommittedc4847f6Copy full SHA for c4847f6Bump markdown-link-check from 3.8.3 to 3.8.5Show description for b14f613 dependabot[bot]authored andnschonnicommittedb14f613Copy full SHA for b14f613Bump ini from 1.3.5 to 1.3.7Show description for 4d2c16b dependabot[bot]authored andnschonnicommitted4d2c16bCopy full SHA for 4d2c16bCommits on Dec 7, 2020Bump eslint from 7.14.0 to 7.15.0Show description for 8630bee dependabot[bot]authored andnschonnicommitted8630beeCopy full SHA for 8630beeCommits on Nov 23, 2020Bump eslint from 7.13.0 to 7.14.0Show description for 3bbec75 dependabot[bot]authored andnschonnicommitted3bbec75Copy full SHA for 3bbec75Commits on Nov 18, 2020Bump eslint from 7.11.0 to 7.13.0Show description for 71a5574 dependabot[bot]authored andnschonnicommitted71a5574Copy full SHA for 71a5574Bump github-pages from 207 to 209Show description for 0ba942d dependabot[bot]authored andnschonnicommitted0ba942dCopy full SHA for 0ba942dBump markdownlint-cli from 0.24.0 to 0.25.0Show description for d5a17f2 dependabot[bot]authored andnschonnicommittedd5a17f2Copy full SHA for d5a17f2fix: Sync from templatenschonnicommitted8ffa769Copy full SHA for 8ffa769fix: Broken canada.ca linksnschonnicommitted7645c1bCopy full SHA for 7645c1bfix: NRCan Open Source Primer linknschonnicommitted0f840ccCopy full SHA for 0f840ccchore: Remove HTML proofer callnschonnicommittedb6a82f5Copy full SHA for b6a82f5chore: Remove unused Dependabot targetsnschonnicommitted17d4fb7Copy full SHA for 17d4fb7chore: Add old Gemfile.lock as starternschonnicommitted745e02dCopy full SHA for 745e02dchore: Switch to GitHub Actions CInschonnicommitted7f963caCopy full SHA for 7f963caCommits on Oct 10, 2020Bump eslint from 7.10.0 to 7.11.0Show description for 6d7ecfb dependabot-preview[bot]authored andnschonnicommitted6d7ecfbCopy full SHA for 6d7ecfbCommits on Oct 5, 2020Bump markdownlint-cli from 0.23.2 to 0.24.0Show description for a8c80ae dependabot-preview[bot]authored andnschonnicommitteda8c80aeCopy full SHA for a8c80aeCommits on Sep 29, 2020Bump eslint from 7.9.0 to 7.10.0Show description for 2308242 dependabot-preview[bot]authored andnschonnicommitted2308242Copy full SHA for 2308242Commits on Sep 25, 2020Fix french assurance levels (#424)Show description for 776e748EveningStarlightauthored776e748Copy full SHA for 776e748Commits on Sep 23, 2020feat: Add Assurance Level Requirement ToolEveningStarlightauthored12bd1c6Copy full SHA for 12bd1c6Commits on Sep 19, 2020chore: Regenerate json versionsnschonnicommitted240ad55Copy full SHA for 240ad55Bump markdownlint-cli from 0.22.0 to 0.23.2Show description for 715d90b dependabot-preview[bot]authored andnschonnicommitted715d90bCopy full SHA for 715d90bBump chalk from 3.0.0 to 4.1.0Show description for 8cf1ed3 dependabot-preview[bot]authored andnschonnicommitted8cf1ed3Copy full SHA for 8cf1ed3Bump vnu-jar from 20.3.16 to 20.6.30Show description for 30c25ec dependabot-preview[bot]authored andnschonnicommitted30c25ecCopy full SHA for 30c25ecBump markdown-link-check from 3.8.0 to 3.8.3Show description for b8d1e03 dependabot-preview[bot]authored andnschonnicommittedb8d1e03Copy full SHA for b8d1e03PreviousNext  \n\n\n\n\n\n  \n\n\n\n    \n  \n\n  \n\n          \n  Footer\n\n  \n\n\n  \n    \n      \n        \n    \n\n\n      \n        \u00a9 2026 GitHub,\u00a0Inc.\n      \n    \n\n    \n      Footer navigation\n\n      \n\n\n          \n            Terms\n          \n\n          \n            Privacy\n          \n\n          \n            Security\n          \n\n          \n            Status\n          \n\n          \n            Community\n          \n\n          \n            Docs\n          \n\n          \n            Contact\n          \n\n          \n  \n    \n       Manage cookies\n    \n  \n\n\n\n  \n    \n      Do not share my personal information\n    \n  \n\n\n      \n    \n  \n\n\n\n\n    \n\n\n\n\n  \n    \n    \n\n    \n      \n    \n\n    \n    You can\u2019t perform that action at this time.",
+              "metadata": {
+                "truncated": false
+              },
+              "title": "https://github.com/canada-ca/digital-playbook-guide-numerique/commits/master (text/html; charset=utf-8)",
+              "time": {
+                "start": 1783958699023,
+                "end": 1783958699949
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_7534c8fbf88d4bd78c762cd9101e4d1c"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c397aae001kpFYus520Bc6wt",
+          "message_id": "msg_f5c3944cc001CNBpSbnL0Iehrk",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958698670,
+          "time_updated": 1783958699739,
+          "data": {
+            "type": "tool",
+            "tool": "webfetch",
+            "callID": "webfetch_6",
+            "state": {
+              "status": "completed",
+              "input": {
+                "url": "https://github.com/canada-ca/digital-playbook-guide-numerique/actions",
+                "format": "text"
+              },
+              "output": "Workflow runs \u00b7 canada-ca/digital-playbook-guide-numerique \u00b7 GitHub\n\n\n\n  \n  \n  \n  \n\n    \n  \n\n\n  \n\n\n    \n\n\n  \n  \n\n  \n  \n\n    \n\n\n\n\n\n\n\n  \n\n  \n\n\n\n\n    \n\n  \n\n    \n\n    \n\n      \n\n      \n\n    \n    \n    \n\n      \n  \n  \n\n\n\n\n      \n\n\n\n        \n\n\n  \n  \n  \n  \n\n  \n\n      \n\n  \n  \n\n\n\n    \n\n    \n  \n\n\n  \n\n  \n\n    \n  \n\n  \n  \n  \n\n\n\n\n\n  \n\n  \n\n  \n    \n      \n      \n\n    \n      Skip to content\n\n      \n    \n      \n      \n\n\n\n  \n  \n  \n\n\n\n\n\n\n      \n\n          \n\n              \n\n\n\n\n\n\n\n  Navigation Menu\n\n  \n    Toggle navigation\n  \n\n  \n    \n      \n          \n    \n            \n            \n  \n\n      \n\n      \n        \n    \n\n      \n\n      \n          \n            Sign in\n          \n              \n    \n        \n    \n\nAppearance settings\n\n      \n        \n\n\n\n  \n  \n  \n\n\n\n      \n    \n  \n\n      \n    \n\n\n    \n      \n          \n\n\n\n  \n  \n  PlatformAI CODE CREATIONGitHub CopilotWrite better code with AIGitHub Copilot appDirect agents from issue to mergeMCP RegistryNewIntegrate external toolsDEVELOPER WORKFLOWSActionsAutomate any workflowCodespacesInstant dev environmentsIssuesPlan and track workCode ReviewManage code changesAPPLICATION SECURITYGitHub Advanced SecurityFind and fix vulnerabilitiesCode securitySecure your code as you buildSecret protectionStop leaks before they startEXPLOREWhy GitHubDocumentationBlogChangelogMarketplaceView all featuresSolutionsBY COMPANY SIZEEnterprisesSmall and medium teamsStartupsNonprofitsBY USE CASEApp ModernizationDevSecOpsDevOpsCI/CDView all use casesBY INDUSTRYHealthcareFinancial servicesManufacturingGovernmentView all industriesView all solutionsResourcesEXPLORE BY TOPICAISoftware DevelopmentDevOpsSecurityView all topicsEXPLORE BY TYPECustomer storiesEvents & webinarsEbooks & reportsBusiness insightsGitHub SkillsSUPPORT & SERVICESDocumentationCustomer supportCommunity forumTrust centerPartnersView all resourcesOpen SourceCOMMUNITYGitHub SponsorsFund open source developersPROGRAMSSecurity LabMaintainer CommunityAcceleratorGitHub StarsArchive ProgramREPOSITORIESTopicsTrendingCollectionsEnterpriseENTERPRISE SOLUTIONSEnterprise platformAI-powered developer platformAVAILABLE ADD-ONSGitHub Advanced SecurityEnterprise-grade security featuresCopilot for BusinessEnterprise-grade AI featuresPremium SupportEnterprise-grade 24/7 supportPricing\n\n\n\n\n        \n                \n\n\n\n  \n      \n        \n          \n    \n\n        \n        Search or jump to...\n          \n            \n          \n      \n\n    \n\n    \n\n  \n      Search code, repositories, users, issues, pull requests...\n    \n      \n                  \n          \n  \n    \n      \n        Search\n      \n      \n          \n            \n    \n\n          \n        \n          \n          \n            \n            \n          \n        \n          \n            Clear\n              \n    \n\n\n\n          \n      \n      \n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n        \n                        \n\n        \n      \n        \n          \n    \n\n        \n        \n    \n    \n\n          \n            Search syntax tips            \n          \n        \n\n\n    \n\n  \n  \n  \n    \n\n  \n    \n  \n    \n      \n        Provide feedback\n      \n        \n    \n    \n      \n    \n\n    \n  \n  \n\n      \n                \n          We read every piece of feedback, and take your input very seriously.\n          \n          \n          Include my email address so I can be contacted\n\n      \n                    Cancel\n\n              Submit feedback\n\n\n\n\n    \n    \n\n  \n    \n  \n    \n      \n        Saved searches\n      \n        Use saved searches to filter your results more quickly\n    \n    \n      \n    \n\n    \n  \n  \n\n      \n                \n\n        \n        \n          \n\n          \n\n          \n            Name\n            \n              \n              \n            \n          \n\n          \n            Query\n            \n          \n\n          \n            To see all available qualifiers, see our documentation.\n          \n        \n\n        \n          \n        \n\n\n      \n                    Cancel\n\n              Create saved search\n\n\n\n    \n  \n\n\n\n            \n              \n                Sign in\n              \n            \n\n              \n                Sign up\n              \n\n                \n    \n        \n    \n\nAppearance settings\n\n      \n        \n\n\n\n  \n  \n  \n\n\n\n      \n    \n  \n\n          Resetting focus\n        \n      \n    \n  \n\n\n      \n  \n        \n    \n\n        You signed in with another tab or window. Reload to refresh your session.\n        You signed out in another tab or window. Reload to refresh your session.\n        You switched accounts on another tab or window. Reload to refresh your session.\n\n      \n    \n\nDismiss alert\n\n\n  \n\n    \n\n  \n\n\n\n\n\n\n\n\n    \n\n\n\n\n  \n    \n\n  \n    \n      \n    \n\n    \n    \n      \n      {{ message }}\n\n    \n  \n\n  \n\n\n\n    \n\n\n\n\n\n\n  \n        \n    \n      \n  \n\n\n\n    \n    \n\n    \n  \n  \n    \n  \n    \n      \n\n              Uh oh!\n\n              There was an error while loading. Please reload this page.\n\n\n  \n  \n\n\n    \n\n\n        \n    This repository was archived by the owner on Nov 7, 2022. It is now read-only.\n  \n\n\n\n\n\n\n  \n\n  \n\n      \n\n        \n            \n  \n      \n    \n\n    \n    \n      \n        canada-ca\n    \n    /\n    \n      digital-playbook-guide-numerique\n    \n\n    Public archive\n  \n\n\n        \n\n        \n            \n    \n      \n\n  \n                \n    \nNotifications\n    You must be signed in to change notification settings\n\n  \n\n  \n              \n    \nFork\n    21\n\n  \n\n  \n        \n            \n    \n\n          Star\n          59\n\n  \n\n\n\n        \n      \n\n        \n\n\n\n          \n\n  \n      \n  \n    \n              \n    \n\n        Code\n          \n\n\n    \n\n      \n  \n    \n              \n    \n\n        Issues\n          19\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Pull requests\n          13\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Actions\n          \n\n\n    \n\n      \n  \n    \n              \n    \n\n        Security and quality\n          0\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Insights\n          \n\n\n    \n\n\n          \n  \n      \n    \n\nAdditional navigation options\n\n\n\n  \n    \n                \n  \n    \n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Code\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Issues\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Pull requests\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Actions\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Security and quality\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Insights\n      \n\n  \n\n    \n\n\n\n\n      \n  \n\n\n\n  \n  \n\n\n\n\n    \n    \n\n\n\n    \n      \n  Actions: canada-ca/digital-playbook-guide-numerique\n  \n  \n    \n      \n                \n  \n    Actions\n  \n\n  \n    \n      \n\n        \n  \n  \n    \n        \n          \n\n    \n    \n    \n      \n        \n                        All workflows\n\n      \n\n  \n\n\n          \n        \n          \n\n\n  \n      \n  \n    Workflows\n  \n\n    \n        \n\n    \n    Build and test website\n    \n      \n        \n          \n  Build and test website\n\n      \n\n  \n\n\n\n        \n\n    \n    Lint JavaScript files\n    \n      \n        \n          \n  Lint JavaScript files\n\n      \n\n  \n\n\n\n        \n\n    \n    Markdownlint\n    \n      \n        \n          \n  Markdownlint\n\n      \n\n  \n\n\n\n          \n\n    \n    \n    \n      \n        \n                        Show more workflows...\n\n      \n\n  \n\n\n\n\n\n\n          \n        \n          \n\n\n  \n      \n  \n    Management\n  \n\n    \n        \n\n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n                        Caches\n\n      \n\n  \n\n\n        \n\n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n                          Deployments\n\n      \n        \n          \n    \n\n        \n\n  \n\n\n    \n\n\n\n  \n\n        \n          \n    \n\n        \n\n        \n          \n    \n\n        \n      \n    \n\n\n\n                \n      \n      \n\n  \n  \n  \n    \n            \n        \n          \n            All workflows\n          \n        \n      \n      \n              All workflows\n      \n    \n\n\n\n  \n      \n        \n          \n            Actions\n          \n          \n            \n    \n\n          \n        \n      \n    \n      \n          \n        \n        Loading...\n        \n  \n    \n    \n    Loading\n\n      \n      \n        Sorry, something went wrong.\n      \n\n  \n    \n  \n    \n      \n\n              Uh oh!\n\n              There was an error while loading. Please reload this page.\n\n\n  \n  \n\n\n    \n\n\n      \n\n      \n\n                \n          \n  \n    \n    \n    \n\n    \n      \n    \n\n    \n\n    \n      \n        \n      \n      \n        \n        \n        will be ignored since log searching is not yet available\n      \n    \n\n\n        \n\n  \n            Showing runs from all workflows\n\n            \n  \n    \n    \n    \n\n    \n      \n    \n\n    \n\n    \n      \n        \n      \n      \n        \n        \n        will be ignored since log searching is not yet available\n      \n    \n\n\n\n\n      \n    \n\n\n\n\n\n\n  \n    \n      0 workflow runs\n    \n  \n\n\n  \n    \n        \n          0 workflow runs\n        \n    \n    \n        \n\n  \n      \n    Workflow\n  \n    \n      \n    \n\n    \n\n\n    \n      \n  \n    \n      \n        Filter by Workflow\n      \n        \n    \n    \n      \n    \n\n    \n  \n              \n              \n  \n      \n        \n    \n\n      \n    \n      \n                  Sorry, something went wrong.\n\n            \n            \n                \n      \n        Filter\n    \n  \n      \n        \n    \n\n          \n  \n    \n    \n    Loading\n\n      \n    \n      \n\n      \n  \n    \n\n  \n    \n\n  \n\n    \n\n\n      \n        \n          \n          \n            \n                \n                  \n                    \n                      \n  \n    \n    \n\n                    \n                    \n                        \n                          \n    \n\n                          Sorry, something went wrong.\n                        \n                    \n            \n            \n              No matching workflows.\n            \n        \n          \u2325 + click/return to exclude\n\n  \n\n\n      \n\n  \n      \n    Event\n  \n    \n      \n    \n\n    \n\n\n    \n      \n  \n    \n      \n        Filter by Event\n      \n        \n    \n    \n      \n    \n\n    \n  \n              \n              \n  \n      \n        \n    \n\n      \n    \n      \n                  Sorry, something went wrong.\n\n            \n            \n                \n      \n        Filter\n    \n  \n      \n        \n    \n\n          \n  \n    \n    \n    Loading\n\n      \n    \n      \n\n      \n  \n    \n\n  \n    \n\n  \n\n    \n\n\n      \n        \n          \n          \n            \n                \n                  \n                    \n                      \n  \n    \n    \n\n                    \n                    \n                        \n                          \n    \n\n                          Sorry, something went wrong.\n                        \n                    \n            \n            \n              No matching events.\n            \n        \n          \u2325 + click/return to exclude\n\n  \n\n\n      \n\n  \n      \n    Status\n  \n    \n      \n    \n\n    \n\n\n    \n      \n  \n    \n      \n        Filter by Status\n      \n        \n    \n    \n      \n    \n\n    \n  \n              \n              \n  \n      \n        \n    \n\n      \n    \n      \n                  Sorry, something went wrong.\n\n            \n            \n                \n      \n        Filter\n    \n  \n      \n        \n    \n\n          \n  \n    \n    \n    Loading\n\n      \n    \n      \n\n      \n  \n    \n\n  \n    \n\n  \n\n    \n\n\n      \n        \n          \n          \n            \n                \n                  \n                    \n                      \n  \n    \n    \n\n                    \n                    \n                        \n                          \n    \n\n                          Sorry, something went wrong.\n                        \n                    \n            \n            \n              No matching statuses.\n            \n        \n          \u2325 + click/return to exclude\n\n  \n\n\n      \n\n  \n      \n    Branch\n  \n    \n      \n    \n\n    \n\n\n    \n      \n  \n    \n      \n        Filter by Branch\n      \n        \n    \n    \n      \n    \n\n    \n  \n              \n              \n  \n      \n        \n    \n\n      \n    \n      \n                  Sorry, something went wrong.\n\n            \n            \n                \n      \n        Filter\n    \n  \n      \n        \n    \n\n          \n  \n    \n    \n    Loading\n\n      \n    \n      \n\n      \n  \n    \n\n  \n    \n\n  \n\n    \n\n\n      \n        \n          \n          \n            \n                \n                  \n                    \n                      \n  \n    \n    \n\n                    \n                    \n                        \n                          \n    \n\n                          Sorry, something went wrong.\n                        \n                    \n            \n            \n              No matching branches.\n            \n        \n          \u2325 + click/return to exclude\n\n  \n\n\n      \n\n  \n      \n    Actor\n  \n    \n      \n    \n\n    \n\n\n    \n      \n  \n    \n      \n        Filter by Actor\n      \n        \n    \n    \n      \n    \n\n    \n  \n              \n              \n  \n      \n        \n    \n\n      \n    \n      \n                  Sorry, something went wrong.\n\n            \n            \n                \n      \n        Filter\n    \n  \n      \n        \n    \n\n          \n  \n    \n    \n    Loading\n\n      \n    \n      \n\n      \n  \n    \n\n  \n    \n\n  \n\n    \n\n\n      \n        \n          \n          \n            \n                \n                  \n                    \n                      \n  \n    \n    \n\n                    \n                    \n                        \n                          \n    \n\n                          Sorry, something went wrong.\n                        \n                    \n            \n            \n              No matching users.\n            \n        \n          \u2325 + click/return to exclude\n\n  \n\n\n    \n  \n\n\n      \n\n\n    \n    \n    There are no workflow runs yet.\n  \n\n\n\n\n\n  \n    \n      \n    \n  \n\n\n\n\n    \n\n\n  \n\n\n\n\n    \n  \n\n  \n\n\n    \n\n\n\n\n  \n    \n    \n\n    \n      \n    \n\n    \n    You can\u2019t perform that action at this time.",
+              "metadata": {
+                "truncated": false
+              },
+              "title": "https://github.com/canada-ca/digital-playbook-guide-numerique/actions (text/html; charset=utf-8)",
+              "time": {
+                "start": 1783958699054,
+                "end": 1783958699715
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_3f72538a713644c3a11ebb7a76632733"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c39f1b3001Lu0EE3CA7LjKWb",
+          "message_id": "msg_f5c3944cc001CNBpSbnL0Iehrk",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958729141,
+          "time_updated": 1783958729153,
+          "data": {
+            "reason": "tool-calls",
+            "snapshot": "da9be28fd7bcbcdecd888868c2106c45b55f02ba",
+            "type": "step-finish",
+            "tokens": {
+              "total": 9864,
+              "input": 5112,
+              "output": 961,
+              "reasoning": 0,
+              "cache": {
+                "write": 0,
+                "read": 3791
+              }
+            },
+            "cost": 0
+          }
+        },
+        {
+          "id": "prt_f5c3a059c001FLPcxzl0qweol2",
+          "message_id": "msg_f5c3944cc001CNBpSbnL0Iehrk",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958734237,
+          "time_updated": 1783958734239,
+          "data": {
+            "type": "patch",
+            "hash": "33d89c6b9c358511505a688d46c0b6a4be23d413",
+            "files": [
+              "/workspace/Open_First_Whitepaper",
+              "/workspace/facts_Libraries-bibliotheque.json",
+              "/workspace/manual_CommunicatingPublicEngagement.json",
+              "/workspace/manual_alexapoc-vdpalexa.json",
+              "/workspace/manual_content-analysis.json",
+              "/workspace/manual_open-source-logiciel-libre.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "msg_f5c3a05ae001FSodUNYoNVUloL",
+      "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+      "time_created": 1783958734254,
+      "time_updated": 1783958774820,
+      "data": {
+        "parentID": "msg_f5c384291001K2bqvmB2yCRSIv",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "/workspace",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 17484,
+          "input": 7104,
+          "output": 1478,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 8902
+          }
+        },
+        "modelID": "accounts/fireworks/models/kimi-k2p6",
+        "providerID": "openai",
+        "time": {
+          "created": 1783958734254,
+          "completed": 1783958774819
+        },
+        "finish": "tool-calls"
+      },
+      "parts": [
+        {
+          "id": "prt_f5c3a092b001YmQ8krsNG0KBdU",
+          "message_id": "msg_f5c3a05ae001FSodUNYoNVUloL",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958735147,
+          "time_updated": 1783958735148,
+          "data": {
+            "snapshot": "728efed881d34f59214ff1a87a9b7942e97c9900",
+            "type": "step-start"
+          }
+        },
+        {
+          "id": "prt_f5c3a0d86001re9MEHZuDKwxlI",
+          "message_id": "msg_f5c3a05ae001FSodUNYoNVUloL",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958736262,
+          "time_updated": 1783958753045,
+          "data": {
+            "type": "reasoning",
+            "text": "We have a lot of data already from web scraping. Let's analyze what we have:\n\n1. repo_name: digital-playbook-guide-numerique\n2. repo_url: https://github.com/canada-ca/digital-playbook-guide-numerique\n3. primary_language: The API gave rate limit exceeded, but from the web page we saw languages: HTML 82.5%, JavaScript 14.4%, Ruby 3.1%. The GitHub API language field would be the top language, which is HTML. But we need to be careful - the field says \"From the GitHub API repo endpoint ... language field\". The API is rate limited. We could try again later, or use web data. The instructions say \"Prefer public HTML page scraping over GitHub API to avoid rate limits.\" So we can use the web page language data. The top language is HTML. So primary_language = \"HTML\".\n\nWait, but the web page shows the languages section. The top one is HTML. So I'll use HTML.\n\n4. readme_exists: From the root page, we saw README.md listed. So Yes.\n\n5. licence: The API license.spdx_id is not available due to rate limit. But we found LICENSE.md and read it. It's \"Open Government Licence - Canada\". The short name would be... what? The instructions say \"If spdx_id is null or missing, check for a LICENSE ... read it ... deduce the short name\". The license is Open Government Licence - Canada. A common short name is OGL-Canada. The instructions also list `OGL-Canada` as an example! So licence = OGL-Canada.\n\n6. contributing_guide: We saw CONTRIBUTING.md in the root listing. So Yes.\n\n7. has_security_scanning_in_ci:\n   - .github/workflows directory exists (from the .github tree page we saw \"workflows\" folder).\n   - We checked the GitHub Actions page. It says \"0 workflow runs\" and \"There are no workflow runs yet.\" So according to the rules: \"If the page shows '0 runs' or no workflows ever ran, write 'No CI'.\"\n   - Wait, the rules say: \"If workflows exist, check the GitHub Actions page ... If the page shows '0 runs' or no workflows ever ran, write 'No CI'.\" So even though workflows exist, if no runs ever happened, it's \"No CI\". The page clearly says \"0 workflow runs\" and \"There are no workflow runs yet.\" So the answer is `No CI`.\n\n8. has_tests_in_ci: Same logic, result is `No CI`.\n\n9. dependency_update_policy:\n   - We saw `.github/dependabot.yml` in the .github directory listing. So there is a config file. The rules say: \"If found and it appears configured for the repo's ecosystem, write Automated.\" We should verify it's configured. Let's fetch it.\n\n10. last_commit_date: From the commits page, the latest commit shown is \"Commits on Mar 6, 2021\" by ptd-tbs. The exact date isn't fully visible in the snippet, but the heading is \"Commits on Mar 6, 2021\". We need the exact commit date. We can try to fetch the latest commit via API, but we hit rate limits. Maybe we can use raw GitHub API with a wait? Or we can look at the commit page more carefully. The heading is \"Commits on Mar 6, 2021\". That seems to be the last commit. To get the exact date, we can try to fetch the commit HTML page or use the raw API. Alternatively, we can try to fetch `https://api.github.com/repos/canada-ca/digital-playbook-guide-numerique/commits?sha=master&per_page=1` but it was rate limited. We can wait a bit and try again. Or we can use the GitHub web page for the specific commit. The commit hash is 48ebbaf. Let's try to fetch `https://github.com/canada-ca/digital-playbook-guide-numerique/commit/48ebbaf` and see the date.\n\nAlso, we need `open_issues_count`. The API is rate limited, but the web page shows \"Issues 19\". However, some of those might be PRs. The web page says \"Issues 19\". On GitHub, the Issues tab count includes both issues and PRs sometimes? Actually, the number shown on the repo page \"Issues 19\" usually refers to open issues, but PRs are separate tab \"Pull requests 13\". So open_issues_count is likely 19. But we need to be careful. The web page shows \"Issues 19\" and \"Pull requests 13\". So if we can trust that, open_issues_count = 19. But the instructions say \"Fetch open issues via API... Filter out items that contain a pull_request key... Count the remaining items.\" Since API is unavailable, we can try to use the web count. But is it accurate? The repository is archived, so the numbers might be stale but still displayed. Let's check the issues page to see if it shows 19 open issues.\n\nWait, the repo page says \"Issues 19\". That likely means 19 open issues. Since it's archived, all are probably still open. But the instructions specifically say to filter out PRs. The Issues tab on GitHub shows only issues, not PRs. The PRs have their own tab. So the count \"Issues 19\" should be the number of open issues. So we can use 19.\n\nBut to be thorough, maybe we should check the issues page to confirm there are 19. And check if the API is back up. Let's try a few more fetches.\n\nLet's fetch:\n- dependabot.yml\n- commit page for 48ebbaf\n- issues page\n- Maybe try API again after a sleep? The rate limit for unauthenticated is 60 requests per hour. We might have exhausted it. But we can try after a few seconds just in case. Or we can use a different approach: the GitHub GraphQL API? No, that also requires auth.\n\nActually, we can try to use the GitHub API with a different User-Agent or maybe it was just a temporary block. Let's wait a minute and try again. But we have the web page data. We can also try to use `curl -sI` to check headers. But probably better to use the web.\n\nFor `last_commit_date`, the commits page heading is \"Commits on Mar 6, 2021\". The latest commit is 48ebbaf. Let's fetch the commit page.",
+            "time": {
+              "start": 1783958736262,
+              "end": 1783958753041
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "rs_711b825729b04dc78f491b9b129fcfc2",
+                "reasoningEncryptedContent": null
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c3a49c2001y311gkOfXdpA5l",
+          "message_id": "msg_f5c3a05ae001FSodUNYoNVUloL",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958751684,
+          "time_updated": 1783958754539,
+          "data": {
+            "type": "tool",
+            "tool": "webfetch",
+            "callID": "webfetch_7",
+            "state": {
+              "status": "completed",
+              "input": {
+                "url": "https://github.com/canada-ca/digital-playbook-guide-numerique/commit/48ebbaf",
+                "format": "text"
+              },
+              "output": "Update categorization-tool.html \u00b7 canada-ca/digital-playbook-guide-numerique@48ebbaf \u00b7 GitHub\n\n\n\n  \n  \n  \n  \n\n    \n  \n\n\n  \n\n\n    \n\n\n  \n  \n\n  \n  \n\n    \n\n\n\n\n\n\n\n  \n\n  \n\n\n\n\n    \n\n  \n\n    \n\n    \n\n      \n\n      \n\n    \n    \n    \n\n      \n  \n  \n\n\n\n\n      \n\n\n\n        \n\n\n  \n  \n  \n  \n\n  \n\n      \n\n    \n\n  \n\n  \n  \n\n\n\n    \n\n    \n  \n\n\n  \n\n  \n\n    \n  \n\n  \n  \n  \n\n\n\n\n\n  \n\n  \n\n  \n    \n      \n      \n\n    \n      Skip to content\n\n      \n    \n      \n      \n\n\n\n  \n  \n  \n\n\n\n\n\n\n      \n\n          \n\n              \n\n\n\n\n\n\n\n  Navigation Menu\n\n  \n    Toggle navigation\n  \n\n  \n    \n      \n          \n    \n            \n            \n  \n\n      \n\n      \n        \n    \n\n      \n\n      \n          \n            Sign in\n          \n              \n    \n        \n    \n\nAppearance settings\n\n      \n        \n\n\n\n  \n  \n  \n\n\n\n      \n    \n  \n\n      \n    \n\n\n    \n      \n          \n\n\n\n  \n  \n  PlatformAI CODE CREATIONGitHub CopilotWrite better code with AIGitHub Copilot appDirect agents from issue to mergeMCP RegistryNewIntegrate external toolsDEVELOPER WORKFLOWSActionsAutomate any workflowCodespacesInstant dev environmentsIssuesPlan and track workCode ReviewManage code changesAPPLICATION SECURITYGitHub Advanced SecurityFind and fix vulnerabilitiesCode securitySecure your code as you buildSecret protectionStop leaks before they startEXPLOREWhy GitHubDocumentationBlogChangelogMarketplaceView all featuresSolutionsBY COMPANY SIZEEnterprisesSmall and medium teamsStartupsNonprofitsBY USE CASEApp ModernizationDevSecOpsDevOpsCI/CDView all use casesBY INDUSTRYHealthcareFinancial servicesManufacturingGovernmentView all industriesView all solutionsResourcesEXPLORE BY TOPICAISoftware DevelopmentDevOpsSecurityView all topicsEXPLORE BY TYPECustomer storiesEvents & webinarsEbooks & reportsBusiness insightsGitHub SkillsSUPPORT & SERVICESDocumentationCustomer supportCommunity forumTrust centerPartnersView all resourcesOpen SourceCOMMUNITYGitHub SponsorsFund open source developersPROGRAMSSecurity LabMaintainer CommunityAcceleratorGitHub StarsArchive ProgramREPOSITORIESTopicsTrendingCollectionsEnterpriseENTERPRISE SOLUTIONSEnterprise platformAI-powered developer platformAVAILABLE ADD-ONSGitHub Advanced SecurityEnterprise-grade security featuresCopilot for BusinessEnterprise-grade AI featuresPremium SupportEnterprise-grade 24/7 supportPricing\n\n\n\n\n        \n                \n\n\n\n  \n      \n        \n          \n    \n\n        \n        Search or jump to...\n          \n            \n          \n      \n\n    \n\n    \n\n  \n      Search code, repositories, users, issues, pull requests...\n    \n      \n                  \n          \n  \n    \n      \n        Search\n      \n      \n          \n            \n    \n\n          \n        \n          \n          \n            \n            \n          \n        \n          \n            Clear\n              \n    \n\n\n\n          \n      \n      \n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n        \n                        \n\n        \n      \n        \n          \n    \n\n        \n        \n    \n    \n\n          \n            Search syntax tips            \n          \n        \n\n\n    \n\n  \n  \n  \n    \n\n  \n    \n  \n    \n      \n        Provide feedback\n      \n        \n    \n    \n      \n    \n\n    \n  \n  \n\n      \n                \n          We read every piece of feedback, and take your input very seriously.\n          \n          \n          Include my email address so I can be contacted\n\n      \n                    Cancel\n\n              Submit feedback\n\n\n\n\n    \n    \n\n  \n    \n  \n    \n      \n        Saved searches\n      \n        Use saved searches to filter your results more quickly\n    \n    \n      \n    \n\n    \n  \n  \n\n      \n                \n\n        \n        \n          \n\n          \n\n          \n            Name\n            \n              \n              \n            \n          \n\n          \n            Query\n            \n          \n\n          \n            To see all available qualifiers, see our documentation.\n          \n        \n\n        \n          \n        \n\n\n      \n                    Cancel\n\n              Create saved search\n\n\n\n    \n  \n\n\n\n            \n              \n                Sign in\n              \n            \n\n              \n                Sign up\n              \n\n                \n    \n        \n    \n\nAppearance settings\n\n      \n        \n\n\n\n  \n  \n  \n\n\n\n      \n    \n  \n\n          Resetting focus\n        \n      \n    \n  \n\n\n      \n  \n        \n    \n\n        You signed in with another tab or window. Reload to refresh your session.\n        You signed out in another tab or window. Reload to refresh your session.\n        You switched accounts on another tab or window. Reload to refresh your session.\n\n      \n    \n\nDismiss alert\n\n\n  \n\n    \n\n  \n\n\n\n\n\n\n\n\n    \n\n\n\n\n  \n    \n\n  \n    \n      \n    \n\n    \n    \n      \n      {{ message }}\n\n    \n  \n\n  \n\n\n\n    \n\n\n\n\n\n\n  \n        \n    \n      \n      \n    \n\n    \n  \n  \n    \n  \n    \n      \n\n              Uh oh!\n\n              There was an error while loading. Please reload this page.\n\n\n  \n  \n\n\n    \n\n\n        \n    This repository was archived by the owner on Nov 7, 2022. It is now read-only.\n  \n\n\n\n\n\n\n  \n\n  \n\n      \n\n        \n            \n  \n      \n    \n\n    \n    \n      \n        canada-ca\n    \n    /\n    \n      digital-playbook-guide-numerique\n    \n\n    Public archive\n  \n\n\n        \n\n        \n            \n    \n      \n\n  \n                \n    \nNotifications\n    You must be signed in to change notification settings\n\n  \n\n  \n              \n    \nFork\n    21\n\n  \n\n  \n        \n            \n    \n\n          Star\n          59\n\n  \n\n\n\n        \n      \n\n        \n\n\n\n          \n\n  \n      \n  \n    \n              \n    \n\n        Code\n          \n\n\n    \n\n      \n  \n    \n              \n    \n\n        Issues\n          19\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Pull requests\n          13\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Actions\n          \n\n\n    \n\n      \n  \n    \n              \n    \n\n        Security and quality\n          0\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Insights\n          \n\n\n    \n\n\n          \n  \n      \n    \n\nAdditional navigation options\n\n\n\n  \n    \n                \n  \n    \n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Code\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Issues\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Pull requests\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Actions\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Security and quality\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Insights\n      \n\n  \n\n    \n\n\n\n\n      \n  \n\n\n\n  \n  \n\n\n\n\n    \n    \n\n\n\n    \n      \n    \n\n\n\n\n\n\n\n\n\n  \n  \n    Commit 48ebbafBrowse filesBrowse filesptd-tbsauthoredUpdate categorization-tool.html1 parent 88530f9 commit 48ebbafCopy full SHA for 48ebbaf1 file changed+10Lines changed: 10 additions & 0 deletionsFile treeExpand file treeCollapse file treeOpen diff view settingsFilter optionsviews-vues/security-securite/encategorization-tool.htmlExpand file treeCollapse file treeOpen diff view settingsCollapse file\u200eviews-vues/security-securite/en/categorization-tool.html\u200eCopy file name to clipboardExpand all lines: views-vues/security-securite/en/categorization-tool.html+10Lines changed: 10 additions & 0 deletionsOriginal file line numberDiff line numberDiff line change@@ -146,3 +146,13 @@146146labelGridClass: col-sm-4147147fieldGridClass: col-sm-8148148---149+{% assign dataVariable = site.playbookData[page.lang] %}{%150+assign dataSource = site.data[dataVariable] %}151+152+{% include views-vues/security-securite/categorization-tool-status-outil-categorisation.html %}153+154+{% include views-vues/security-securite/categorization-tool-form-outil-categorisation.html %}155+156+{% include views-vues/security-securite/categorization-tool-save-restore-sauvegarder-restaurer-outil-categorisation.html %}157+158+{% include views-vues/security-securite/categorization-tool-results-resultats-outil-categorisation.html %}0 commit commentsComments0\u00a0(0)  \n\n\n\n\n\n  \n\n\n\n    \n  \n\n  \n\n          \n  Footer\n\n  \n\n\n  \n    \n      \n        \n    \n\n\n      \n        \u00a9 2026 GitHub,\u00a0Inc.\n      \n    \n\n    \n      Footer navigation\n\n      \n\n\n          \n            Terms\n          \n\n          \n            Privacy\n          \n\n          \n            Security\n          \n\n          \n            Status\n          \n\n          \n            Community\n          \n\n          \n            Docs\n          \n\n          \n            Contact\n          \n\n          \n  \n    \n       Manage cookies\n    \n  \n\n\n\n  \n    \n      Do not share my personal information\n    \n  \n\n\n      \n    \n  \n\n\n\n\n    \n\n\n\n\n  \n    \n    \n\n    \n      \n    \n\n    \n    You can\u2019t perform that action at this time.",
+              "metadata": {
+                "truncated": false
+              },
+              "title": "https://github.com/canada-ca/digital-playbook-guide-numerique/commit/48ebbaf (text/html; charset=utf-8)",
+              "time": {
+                "start": 1783958753058,
+                "end": 1783958754538
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_c13511c8bb924a07afdae3ef8393a367"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c3a4b40001lZT7STc1ZmEPDB",
+          "message_id": "msg_f5c3a05ae001FSodUNYoNVUloL",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958752066,
+          "time_updated": 1783958754502,
+          "data": {
+            "type": "tool",
+            "tool": "webfetch",
+            "callID": "webfetch_8",
+            "state": {
+              "status": "completed",
+              "input": {
+                "url": "https://raw.githubusercontent.com/canada-ca/digital-playbook-guide-numerique/master/.github/dependabot.yml",
+                "format": "text"
+              },
+              "output": "version: 2\nupdates:\n  - package-ecosystem: npm\n    directory: \"/\"\n    schedule:\n      interval: daily\n      time: \"11:00\"\n    open-pull-requests-limit: 99\n  - package-ecosystem: github-actions\n    directory: \"/\"\n    schedule:\n      interval: daily\n      time: \"11:00\"\n    open-pull-requests-limit: 99\n  - package-ecosystem: bundler\n    directory: \"/\"\n    schedule:\n      interval: daily\n      time: \"11:00\"\n    open-pull-requests-limit: 99\n",
+              "metadata": {
+                "truncated": false
+              },
+              "title": "https://raw.githubusercontent.com/canada-ca/digital-playbook-guide-numerique/master/.github/dependabot.yml (text/plain; charset=utf-8)",
+              "time": {
+                "start": 1783958753075,
+                "end": 1783958754501
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_0141fb3fcb4b4190ab90f766bfd4b271"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c3a4d18001YIQ6cLwYo5CeHw",
+          "message_id": "msg_f5c3a05ae001FSodUNYoNVUloL",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958752536,
+          "time_updated": 1783958754521,
+          "data": {
+            "type": "tool",
+            "tool": "webfetch",
+            "callID": "webfetch_9",
+            "state": {
+              "status": "completed",
+              "input": {
+                "url": "https://github.com/canada-ca/digital-playbook-guide-numerique/issues",
+                "format": "text"
+              },
+              "output": "Issues \u00b7 canada-ca/digital-playbook-guide-numerique \u00b7 GitHub\n\n\n\n  \n  \n  \n  \n\n    \n  \n\n\n  \n\n\n    \n\n\n  \n  \n\n  \n  \n\n    \n\n\n\n\n\n\n\n  \n\n  \n\n\n\n\n    \n\n  \n\n    \n\n    \n\n      \n\n      \n\n    \n    \n    \n\n      \n  \n  \n\n\n\n\n      \n\n\n\n        \n\n\n  \n  \n  \n  \n\n  \n\n        \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n  \n\n  \n  \n\n\n\n    \n\n    \n  \n\n\n  \n\n  \n\n    \n  \n\n  \n  \n  \n\n\n\n\n\n  \n\n  \n\n  \n    \n      \n      \n\n    \n      Skip to content\n\n      \n    \n      \n      \n\n\n  \n  \n  \n\n\n\n\n\n\n      \n\n          \n\n              \n\n\n\n\n\n\n\n  Navigation Menu\n\n  \n    Toggle navigation\n  \n\n  \n    \n      \n          \n    \n            \n            \n  \n\n      \n\n      \n        \n    \n\n      \n\n      \n          \n            Sign in\n          \n              \n    \n        \n    \n\nAppearance settings\n\n      \n        \n\n\n  \n  \n  \n\n\n\n      \n    \n  \n\n      \n    \n\n\n    \n      \n          \n\n\n  \n  \n  PlatformAI CODE CREATIONGitHub CopilotWrite better code with AIGitHub Copilot appDirect agents from issue to mergeMCP RegistryNewIntegrate external toolsDEVELOPER WORKFLOWSActionsAutomate any workflowCodespacesInstant dev environmentsIssuesPlan and track workCode ReviewManage code changesAPPLICATION SECURITYGitHub Advanced SecurityFind and fix vulnerabilitiesCode securitySecure your code as you buildSecret protectionStop leaks before they startEXPLOREWhy GitHubDocumentationBlogChangelogMarketplaceView all featuresSolutionsBY COMPANY SIZEEnterprisesSmall and medium teamsStartupsNonprofitsBY USE CASEApp ModernizationDevSecOpsDevOpsCI/CDView all use casesBY INDUSTRYHealthcareFinancial servicesManufacturingGovernmentView all industriesView all solutionsResourcesEXPLORE BY TOPICAISoftware DevelopmentDevOpsSecurityView all topicsEXPLORE BY TYPECustomer storiesEvents & webinarsEbooks & reportsBusiness insightsGitHub SkillsSUPPORT & SERVICESDocumentationCustomer supportCommunity forumTrust centerPartnersView all resourcesOpen SourceCOMMUNITYGitHub SponsorsFund open source developersPROGRAMSSecurity LabMaintainer CommunityAcceleratorGitHub StarsArchive ProgramREPOSITORIESTopicsTrendingCollectionsEnterpriseENTERPRISE SOLUTIONSEnterprise platformAI-powered developer platformAVAILABLE ADD-ONSGitHub Advanced SecurityEnterprise-grade security featuresCopilot for BusinessEnterprise-grade AI featuresPremium SupportEnterprise-grade 24/7 supportPricing\n\n\n\n\n        \n                \n\n\n\n  \n      \n        \n          \n    \n\n        \n        Search or jump to...\n          \n            \n          \n      \n\n    \n\n    \n\n  \n      Search code, repositories, users, issues, pull requests...\n    \n      \n                  \n          \n  \n    \n      \n        Search\n      \n      \n          \n            \n    \n\n          \n        \n          \n          \n            \n            \n          \n        \n          \n            Clear\n              \n    \n\n\n\n          \n      \n      \n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n        \n                        \n\n        \n      \n        \n          \n    \n\n        \n        \n    \n    \n\n          \n            Search syntax tips            \n          \n        \n\n\n    \n\n  \n  \n  \n    \n\n  \n    \n  \n    \n      \n        Provide feedback\n      \n        \n    \n    \n      \n    \n\n    \n  \n  \n\n      \n                \n          We read every piece of feedback, and take your input very seriously.\n          \n          \n          Include my email address so I can be contacted\n\n      \n                    Cancel\n\n              Submit feedback\n\n\n\n\n    \n    \n\n  \n    \n  \n    \n      \n        Saved searches\n      \n        Use saved searches to filter your results more quickly\n    \n    \n      \n    \n\n    \n  \n  \n\n      \n                \n\n        \n        \n          \n\n          \n\n          \n            Name\n            \n              \n              \n            \n          \n\n          \n            Query\n            \n          \n\n          \n            To see all available qualifiers, see our documentation.\n          \n        \n\n        \n          \n        \n\n\n      \n                    Cancel\n\n              Create saved search\n\n\n\n    \n  \n\n\n\n            \n              \n                Sign in\n              \n            \n\n              \n                Sign up\n              \n\n                \n    \n        \n    \n\nAppearance settings\n\n      \n        \n\n\n  \n  \n  \n\n\n\n      \n    \n  \n\n          Resetting focus\n        \n      \n    \n  \n\n\n      \n  \n        \n    \n\n        You signed in with another tab or window. Reload to refresh your session.\n        You signed out in another tab or window. Reload to refresh your session.\n        You switched accounts on another tab or window. Reload to refresh your session.\n\n      \n    \n\nDismiss alert\n\n\n  \n\n    \n\n  \n\n\n\n\n\n\n\n\n    \n\n\n\n\n  \n    \n\n  \n    \n      \n    \n\n    \n    \n      \n      {{ message }}\n\n    \n  \n\n  \n\n\n\n    \n\n\n\n\n\n\n  \n        \n    \n      \n      \n    \n\n    \n  \n  \n    \n  \n    \n      \n\n              Uh oh!\n\n              There was an error while loading. Please reload this page.\n\n\n  \n  \n\n\n    \n\n\n        \n    This repository was archived by the owner on Nov 7, 2022. It is now read-only.\n  \n\n\n\n\n\n\n  \n\n  \n\n      \n\n        \n            \n  \n      \n    \n\n    \n    \n      \n        canada-ca\n    \n    /\n    \n      digital-playbook-guide-numerique\n    \n\n    Public archive\n  \n\n\n        \n\n        \n            \n    \n      \n\n  \n                \n    \nNotifications\n    You must be signed in to change notification settings\n\n  \n\n  \n              \n    \nFork\n    21\n\n  \n\n  \n        \n            \n    \n\n          Star\n          59\n\n  \n\n\n\n        \n      \n\n        \n\n\n\n          \n\n  \n      \n  \n    \n              \n    \n\n        Code\n          \n\n\n    \n\n      \n  \n    \n              \n    \n\n        Issues\n          19\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Pull requests\n          13\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Actions\n          \n\n\n    \n\n      \n  \n    \n              \n    \n\n        Security and quality\n          0\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Insights\n          \n\n\n    \n\n\n          \n  \n      \n    \n\nAdditional navigation options\n\n\n\n  \n    \n                \n  \n    \n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Code\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Issues\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Pull requests\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Actions\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Security and quality\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Insights\n      \n\n  \n\n    \n\n\n\n\n      \n  \n\n\n\n  \n  \n\n\n\n\n    \n    \n\n\n\n    \n      \n    \n\n\n\n\n\n\n\n\n\n  \n  \n  IssuesAssigned to meCreated by meMentionedRecent activityViewsMilestonesLabelsFeedbackPreviewCollapse sidebarIssuesSearch Issuesis:issue state:open is:issue state:open SearchLabelsMilestonesSearch resultsOpenClosed(Page: Design with Users)Status: Open.#402\u00a0In canada-ca/digital-playbook-guide-numerique;\u00b7 DanielleHolden  opened on Feb 14, 2020Data sources?Status: Open.#400\u00a0In canada-ca/digital-playbook-guide-numerique;\u00b7 vavroom  opened on May 31, 2019Restoring from json file not possible Status: Open.#396\u00a0In canada-ca/digital-playbook-guide-numerique;\u00b7 tinok  opened on Mar 19, 2019Checklist for applying an Open Source License to Crown Copyright.Status: Open.#346\u00a0In canada-ca/digital-playbook-guide-numerique;\u00b7 CalvinRodo  opened on Oct 1, 20186.2.1 - Does \"in excess of $5,000,000?\" refer to program size or individual paymentStatus: Open.#323\u00a0In canada-ca/digital-playbook-guide-numerique;\u00b7 KayleHatt  opened on Aug 20, 2018Whitespace in Liquid tagsStatus: Open.#318\u00a0In canada-ca/digital-playbook-guide-numerique;\u00b7 nschonni  opened on Aug 15, 2018 2. Build in accessibility from the start (draft)Status: Open.#214\u00a0In canada-ca/digital-playbook-guide-numerique;\u00b7 mgifford  opened on Jun 20, 2018Length of the sectionsStatus: Open.#213\u00a0In canada-ca/digital-playbook-guide-numerique;\u00b7 mgifford  opened on Jun 20, 2018ATAG & AccessibilityStatus: Open.#212\u00a0In canada-ca/digital-playbook-guide-numerique;\u00b7 mgifford  opened on Jun 20, 2018How to approach a playbook APIquestionFurther information is requestedFurther information is requestedStatus: Open.#128\u00a0In canada-ca/digital-playbook-guide-numerique;\u00b7 pjackson28  opened on Apr 30, 2018How to publish the playbook to another sitequestionFurther information is requestedFurther information is requestedStatus: Open.#127\u00a0In canada-ca/digital-playbook-guide-numerique;\u00b7 pjackson28  opened on Apr 30, 2018Automated checks for the dataset?questionFurther information is requestedFurther information is requestedStatus: Open.#126\u00a0In canada-ca/digital-playbook-guide-numerique;\u00b7 pjackson28  opened on Apr 30, 2018\n\n\n\n\n\n  \n\n\n\n    \n  \n\n  \n\n          \n  Footer\n\n  \n\n\n  \n    \n      \n        \n    \n\n\n      \n        \u00a9 2026 GitHub,\u00a0Inc.\n      \n    \n\n    \n      Footer navigation\n\n      \n\n\n          \n            Terms\n          \n\n          \n            Privacy\n          \n\n          \n            Security\n          \n\n          \n            Status\n          \n\n          \n            Community\n          \n\n          \n            Docs\n          \n\n          \n            Contact\n          \n\n          \n  \n    \n       Manage cookies\n    \n  \n\n\n\n  \n    \n      Do not share my personal information\n    \n  \n\n\n      \n    \n  \n\n\n\n\n    \n\n\n\n\n  \n    \n    \n\n    \n      \n    \n\n    \n    You can\u2019t perform that action at this time.",
+              "metadata": {
+                "truncated": false
+              },
+              "title": "https://github.com/canada-ca/digital-playbook-guide-numerique/issues (text/html; charset=utf-8)",
+              "time": {
+                "start": 1783958753088,
+                "end": 1783958754520
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_f20bf415f3b54f3db7aada697bea4a16"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c3aa3fa001VT0pbxfGYohpSt",
+          "message_id": "msg_f5c3a05ae001FSodUNYoNVUloL",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958774778,
+          "time_updated": 1783958774780,
+          "data": {
+            "reason": "tool-calls",
+            "snapshot": "9ff0fde926c36f530eaaad7dd6dbda245c4e375c",
+            "type": "step-finish",
+            "tokens": {
+              "total": 17484,
+              "input": 7104,
+              "output": 1478,
+              "reasoning": 0,
+              "cache": {
+                "write": 0,
+                "read": 8902
+              }
+            },
+            "cost": 0
+          }
+        },
+        {
+          "id": "prt_f5c3aa420001LcaPOJZ6pKZ4I2",
+          "message_id": "msg_f5c3a05ae001FSodUNYoNVUloL",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958774816,
+          "time_updated": 1783958774817,
+          "data": {
+            "type": "patch",
+            "hash": "728efed881d34f59214ff1a87a9b7942e97c9900",
+            "files": [
+              "/workspace/manual_Open_First_Whitepaper.json",
+              "/workspace/manual_ore-ero.json",
+              "/workspace/manual_regs-consult-wet.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "msg_f5c3aa431001L87NL2o8KTlt41",
+      "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+      "time_created": 1783958774833,
+      "time_updated": 1783958858701,
+      "data": {
+        "parentID": "msg_f5c384291001K2bqvmB2yCRSIv",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "/workspace",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 21570,
+          "input": 3898,
+          "output": 1667,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 16005
+          }
+        },
+        "modelID": "accounts/fireworks/models/kimi-k2p6",
+        "providerID": "openai",
+        "time": {
+          "created": 1783958774833,
+          "completed": 1783958858689
+        },
+        "finish": "tool-calls"
+      },
+      "parts": [
+        {
+          "id": "prt_f5c3aa816001qSo9jXfvt7PFzk",
+          "message_id": "msg_f5c3aa431001L87NL2o8KTlt41",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958775830,
+          "time_updated": 1783958775831,
+          "data": {
+            "snapshot": "9ff0fde926c36f530eaaad7dd6dbda245c4e375c",
+            "type": "step-start"
+          }
+        },
+        {
+          "id": "prt_f5c3aac42001IdpWjQG9wYiqa9",
+          "message_id": "msg_f5c3aa431001L87NL2o8KTlt41",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958776899,
+          "time_updated": 1783958794957,
+          "data": {
+            "type": "reasoning",
+            "text": "Now I have enough information to determine most fields. Let me gather the remaining ones:\n\n- repo_name: digital-playbook-guide-numerique\n- repo_url: https://github.com/canada-ca/digital-playbook-guide-numerique\n- primary_language: From the web-scraped root page, it shows HTML 82.5%, JavaScript 14.4%, Ruby 3.1%. The primary language would be the top one, which is HTML. But I need to check if the API returned a value. The API returned rate limit exceeded, so I need to determine from the web page. The GitHub repo page shows Languages: HTML, JavaScript, Ruby. The first one listed is HTML with 82.5%. So primary_language = HTML.\n\n- readme_exists: Yes (README.md is listed in root contents from web page)\n\n- licence: From the LICENSE.md file, it's \"Open Government Licence - Canada\". This isn't a standard SPDX ID like MIT or Apache-2.0. The web page shows \"View license\" and \"License\" under Resources. The exact text is \"Open Government Licence - Canada\". There is no standard SPDX ID for this that I know of (it's a custom Canadian government license). The instructions say: If `spdx_id` is present and not null, use that short name. If `spdx_id` is null or missing, check for a LICENSE file and deduce the short name. Since the API is rate-limited, I can't get the spdx_id. But I have the LICENSE.md content. It's the \"Open Government Licence - Canada\". I should write a short name that represents it. Looking at the allowed values examples: `OGL-Canada` is actually listed as an example in the instructions! So I'll write `OGL-Canada`.\n\n- contributing_guide: Yes (CONTRIBUTING.md is listed in root contents)\n\n- has_security_scanning_in_ci: \n  - .github/workflows directory exists (from the .github page listing)\n  - But the Actions page shows \"0 workflow runs\" and \"There are no workflow runs yet.\" So there are workflow files but no runs ever.\n  - Wait, the instructions say: \"If the page shows '0 runs' or no workflows ever ran, write 'No CI'.\"\n  - So this should be \"No CI\".\n\n- has_tests_in_ci: Same logic - No CI\n\n- dependency_update_policy: \n  - There is a .github/dependabot.yml file and it is configured for npm, github-actions, and bundler.\n  - So this is \"Automated\".\n\n- last_commit_date: The commits page shows the most recent commit as \"Commits on Mar 6, 2021\" with commit 48ebbaf. I need to verify the exact date. From the commit page I fetched, it just says \"Update categorization-tool.html\" and \"1 parent 88530f9\". I need to get the exact date. Let me look at the commits list more carefully. It says \"Commits on Mar 6, 2021\". So the date is 2021-03-06. Let me verify by checking another source or if the commit page shows a date.\n\nActually, looking at the commit page for 48ebbaf, it doesn't show the exact timestamp clearly in the text I got. But the commits list page clearly groups it under \"Commits on Mar 6, 2021\". So last_commit_date = 2021-03-06.\n\n- days_since_last_commit: From 2021-03-06 to 2026-07-13. Let me calculate:\n  - 2021-03-06 to 2022-03-06 = 365 days\n  - 2022-03-06 to 2023-03-06 = 365 days\n  - 2023-03-06 to 2024-03-06 = 366 days (leap year)\n  - 2024-03-06 to 2025-03-06 = 365 days\n  - 2025-03-06 to 2026-03-06 = 365 days\n  - 2026-03-06 to 2026-07-13 = 31+30+31+30+13 = 135 days? Wait let me count properly:\n    - March 6 to April 6 = 31 days\n    - April 6 to May 6 = 30 days\n    - May 6 to June 6 = 31 days\n    - June 6 to July 6 = 30 days\n    - July 6 to July 13 = 7 days\n    - Total: 31+30+31+30+7 = 129 days\n  - Total: 365+365+366+365+365+129 = 1955 days\n\nWait, let me double-check: 2021-03-06 to 2026-03-06:\n- 2021-03-06 to 2022-03-06: 365 (2022 is not leap year from March perspective - 2022 not divisible by 4, but the leap day 2024 is in the 2023-2024 period)\nActually, let's count more carefully:\n- Year 1: 2021-03-06 to 2022-03-06 = 365 (2021 is not leap year, and Feb 2022 is before March)\n- Year 2: 2022-03-06 to 2023-03-06 = 365 (2022 not leap)\n- Year 3: 2023-03-06 to 2024-03-06 = 366 (2024 is leap year, and Feb 29 2024 falls in this period)\n- Year 4: 2024-03-06 to 2025-03-06 = 365 (2024 leap day already passed)\n- Year 5: 2025-03-06 to 2026-03-06 = 365\n- 2026-03-06 to 2026-07-13:\n  - March remaining: 31 - 6 = 25 days? No, from March 6 to March 31 is 25 days, then April 30, May 31, June 30, July 13.\n  - Actually simpler: from March 6 to July 13:\n    - March: 31 - 6 = 25\n    - April: 30\n    - May: 31\n    - June: 30\n    - July: 13\n    - Total: 25+30+31+30+13 = 129 days\n  - Wait, if I include March 6 as day 0, then March 6 to March 7 is 1 day. So from March 6 to July 13:\n    - March 6 to April 6 = 31 days\n    - April 6 to May 6 = 30 days\n    - May 6 to June 6 = 31 days\n    - June 6 to July 6 = 30 days\n    - July 6 to July 13 = 7 days\n    - Total: 31+30+31+30+7 = 129 days\n  - So total: 365*4 + 366 + 129 = 1460 + 366 + 129 = 1955 days\n\nLet me verify with a quick calculation using bash.",
+            "time": {
+              "start": 1783958776898,
+              "end": 1783958794948
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "rs_b19aff6c76b541bbb7a63aba271eb3af",
+                "reasoningEncryptedContent": null
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c3aedd5001XNoIEadj32KdXu",
+          "message_id": "msg_f5c3aa431001L87NL2o8KTlt41",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958793685,
+          "time_updated": 1783958795128,
+          "data": {
+            "type": "tool",
+            "tool": "bash",
+            "callID": "bash_10",
+            "state": {
+              "status": "completed",
+              "input": {
+                "command": "python3 -c \"from datetime import date; d1 = date(2021,3,6); d2 = date(2026,7,13); print((d2-d1).days)\""
+              },
+              "output": "1955\n",
+              "metadata": {
+                "output": "1955\n",
+                "exit": 0,
+                "truncated": false
+              },
+              "title": "python3 -c \"from datetime import date; d1 = date(2021,3,6); d2 = date(2026,7,13); print((d2-d1).days)\"",
+              "time": {
+                "start": 1783958795110,
+                "end": 1783958795126
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_b6fb693567e9463eb6ce2f887effad12"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c3af0a5001NyEcniWjkWSOQI",
+          "message_id": "msg_f5c3aa431001L87NL2o8KTlt41",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958794405,
+          "time_updated": 1783958796458,
+          "data": {
+            "type": "tool",
+            "tool": "webfetch",
+            "callID": "webfetch_11",
+            "state": {
+              "status": "completed",
+              "input": {
+                "url": "https://github.com/canada-ca/digital-playbook-guide-numerique/tree/master/.github/workflows",
+                "format": "text"
+              },
+              "output": "digital-playbook-guide-numerique/.github/workflows at master \u00b7 canada-ca/digital-playbook-guide-numerique \u00b7 GitHub\n\n\n\n  \n  \n  \n  \n\n    \n  \n\n\n  \n\n\n    \n\n\n  \n  \n\n  \n  \n\n    \n\n\n\n\n\n\n\n  \n\n  \n\n\n\n\n    \n\n  \n\n    \n\n    \n\n      \n\n      \n\n    \n    \n    \n\n      \n  \n  \n\n\n\n\n      \n\n\n\n        \n\n\n  \n  \n  \n  \n\n  \n\n      \n\n    \n\n  \n\n  \n  \n\n\n\n    \n\n    \n  \n\n\n  \n\n  \n\n    \n  \n\n  \n  \n  \n\n\n\n\n\n  \n\n  \n\n  \n    \n      \n      \n\n    \n      Skip to content\n\n      \n    \n      \n      \n\n\n\n  \n  \n  \n\n\n\n\n\n\n      \n\n          \n\n              \n\n\n\n\n\n\n\n  Navigation Menu\n\n  \n    Toggle navigation\n  \n\n  \n    \n      \n          \n    \n            \n            \n  \n\n      \n\n      \n        \n    \n\n      \n\n      \n          \n            Sign in\n          \n              \n    \n        \n    \n\nAppearance settings\n\n      \n        \n\n\n\n  \n  \n  \n\n\n\n      \n    \n  \n\n      \n    \n\n\n    \n      \n          \n\n\n\n  \n  \n  PlatformAI CODE CREATIONGitHub CopilotWrite better code with AIGitHub Copilot appDirect agents from issue to mergeMCP RegistryNewIntegrate external toolsDEVELOPER WORKFLOWSActionsAutomate any workflowCodespacesInstant dev environmentsIssuesPlan and track workCode ReviewManage code changesAPPLICATION SECURITYGitHub Advanced SecurityFind and fix vulnerabilitiesCode securitySecure your code as you buildSecret protectionStop leaks before they startEXPLOREWhy GitHubDocumentationBlogChangelogMarketplaceView all featuresSolutionsBY COMPANY SIZEEnterprisesSmall and medium teamsStartupsNonprofitsBY USE CASEApp ModernizationDevSecOpsDevOpsCI/CDView all use casesBY INDUSTRYHealthcareFinancial servicesManufacturingGovernmentView all industriesView all solutionsResourcesEXPLORE BY TOPICAISoftware DevelopmentDevOpsSecurityView all topicsEXPLORE BY TYPECustomer storiesEvents & webinarsEbooks & reportsBusiness insightsGitHub SkillsSUPPORT & SERVICESDocumentationCustomer supportCommunity forumTrust centerPartnersView all resourcesOpen SourceCOMMUNITYGitHub SponsorsFund open source developersPROGRAMSSecurity LabMaintainer CommunityAcceleratorGitHub StarsArchive ProgramREPOSITORIESTopicsTrendingCollectionsEnterpriseENTERPRISE SOLUTIONSEnterprise platformAI-powered developer platformAVAILABLE ADD-ONSGitHub Advanced SecurityEnterprise-grade security featuresCopilot for BusinessEnterprise-grade AI featuresPremium SupportEnterprise-grade 24/7 supportPricing\n\n\n\n\n        \n                \n\n\n\n  \n      \n        \n          \n    \n\n        \n        Search or jump to...\n          \n            \n          \n      \n\n    \n\n    \n\n  \n      Search code, repositories, users, issues, pull requests...\n    \n      \n                  \n          \n  \n    \n      \n        Search\n      \n      \n          \n            \n    \n\n          \n        \n          \n          \n            \n            \n          \n        \n          \n            Clear\n              \n    \n\n\n\n          \n      \n      \n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n        \n                        \n\n        \n      \n        \n          \n    \n\n        \n        \n    \n    \n\n          \n            Search syntax tips            \n          \n        \n\n\n    \n\n  \n  \n  \n    \n\n  \n    \n  \n    \n      \n        Provide feedback\n      \n        \n    \n    \n      \n    \n\n    \n  \n  \n\n      \n                \n          We read every piece of feedback, and take your input very seriously.\n          \n          \n          Include my email address so I can be contacted\n\n      \n                    Cancel\n\n              Submit feedback\n\n\n\n\n    \n    \n\n  \n    \n  \n    \n      \n        Saved searches\n      \n        Use saved searches to filter your results more quickly\n    \n    \n      \n    \n\n    \n  \n  \n\n      \n                \n\n        \n        \n          \n\n          \n\n          \n            Name\n            \n              \n              \n            \n          \n\n          \n            Query\n            \n          \n\n          \n            To see all available qualifiers, see our documentation.\n          \n        \n\n        \n          \n        \n\n\n      \n                    Cancel\n\n              Create saved search\n\n\n\n    \n  \n\n\n\n            \n              \n                Sign in\n              \n            \n\n              \n                Sign up\n              \n\n                \n    \n        \n    \n\nAppearance settings\n\n      \n        \n\n\n\n  \n  \n  \n\n\n\n      \n    \n  \n\n          Resetting focus\n        \n      \n    \n  \n\n\n      \n  \n        \n    \n\n        You signed in with another tab or window. Reload to refresh your session.\n        You signed out in another tab or window. Reload to refresh your session.\n        You switched accounts on another tab or window. Reload to refresh your session.\n\n      \n    \n\nDismiss alert\n\n\n  \n\n    \n\n  \n\n\n\n\n\n\n\n\n    \n\n\n\n\n  \n    \n\n  \n    \n      \n    \n\n    \n    \n      \n      {{ message }}\n\n    \n  \n\n  \n\n\n\n    \n\n\n\n\n\n\n  \n        \n    \n      \n      \n    \n\n    \n  \n  \n    \n  \n    \n      \n\n              Uh oh!\n\n              There was an error while loading. Please reload this page.\n\n\n  \n  \n\n\n    \n\n\n        \n    This repository was archived by the owner on Nov 7, 2022. It is now read-only.\n  \n\n\n\n\n\n\n  \n\n  \n\n      \n\n        \n            \n  \n      \n    \n\n    \n    \n      \n        canada-ca\n    \n    /\n    \n      digital-playbook-guide-numerique\n    \n\n    Public archive\n  \n\n\n        \n\n        \n            \n    \n      \n\n  \n                \n    \nNotifications\n    You must be signed in to change notification settings\n\n  \n\n  \n              \n    \nFork\n    21\n\n  \n\n  \n        \n            \n    \n\n          Star\n          59\n\n  \n\n\n\n        \n      \n\n        \n\n\n\n          \n\n  \n      \n  \n    \n              \n    \n\n        Code\n          \n\n\n    \n\n      \n  \n    \n              \n    \n\n        Issues\n          19\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Pull requests\n          13\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Actions\n          \n\n\n    \n\n      \n  \n    \n              \n    \n\n        Security and quality\n          0\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Insights\n          \n\n\n    \n\n\n          \n  \n      \n    \n\nAdditional navigation options\n\n\n\n  \n    \n                \n  \n    \n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Code\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Issues\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Pull requests\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Actions\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Security and quality\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Insights\n      \n\n  \n\n    \n\n\n\n\n      \n  \n\n\n\n  \n  \n\n\n\n\n    \n    \n\n\n\n    \n      \n    \n\n\n\n\n\n\n\n\n\n  \n  \n     FilesExpand file tree\u00a0masterBreadcrumbsdigital-playbook-guide-numerique/.github/workflows/Copy pathDirectory actionsMore optionsMore optionsDirectory actionsMore optionsMore optionsLatest commit\u00a0HistoryHistoryHistory\u00a0masterBreadcrumbsdigital-playbook-guide-numerique/.github/workflows/Copy pathTopFolders and filesNameNameLast commit messageLast commit dateparent directory..ci.ymlci.yml\u00a0\u00a0lint-js.ymllint-js.yml\u00a0\u00a0markdownlint-problem-matcher.jsonmarkdownlint-problem-matcher.json\u00a0\u00a0markdownlint.ymlmarkdownlint.yml\u00a0\u00a0View all files   \n\n\n\n\n\n  \n\n\n\n    \n  \n\n  \n\n          \n  Footer\n\n  \n\n\n  \n    \n      \n        \n    \n\n\n      \n        \u00a9 2026 GitHub,\u00a0Inc.\n      \n    \n\n    \n      Footer navigation\n\n      \n\n\n          \n            Terms\n          \n\n          \n            Privacy\n          \n\n          \n            Security\n          \n\n          \n            Status\n          \n\n          \n            Community\n          \n\n          \n            Docs\n          \n\n          \n            Contact\n          \n\n          \n  \n    \n       Manage cookies\n    \n  \n\n\n\n  \n    \n      Do not share my personal information\n    \n  \n\n\n      \n    \n  \n\n\n\n\n    \n\n\n\n\n  \n    \n    \n\n    \n      \n    \n\n    \n    You can\u2019t perform that action at this time.",
+              "metadata": {
+                "truncated": false
+              },
+              "title": "https://github.com/canada-ca/digital-playbook-guide-numerique/tree/master/.github/workflows (text/html; charset=utf-8)",
+              "time": {
+                "start": 1783958794995,
+                "end": 1783958796414
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_62ff7400060e48c8b7a6d3e266e05f24"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c3bd5970012eKWK69kArp5Qm",
+          "message_id": "msg_f5c3aa431001L87NL2o8KTlt41",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958853015,
+          "time_updated": 1783958853016,
+          "data": {
+            "reason": "tool-calls",
+            "snapshot": "d5bc9825d00fbbb3f523af92102feabdfc14299b",
+            "type": "step-finish",
+            "tokens": {
+              "total": 21570,
+              "input": 3898,
+              "output": 1667,
+              "reasoning": 0,
+              "cache": {
+                "write": 0,
+                "read": 16005
+              }
+            },
+            "cost": 0
+          }
+        },
+        {
+          "id": "prt_f5c3bebac0019hBoJuXD3kdGtO",
+          "message_id": "msg_f5c3aa431001L87NL2o8KTlt41",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958858668,
+          "time_updated": 1783958858669,
+          "data": {
+            "type": "patch",
+            "hash": "9ff0fde926c36f530eaaad7dd6dbda245c4e375c",
+            "files": [
+              "/workspace/manual_alexapoc-healthcanada-recalls.json",
+              "/workspace/manual_commons.json",
+              "/workspace/manual_welcome.json",
+              "/workspace/repo_Libraries-bibliotheque.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "msg_f5c3bec11001wUPc5FKZrvkpJ0",
+      "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+      "time_created": 1783958858769,
+      "time_updated": 1783958904601,
+      "data": {
+        "parentID": "msg_f5c384291001K2bqvmB2yCRSIv",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "/workspace",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 23880,
+          "input": 1616,
+          "output": 2362,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 19902
+          }
+        },
+        "modelID": "accounts/fireworks/models/kimi-k2p6",
+        "providerID": "openai",
+        "time": {
+          "created": 1783958858769,
+          "completed": 1783958904596
+        },
+        "finish": "tool-calls"
+      },
+      "parts": [
+        {
+          "id": "prt_f5c3bf1bb001jObGToaMsNKR3B",
+          "message_id": "msg_f5c3bec11001wUPc5FKZrvkpJ0",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958860220,
+          "time_updated": 1783958860222,
+          "data": {
+            "snapshot": "c86c7c49938f1cfec075704e6fed3a8f771de41c",
+            "type": "step-start"
+          }
+        },
+        {
+          "id": "prt_f5c3bf45c001f4ectP1PvJbWoJ",
+          "message_id": "msg_f5c3bec11001wUPc5FKZrvkpJ0",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958860893,
+          "time_updated": 1783958886308,
+          "data": {
+            "type": "reasoning",
+            "text": "The user wants me to write a JSON file with metadata about the `digital-playbook-guide-numerique` repository owned by `canada-ca`.\n\nLet me gather all the information I've collected so far:\n\n1. **repo_name**: `digital-playbook-guide-numerique` (known)\n2. **repo_url**: `https://github.com/canada-ca/digital-playbook-guide-numerique` (known)\n3. **primary_language**: GitHub API rate limit exceeded, but from the webfetch I can see \"Languages: HTML 82.5%, JavaScript 14.4%, Ruby 3.1%\". The API `language` field would typically show the top language, which is `HTML`. But since the API was rate-limited and the webfetch shows HTML as the primary language, I can infer `HTML`. Wait, the instructions say \"If you cannot determine a value, write `Unknown`\". But I did see the HTML page with languages: \"HTML 82.5%\". So I can reasonably determine `HTML`. Let me use `HTML`.\n4. **readme_exists**: From the webfetch of the root page, I can see `README.md` is listed. So `Yes`.\n5. **licence**: The webfetch of LICENSE.md shows \"Open Government Licence - Canada\". The API was rate-limited but I read the file directly. The short name should be something like `OGL-Canada` or similar? The instructions say \"use that short name (e.g., `MIT`, `Apache-2.0`, `OGL-Canada`, `CC-BY-4.0`)\". The exact text is \"Open Government Licence - Canada\". So I'll use `OGL-Canada`.\n6. **contributing_guide**: From the root page webfetch, I can see `CONTRIBUTING.md`. So `Yes`.\n7. **has_security_scanning_in_ci**: \n   - `.github/workflows` directory exists. There are workflow files: `ci.yml`, `lint-js.yml`, `markdownlint-problem-matcher.json`, `markdownlint.yml`.\n   - GitHub Actions page shows \"0 workflow runs\" and \"There are no workflow runs yet.\"\n   - So I should write `No CI` because no workflows ever ran. Wait, the instructions say: \"If the page shows \"0 runs\" or no workflows ever ran, write `No CI`.\"\n   - The page shows \"0 workflow runs\" and \"There are no workflow runs yet.\" So `No CI`.\n8. **has_tests_in_ci**: Same logic. Since no workflows ever ran, `No CI`.\n   - Wait, let me double-check. The workflow files exist but no runs ever happened. So `No CI` is correct.\n9. **dependency_update_policy**: \n   - There is `.github/dependabot.yml` (found via webfetch). It is configured for npm, github-actions, and bundler. So `Automated`.\n10. **last_commit_date**: From the commits page, the first commit shown is \"Commits on Mar 6, 2021\" with `48ebbaf` by `ptd-tbs`. The commit page for `48ebbaf` shows the commit date. I need to format it as `YYYY-MM-DD`. The commit is dated Mar 6, 2021. So `2021-03-06`.\n    - Let me verify by fetching the raw commit data or the commit page again. The commits page clearly says \"Commits on Mar 6, 2021\" and the first one is `48ebbaf`. So `2021-03-06`.\n11. **days_since_last_commit**: Between `2021-03-06` and `2026-07-13`. I calculated 1955 days using Python. So `1955`.\n12. **maintained**: `days_since_last_commit` is 1955, which is > 365. So `No`.\n13. **open_issues_count**: From the issues page, I can see the issues listed. There are 10 issues listed on the page I fetched. The tab says \"Issues 19\". But I need to filter out items that contain a `pull_request` key. Since I'm counting from the web page, not the API, I need to be careful. The page shows 10 issues. The tab says \"Issues 19\". Let me look more carefully at the issues page content.\n\nWait, the issues page content shows:\n\"Open\" and lists:\n1. #402\n2. #400\n3. #396\n4. #346\n5. #323\n6. #318\n7. #214\n8. #213\n9. #212\n10. #128\n11. #127\n12. #126\n\nThat's 12 issues listed in the HTML snippet I fetched. But the tab says \"Issues 19\". The page might be paginated or some are hidden. Since I cannot reliably determine the exact count from the HTML page (it might show only some, or the page might say 19 total), but the tab says \"Issues 19\". However, the instructions say \"Count the remaining items\" after filtering out PRs. The GitHub issues tab on the web page typically shows \"Issues 19\" meaning 19 open issues (excluding PRs, since PRs are in a separate \"Pull requests 13\" tab). So I can use `19`.\n\nBut wait, the instructions say \"Fetch open issues via API... Filter out items that contain a `pull_request` key... Count the remaining items.\" Since the API is rate-limited, I have to use the web page. The web page shows \"Issues 19\" and \"Pull requests 13\". So there are 19 open issues.\n\nLet me double check if there are any other issues. The webfetch shows a list of 12 issues in the HTML snippet. But the sidebar says \"Issues 19\". GitHub pages often show the first page (e.g., 25 per page) so 12 is just what's visible in the snippet? Actually, the snippet might have been truncated. The page could show up to 25. But the number 19 is clearly stated in the sidebar/tab. So `19` is reasonable.\n\nHowever, I should be careful. The instruction says \"If the API is unavailable or you cannot determine the count, write `Unknown`.\" I can determine the count from the sidebar: \"Issues 19\". I'll use `19`.\n\nWait, looking at the HTML snippet again, I see:\n\" Issues 19\" in the sidebar.\nAnd the content shows:\n\"#402\"\n\"#400\"\n\"#396\"\n\"#346\"\n\"#323\"\n\"#318\"\n\"#214\"\n\"#213\"\n\"#212\"\n\"#128\"\n\"#127\"\n\"#126\"\nThat's 12. But maybe there are more. The sidebar says 19. So I'll use 19.\n\nLet me re-examine the workflow files to make sure I didn't miss any security scanning. Even if there are no runs, the instructions say:\n\"If the page shows \"0 runs\" or no workflows ever ran, write `No CI`.\"\nSo it doesn't matter what the workflow files contain if there are no runs. The answer is `No CI`.\n\nLet me verify the last commit date more carefully. The commit `48ebbaf` is shown as \"Commits on Mar 6, 2021\". Is it possible there are more recent commits? The repo was archived on Nov 7, 2022. But commits would have stopped before that. The page shows \"Commits on Mar 6, 2021\" as the latest. Let me check if there's a more recent commit. The commit history page shows the most recent first. So Mar 6, 2021 is the latest.\n\nWait, is it possible the latest commit was after Mar 6, 2021 but the page I fetched only showed up to Mar 6, 2021? The page shows the first few commits. It says \"Commits on Mar 6, 2021\" at the top. Then goes back in time. So yes, Mar 6, 2021 is the latest.\n\nLet me also verify the primary language. The webfetch shows \"HTML 82.5%\". The GitHub API `language` field returns the top language. So `HTML` is correct.\n\nNow, let me assemble the JSON:\n\n```json\n{\n  \"repo_name\": \"digital-playbook-guide-numerique\",\n  \"repo_url\": \"https://github.com/canada-ca/digital-playbook-guide-numerique\",\n  \"primary_language\": \"HTML\",\n  \"readme_exists\": \"Yes\",\n  \"licence\": \"OGL-Canada\",\n  \"contributing_guide\": \"Yes\",\n  \"has_security_scanning_in_ci\": \"No CI\",\n  \"has_tests_in_ci\": \"No CI\",\n  \"dependency_update_policy\": \"Automated\",\n  \"last_commit_date\": \"2021-03-06\",\n  \"days_since_last_commit\": 1955,\n  \"maintained\": \"No\",\n  \"open_issues_count\": 19\n}\n```\n\nWait, I need to double-check the licence. The file says \"Open Government Licence - Canada\". The instructions give examples like `OGL-Canada`. I should use `OGL-Canada` or `Unknown`? The instruction says \"check for a LICENSE or LICENSE.md file... If found, read it (first 100 lines) and deduce the short name.\" So I should deduce a short name. `OGL-Canada` is a good short name for \"Open Government Licence - Canada\".\n\nAlso, I need to double-check the workflow files. Even though the runs page says \"0 workflow runs\", let me check if there are any workflows that contain test steps or security scanners, just in case. But the instructions are clear: if the page shows \"0 runs\" or no workflows ever ran, write `No CI`.\n\nActually, the instruction says:\n\"If the page shows \"0 runs\" or no workflows ever ran, write `No CI`.\"\nAnd the page shows:\n\"0 workflow runs\"\n\"There are no workflow runs yet.\"\nSo `No CI` is correct.\n\nWait, I should verify the `.github/workflows` directory existence. The webfetch shows `ci.yml`, `lint-js.yml`, `markdownlint-problem-matcher.json`, `markdownlint.yml`. So yes, it exists.\n\nNow let me write the file.",
+            "time": {
+              "start": 1783958860893,
+              "end": 1783958886298
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "rs_7ab8de446eb64af09b5755f17557705a",
+                "reasoningEncryptedContent": null
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c3c4f2d0013iBUuqlpU9vk3A",
+          "message_id": "msg_f5c3bec11001wUPc5FKZrvkpJ0",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958884141,
+          "time_updated": 1783958887940,
+          "data": {
+            "type": "tool",
+            "tool": "bash",
+            "callID": "bash_12",
+            "state": {
+              "status": "completed",
+              "input": {
+                "command": "cat <<'EOF' > /workspace/facts_digital-playbook-guide-numerique.json\n{\n  \"repo_name\": \"digital-playbook-guide-numerique\",\n  \"repo_url\": \"https://github.com/canada-ca/digital-playbook-guide-numerique\",\n  \"primary_language\": \"HTML\",\n  \"readme_exists\": \"Yes\",\n  \"licence\": \"OGL-Canada\",\n  \"contributing_guide\": \"Yes\",\n  \"has_security_scanning_in_ci\": \"No CI\",\n  \"has_tests_in_ci\": \"No CI\",\n  \"dependency_update_policy\": \"Automated\",\n  \"last_commit_date\": \"2021-03-06\",\n  \"days_since_last_commit\": 1955,\n  \"maintained\": \"No\",\n  \"open_issues_count\": 19\n}\nEOF"
+              },
+              "output": "(no output)",
+              "metadata": {
+                "output": "(no output)",
+                "exit": 0,
+                "truncated": false
+              },
+              "title": "cat <<'EOF' > /workspace/facts_digital-playbook-guide-numerique.json\n{\n  \"repo_name\": \"digital-playbook-guide-numerique\",\n  \"repo_url\": \"https://github.com/canada-ca/digital-playbook-guide-numerique\",\n  \"primary_language\": \"HTML\",\n  \"readme_exists\": \"Yes\",\n  \"licence\": \"OGL-Canada\",\n  \"contributing_guide\": \"Yes\",\n  \"has_security_scanning_in_ci\": \"No CI\",\n  \"has_tests_in_ci\": \"No CI\",\n  \"dependency_update_policy\": \"Automated\",\n  \"last_commit_date\": \"2021-03-06\",\n  \"days_since_last_commit\": 1955,\n  \"maintained\": \"No\",\n  \"open_issues_count\": 19\n}\nEOF",
+              "time": {
+                "start": 1783958886319,
+                "end": 1783958887936
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_928cfcac0c4548b584788c8a765d09d2"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c3c9eb4001Mh1je6UbMYReU9",
+          "message_id": "msg_f5c3bec11001wUPc5FKZrvkpJ0",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958904500,
+          "time_updated": 1783958904502,
+          "data": {
+            "reason": "tool-calls",
+            "snapshot": "ece44f65896b530dcf881bc300e69bbd1fdc2913",
+            "type": "step-finish",
+            "tokens": {
+              "total": 23880,
+              "input": 1616,
+              "output": 2362,
+              "reasoning": 0,
+              "cache": {
+                "write": 0,
+                "read": 19902
+              }
+            },
+            "cost": 0
+          }
+        },
+        {
+          "id": "prt_f5c3c9f0a001sJwsuFr4vtk8UA",
+          "message_id": "msg_f5c3bec11001wUPc5FKZrvkpJ0",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958904587,
+          "time_updated": 1783958904589,
+          "data": {
+            "type": "patch",
+            "hash": "c86c7c49938f1cfec075704e6fed3a8f771de41c",
+            "files": [
+              "/workspace/facts_digital-playbook-guide-numerique.json",
+              "/workspace/facts_regs-consult-wet.json",
+              "/workspace/manual_digital-playbook-guide-numerique.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "msg_f5c3c9f49001qVDPQ3VXUxXdY7",
+      "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+      "time_created": 1783958904649,
+      "time_updated": 1783958930381,
+      "data": {
+        "parentID": "msg_f5c384291001K2bqvmB2yCRSIv",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "/workspace",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 21801,
+          "input": 220,
+          "output": 64,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 21517
+          }
+        },
+        "modelID": "accounts/fireworks/models/kimi-k2p6",
+        "providerID": "openai",
+        "time": {
+          "created": 1783958904649,
+          "completed": 1783958930379
+        },
+        "finish": "tool-calls"
+      },
+      "parts": [
+        {
+          "id": "prt_f5c3caf1a001GEbCJCE0AVn7JQ",
+          "message_id": "msg_f5c3c9f49001qVDPQ3VXUxXdY7",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958908698,
+          "time_updated": 1783958908699,
+          "data": {
+            "snapshot": "ece44f65896b530dcf881bc300e69bbd1fdc2913",
+            "type": "step-start"
+          }
+        },
+        {
+          "id": "prt_f5c3cb3890012zSBqeqkNPu8bg",
+          "message_id": "msg_f5c3c9f49001qVDPQ3VXUxXdY7",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958909834,
+          "time_updated": 1783958910699,
+          "data": {
+            "type": "reasoning",
+            "text": "I have successfully gathered all the metadata and structural facts for the `digital-playbook-guide-numerique` repository. Let me verify the file was written correctly by reading it back.",
+            "time": {
+              "start": 1783958909833,
+              "end": 1783958910698
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "rs_b35a0aa22cb24df7bfd49618f2563723",
+                "reasoningEncryptedContent": null
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c3cb5dd001n3kgE3TsKnVvW5",
+          "message_id": "msg_f5c3c9f49001qVDPQ3VXUxXdY7",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958910429,
+          "time_updated": 1783958910926,
+          "data": {
+            "type": "tool",
+            "tool": "read",
+            "callID": "read_13",
+            "state": {
+              "status": "completed",
+              "input": {
+                "filePath": "/workspace/facts_digital-playbook-guide-numerique.json"
+              },
+              "output": "<path>/workspace/facts_digital-playbook-guide-numerique.json</path>\n<type>file</type>\n<content>\n1: {\n2:   \"repo_name\": \"digital-playbook-guide-numerique\",\n3:   \"repo_url\": \"https://github.com/canada-ca/digital-playbook-guide-numerique\",\n4:   \"primary_language\": \"HTML\",\n5:   \"readme_exists\": \"Yes\",\n6:   \"licence\": \"OGL-Canada\",\n7:   \"contributing_guide\": \"Yes\",\n8:   \"has_security_scanning_in_ci\": \"No CI\",\n9:   \"has_tests_in_ci\": \"No CI\",\n10:   \"dependency_update_policy\": \"Automated\",\n11:   \"last_commit_date\": \"2021-03-06\",\n12:   \"days_since_last_commit\": 1955,\n13:   \"maintained\": \"No\",\n14:   \"open_issues_count\": 19\n15: }\n\n(End of file - total 15 lines)\n</content>",
+              "metadata": {
+                "preview": "{\n  \"repo_name\": \"digital-playbook-guide-numerique\",\n  \"repo_url\": \"https://github.com/canada-ca/digital-playbook-guide-numerique\",\n  \"primary_language\": \"HTML\",\n  \"readme_exists\": \"Yes\",\n  \"licence\": \"OGL-Canada\",\n  \"contributing_guide\": \"Yes\",\n  \"has_security_scanning_in_ci\": \"No CI\",\n  \"has_tests_in_ci\": \"No CI\",\n  \"dependency_update_policy\": \"Automated\",\n  \"last_commit_date\": \"2021-03-06\",\n  \"days_since_last_commit\": 1955,\n  \"maintained\": \"No\",\n  \"open_issues_count\": 19\n}",
+                "truncated": false,
+                "loaded": [],
+                "display": {
+                  "type": "file",
+                  "path": "/workspace/facts_digital-playbook-guide-numerique.json",
+                  "text": "{\n  \"repo_name\": \"digital-playbook-guide-numerique\",\n  \"repo_url\": \"https://github.com/canada-ca/digital-playbook-guide-numerique\",\n  \"primary_language\": \"HTML\",\n  \"readme_exists\": \"Yes\",\n  \"licence\": \"OGL-Canada\",\n  \"contributing_guide\": \"Yes\",\n  \"has_security_scanning_in_ci\": \"No CI\",\n  \"has_tests_in_ci\": \"No CI\",\n  \"dependency_update_policy\": \"Automated\",\n  \"last_commit_date\": \"2021-03-06\",\n  \"days_since_last_commit\": 1955,\n  \"maintained\": \"No\",\n  \"open_issues_count\": 19\n}",
+                  "lineStart": 1,
+                  "lineEnd": 15,
+                  "totalLines": 15,
+                  "truncated": false
+                }
+              },
+              "title": "workspace/facts_digital-playbook-guide-numerique.json",
+              "time": {
+                "start": 1783958910703,
+                "end": 1783958910924
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_917b50578c834b9c9ff507075a6b1d8d"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c3d0278001GoOwHrd0JcIJ3f",
+          "message_id": "msg_f5c3c9f49001qVDPQ3VXUxXdY7",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958930041,
+          "time_updated": 1783958930042,
+          "data": {
+            "reason": "tool-calls",
+            "snapshot": "23a3a7bb51336c444bab86e3997b9ae7e5992319",
+            "type": "step-finish",
+            "tokens": {
+              "total": 21801,
+              "input": 220,
+              "output": 64,
+              "reasoning": 0,
+              "cache": {
+                "write": 0,
+                "read": 21517
+              }
+            },
+            "cost": 0
+          }
+        },
+        {
+          "id": "prt_f5c3d03c1001IZZLkm067KQrwZ",
+          "message_id": "msg_f5c3c9f49001qVDPQ3VXUxXdY7",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958930370,
+          "time_updated": 1783958930371,
+          "data": {
+            "type": "patch",
+            "hash": "ece44f65896b530dcf881bc300e69bbd1fdc2913",
+            "files": [
+              "/workspace/facts_CommunicatingPublicEngagement.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "msg_f5c3d03da001GdUHfWpR0736mV",
+      "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+      "time_created": 1783958930395,
+      "time_updated": 1783958967298,
+      "data": {
+        "parentID": "msg_f5c384291001K2bqvmB2yCRSIv",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "/workspace",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 22577,
+          "input": 262,
+          "output": 579,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 21736
+          }
+        },
+        "modelID": "accounts/fireworks/models/kimi-k2p6",
+        "providerID": "openai",
+        "time": {
+          "created": 1783958930395,
+          "completed": 1783958967297
+        },
+        "finish": "stop"
+      },
+      "parts": [
+        {
+          "id": "prt_f5c3d18130013cW93SJ1Uf88Y3",
+          "message_id": "msg_f5c3d03da001GdUHfWpR0736mV",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958935571,
+          "time_updated": 1783958935574,
+          "data": {
+            "snapshot": "23a3a7bb51336c444bab86e3997b9ae7e5992319",
+            "type": "step-start"
+          }
+        },
+        {
+          "id": "prt_f5c3d2605001EfVfolOwTVkOBy",
+          "message_id": "msg_f5c3d03da001GdUHfWpR0736mV",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958939141,
+          "time_updated": 1783958947064,
+          "data": {
+            "type": "reasoning",
+            "text": "The task is to audit the repository and write the JSON facts file. I have successfully created the file with all 13 fields:\n\n- `repo_name`: `digital-playbook-guide-numerique`\n- `repo_url`: `https://github.com/canada-ca/digital-playbook-guide-numerique`\n- `primary_language`: `HTML` (from the Languages section on the GitHub page, 82.5% HTML)\n- `readme_exists`: `Yes` (README.md is visible in the root file listing)\n- `licence`: `OGL-Canada` (from reading LICENSE.md, which explicitly states \"Open Government Licence - Canada\")\n- `contributing_guide`: `Yes` (CONTRIBUTING.md is listed in the root)\n- `has_security_scanning_in_ci`: `No CI` (workflows exist but Actions page shows \"There are no workflow runs yet\", so no runs ever happened. Also no security scanners in the YAML files based on page content)\n- `has_tests_in_ci`: `No CI` (same reason - no workflow runs ever)\n- `dependency_update_policy`: `Automated` (dependabot.yml exists at `.github/dependabot.yml` and is configured for npm, github-actions, and bundler)\n- `last_commit_date`: `2021-03-06` (from the commits page, the first/top commit is \"Update categorization-tool.html\" on Mar 6, 2021 by ptd-tbs)\n- `days_since_last_commit`: `1955` (computed from 2021-03-06 to 2026-07-13)\n- `maintained`: `No` (1955 > 365)\n- `open_issues_count`: `19` (from the GitHub page Issues tab showing \"Issues 19\")\n\nThe file is valid JSON and contains all required fields with exact allowed values. I should provide the final message with the JSON content.",
+            "time": {
+              "start": 1783958939141,
+              "end": 1783958947058
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "rs_f3429459b43d4c7d98695eef31650808",
+                "reasoningEncryptedContent": null
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c3d3f5b001OYz5XcbWYRnY0g",
+          "message_id": "msg_f5c3d03da001GdUHfWpR0736mV",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958945627,
+          "time_updated": 1783958947080,
+          "data": {
+            "type": "text",
+            "text": "Done. The facts file has been written to `/workspace/facts_digital-playbook-guide-numerique.json`. Here is the JSON content:\n\n```json\n{\n  \"repo_name\": \"digital-playbook-guide-numerique\",\n  \"repo_url\": \"https://github.com/canada-ca/digital-playbook-guide-numerique\",\n  \"primary_language\": \"HTML\",\n  \"readme_exists\": \"Yes\",\n  \"licence\": \"OGL-Canada\",\n  \"contributing_guide\": \"Yes\",\n  \"has_security_scanning_in_ci\": \"No CI\",\n  \"has_tests_in_ci\": \"No CI\",\n  \"dependency_update_policy\": \"Automated\",\n  \"last_commit_date\": \"2021-03-06\",\n  \"days_since_last_commit\": 1955,\n  \"maintained\": \"No\",\n  \"open_issues_count\": 19\n}\n```",
+            "time": {
+              "start": 1783958945627,
+              "end": 1783958947078
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "msg_307e6de7c51d40d4809128acedae8ca3"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c3d9394001MiGUBaUokV7ERH",
+          "message_id": "msg_f5c3d03da001GdUHfWpR0736mV",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958967189,
+          "time_updated": 1783958967191,
+          "data": {
+            "reason": "stop",
+            "snapshot": "aa21826823ffbf01aa8078eabe5426b83c5c91c2",
+            "type": "step-finish",
+            "tokens": {
+              "total": 22577,
+              "input": 262,
+              "output": 579,
+              "reasoning": 0,
+              "cache": {
+                "write": 0,
+                "read": 21736
+              }
+            },
+            "cost": 0
+          }
+        },
+        {
+          "id": "prt_f5c3d93fe0016xYa6FU3HE7Rps",
+          "message_id": "msg_f5c3d03da001GdUHfWpR0736mV",
+          "session_id": "ses_0a3c7bd89ffeoKt0NujK9Jk2QC",
+          "time_created": 1783958967294,
+          "time_updated": 1783958967295,
+          "data": {
+            "type": "patch",
+            "hash": "23a3a7bb51336c444bab86e3997b9ae7e5992319",
+            "files": [
+              "/workspace/manual_PCO-Public-Opinion-Research__Recherche-en-opinion-publique--BCP.json"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+coordination_pattern: hierarchical
+
+sub_tasks:
+
+  - id: discover-repos
+    parallel_group: discover
+    depends_on: []
+    description: >-
+      Browse https://github.com/orgs/canada-ca/repositories?type=public and
+      paginate through all pages. Collect the name and URL of every public
+      repository. Write the full numbered list to /workspace/all_repos.json as
+      an array of objects with index, name, and url fields. Do not spawn
+      sub-agents. Do not skip any repositories.
+
+      If you hit a blocker with this approach, do not give up or silently
+      report a partial list -- try a different method instead, and keep
+      trying alternative methods until you can confirm the list you collected
+      is actually complete.
+
+  - id: repo-audit-fanout
+    parallel_group: audit
+    depends_on: [discover-repos]
+    description: >-
+      Read /workspace/all_repos.json. For EVERY repository in that list, spawn
+      exactly one manager sub-agent using the task tool. Spawn all of them in
+      the same batch of task-tool calls so they run concurrently -- do not
+      stagger or throttle. Each manager is responsible for exactly one
+      repository, never more than one. If the total repo count is not a round
+      number, every repository still gets its own manager regardless of the
+      total.
+
+      Each manager is responsible for producing one complete, accurate,
+      synthesized row of data for their one repository, covering every column
+      listed in instruction.md, backed by real evidence rather than an
+      estimate or guess. Each manager must spawn exactly two workers using the
+      task tool and wait for both before reporting back; the manager does not
+      audit the repository itself.
+
+      Worker A is responsible for the columns that come from the repository's
+      metadata and structure rather than reading file content in depth --
+      things like primary_language, licence, readme_exists, contributing_guide,
+      last_commit_date, days_since_last_commit, open_issues_count, and whether
+      CI or dependency-update tooling is configured. Worker A must write its
+      results to /workspace/facts_<repo_name>.json.
+
+      Worker B is responsible for the columns that require actually reading
+      file or discussion content and forming a judgment -- things like
+      bilingual, readme_clarity, the real quality of the security policy,
+      whether CI genuinely runs the relevant checks, issue_response_quality,
+      and release_notes_quality. Worker B must write its results to
+      /workspace/manual_<repo_name>.json.
+
+      Both workers are responsible for using only the exact allowed values
+      instruction.md specifies for each column, and for writing the standard
+      Unknown token -- never a guess, never blank, never their own wording --
+      whenever a value genuinely cannot be determined. Neither worker may
+      derive one column's value from another column that is itself Unknown.
+
+      The manager is also responsible for its own two workers: if a worker
+      fails, times out, or comes back with incomplete or invalid output, the
+      manager must handle it (for example by retrying that worker, spawning a
+      replacement, or otherwise recovering) rather than passing the failure
+      upward unresolved. Once both workers have produced valid output, the
+      manager itself -- not a later stage -- is responsible for synthesizing
+      their two outputs into one final, complete row for its repository, and
+      must write that single synthesized row to /workspace/repo_<repo_name>.json
+      before reporting done.
+
+      Track which repo_names have reported completion against the full list
+      from all_repos.json before considering this sub-task finished.
+
+  - id: reducer
+    parallel_group: synthesize
+    depends_on: [repo-audit-fanout]
+    description: >-
+      Do not spawn sub-agents. You are responsible for combining every
+      /workspace/repo_<repo_name>.json row produced by the managers into the
+      final sheet, using the exact column names and allowed values from
+      instruction.md. If any repository from all_repos.json is missing its
+      row, you are responsible for handling that gap rather than silently
+      dropping the repository or fabricating its data. Write the combined
+      data to /logs/agent/compliance_matrix.csv with all columns from
+      instruction.md. Generate the four presentation charts specified in
+      instruction.md and save them to the paths listed there. Write
+      /logs/agent/output.json with the briefing note fields, and you are
+      responsible for making sure every claim in it is traceable to a real
+      row in the CSV you just wrote.

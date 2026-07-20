@@ -1,0 +1,79 @@
+{
+    "schema_version": 1,
+    "created_at": "2026-07-13T14:39:31.100813Z",
+    "harbor": {
+        "version": "0.6.4",
+        "git_commit_hash": "c41f16e011cbc14af448564890647dece39571d6",
+        "is_editable": true
+    },
+    "invocation": [
+        "/Users/mathavansg/Desktop/multi-agent-swarm-bench/myenv/bin/harbor",
+        "run",
+        "-p",
+        "/Users/mathavansg/Desktop/multi-agent-swarm-bench/issue_tasks/Initial Samples/7cac0ea2e1d74bbd830fd0b8622e00be-SWARMBENCH-PIPELINE-CODESWE-COUNTY-SERVICE-DEPENDENCY-SWEEP",
+        "-a",
+        "swarm-opencode-single",
+        "-m",
+        "fireworks_ai/accounts/fireworks/models/kimi-k2p6",
+        "-k",
+        "1",
+        "-n",
+        "1",
+        "--job-name",
+        "single-opencode-agent-rerun",
+        "--jobs-dir",
+        "/Users/mathavansg/Desktop/multi-agent-swarm-bench/issue_tasks/Initial Samples/7cac0ea2e1d74bbd830fd0b8622e00be-SWARMBENCH-PIPELINE-CODESWE-COUNTY-SERVICE-DEPENDENCY-SWEEP/execution_logs",
+        "--ve",
+        "FIREWORKS_API_KEY=${FIREWORKS_API_KEY}",
+        "--ae",
+        "FIREWORKS_API_KEY=${FIREWORKS_API_KEY}",
+        "--quiet"
+    ],
+    "n_concurrent_trials": 1,
+    "retry": {
+        "max_retries": 0,
+        "exclude_exceptions": [
+            "VerifierOutputParseError",
+            "RewardFileNotFoundError",
+            "VerifierTimeoutError",
+            "RewardFileEmptyError",
+            "AgentTimeoutError"
+        ],
+        "wait_multiplier": 1.0,
+        "min_wait_sec": 1.0,
+        "max_wait_sec": 60.0
+    },
+    "trials": [
+        {
+            "task": {
+                "name": "7cac0ea2e1d74bbd830fd0b8622e00be-SWARMBENCH-PIPELINE-CODESWE-COUNTY-SERVICE-DEPENDENCY-SWEEP",
+                "type": "local",
+                "digest": "sha256:1f21b288f161a9a156370d2387066205259474781c1e81430e78585cbbf5a18d",
+                "path": "/Users/mathavansg/Desktop/multi-agent-swarm-bench/issue_tasks/Initial Samples/7cac0ea2e1d74bbd830fd0b8622e00be-SWARMBENCH-PIPELINE-CODESWE-COUNTY-SERVICE-DEPENDENCY-SWEEP"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "swarm-opencode-single",
+                "model_name": "fireworks_ai/accounts/fireworks/models/kimi-k2p6",
+                "kwargs": {},
+                "env": {
+                    "FIREWORKS_API_KEY": "${FIREWORKS_API_KEY}"
+                }
+            },
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "suppress_override_warnings": false,
+                "env": {},
+                "kwargs": {}
+            },
+            "verifier": {
+                "env": {
+                    "FIREWORKS_API_KEY": "${FIREWORKS_API_KEY}"
+                },
+                "disable": false
+            }
+        }
+    ]
+}

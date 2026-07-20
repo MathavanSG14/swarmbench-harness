@@ -1,0 +1,1333 @@
+{
+  "id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+  "project_id": "global",
+  "workspace_id": null,
+  "parent_id": "ses_0a3af52d7ffeFVq5DwRL6iVhWZ",
+  "slug": "clever-comet",
+  "directory": "/workspace",
+  "path": "workspace",
+  "title": "Content judgments for aia-eia (@explore subagent)",
+  "version": "1.17.18",
+  "share_url": null,
+  "summary_additions": 0,
+  "summary_deletions": 0,
+  "summary_files": 0,
+  "summary_diffs": null,
+  "metadata": null,
+  "cost": 0.0,
+  "tokens_input": 10505,
+  "tokens_output": 3022,
+  "tokens_reasoning": 0,
+  "tokens_cache_read": 31643,
+  "tokens_cache_write": 0,
+  "revert": null,
+  "permission": "[{\"permission\":\"question\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_enter\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_exit\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"todowrite\",\"pattern\":\"*\",\"action\":\"deny\"}]",
+  "agent": "explore",
+  "model": "{\"id\":\"accounts/fireworks/models/kimi-k2p6\",\"providerID\":\"openai\",\"variant\":\"default\"}",
+  "time_created": 1783960253771,
+  "time_updated": 1783960610532,
+  "time_compacting": null,
+  "time_archived": null,
+  "messages": [
+    {
+      "id": "msg_f5c513555001cPmAiS1ug6XLGY",
+      "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+      "time_created": 1783960253782,
+      "time_updated": 1783960659237,
+      "data": {
+        "role": "user",
+        "time": {
+          "created": 1783960253782
+        },
+        "agent": "explore",
+        "model": {
+          "providerID": "openai",
+          "modelID": "accounts/fireworks/models/kimi-k2p6"
+        },
+        "summary": {
+          "diffs": [
+            {
+              "file": "workspace/actions_runs.json.status",
+              "patch": "Index: workspace/actions_runs.json.status\n===================================================================\n--- workspace/actions_runs.json.status\t\n+++ workspace/actions_runs.json.status\t\n@@ -0,0 +1,1 @@\n+403\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/commits.json",
+              "patch": "Index: workspace/commits.json\n===================================================================\n--- workspace/commits.json\t\n+++ workspace/commits.json\t\n@@ -0,0 +1,1 @@\n+{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/commits.json.status",
+              "patch": "Index: workspace/commits.json.status\n===================================================================\n--- workspace/commits.json.status\t\n+++ workspace/commits.json.status\t\n@@ -0,0 +1,1 @@\n+403\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/contents_api.json",
+              "patch": "Index: workspace/contents_api.json\n===================================================================\n--- workspace/contents_api.json\t\n+++ workspace/contents_api.json\t\n@@ -0,0 +1,1 @@\n+{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/contributing.json",
+              "patch": "Index: workspace/contributing.json\n===================================================================\n--- workspace/contributing.json\t\n+++ workspace/contributing.json\t\n@@ -0,0 +1,1 @@\n+{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/contributing.json.status",
+              "patch": "Index: workspace/contributing.json.status\n===================================================================\n--- workspace/contributing.json.status\t\n+++ workspace/contributing.json.status\t\n@@ -0,0 +1,1 @@\n+403\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/dependabot_yaml.json",
+              "patch": "Index: workspace/dependabot_yaml.json\n===================================================================\n--- workspace/dependabot_yaml.json\t\n+++ workspace/dependabot_yaml.json\t\n@@ -0,0 +1,1 @@\n+{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/dependabot_yaml.json.status",
+              "patch": "Index: workspace/dependabot_yaml.json.status\n===================================================================\n--- workspace/dependabot_yaml.json.status\t\n+++ workspace/dependabot_yaml.json.status\t\n@@ -0,0 +1,1 @@\n+403\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/dependabot_yml.json",
+              "patch": "Index: workspace/dependabot_yml.json\n===================================================================\n--- workspace/dependabot_yml.json\t\n+++ workspace/dependabot_yml.json\t\n@@ -0,0 +1,1 @@\n+{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/dependabot_yml.json.status",
+              "patch": "Index: workspace/dependabot_yml.json.status\n===================================================================\n--- workspace/dependabot_yml.json.status\t\n+++ workspace/dependabot_yml.json.status\t\n@@ -0,0 +1,1 @@\n+403\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/fetch.sh",
+              "patch": "Index: workspace/fetch.sh\n===================================================================\n--- workspace/fetch.sh\t\n+++ workspace/fetch.sh\t\n@@ -0,0 +1,39 @@\n+#!/bin/bash\n+set -e\n+\n+API=\"https://api.github.com/repos/canada-ca/accelerators_accelerateurs-aws\"\n+\n+fetch() {\n+    local url=\"$1\"\n+    local outfile=\"$2\"\n+    local status\n+    status=$(curl -s -L -o \"$outfile\" -w \"%{http_code}\" \"$url\")\n+    if [ \"$status\" -ge 400 ]; then\n+        echo \"Retrying $url after 5s...\"\n+        sleep 5\n+        status=$(curl -s -L -o \"$outfile\" -w \"%{http_code}\" \"$url\")\n+    fi\n+    echo \"$status\" > \"${outfile}.status\"\n+}\n+\n+fetch \"$API\" /workspace/repo.json\n+sleep 1\n+fetch \"$API/contents/\" /workspace/root_contents.json\n+sleep 1\n+fetch \"$API/contents/CONTRIBUTING.md\" /workspace/contributing.json\n+sleep 1\n+fetch \"$API/contents/.github/workflows\" /workspace/workflows.json\n+sleep 1\n+fetch \"$API/contents/.github/dependabot.yml\" /workspace/dependabot_yml.json\n+sleep 1\n+fetch \"$API/contents/.github/dependabot.yaml\" /workspace/dependabot_yaml.json\n+sleep 1\n+fetch \"$API/contents/renovate.json\" /workspace/renovate.json\n+sleep 1\n+fetch \"$API/contents/.renovaterc.json\" /workspace/renovaterc.json\n+sleep 1\n+fetch \"$API/commits\" /workspace/commits.json\n+sleep 1\n+fetch \"$API/issues?state=open\" /workspace/issues.json\n+sleep 1\n+fetch \"$API/actions/runs\" /workspace/actions_runs.json\n",
+              "additions": 39,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/issues.json",
+              "patch": "Index: workspace/issues.json\n===================================================================\n--- workspace/issues.json\t\n+++ workspace/issues.json\t\n@@ -0,0 +1,1 @@\n+{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/issues.json.status",
+              "patch": "Index: workspace/issues.json.status\n===================================================================\n--- workspace/issues.json.status\t\n+++ workspace/issues.json.status\t\n@@ -0,0 +1,1 @@\n+403\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/issues_raw.json",
+              "patch": "Index: workspace/issues_raw.json\n===================================================================\n--- workspace/issues_raw.json\t\n+++ workspace/issues_raw.json\t\n@@ -0,0 +1,1 @@\n+{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_GC_Reference_Architecture.json",
+              "patch": "Index: workspace/manual_GC_Reference_Architecture.json\n===================================================================\n--- workspace/manual_GC_Reference_Architecture.json\t\n+++ workspace/manual_GC_Reference_Architecture.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"Unknown\",\n+  \"readme_clarity\": \"Poor\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"No Issues\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_aia-eia-net.json",
+              "patch": "Index: workspace/manual_aia-eia-net.json\n===================================================================\n--- workspace/manual_aia-eia-net.json\t\n+++ workspace/manual_aia-eia-net.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"No Issues\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_aia-eia.json",
+              "patch": "Index: workspace/manual_aia-eia.json\n===================================================================\n--- workspace/manual_aia-eia.json\t\n+++ workspace/manual_aia-eia.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"Yes\",\n+  \"readme_clarity\": \"Good\",\n+  \"security_policy\": \"Present\",\n+  \"issue_response_quality\": \"Stale\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/manual_alexapoc-ccbpaymentdates.json",
+              "patch": "Index: workspace/manual_alexapoc-ccbpaymentdates.json\n===================================================================\n--- workspace/manual_alexapoc-ccbpaymentdates.json\t\n+++ workspace/manual_alexapoc-ccbpaymentdates.json\t\n@@ -0,0 +1,7 @@\n+{\n+  \"bilingual\": \"No\",\n+  \"readme_clarity\": \"Poor\",\n+  \"security_policy\": \"Missing\",\n+  \"issue_response_quality\": \"No Issues\",\n+  \"release_notes_quality\": \"No Releases\"\n+}\n",
+              "additions": 7,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/releases_raw.json",
+              "patch": "Index: workspace/releases_raw.json\n===================================================================\n--- workspace/releases_raw.json\t\n+++ workspace/releases_raw.json\t\n@@ -0,0 +1,1 @@\n+{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/renovate.json",
+              "patch": "Index: workspace/renovate.json\n===================================================================\n--- workspace/renovate.json\t\n+++ workspace/renovate.json\t\n@@ -0,0 +1,1 @@\n+{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/renovate.json.status",
+              "patch": "Index: workspace/renovate.json.status\n===================================================================\n--- workspace/renovate.json.status\t\n+++ workspace/renovate.json.status\t\n@@ -0,0 +1,1 @@\n+403\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/renovaterc.json",
+              "patch": "Index: workspace/renovaterc.json\n===================================================================\n--- workspace/renovaterc.json\t\n+++ workspace/renovaterc.json\t\n@@ -0,0 +1,1 @@\n+{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/renovaterc.json.status",
+              "patch": "Index: workspace/renovaterc.json.status\n===================================================================\n--- workspace/renovaterc.json.status\t\n+++ workspace/renovaterc.json.status\t\n@@ -0,0 +1,1 @@\n+403\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/repo.json",
+              "patch": "Index: workspace/repo.json\n===================================================================\n--- workspace/repo.json\t\n+++ workspace/repo.json\t\n@@ -0,0 +1,1 @@\n+{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/repo.json.status",
+              "patch": "Index: workspace/repo.json.status\n===================================================================\n--- workspace/repo.json.status\t\n+++ workspace/repo.json.status\t\n@@ -0,0 +1,1 @@\n+403\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/repo_api.json",
+              "patch": "Index: workspace/repo_api.json\n===================================================================\n--- workspace/repo_api.json\t\n+++ workspace/repo_api.json\t\n@@ -0,0 +1,1 @@\n+{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/root_contents.json",
+              "patch": "Index: workspace/root_contents.json\n===================================================================\n--- workspace/root_contents.json\t\n+++ workspace/root_contents.json\t\n@@ -1,114 +1,1 @@\n-[\n-  {\n-    \"name\": \"CONTRIBUTING.md\",\n-    \"path\": \"CONTRIBUTING.md\",\n-    \"sha\": \"a304f1aa3acd5b7a86ce55570e7d6db338bd6d83\",\n-    \"size\": 1268,\n-    \"url\": \"https://api.github.com/repos/canada-ca/welcome/contents/CONTRIBUTING.md?ref=master\",\n-    \"html_url\": \"https://github.com/canada-ca/welcome/blob/master/CONTRIBUTING.md\",\n-    \"git_url\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/a304f1aa3acd5b7a86ce55570e7d6db338bd6d83\",\n-    \"download_url\": \"https://raw.githubusercontent.com/canada-ca/welcome/master/CONTRIBUTING.md\",\n-    \"type\": \"file\",\n-    \"_links\": {\n-      \"self\": \"https://api.github.com/repos/canada-ca/welcome/contents/CONTRIBUTING.md?ref=master\",\n-      \"git\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/a304f1aa3acd5b7a86ce55570e7d6db338bd6d83\",\n-      \"html\": \"https://github.com/canada-ca/welcome/blob/master/CONTRIBUTING.md\"\n-    }\n-  },\n-  {\n-    \"name\": \"LICENSE.md\",\n-    \"path\": \"LICENSE.md\",\n-    \"sha\": \"6fdf065b301b947e961324344cdd2d5360b6df0e\",\n-    \"size\": 403,\n-    \"url\": \"https://api.github.com/repos/canada-ca/welcome/contents/LICENSE.md?ref=master\",\n-    \"html_url\": \"https://github.com/canada-ca/welcome/blob/master/LICENSE.md\",\n-    \"git_url\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/6fdf065b301b947e961324344cdd2d5360b6df0e\",\n-    \"download_url\": \"https://raw.githubusercontent.com/canada-ca/welcome/master/LICENSE.md\",\n-    \"type\": \"file\",\n-    \"_links\": {\n-      \"self\": \"https://api.github.com/repos/canada-ca/welcome/contents/LICENSE.md?ref=master\",\n-      \"git\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/6fdf065b301b947e961324344cdd2d5360b6df0e\",\n-      \"html\": \"https://github.com/canada-ca/welcome/blob/master/LICENSE.md\"\n-    }\n-  },\n-  {\n-    \"name\": \"OrganizationMangagementPlan.md\",\n-    \"path\": \"OrganizationMangagementPlan.md\",\n-    \"sha\": \"1d4c8c39f7394b1883dbe118cf089b7eeff02d32\",\n-    \"size\": 2952,\n-    \"url\": \"https://api.github.com/repos/canada-ca/welcome/contents/OrganizationMangagementPlan.md?ref=master\",\n-    \"html_url\": \"https://github.com/canada-ca/welcome/blob/master/OrganizationMangagementPlan.md\",\n-    \"git_url\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/1d4c8c39f7394b1883dbe118cf089b7eeff02d32\",\n-    \"download_url\": \"https://raw.githubusercontent.com/canada-ca/welcome/master/OrganizationMangagementPlan.md\",\n-    \"type\": \"file\",\n-    \"_links\": {\n-      \"self\": \"https://api.github.com/repos/canada-ca/welcome/contents/OrganizationMangagementPlan.md?ref=master\",\n-      \"git\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/1d4c8c39f7394b1883dbe118cf089b7eeff02d32\",\n-      \"html\": \"https://github.com/canada-ca/welcome/blob/master/OrganizationMangagementPlan.md\"\n-    }\n-  },\n-  {\n-    \"name\": \"Organizations-Organisations.md\",\n-    \"path\": \"Organizations-Organisations.md\",\n-    \"sha\": \"e9cae4035517e5762ca0ce1e3d2d7f3db4b272d3\",\n-    \"size\": 2471,\n-    \"url\": \"https://api.github.com/repos/canada-ca/welcome/contents/Organizations-Organisations.md?ref=master\",\n-    \"html_url\": \"https://github.com/canada-ca/welcome/blob/master/Organizations-Organisations.md\",\n-    \"git_url\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/e9cae4035517e5762ca0ce1e3d2d7f3db4b272d3\",\n-    \"download_url\": \"https://raw.githubusercontent.com/canada-ca/welcome/master/Organizations-Organisations.md\",\n-    \"type\": \"file\",\n-    \"_links\": {\n-      \"self\": \"https://api.github.com/repos/canada-ca/welcome/contents/Organizations-Organisations.md?ref=master\",\n-      \"git\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/e9cae4035517e5762ca0ce1e3d2d7f3db4b272d3\",\n-      \"html\": \"https://github.com/canada-ca/welcome/blob/master/Organizations-Organisations.md\"\n-    }\n-  },\n-  {\n-    \"name\": \"README.md\",\n-    \"path\": \"README.md\",\n-    \"sha\": \"2c84f5b4f3b8ac9d75862beca2cb93c6975b5cf8\",\n-    \"size\": 2128,\n-    \"url\": \"https://api.github.com/repos/canada-ca/welcome/contents/README.md?ref=master\",\n-    \"html_url\": \"https://github.com/canada-ca/welcome/blob/master/README.md\",\n-    \"git_url\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/2c84f5b4f3b8ac9d75862beca2cb93c6975b5cf8\",\n-    \"download_url\": \"https://raw.githubusercontent.com/canada-ca/welcome/master/README.md\",\n-    \"type\": \"file\",\n-    \"_links\": {\n-      \"self\": \"https://api.github.com/repos/canada-ca/welcome/contents/README.md?ref=master\",\n-      \"git\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/2c84f5b4f3b8ac9d75862beca2cb93c6975b5cf8\",\n-      \"html\": \"https://github.com/canada-ca/welcome/blob/master/README.md\"\n-    }\n-  },\n-  {\n-    \"name\": \"SECURITY.md\",\n-    \"path\": \"SECURITY.md\",\n-    \"sha\": \"c95f608c7a5b02ce7de1d419bc9582d97a9e398f\",\n-    \"size\": 1088,\n-    \"url\": \"https://api.github.com/repos/canada-ca/welcome/contents/SECURITY.md?ref=master\",\n-    \"html_url\": \"https://github.com/canada-ca/welcome/blob/master/SECURITY.md\",\n-    \"git_url\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/c95f608c7a5b02ce7de1d419bc9582d97a9e398f\",\n-    \"download_url\": \"https://raw.githubusercontent.com/canada-ca/welcome/master/SECURITY.md\",\n-    \"type\": \"file\",\n-    \"_links\": {\n-      \"self\": \"https://api.github.com/repos/canada-ca/welcome/contents/SECURITY.md?ref=master\",\n-      \"git\": \"https://api.github.com/repos/canada-ca/welcome/git/blobs/c95f608c7a5b02ce7de1d419bc9582d97a9e398f\",\n-      \"html\": \"https://github.com/canada-ca/welcome/blob/master/SECURITY.md\"\n-    }\n-  },\n-  {\n-    \"name\": \"consultations\",\n-    \"path\": \"consultations\",\n-    \"sha\": \"ddd5bc19802c789af5f23869811398cba606f139\",\n-    \"size\": 0,\n-    \"url\": \"https://api.github.com/repos/canada-ca/welcome/contents/consultations?ref=master\",\n-    \"html_url\": \"https://github.com/canada-ca/welcome/tree/master/consultations\",\n-    \"git_url\": \"https://api.github.com/repos/canada-ca/welcome/git/trees/ddd5bc19802c789af5f23869811398cba606f139\",\n-    \"download_url\": null,\n-    \"type\": \"dir\",\n-    \"_links\": {\n-      \"self\": \"https://api.github.com/repos/canada-ca/welcome/contents/consultations?ref=master\",\n-      \"git\": \"https://api.github.com/repos/canada-ca/welcome/git/trees/ddd5bc19802c789af5f23869811398cba606f139\",\n-      \"html\": \"https://github.com/canada-ca/welcome/tree/master/consultations\"\n-    }\n-  }\n-]\n+{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}\n",
+              "additions": 1,
+              "deletions": 114,
+              "status": "modified"
+            },
+            {
+              "file": "workspace/root_contents.json.status",
+              "patch": "Index: workspace/root_contents.json.status\n===================================================================\n--- workspace/root_contents.json.status\t\n+++ workspace/root_contents.json.status\t\n@@ -0,0 +1,1 @@\n+403\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/workflows.json",
+              "patch": "Index: workspace/workflows.json\n===================================================================\n--- workspace/workflows.json\t\n+++ workspace/workflows.json\t\n@@ -0,0 +1,1 @@\n+{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            },
+            {
+              "file": "workspace/workflows.json.status",
+              "patch": "Index: workspace/workflows.json.status\n===================================================================\n--- workspace/workflows.json.status\t\n+++ workspace/workflows.json.status\t\n@@ -0,0 +1,1 @@\n+403\n",
+              "additions": 1,
+              "deletions": 0,
+              "status": "added"
+            }
+          ]
+        }
+      },
+      "parts": [
+        {
+          "id": "prt_f5c51355e001CxkEc2y2g3vo0w",
+          "message_id": "msg_f5c513555001cPmAiS1ug6XLGY",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960253792,
+          "time_updated": 1783960253792,
+          "data": {
+            "type": "text",
+            "text": "You are Worker B. Your job is to inspect the GitHub repository `canada-ca/aia-eia` (https://github.com/canada-ca/aia-eia) and make content judgments. Write the results to `/workspace/manual_aia-eia.json` as a JSON object with the exact keys listed below.\n\nUse the GitHub public API and HTML pages. Prefer public HTML page scraping over API where possible to avoid rate limits. If using API, add `sleep 1` between requests.\n\nDetermine each of these fields:\n- `bilingual`: Read the README (or at least the first few hundred lines). Does it contain meaningful content in both English and French? Look for French words/phrases, French section headers, or a clear French translation. Allowed: `Yes`/`No`/`Unknown`.\n- `readme_clarity`: Read the README. Does it clearly explain what the project is, who it's for, and how to use it? `Poor`/`Fair`/`Good`/`Unknown`.\n- `security_policy`: Check for `SECURITY.md` in root, `.github/`, and `docs/`. If not found, write `Missing`. If found, read it. If it contains real responsible disclosure instructions (contact info, how to report, PGP key, etc.), write `Present`. If it exists but is just a placeholder or links without real instructions, write `Incomplete`. Allowed: `Present`/`Incomplete`/`Missing`/`Unknown`.\n- `issue_response_quality`: Look at the 5 most recently updated open issues (API `issues?state=open&sort=updated&direction=desc`, filter out PRs). For each, check if anyone other than the original reporter commented within the last 6 months (from 2026-07-13). If at least one issue has such a comment, write `Active`. If none, write `Stale`. If there are no open issues, write `No Issues`. Allowed: `Active`/`Stale`/`No Issues`/`Unknown`.\n- `release_notes_quality`: Check the Releases page (API `releases` or HTML). If no releases, write `No Releases`. If releases exist, check the latest few. If the description actually explains what changed (e.g., bullet points, changelog), write `Detailed`. If it's just a version number or tag with no description, write `Version-only`. Allowed: `Detailed`/`Version-only`/`No Releases`/`Unknown`.\n\nConstraints:\n- Use ONLY the exact allowed values for each column.\n- If you cannot determine a value, write exactly `Unknown`.\n- Never derive a column from another `Unknown` column.\n- Write the final JSON to `/workspace/manual_aia-eia.json`.\n\nReturn the full JSON content in your final message."
+          }
+        }
+      ]
+    },
+    {
+      "id": "msg_f5c519bb3001CRa4sdNSpe80mz",
+      "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+      "time_created": 1783960279987,
+      "time_updated": 1783960378732,
+      "data": {
+        "parentID": "msg_f5c513555001cPmAiS1ug6XLGY",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "/workspace",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 4951,
+          "input": 3207,
+          "output": 1744,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 0
+          }
+        },
+        "modelID": "accounts/fireworks/models/kimi-k2p6",
+        "providerID": "openai",
+        "time": {
+          "created": 1783960279987,
+          "completed": 1783960378730
+        },
+        "finish": "tool-calls"
+      },
+      "parts": [
+        {
+          "id": "prt_f5c51ad06001ILfXr2krVfY7gP",
+          "message_id": "msg_f5c519bb3001CRa4sdNSpe80mz",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960284423,
+          "time_updated": 1783960284432,
+          "data": {
+            "snapshot": "877986903cc474c04aa47d162a5173594476c898",
+            "type": "step-start"
+          }
+        },
+        {
+          "id": "prt_f5c51b30900103pv4OahwJRKM4",
+          "message_id": "msg_f5c519bb3001CRa4sdNSpe80mz",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960285962,
+          "time_updated": 1783960300441,
+          "data": {
+            "type": "reasoning",
+            "text": "We need to inspect GitHub repo `canada-ca/aia-eia`. The worker is a leaf-level explore agent. We need to read the repo contents, readme, security policy, issues, releases, etc. We need to write results to /workspace/manual_aia-eia.json.\n\nWe must use GitHub public API and HTML pages. Prefer public HTML scraping over API where possible. If using API, add `sleep 1` between requests.\n\nWe need to determine:\n\n- `bilingual`: Read README (or at least first few hundred lines). Does it contain meaningful content in both English and French? Look for French words/phrases, French section headers, or a clear French translation. Allowed: `Yes`/`No`/`Unknown`.\n- `readme_clarity`: Read the README. Does it clearly explain what the project is, who it's for, and how to use it? `Poor`/`Fair`/`Good`/`Unknown`.\n- `security_policy`: Check for `SECURITY.md` in root, `.github/`, and `docs/`. If not found, write `Missing`. If found, read it. If it contains real responsible disclosure instructions (contact info, how to report, PGP key, etc.), write `Present`. If it exists but is just a placeholder or links without real instructions, write `Incomplete`. Allowed: `Present`/`Incomplete`/`Missing`/`Unknown`.\n- `issue_response_quality`: Look at the 5 most recently updated open issues (API `issues?state=open&sort=updated&direction=desc`, filter out PRs). For each, check if anyone other than the original reporter commented within the last 6 months (from 2026-07-13). If at least one issue has such a comment, write `Active`. If none, write `Stale`. If there are no open issues, write `No Issues`. Allowed: `Active`/`Stale`/`No Issues`/`Unknown`.\n- `release_notes_quality`: Check the Releases page (API `releases` or HTML). If no releases, write `No Releases`. If releases exist, check the latest few. If the description actually explains what changed (e.g., bullet points, changelog), write `Detailed`. If it's just a version number or tag with no description, write `Version-only`. Allowed: `Detailed`/`Version-only`/`No Releases`/`Unknown`.\n\nWe need to write final JSON to /workspace/manual_aia-eia.json and return the full JSON content in the final message.\n\nWe must not end with a question. We must continue autonomously.\n\nApproach: Use webfetch to fetch the HTML page of the repo, the README, issues, releases, etc. Or use bash with curl. Let's think about the best way.\n\nThe repo is https://github.com/canada-ca/aia-eia.\n\nWe can fetch the main page: https://github.com/canada-ca/aia-eia. That gives us the README rendered in HTML. We can also fetch the raw README via raw.githubusercontent.com: https://raw.githubusercontent.com/canada-ca/aia-eia/main/README.md or similar. But we don't know the default branch. Could be main or master. Let's fetch the main page and see.\n\nAlso we need to check for SECURITY.md. We can check via raw URLs: https://raw.githubusercontent.com/canada-ca/aia-eia/main/SECURITY.md, https://raw.githubusercontent.com/canada-ca/aia-eia/main/.github/SECURITY.md, https://raw.githubusercontent.com/canada-ca/aia-eia/main/docs/SECURITY.md.\n\nWe need to fetch issues. The GitHub API for issues: https://api.github.com/repos/canada-ca/aia-eia/issues?state=open&sort=updated&direction=desc. This returns both issues and PRs. We need to filter out PRs. In the API, PRs have a `pull_request` key. We can fetch this via curl or webfetch. But webfetch might not support JSON? It says format options: text, markdown, html. We can fetch as text and parse with bash? Actually we can use `bash` with `curl` and `jq`. But the instructions say we can use bash for commands. We have bash, curl, jq. We should use bash to fetch API and parse. But we need to add `sleep 1` between API requests if using API. We have multiple API calls? At least issues and releases. We can also fetch the README via HTML to avoid API. Let's use webfetch for HTML and bash for API.\n\nAlternatively, we can fetch everything via bash with curl and parse with jq. That might be easier.\n\nLet's plan:\n\n1. Fetch repo main page HTML to see README content and branch. But maybe raw README is easier.\n2. Fetch raw README: `curl -s https://raw.githubusercontent.com/canada-ca/aia-eia/main/README.md`. If 404, try master.\n3. Fetch SECURITY.md via raw URLs.\n4. Fetch issues via API: `curl -s https://api.github.com/repos/canada-ca/aia-eia/issues?state=open&sort=updated&direction=desc | jq ...`. Sleep 1 after.\n5. Fetch releases via API: `curl -s https://api.github.com/repos/canada-ca/aia-eia/releases | jq ...`. Sleep 1 after.\n\nBut we need to be careful about API rate limits. The repo is public, so unauthenticated API requests have a limit of 60 per hour. We will make maybe 2 API calls. That's fine.\n\nWe need to parse the JSON. We can use bash with jq.\n\nLet's start with a bash command to get the default branch and README. Actually, we can use `curl -s https://api.github.com/repos/canada-ca/aia-eia` to get repo info including default branch. But that's an API call. Alternatively, we can just try `main` and `master` for raw README.\n\nLet's do:\n\n`curl -s -o /tmp/readme.md -w \"%{http_code}\" https://raw.githubusercontent.com/canada-ca/aia-eia/main/README.md`\n\nIf 404, try master.\n\nAlso, we can fetch the HTML page of the repo to see the README rendered. That might give us a better view of bilingual content. But raw markdown is fine for reading text.\n\nLet's do all of this in a bash script. We'll use `bash` tool.\n\nWe can write a script to:\n\n- Try to fetch README.\n- Try to fetch SECURITY.md in three locations.\n- Fetch issues.\n- Fetch releases.\n- Sleep 1 between API calls.\n\nThen we can read the files and analyze.\n\nLet's do that.",
+            "time": {
+              "start": 1783960285961,
+              "end": 1783960300438
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "rs_e1020d2fb9d842ebba5e64d428764b3b",
+                "reasoningEncryptedContent": null
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c51dc04001diWlwDgW17GETb",
+          "message_id": "msg_f5c519bb3001CRa4sdNSpe80mz",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960296452,
+          "time_updated": 1783960377709,
+          "data": {
+            "type": "tool",
+            "tool": "bash",
+            "callID": "bash_0",
+            "state": {
+              "status": "completed",
+              "input": {
+                "command": "set -e\n# Try to fetch README\nBRANCH=\"main\"\nHTTP_CODE=$(curl -s -o /tmp/readme.md -w \"%{http_code}\" \"https://raw.githubusercontent.com/canada-ca/aia-eia/${BRANCH}/README.md\")\nif [ \"$HTTP_CODE\" != \"200\" ]; then\n  BRANCH=\"master\"\n  HTTP_CODE=$(curl -s -o /tmp/readme.md -w \"%{http_code}\" \"https://raw.githubusercontent.com/canada-ca/aia-eia/${BRANCH}/README.md\")\nfi\necho \"README branch: ${BRANCH}, HTTP: ${HTTP_CODE}\"\n\n# Fetch SECURITY.md in three locations\nfor path in \"SECURITY.md\" \".github/SECURITY.md\" \"docs/SECURITY.md\"; do\n  HTTP=$(curl -s -o \"/tmp/sec_${path//\\//_}\" -w \"%{http_code}\" \"https://raw.githubusercontent.com/canada-ca/aia-eia/${BRANCH}/${path}\")\n  echo \"SECURITY.md at ${path}: HTTP ${HTTP}\"\ndone\n\n# Fetch issues via API\ncurl -s -o /tmp/issues.json \"https://api.github.com/repos/canada-ca/aia-eia/issues?state=open&sort=updated&direction=desc\"\necho \"Issues fetched\"\nsleep 1\n\n# Fetch releases via API\ncurl -s -o /tmp/releases.json \"https://api.github.com/repos/canada-ca/aia-eia/releases\"\necho \"Releases fetched\"\n\n# Save branch info\necho \"$BRANCH\" > /tmp/branch.txt\n"
+              },
+              "output": "README branch: master, HTTP: 200\nSECURITY.md at SECURITY.md: HTTP 200\nSECURITY.md at .github/SECURITY.md: HTTP 404\nSECURITY.md at docs/SECURITY.md: HTTP 404\nIssues fetched\nReleases fetched\n",
+              "metadata": {
+                "output": "README branch: master, HTTP: 200\nSECURITY.md at SECURITY.md: HTTP 200\nSECURITY.md at .github/SECURITY.md: HTTP 404\nSECURITY.md at docs/SECURITY.md: HTTP 404\nIssues fetched\nReleases fetched\n",
+                "exit": 0,
+                "truncated": false
+              },
+              "title": "set -e\n# Try to fetch README\nBRANCH=\"main\"\nHTTP_CODE=$(curl -s -o /tmp/readme.md -w \"%{http_code}\" \"https://raw.githubusercontent.com/canada-ca/aia-eia/${BRANCH}/README.md\")\nif [ \"$HTTP_CODE\" != \"200\" ]; then\n  BRANCH=\"master\"\n  HTTP_CODE=$(curl -s -o /tmp/readme.md -w \"%{http_code}\" \"https://raw.githubusercontent.com/canada-ca/aia-eia/${BRANCH}/README.md\")\nfi\necho \"README branch: ${BRANCH}, HTTP: ${HTTP_CODE}\"\n\n# Fetch SECURITY.md in three locations\nfor path in \"SECURITY.md\" \".github/SECURITY.md\" \"docs/SECURITY.md\"; do\n  HTTP=$(curl -s -o \"/tmp/sec_${path//\\//_}\" -w \"%{http_code}\" \"https://raw.githubusercontent.com/canada-ca/aia-eia/${BRANCH}/${path}\")\n  echo \"SECURITY.md at ${path}: HTTP ${HTTP}\"\ndone\n\n# Fetch issues via API\ncurl -s -o /tmp/issues.json \"https://api.github.com/repos/canada-ca/aia-eia/issues?state=open&sort=updated&direction=desc\"\necho \"Issues fetched\"\nsleep 1\n\n# Fetch releases via API\ncurl -s -o /tmp/releases.json \"https://api.github.com/repos/canada-ca/aia-eia/releases\"\necho \"Releases fetched\"\n\n# Save branch info\necho \"$BRANCH\" > /tmp/branch.txt\n",
+              "time": {
+                "start": 1783960377644,
+                "end": 1783960377703
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_30c4ed7e41d04f6081753405954d5a03"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c531d0f001u3xNrbE3bM400G",
+          "message_id": "msg_f5c519bb3001CRa4sdNSpe80mz",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960378640,
+          "time_updated": 1783960378652,
+          "data": {
+            "reason": "tool-calls",
+            "snapshot": "83bdf8cbb796c1d573adb56f1972c484a7a485e8",
+            "type": "step-finish",
+            "tokens": {
+              "total": 4951,
+              "input": 3207,
+              "output": 1744,
+              "reasoning": 0,
+              "cache": {
+                "write": 0,
+                "read": 0
+              }
+            },
+            "cost": 0
+          }
+        },
+        {
+          "id": "prt_f5c531d5c001FAWRAWkE8rsxge",
+          "message_id": "msg_f5c519bb3001CRa4sdNSpe80mz",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960378716,
+          "time_updated": 1783960378719,
+          "data": {
+            "type": "patch",
+            "hash": "877986903cc474c04aa47d162a5173594476c898",
+            "files": [
+              "/workspace/fetch.sh",
+              "/workspace/issues_raw.json",
+              "/workspace/releases_raw.json",
+              "/workspace/repo.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "msg_f5c531d91001JrdWXkabp4lT0P",
+      "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+      "time_created": 1783960378769,
+      "time_updated": 1783960400217,
+      "data": {
+        "parentID": "msg_f5c513555001cPmAiS1ug6XLGY",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "/workspace",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 3739,
+          "input": 436,
+          "output": 97,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 3206
+          }
+        },
+        "modelID": "accounts/fireworks/models/kimi-k2p6",
+        "providerID": "openai",
+        "time": {
+          "created": 1783960378769,
+          "completed": 1783960400217
+        },
+        "finish": "tool-calls"
+      },
+      "parts": [
+        {
+          "id": "prt_f5c531fbd001hLqIxxW7yxXfCi",
+          "message_id": "msg_f5c531d91001JrdWXkabp4lT0P",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960379325,
+          "time_updated": 1783960379326,
+          "data": {
+            "snapshot": "83bdf8cbb796c1d573adb56f1972c484a7a485e8",
+            "type": "step-start"
+          }
+        },
+        {
+          "id": "prt_f5c5322d6001Y7UUyaFZ6Nooca",
+          "message_id": "msg_f5c531d91001JrdWXkabp4lT0P",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960380118,
+          "time_updated": 1783960382093,
+          "data": {
+            "type": "reasoning",
+            "text": "Now I need to read the fetched files, analyze the README, SECURITY.md, issues, and releases. I'll read them in parallel.",
+            "time": {
+              "start": 1783960380118,
+              "end": 1783960382087
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "rs_35b495fdbc674d739edd275fd5c5f873",
+                "reasoningEncryptedContent": null
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c53292f001tzdwkOHDSDlLT4",
+          "message_id": "msg_f5c531d91001JrdWXkabp4lT0P",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960381743,
+          "time_updated": 1783960399685,
+          "data": {
+            "type": "tool",
+            "tool": "read",
+            "callID": "read_1",
+            "state": {
+              "status": "completed",
+              "input": {
+                "filePath": "/tmp/readme.md"
+              },
+              "output": "<path>/tmp/readme.md</path>\n<type>file</type>\n<content>\n1: \ufffd\ufffde\n\n(End of file - total 1 lines)\n</content>",
+              "metadata": {
+                "preview": "\ufffd\ufffde",
+                "truncated": false,
+                "loaded": [],
+                "display": {
+                  "type": "file",
+                  "path": "/tmp/readme.md",
+                  "text": "\ufffd\ufffde",
+                  "lineStart": 1,
+                  "lineEnd": 1,
+                  "totalLines": 1,
+                  "truncated": false
+                }
+              },
+              "title": "tmp/readme.md",
+              "time": {
+                "start": 1783960382133,
+                "end": 1783960399684
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_f5d4ee70b44548aeb4ae644cc219c9e7"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c53295f001egODiZ32QZIeeH",
+          "message_id": "msg_f5c531d91001JrdWXkabp4lT0P",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960381802,
+          "time_updated": 1783960399695,
+          "data": {
+            "type": "tool",
+            "tool": "read",
+            "callID": "read_2",
+            "state": {
+              "status": "completed",
+              "input": {
+                "filePath": "/tmp/sec_SECURITY.md"
+              },
+              "output": "<path>/tmp/sec_SECURITY.md</path>\n<type>file</type>\n<content>\n1: ([Fran\u00e7ais](#s\u00e9curit\u00e9))\n2: \n3: # Security\n4: \n5: **Do not post any security issues on the public repository!** Security vulnerabilities must be reported by email to [Guillaume Charest](mailto:guillaume.charest@tbs-sct.gc.ca)\n6: \n7: ______________________\n8: \n9: ## S\u00e9curit\u00e9\n10: \n11: **Ne publiez aucun probl\u00e8me de s\u00e9curit\u00e9 sur le d\u00e9p\u00f4t publique!** Les vuln\u00e9rabilit\u00e9s de s\u00e9curit\u00e9 doivent \u00eatre signal\u00e9es par courriel \u00e0 [Guillaume Charest](mailto:guillaume.charest@tbs-sct.gc.ca)\n\n(End of file - total 11 lines)\n</content>",
+              "metadata": {
+                "preview": "([Fran\u00e7ais](#s\u00e9curit\u00e9))\n\n# Security\n\n**Do not post any security issues on the public repository!** Security vulnerabilities must be reported by email to [Guillaume Charest](mailto:guillaume.charest@tbs-sct.gc.ca)\n\n______________________\n\n## S\u00e9curit\u00e9\n\n**Ne publiez aucun probl\u00e8me de s\u00e9curit\u00e9 sur le d\u00e9p\u00f4t publique!** Les vuln\u00e9rabilit\u00e9s de s\u00e9curit\u00e9 doivent \u00eatre signal\u00e9es par courriel \u00e0 [Guillaume Charest](mailto:guillaume.charest@tbs-sct.gc.ca)",
+                "truncated": false,
+                "loaded": [],
+                "display": {
+                  "type": "file",
+                  "path": "/tmp/sec_SECURITY.md",
+                  "text": "([Fran\u00e7ais](#s\u00e9curit\u00e9))\n\n# Security\n\n**Do not post any security issues on the public repository!** Security vulnerabilities must be reported by email to [Guillaume Charest](mailto:guillaume.charest@tbs-sct.gc.ca)\n\n______________________\n\n## S\u00e9curit\u00e9\n\n**Ne publiez aucun probl\u00e8me de s\u00e9curit\u00e9 sur le d\u00e9p\u00f4t publique!** Les vuln\u00e9rabilit\u00e9s de s\u00e9curit\u00e9 doivent \u00eatre signal\u00e9es par courriel \u00e0 [Guillaume Charest](mailto:guillaume.charest@tbs-sct.gc.ca)",
+                  "lineStart": 1,
+                  "lineEnd": 11,
+                  "totalLines": 11,
+                  "truncated": false
+                }
+              },
+              "title": "tmp/sec_SECURITY.md",
+              "time": {
+                "start": 1783960382160,
+                "end": 1783960399690
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_4719f22c480b46b682f8d5119d967a34"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c5329e7001Frj0ZTsPBN3sAb",
+          "message_id": "msg_f5c531d91001JrdWXkabp4lT0P",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960381928,
+          "time_updated": 1783960399703,
+          "data": {
+            "type": "tool",
+            "tool": "read",
+            "callID": "read_3",
+            "state": {
+              "status": "completed",
+              "input": {
+                "filePath": "/tmp/issues.json"
+              },
+              "output": "<path>/tmp/issues.json</path>\n<type>file</type>\n<content>\n1: {\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}\n\n(End of file - total 1 lines)\n</content>",
+              "metadata": {
+                "preview": "{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}",
+                "truncated": false,
+                "loaded": [],
+                "display": {
+                  "type": "file",
+                  "path": "/tmp/issues.json",
+                  "text": "{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}",
+                  "lineStart": 1,
+                  "lineEnd": 1,
+                  "totalLines": 1,
+                  "truncated": false
+                }
+              },
+              "title": "tmp/issues.json",
+              "time": {
+                "start": 1783960382185,
+                "end": 1783960399702
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_cb156f1fbf32447e9c1c882f5dad8be0"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c532a38001Ni0GykzUCLpFts",
+          "message_id": "msg_f5c531d91001JrdWXkabp4lT0P",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960382009,
+          "time_updated": 1783960399699,
+          "data": {
+            "type": "tool",
+            "tool": "read",
+            "callID": "read_4",
+            "state": {
+              "status": "completed",
+              "input": {
+                "filePath": "/tmp/releases.json"
+              },
+              "output": "<path>/tmp/releases.json</path>\n<type>file</type>\n<content>\n1: {\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}\n\n(End of file - total 1 lines)\n</content>",
+              "metadata": {
+                "preview": "{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}",
+                "truncated": false,
+                "loaded": [],
+                "display": {
+                  "type": "file",
+                  "path": "/tmp/releases.json",
+                  "text": "{\"message\":\"API rate limit exceeded for 122.183.50.83. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)\",\"documentation_url\":\"https://docs.github.com/rest/overview/resources-in-the-rest-api#rate-limiting\"}",
+                  "lineStart": 1,
+                  "lineEnd": 1,
+                  "totalLines": 1,
+                  "truncated": false
+                }
+              },
+              "title": "tmp/releases.json",
+              "time": {
+                "start": 1783960382209,
+                "end": 1783960399698
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_30e12a0e00074d60803b22f01917dc2d"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c537115001FGozdsLCLxnk8B",
+          "message_id": "msg_f5c531d91001JrdWXkabp4lT0P",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960400149,
+          "time_updated": 1783960400150,
+          "data": {
+            "reason": "tool-calls",
+            "snapshot": "742846d5901a60b512d2e548b665fb63e00b929c",
+            "type": "step-finish",
+            "tokens": {
+              "total": 3739,
+              "input": 436,
+              "output": 97,
+              "reasoning": 0,
+              "cache": {
+                "write": 0,
+                "read": 3206
+              }
+            },
+            "cost": 0
+          }
+        },
+        {
+          "id": "prt_f5c537156001H5xpuJujv903x6",
+          "message_id": "msg_f5c531d91001JrdWXkabp4lT0P",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960400214,
+          "time_updated": 1783960400215,
+          "data": {
+            "type": "patch",
+            "hash": "83bdf8cbb796c1d573adb56f1972c484a7a485e8",
+            "files": [
+              "/workspace/contributing.json",
+              "/workspace/contributing.json.status",
+              "/workspace/repo.json.status",
+              "/workspace/root_contents.json",
+              "/workspace/root_contents.json.status",
+              "/workspace/workflows.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "msg_f5c53715f001KQ0w9g3DvH9Nyr",
+      "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+      "time_created": 1783960400223,
+      "time_updated": 1783960482857,
+      "data": {
+        "parentID": "msg_f5c513555001cPmAiS1ug6XLGY",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "/workspace",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 4450,
+          "input": 531,
+          "output": 278,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 3641
+          }
+        },
+        "modelID": "accounts/fireworks/models/kimi-k2p6",
+        "providerID": "openai",
+        "time": {
+          "created": 1783960400223,
+          "completed": 1783960482854
+        },
+        "finish": "tool-calls"
+      },
+      "parts": [
+        {
+          "id": "prt_f5c5373d2001sKIp4x1rjNrWQQ",
+          "message_id": "msg_f5c53715f001KQ0w9g3DvH9Nyr",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960400850,
+          "time_updated": 1783960400857,
+          "data": {
+            "snapshot": "742846d5901a60b512d2e548b665fb63e00b929c",
+            "type": "step-start"
+          }
+        },
+        {
+          "id": "prt_f5c53770c001UiRe0EVydW7sKM",
+          "message_id": "msg_f5c53715f001KQ0w9g3DvH9Nyr",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960401677,
+          "time_updated": 1783960405116,
+          "data": {
+            "type": "reasoning",
+            "text": "The README came back with a weird first line (binary?), but HTTP was 200. The raw content seems to be garbled, possibly because of some encoding issue or the file is actually a different content. Need to read the README via GitHub HTML page instead to inspect its contents.\n\nAlso, API rate limit exceeded for issues and releases. We need to try the HTML pages for issues and releases instead, as per instructions (prefer HTML scraping over API to avoid rate limits).\n\nLet me fetch:\n- GitHub repo main page HTML for README content.\n- GitHub issues page HTML for open issues (maybe filter via ?state=open&sort=updated&direction=desc)\n- GitHub releases page HTML for releases.\n\nWe can also try the raw README again via text/plain? Or just use the HTML page. Let's use the webfetch tool.",
+            "time": {
+              "start": 1783960401676,
+              "end": 1783960405114
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "rs_baf32bb1cdd74e92ab10ce2c449419ca",
+                "reasoningEncryptedContent": null
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c537e4a001uNz91s32XAgx1f",
+          "message_id": "msg_f5c53715f001KQ0w9g3DvH9Nyr",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960403530,
+          "time_updated": 1783960407237,
+          "data": {
+            "type": "tool",
+            "tool": "webfetch",
+            "callID": "webfetch_5",
+            "state": {
+              "status": "completed",
+              "input": {
+                "url": "https://github.com/canada-ca/aia-eia",
+                "format": "text"
+              },
+              "output": "GitHub - canada-ca/aia-eia: Algorithmic Impact Assessment - \u00c9valuation de l'incidence algorithmique (Python prototype) \u00b7 GitHub\n\n\n\n  \n  \n  \n  \n\n    \n  \n\n\n  \n\n\n    \n\n\n  \n  \n\n  \n  \n\n    \n\n\n\n\n\n\n\n  \n\n  \n\n\n\n\n    \n\n  \n\n    \n\n    \n\n      \n\n      \n\n    \n    \n    \n\n      \n  \n  \n\n\n\n\n      \n\n\n\n        \n\n\n  \n  \n  \n  \n\n  \n\n      \n\n    \n\n  \n\n  \n  \n\n\n\n    \n\n    \n  \n\n\n  \n\n  \n\n    \n  \n\n  \n  \n  \n\n\n\n\n\n  \n\n  \n\n  \n    \n      \n      \n\n    \n      Skip to content\n\n      \n    \n      \n      \n\n\n\n  \n  \n  \n\n\n\n\n\n\n      \n\n          \n\n              \n\n\n\n\n\n\n\n  Navigation Menu\n\n  \n    Toggle navigation\n  \n\n  \n    \n      \n          \n    \n            \n            \n  \n\n      \n\n      \n        \n    \n\n      \n\n      \n          \n            Sign in\n          \n              \n    \n        \n    \n\nAppearance settings\n\n      \n        \n\n\n\n  \n  \n  \n\n\n\n      \n    \n  \n\n      \n    \n\n\n    \n      \n          \n\n\n\n  \n  \n  PlatformAI CODE CREATIONGitHub CopilotWrite better code with AIGitHub Copilot appDirect agents from issue to mergeMCP RegistryNewIntegrate external toolsDEVELOPER WORKFLOWSActionsAutomate any workflowCodespacesInstant dev environmentsIssuesPlan and track workCode ReviewManage code changesAPPLICATION SECURITYGitHub Advanced SecurityFind and fix vulnerabilitiesCode securitySecure your code as you buildSecret protectionStop leaks before they startEXPLOREWhy GitHubDocumentationBlogChangelogMarketplaceView all featuresSolutionsBY COMPANY SIZEEnterprisesSmall and medium teamsStartupsNonprofitsBY USE CASEApp ModernizationDevSecOpsDevOpsCI/CDView all use casesBY INDUSTRYHealthcareFinancial servicesManufacturingGovernmentView all industriesView all solutionsResourcesEXPLORE BY TOPICAISoftware DevelopmentDevOpsSecurityView all topicsEXPLORE BY TYPECustomer storiesEvents & webinarsEbooks & reportsBusiness insightsGitHub SkillsSUPPORT & SERVICESDocumentationCustomer supportCommunity forumTrust centerPartnersView all resourcesOpen SourceCOMMUNITYGitHub SponsorsFund open source developersPROGRAMSSecurity LabMaintainer CommunityAcceleratorGitHub StarsArchive ProgramREPOSITORIESTopicsTrendingCollectionsEnterpriseENTERPRISE SOLUTIONSEnterprise platformAI-powered developer platformAVAILABLE ADD-ONSGitHub Advanced SecurityEnterprise-grade security featuresCopilot for BusinessEnterprise-grade AI featuresPremium SupportEnterprise-grade 24/7 supportPricing\n\n\n\n\n        \n                \n\n\n\n  \n      \n        \n          \n    \n\n        \n        Search or jump to...\n          \n            \n          \n      \n\n    \n\n    \n\n  \n      Search code, repositories, users, issues, pull requests...\n    \n      \n                  \n          \n  \n    \n      \n        Search\n      \n      \n          \n            \n    \n\n          \n        \n          \n          \n            \n            \n          \n        \n          \n            Clear\n              \n    \n\n\n\n          \n      \n      \n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n        \n                        \n\n        \n      \n        \n          \n    \n\n        \n        \n    \n    \n\n          \n            Search syntax tips            \n          \n        \n\n\n    \n\n  \n  \n  \n    \n\n  \n    \n  \n    \n      \n        Provide feedback\n      \n        \n    \n    \n      \n    \n\n    \n  \n  \n\n      \n                \n          We read every piece of feedback, and take your input very seriously.\n          \n          \n          Include my email address so I can be contacted\n\n      \n                    Cancel\n\n              Submit feedback\n\n\n\n\n    \n    \n\n  \n    \n  \n    \n      \n        Saved searches\n      \n        Use saved searches to filter your results more quickly\n    \n    \n      \n    \n\n    \n  \n  \n\n      \n                \n\n        \n        \n          \n\n          \n\n          \n            Name\n            \n              \n              \n            \n          \n\n          \n            Query\n            \n          \n\n          \n            To see all available qualifiers, see our documentation.\n          \n        \n\n        \n          \n        \n\n\n      \n                    Cancel\n\n              Create saved search\n\n\n\n    \n  \n\n\n\n            \n              \n                Sign in\n              \n            \n\n              \n                Sign up\n              \n\n                \n    \n        \n    \n\nAppearance settings\n\n      \n        \n\n\n\n  \n  \n  \n\n\n\n      \n    \n  \n\n          Resetting focus\n        \n      \n    \n  \n\n\n      \n  \n        \n    \n\n        You signed in with another tab or window. Reload to refresh your session.\n        You signed out in another tab or window. Reload to refresh your session.\n        You switched accounts on another tab or window. Reload to refresh your session.\n\n      \n    \n\nDismiss alert\n\n\n  \n\n    \n\n  \n\n\n\n\n\n\n\n\n    \n\n\n\n\n  \n    \n\n  \n    \n      \n    \n\n    \n    \n      \n      {{ message }}\n\n    \n  \n\n  \n\n\n\n    \n\n\n\n\n\n\n  \n        \n    \n      \n      \n    \n\n    \n  \n  \n    \n  \n    \n      \n\n              Uh oh!\n\n              There was an error while loading. Please reload this page.\n\n\n  \n  \n\n\n    \n\n\n        \n    This repository was archived by the owner on Apr 26, 2019. It is now read-only.\n  \n\n\n\n\n\n\n  \n\n  \n\n      \n\n        \n            \n  \n      \n    \n\n    \n    \n      \n        canada-ca\n    \n    /\n    \n      aia-eia\n    \n\n    Public archive\n  \n\n\n        \n\n        \n            \n    \n      \n\n  \n                \n    \nNotifications\n    You must be signed in to change notification settings\n\n  \n\n  \n              \n    \nFork\n    2\n\n  \n\n  \n        \n            \n    \n\n          Star\n          3\n\n  \n\n\n\n        \n      \n\n        \n\n\n\n          \n\n  \n      \n  \n    \n              \n    \n\n        Code\n          \n\n\n    \n\n      \n  \n    \n              \n    \n\n        Issues\n          6\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Pull requests\n          0\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Actions\n          \n\n\n    \n\n      \n  \n    \n              \n    \n\n        Projects\n          \n\n\n    \n\n      \n  \n    \n              \n    \n\n        Wiki\n          \n\n\n    \n\n      \n  \n    \n              \n    \n\n        Security and quality\n          0\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Insights\n          \n\n\n    \n\n\n          \n  \n      \n    \n\nAdditional navigation options\n\n\n\n  \n    \n                \n  \n    \n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Code\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Issues\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Pull requests\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Actions\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Projects\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Wiki\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Security and quality\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Insights\n      \n\n  \n\n    \n\n\n\n\n      \n  \n\n\n\n  \n  \n\n\n\n\n    \n    \n\n\n\n    \n      \n    \n\n\n\n\n\n\n\n\n\n  \n  \n     \n\n\n\n\ncanada-ca/aia-eia\n\n\n\n\u00a0masterBranchesTagsGo to fileCodeOpen more actions menuFolders and filesNameNameLast commit messageLast commit dateLatest commit\u00a0History22 Commits22 Commitsaiaaia\u00a0\u00a0locale/FR/LC_MESSAGESlocale/FR/LC_MESSAGES\u00a0\u00a0ogc_aiaogc_aia\u00a0\u00a0wetwet\u00a0\u00a0.gitignore.gitignore\u00a0\u00a0.markdownlint.json.markdownlint.json\u00a0\u00a0.travis.yml.travis.yml\u00a0\u00a0CODE_OF_CONDUCT.mdCODE_OF_CONDUCT.md\u00a0\u00a0CONTRIBUTING.mdCONTRIBUTING.md\u00a0\u00a0LICENSELICENSE\u00a0\u00a0README.mdREADME.md\u00a0\u00a0SECURITY.mdSECURITY.md\u00a0\u00a0manage.pymanage.py\u00a0\u00a0package-lock.jsonpackage-lock.json\u00a0\u00a0package.jsonpackage.json\u00a0\u00a0requirements.txtrequirements.txt\u00a0\u00a0View all filesRepository files navigationREADMECode of conductContributingMIT licenseSecurityMore items\n(Fran\u00e7ais)\nAlgorithmic Impact Assessment\nThis project will host the next iteration of the Algorithmic Impact Assessment (AIA). It will consist in two main capabilities:\n\nOffer a web-based questionnaire for end-users to assess their automated decision-making system\nOffer a simple interface for the administrative team to update the questionnaire's questions, answers and scoring mechanism\n\nThe AIA is a critical piece of the Directive on Automated Decision-Making and we want to ensure its development is done in the open.\nThe users of this project will be Government of Canada employees assessing the impact of using an automated decision system, including Artificial Intelligence, as part of their programs and services.\nAs this assessment tool is open source, other countries and individiuals may wish to also leverage it and even contribute back to it.\nGetting Started\nSee the Wiki\nHow to Contribute\nSee CONTRIBUTING.md\nLicense\nUnless otherwise noted, the source code of this project is covered under Crown Copyright, Government of Canada, and is distributed under the MIT License.\nThe Canada wordmark and related graphics associated with this distribution are protected under trademark law and copyright law. No permission is granted to use them outside the parameters of the Government of Canada's corporate identity program. For more information, see Federal identity requirements.\n\n\u00c9valuation de l'incidence algorithmique\nCe projet accueillera la prochaine it\u00e9ration de l'\u00e9tude d'impact algorithmique (EIA). Il se composera de deux capacit\u00e9s principales :\n\nProposer un questionnaire en ligne aux utilisateurs finaux pour \u00e9valuer leur syst\u00e8me automatis\u00e9 de prise de d\u00e9cision.\nOffrir une interface simple permettant \u00e0 l'\u00e9quipe administrative de mettre \u00e0 jour les questions, les r\u00e9ponses et le m\u00e9canisme de notation du questionnaire.\n\nL'EAI est un \u00e9l\u00e9ment essentiel de la Directive sur la prise de d\u00e9cision automatis\u00e9e et nous voulons nous assurer que son \u00e9laboration se fasse au grand jour.\nLes utilisateurs de ce projet seront des employ\u00e9s du gouvernement du Canada qui \u00e9valueront l'incidence de l'utilisation d'un syst\u00e8me automatis\u00e9 de d\u00e9cision, y compris l'intelligence artificielle, dans le cadre de leurs programmes et services.\nComme cet outil d'\u00e9valuation est publi\u00e9 sous une licence libre, d'autres pays et individus peuvent souhaiter l'utiliser \u00e9galement et m\u00eame y contribuer.\nComment utiliser\nVoir le wiki\nComment contribuer\nVoir CONTRIBUTING.md\nLicence\nSauf indication contraire, le code source de ce projet est prot\u00e9g\u00e9 par le droit d'auteur de la Couronne du gouvernement du Canada et distribu\u00e9 sous la licence MIT.\nLe mot-symbole \u00ab Canada \u00bb et les \u00e9l\u00e9ments graphiques connexes li\u00e9s \u00e0 cette distribution sont prot\u00e9g\u00e9s en vertu des lois portant sur les marques de commerce et le droit d'auteur. Aucune autorisation n'est accord\u00e9e pour leur utilisation \u00e0 l'ext\u00e9rieur des param\u00e8tres du programme de coordination de l'image de marque du gouvernement du Canada. Pour obtenir davantage de renseignements \u00e0 ce sujet, veuillez consulter les Exigences pour l'image de marque.\n\n\n\n  \n    \n      \n  About\n\n      \n        Algorithmic Impact Assessment - \u00c9valuation de l'incidence algorithmique (Python prototype)\n      \n\n\n    Resources\n    \n      \n        \n    \n\n        Readme\n    \n\n  \n    License\n  \n    \n      \n    \n\n     MIT license\n    \n  \n\n\n    Code of conduct\n    \n      \n        \n    \n\n        Code of conduct\n      \n    \n\n\n    Contributing\n    \n      \n        \n    \n\n        Contributing\n      \n    \n\n    Security policy\n    \n      \n        \n    \n\n        Security policy\n      \n    \n\n  \n  \n\n  \n    \n  \n    \n      \n\n              Uh oh!\n\n              There was an error while loading. Please reload this page.\n\n\n  \n  \n\n    \n      \n    \n\n        Activity    \n\n    \n      \n    \n\n        Custom properties    \n\n    Stars\n    \n        \n          \n    \n\n            3\n            stars\n        \n    \n\n    Watchers\n    \n        \n          \n    \n\n            0\n            watching\n        \n    \n\n    Forks\n    \n      \n    \n\n        2\n        forks    \n\n\n    \n      \n          Report repository\n    \n\n\n    \n  \n\n  \n      \n        \n          \n  Releases\n\n    No releases published\n\n        \n      \n\n  \n  \n  \n      \n        \n          \n\n  \n  \n  Packages\n      0\n\n\n      \n        \n        \u00a0\n      \n      \n        \n        \u00a0\n      \n      \n        \n        \u00a0\n      \n\n\n\n  \n    \n  \n    \n      \n\n              Uh oh!\n\n              There was an error while loading. Please reload this page.\n\n\n  \n  \n\n        \n      \n\n  \n      \n        \n          \n  \n\n  \n    \n  \n    \n      \n\n              Uh oh!\n\n              There was an error while loading. Please reload this page.\n\n\n  \n  \n\n        \n      \n\n  \n    \n      \n        \n  \n  \n    Contributors  \n\n  \n      \n        \n      \n      \n        \n      \n      \n        \n      \n  \n\n  \n    \n  \n    \n      \n\n              Uh oh!\n\n              There was an error while loading. Please reload this page.\n\n\n  \n  \n\n      \n    \n\n  \n      \n        \n          Languages\n\n  \n    \n    \n\n\n    \n        \n          \n    \n\n          HTML\n          73.0%\n        \n    \n    \n        \n          \n    \n\n          Python\n          27.0%\n        \n    \n\n\n        \n      \n\n  \n  \n   \n\n\n\n\n\n  \n\n\n\n    \n  \n\n  \n\n          \n  Footer\n\n  \n\n\n  \n    \n      \n        \n    \n\n\n      \n        \u00a9 2026 GitHub,\u00a0Inc.\n      \n    \n\n    \n      Footer navigation\n\n      \n\n\n          \n            Terms\n          \n\n          \n            Privacy\n          \n\n          \n            Security\n          \n\n          \n            Status\n          \n\n          \n            Community\n          \n\n          \n            Docs\n          \n\n          \n            Contact\n          \n\n          \n  \n    \n       Manage cookies\n    \n  \n\n\n\n  \n    \n      Do not share my personal information\n    \n  \n\n\n      \n    \n  \n\n\n\n\n    \n\n\n\n\n  \n    \n    \n\n    \n      \n    \n\n    \n    You can\u2019t perform that action at this time.",
+              "metadata": {
+                "truncated": false
+              },
+              "title": "https://github.com/canada-ca/aia-eia (text/html; charset=utf-8)",
+              "time": {
+                "start": 1783960405174,
+                "end": 1783960407234
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_a85b18cbb16b43c082b023f72c09e66c"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c537f4a001Yy3Uxlk7cpGCcA",
+          "message_id": "msg_f5c53715f001KQ0w9g3DvH9Nyr",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960403787,
+          "time_updated": 1783960407379,
+          "data": {
+            "type": "tool",
+            "tool": "webfetch",
+            "callID": "webfetch_6",
+            "state": {
+              "status": "completed",
+              "input": {
+                "url": "https://github.com/canada-ca/aia-eia/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc",
+                "format": "text"
+              },
+              "output": "Issues \u00b7 canada-ca/aia-eia \u00b7 GitHub\n\n\n\n  \n  \n  \n  \n\n    \n  \n\n\n  \n\n\n    \n\n\n  \n  \n\n  \n  \n\n    \n\n\n\n\n\n\n\n  \n\n  \n\n\n\n\n    \n\n  \n\n    \n\n    \n\n      \n\n      \n\n    \n    \n    \n\n      \n  \n  \n\n\n\n\n      \n\n\n\n        \n\n\n  \n  \n  \n  \n\n  \n\n        \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n  \n\n  \n  \n\n\n\n    \n\n    \n  \n\n\n  \n\n  \n\n    \n  \n\n  \n  \n  \n\n\n\n\n\n  \n\n  \n\n  \n    \n      \n      \n\n    \n      Skip to content\n\n      \n    \n      \n      \n\n\n  \n  \n  \n\n\n\n\n\n\n      \n\n          \n\n              \n\n\n\n\n\n\n\n  Navigation Menu\n\n  \n    Toggle navigation\n  \n\n  \n    \n      \n          \n    \n            \n            \n  \n\n      \n\n      \n        \n    \n\n      \n\n      \n          \n            Sign in\n          \n              \n    \n        \n    \n\nAppearance settings\n\n      \n        \n\n\n  \n  \n  \n\n\n\n      \n    \n  \n\n      \n    \n\n\n    \n      \n          \n\n\n  \n  \n  PlatformAI CODE CREATIONGitHub CopilotWrite better code with AIGitHub Copilot appDirect agents from issue to mergeMCP RegistryNewIntegrate external toolsDEVELOPER WORKFLOWSActionsAutomate any workflowCodespacesInstant dev environmentsIssuesPlan and track workCode ReviewManage code changesAPPLICATION SECURITYGitHub Advanced SecurityFind and fix vulnerabilitiesCode securitySecure your code as you buildSecret protectionStop leaks before they startEXPLOREWhy GitHubDocumentationBlogChangelogMarketplaceView all featuresSolutionsBY COMPANY SIZEEnterprisesSmall and medium teamsStartupsNonprofitsBY USE CASEApp ModernizationDevSecOpsDevOpsCI/CDView all use casesBY INDUSTRYHealthcareFinancial servicesManufacturingGovernmentView all industriesView all solutionsResourcesEXPLORE BY TOPICAISoftware DevelopmentDevOpsSecurityView all topicsEXPLORE BY TYPECustomer storiesEvents & webinarsEbooks & reportsBusiness insightsGitHub SkillsSUPPORT & SERVICESDocumentationCustomer supportCommunity forumTrust centerPartnersView all resourcesOpen SourceCOMMUNITYGitHub SponsorsFund open source developersPROGRAMSSecurity LabMaintainer CommunityAcceleratorGitHub StarsArchive ProgramREPOSITORIESTopicsTrendingCollectionsEnterpriseENTERPRISE SOLUTIONSEnterprise platformAI-powered developer platformAVAILABLE ADD-ONSGitHub Advanced SecurityEnterprise-grade security featuresCopilot for BusinessEnterprise-grade AI featuresPremium SupportEnterprise-grade 24/7 supportPricing\n\n\n\n\n        \n                \n\n\n\n  \n      \n        \n          \n    \n\n        \n        is:issue is:open sort:updated-desc\n          \n            \n          \n      \n\n    \n\n    \n\n  \n      Search code, repositories, users, issues, pull requests...\n    \n      \n                  \n          \n  \n    \n      \n        Search\n      \n      \n          \n            \n    \n\n          \n        \n          \n          \n            \n            \n          \n        \n          \n            Clear\n              \n    \n\n\n\n          \n      \n      \n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n        \n                        \n\n        \n      \n        \n          \n    \n\n        \n        \n    \n    \n\n          \n            Search syntax tips            \n          \n        \n\n\n    \n\n  \n  \n  \n    \n\n  \n    \n  \n    \n      \n        Provide feedback\n      \n        \n    \n    \n      \n    \n\n    \n  \n  \n\n      \n                \n          We read every piece of feedback, and take your input very seriously.\n          \n          \n          Include my email address so I can be contacted\n\n      \n                    Cancel\n\n              Submit feedback\n\n\n\n\n    \n    \n\n  \n    \n  \n    \n      \n        Saved searches\n      \n        Use saved searches to filter your results more quickly\n    \n    \n      \n    \n\n    \n  \n  \n\n      \n                \n\n        \n        \n          \n\n          \n\n          \n            Name\n            \n              \n              \n            \n          \n\n          \n            Query\n            \n          \n\n          \n            To see all available qualifiers, see our documentation.\n          \n        \n\n        \n          \n        \n\n\n      \n                    Cancel\n\n              Create saved search\n\n\n\n    \n  \n\n\n\n            \n              \n                Sign in\n              \n            \n\n              \n                Sign up\n              \n\n                \n    \n        \n    \n\nAppearance settings\n\n      \n        \n\n\n  \n  \n  \n\n\n\n      \n    \n  \n\n          Resetting focus\n        \n      \n    \n  \n\n\n      \n  \n        \n    \n\n        You signed in with another tab or window. Reload to refresh your session.\n        You signed out in another tab or window. Reload to refresh your session.\n        You switched accounts on another tab or window. Reload to refresh your session.\n\n      \n    \n\nDismiss alert\n\n\n  \n\n    \n\n  \n\n\n\n\n\n\n\n\n    \n\n\n\n\n  \n    \n\n  \n    \n      \n    \n\n    \n    \n      \n      {{ message }}\n\n    \n  \n\n  \n\n\n\n    \n\n\n\n\n\n\n  \n        \n    \n      \n      \n    \n\n    \n  \n  \n    \n  \n    \n      \n\n              Uh oh!\n\n              There was an error while loading. Please reload this page.\n\n\n  \n  \n\n\n    \n\n\n        \n    This repository was archived by the owner on Apr 26, 2019. It is now read-only.\n  \n\n\n\n\n\n\n  \n\n  \n\n      \n\n        \n            \n  \n      \n    \n\n    \n    \n      \n        canada-ca\n    \n    /\n    \n      aia-eia\n    \n\n    Public archive\n  \n\n\n        \n\n        \n            \n    \n      \n\n  \n                \n    \nNotifications\n    You must be signed in to change notification settings\n\n  \n\n  \n              \n    \nFork\n    2\n\n  \n\n  \n        \n            \n    \n\n          Star\n          3\n\n  \n\n\n\n        \n      \n\n        \n\n\n\n          \n\n  \n      \n  \n    \n              \n    \n\n        Code\n          \n\n\n    \n\n      \n  \n    \n              \n    \n\n        Issues\n          6\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Pull requests\n          0\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Actions\n          \n\n\n    \n\n      \n  \n    \n              \n    \n\n        Projects\n          \n\n\n    \n\n      \n  \n    \n              \n    \n\n        Wiki\n          \n\n\n    \n\n      \n  \n    \n              \n    \n\n        Security and quality\n          0\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Insights\n          \n\n\n    \n\n\n          \n  \n      \n    \n\nAdditional navigation options\n\n\n\n  \n    \n                \n  \n    \n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Code\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Issues\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Pull requests\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Actions\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Projects\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Wiki\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Security and quality\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Insights\n      \n\n  \n\n    \n\n\n\n\n      \n  \n\n\n\n  \n  \n\n\n\n\n    \n    \n\n\n\n    \n      \n    \n\n\n\n\n\n\n\n\n\n  \n  \n  IssuesAssigned to meCreated by meMentionedRecent activityViewsProjectsMilestonesLabelsFeedbackPreviewCollapse sidebarIssuesSearch Issuesis:issue is:open sort:updated-descis:issue is:open sort:updated-descSearchLabelsMilestonesSearch resultsOpenClosedThe local config of the log causes a runserver issuebugSomething isn't workingSomething isn't workingStatus: Open.#7\u00a0In canada-ca/aia-eia;\u00b7 gcharest  opened on Mar 19, 2019 \u00b7 Updated on Mar 19, 2019WET template not currently enabledenhancementNew feature or requestNew feature or requestStatus: Open.#8\u00a0In canada-ca/aia-eia;\u00b7 gcharest  opened on Mar 19, 2019 \u00b7 Updated on Mar 19, 2019Add CITravis config and filesStatus: Open.#6\u00a0In canada-ca/aia-eia;\u00b7 gcharest  opened on Mar 15, 2019 \u00b7 Updated on Mar 19, 2019List all known requirementsStatus: Open.#3\u00a0In canada-ca/aia-eia;\u00b7 gcharest  opened on Mar 15, 2019 \u00b7 Updated on Mar 19, 2019Need to decide on a tech stackhelp wantedExtra attention is neededExtra attention is neededStatus: Open.#1\u00a0In canada-ca/aia-eia;\u00b7 gcharest  opened on Mar 15, 2019 \u00b7 Updated on Mar 19, 2019Update Wiki with functional requirements #3Status: Open.#5\u00a0In canada-ca/aia-eia;\u00b7 gcharest  opened on Mar 15, 2019 \u00b7 Updated on Mar 15, 2019\n\n\n\n\n\n  \n\n\n\n    \n  \n\n  \n\n          \n  Footer\n\n  \n\n\n  \n    \n      \n        \n    \n\n\n      \n        \u00a9 2026 GitHub,\u00a0Inc.\n      \n    \n\n    \n      Footer navigation\n\n      \n\n\n          \n            Terms\n          \n\n          \n            Privacy\n          \n\n          \n            Security\n          \n\n          \n            Status\n          \n\n          \n            Community\n          \n\n          \n            Docs\n          \n\n          \n            Contact\n          \n\n          \n  \n    \n       Manage cookies\n    \n  \n\n\n\n  \n    \n      Do not share my personal information\n    \n  \n\n\n      \n    \n  \n\n\n\n\n    \n\n\n\n\n  \n    \n    \n\n    \n      \n    \n\n    \n    You can\u2019t perform that action at this time.",
+              "metadata": {
+                "truncated": false
+              },
+              "title": "https://github.com/canada-ca/aia-eia/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc (text/html; charset=utf-8)",
+              "time": {
+                "start": 1783960405203,
+                "end": 1783960407377
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_0a099d6551274d80b2df511f5390eb16"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c538317001EI0T7OIiMbP1v9",
+          "message_id": "msg_f5c53715f001KQ0w9g3DvH9Nyr",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960404759,
+          "time_updated": 1783960407273,
+          "data": {
+            "type": "tool",
+            "tool": "webfetch",
+            "callID": "webfetch_7",
+            "state": {
+              "status": "completed",
+              "input": {
+                "url": "https://github.com/canada-ca/aia-eia/releases",
+                "format": "text"
+              },
+              "output": "Releases \u00b7 canada-ca/aia-eia \u00b7 GitHub\n\n\n\n  \n  \n  \n  \n\n    \n  \n\n\n  \n\n\n    \n\n\n  \n  \n\n  \n  \n\n    \n\n\n\n\n\n\n\n  \n\n  \n\n\n\n\n    \n\n  \n\n    \n\n    \n\n      \n\n      \n\n    \n    \n    \n\n      \n  \n  \n\n\n\n\n      \n\n\n\n        \n\n\n  \n  \n  \n  \n\n  \n\n      \n  \n  \n\n  \n  \n\n\n\n    \n\n    \n  \n\n\n  \n\n  \n\n    \n  \n\n  \n  \n  \n\n\n\n\n\n  \n\n  \n\n  \n    \n      \n      \n\n    \n      Skip to content\n\n      \n    \n      \n      \n\n\n\n  \n  \n  \n\n\n\n\n\n\n      \n\n          \n\n              \n\n\n\n\n\n\n\n  Navigation Menu\n\n  \n    Toggle navigation\n  \n\n  \n    \n      \n          \n    \n            \n            \n  \n\n      \n\n      \n        \n    \n\n      \n\n      \n          \n            Sign in\n          \n              \n    \n        \n    \n\nAppearance settings\n\n      \n        \n\n\n\n  \n  \n  \n\n\n\n      \n    \n  \n\n      \n    \n\n\n    \n      \n          \n\n\n\n  \n  \n  PlatformAI CODE CREATIONGitHub CopilotWrite better code with AIGitHub Copilot appDirect agents from issue to mergeMCP RegistryNewIntegrate external toolsDEVELOPER WORKFLOWSActionsAutomate any workflowCodespacesInstant dev environmentsIssuesPlan and track workCode ReviewManage code changesAPPLICATION SECURITYGitHub Advanced SecurityFind and fix vulnerabilitiesCode securitySecure your code as you buildSecret protectionStop leaks before they startEXPLOREWhy GitHubDocumentationBlogChangelogMarketplaceView all featuresSolutionsBY COMPANY SIZEEnterprisesSmall and medium teamsStartupsNonprofitsBY USE CASEApp ModernizationDevSecOpsDevOpsCI/CDView all use casesBY INDUSTRYHealthcareFinancial servicesManufacturingGovernmentView all industriesView all solutionsResourcesEXPLORE BY TOPICAISoftware DevelopmentDevOpsSecurityView all topicsEXPLORE BY TYPECustomer storiesEvents & webinarsEbooks & reportsBusiness insightsGitHub SkillsSUPPORT & SERVICESDocumentationCustomer supportCommunity forumTrust centerPartnersView all resourcesOpen SourceCOMMUNITYGitHub SponsorsFund open source developersPROGRAMSSecurity LabMaintainer CommunityAcceleratorGitHub StarsArchive ProgramREPOSITORIESTopicsTrendingCollectionsEnterpriseENTERPRISE SOLUTIONSEnterprise platformAI-powered developer platformAVAILABLE ADD-ONSGitHub Advanced SecurityEnterprise-grade security featuresCopilot for BusinessEnterprise-grade AI featuresPremium SupportEnterprise-grade 24/7 supportPricing\n\n\n\n\n        \n                \n\n\n\n  \n      \n        \n          \n    \n\n        \n        Search or jump to...\n          \n            \n          \n      \n\n    \n\n    \n\n  \n      Search code, repositories, users, issues, pull requests...\n    \n      \n                  \n          \n  \n    \n      \n        Search\n      \n      \n          \n            \n    \n\n          \n        \n          \n          \n            \n            \n          \n        \n          \n            Clear\n              \n    \n\n\n\n          \n      \n      \n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n\n  \n    \n\n\n\n        \n                        \n\n        \n      \n        \n          \n    \n\n        \n        \n    \n    \n\n          \n            Search syntax tips            \n          \n        \n\n\n    \n\n  \n  \n  \n    \n\n  \n    \n  \n    \n      \n        Provide feedback\n      \n        \n    \n    \n      \n    \n\n    \n  \n  \n\n      \n                \n          We read every piece of feedback, and take your input very seriously.\n          \n          \n          Include my email address so I can be contacted\n\n      \n                    Cancel\n\n              Submit feedback\n\n\n\n\n    \n    \n\n  \n    \n  \n    \n      \n        Saved searches\n      \n        Use saved searches to filter your results more quickly\n    \n    \n      \n    \n\n    \n  \n  \n\n      \n                \n\n        \n        \n          \n\n          \n\n          \n            Name\n            \n              \n              \n            \n          \n\n          \n            Query\n            \n          \n\n          \n            To see all available qualifiers, see our documentation.\n          \n        \n\n        \n          \n        \n\n\n      \n                    Cancel\n\n              Create saved search\n\n\n\n    \n  \n\n\n\n            \n              \n                Sign in\n              \n            \n\n              \n                Sign up\n              \n\n                \n    \n        \n    \n\nAppearance settings\n\n      \n        \n\n\n\n  \n  \n  \n\n\n\n      \n    \n  \n\n          Resetting focus\n        \n      \n    \n  \n\n\n      \n  \n        \n    \n\n        You signed in with another tab or window. Reload to refresh your session.\n        You signed out in another tab or window. Reload to refresh your session.\n        You switched accounts on another tab or window. Reload to refresh your session.\n\n      \n    \n\nDismiss alert\n\n\n  \n\n    \n\n  \n\n\n\n\n\n\n\n\n    \n\n\n\n\n  \n    \n\n  \n    \n      \n    \n\n    \n    \n      \n      {{ message }}\n\n    \n  \n\n  \n\n\n\n    \n\n\n\n\n\n\n  \n        \n    \n      \n  \n\n    \n    \n\n    \n  \n  \n    \n  \n    \n      \n\n              Uh oh!\n\n              There was an error while loading. Please reload this page.\n\n\n  \n  \n\n\n    \n\n\n        \n    This repository was archived by the owner on Apr 26, 2019. It is now read-only.\n  \n\n\n\n\n\n\n  \n\n  \n\n      \n\n        \n            \n  \n      \n    \n\n    \n    \n      \n        canada-ca\n    \n    /\n    \n      aia-eia\n    \n\n    Public archive\n  \n\n\n        \n\n        \n            \n    \n      \n\n  \n                \n    \nNotifications\n    You must be signed in to change notification settings\n\n  \n\n  \n              \n    \nFork\n    2\n\n  \n\n  \n        \n            \n    \n\n          Star\n          3\n\n  \n\n\n\n        \n      \n\n        \n\n\n\n          \n\n  \n      \n  \n    \n              \n    \n\n        Code\n          \n\n\n    \n\n      \n  \n    \n              \n    \n\n        Issues\n          6\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Pull requests\n          0\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Actions\n          \n\n\n    \n\n      \n  \n    \n              \n    \n\n        Projects\n          \n\n\n    \n\n      \n  \n    \n              \n    \n\n        Wiki\n          \n\n\n    \n\n      \n  \n    \n              \n    \n\n        Security and quality\n          0\n\n\n    \n\n      \n  \n    \n              \n    \n\n        Insights\n          \n\n\n    \n\n\n          \n  \n      \n    \n\nAdditional navigation options\n\n\n\n  \n    \n                \n  \n    \n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Code\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Issues\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Pull requests\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Actions\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Projects\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Wiki\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Security and quality\n      \n\n  \n\n        \n    \n    \n    \n        \n          \n    \n\n        \n      \n        \n          Insights\n      \n\n  \n\n    \n\n\n\n\n      \n  \n\n\n\n  \n  \n\n\n\n\n    \n    \n\n\n\n    \n      \nReleases: canada-ca/aia-eia\n\n  \n  \n    \n  Releases\n  Tags\n\n\n\n    \n\n      \n        \n          \n          \n          \n    \n\n      \n    \n  \n\n  Releases \u00b7 canada-ca/aia-eia\n\n      \n    \n    \n\n    There aren\u2019t any releases here\n  \n        You can create a release to package software, along with release notes and links to binary files, for other people to use. Learn more about releases in our docs.\n\n\n\n\n\n\n\n  \n\n\n\n\n    \n  \n\n  \n\n          \n  Footer\n\n  \n\n\n  \n    \n      \n        \n    \n\n\n      \n        \u00a9 2026 GitHub,\u00a0Inc.\n      \n    \n\n    \n      Footer navigation\n\n      \n\n\n          \n            Terms\n          \n\n          \n            Privacy\n          \n\n          \n            Security\n          \n\n          \n            Status\n          \n\n          \n            Community\n          \n\n          \n            Docs\n          \n\n          \n            Contact\n          \n\n          \n  \n    \n       Manage cookies\n    \n  \n\n\n\n  \n    \n      Do not share my personal information\n    \n  \n\n\n      \n    \n  \n\n\n\n\n    \n\n\n\n\n  \n    \n    \n\n    \n      \n    \n\n    \n    You can\u2019t perform that action at this time.",
+              "metadata": {
+                "truncated": false
+              },
+              "title": "https://github.com/canada-ca/aia-eia/releases (text/html; charset=utf-8)",
+              "time": {
+                "start": 1783960405236,
+                "end": 1783960407272
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_d226fac5f85844b691fa33a05fc91111"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c54b271001zFCh98JppSglVa",
+          "message_id": "msg_f5c53715f001KQ0w9g3DvH9Nyr",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960482417,
+          "time_updated": 1783960482420,
+          "data": {
+            "reason": "tool-calls",
+            "snapshot": "34dd619e22765703c891f7a5226cff78da7076dd",
+            "type": "step-finish",
+            "tokens": {
+              "total": 4450,
+              "input": 531,
+              "output": 278,
+              "reasoning": 0,
+              "cache": {
+                "write": 0,
+                "read": 3641
+              }
+            },
+            "cost": 0
+          }
+        },
+        {
+          "id": "prt_f5c54b407001M2Qc8EB6BqOB2A",
+          "message_id": "msg_f5c53715f001KQ0w9g3DvH9Nyr",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960482824,
+          "time_updated": 1783960482827,
+          "data": {
+            "type": "patch",
+            "hash": "742846d5901a60b512d2e548b665fb63e00b929c",
+            "files": [
+              "/workspace/actions_runs.json.status",
+              "/workspace/commits.json",
+              "/workspace/commits.json.status",
+              "/workspace/dependabot_yaml.json",
+              "/workspace/dependabot_yaml.json.status",
+              "/workspace/dependabot_yml.json",
+              "/workspace/dependabot_yml.json.status",
+              "/workspace/issues.json",
+              "/workspace/issues.json.status",
+              "/workspace/renovate.json",
+              "/workspace/renovate.json.status",
+              "/workspace/renovaterc.json",
+              "/workspace/renovaterc.json.status",
+              "/workspace/repo_api.json",
+              "/workspace/workflows.json.status"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "msg_f5c54b449001U3u0HqJfPZGol9",
+      "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+      "time_created": 1783960482890,
+      "time_updated": 1783960563403,
+      "data": {
+        "parentID": "msg_f5c513555001cPmAiS1ug6XLGY",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "/workspace",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 10646,
+          "input": 6090,
+          "output": 385,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 4171
+          }
+        },
+        "modelID": "accounts/fireworks/models/kimi-k2p6",
+        "providerID": "openai",
+        "time": {
+          "created": 1783960482890,
+          "completed": 1783960563403
+        },
+        "finish": "tool-calls"
+      },
+      "parts": [
+        {
+          "id": "prt_f5c54bc38001iZ5KLzH4dK9FMs",
+          "message_id": "msg_f5c54b449001U3u0HqJfPZGol9",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960484921,
+          "time_updated": 1783960484929,
+          "data": {
+            "snapshot": "34dd619e22765703c891f7a5226cff78da7076dd",
+            "type": "step-start"
+          }
+        },
+        {
+          "id": "prt_f5c54be79001uE8qp0PZRJNbTU",
+          "message_id": "msg_f5c54b449001U3u0HqJfPZGol9",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960485497,
+          "time_updated": 1783960496882,
+          "data": {
+            "type": "reasoning",
+            "text": "We have all necessary data now. Let me analyze each field:\n\n- bilingual: The repo page text clearly shows both English and French sections (Algorithmic Impact Assessment and \u00c9valuation de l'incidence algorithmique). French section headers, French text, and French license text are present. So `Yes`.\n- readme_clarity: The README content explains what the project is (Algorithmic Impact Assessment web-based questionnaire), who it's for (Government of Canada employees assessing automated decision systems), and how to use it (Getting Started / See the Wiki). It also describes how to contribute and license. So `Good`.\n- security_policy: We found `SECURITY.md` in root. It contains responsible disclosure instructions (report by email to a specific person, in both English and French). This is real contact info, not a placeholder. So `Present`.\n- issue_response_quality: The issues page shows 6 open issues, but all are from March 2019 and the repo was archived April 26, 2019 (read-only). Since there are no comments within the last 6 months (from July 2026, 6 months back is Jan 2026), and the repo is archived with no activity, none of the open issues have a recent comment from someone other than the reporter. So `Stale`.\n- release_notes_quality: Releases page shows \"There aren\u2019t any releases here\". So `No Releases`.\n\nNow write the JSON file to /workspace/manual_aia-eia.json.",
+            "time": {
+              "start": 1783960485497,
+              "end": 1783960496865
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "rs_2a29a1969c3c45cfbb983069acab1725",
+                "reasoningEncryptedContent": null
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c54e860001VF3z35COYF2Jw7",
+          "message_id": "msg_f5c54b449001U3u0HqJfPZGol9",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960496228,
+          "time_updated": 1783960528138,
+          "data": {
+            "type": "tool",
+            "tool": "bash",
+            "callID": "bash_8",
+            "state": {
+              "status": "completed",
+              "input": {
+                "command": "cat > /workspace/manual_aia-eia.json << 'EOF'\n{\n  \"bilingual\": \"Yes\",\n  \"readme_clarity\": \"Good\",\n  \"security_policy\": \"Present\",\n  \"issue_response_quality\": \"Stale\",\n  \"release_notes_quality\": \"No Releases\"\n}\nEOF"
+              },
+              "output": "(no output)",
+              "metadata": {
+                "output": "(no output)",
+                "exit": 0,
+                "truncated": false
+              },
+              "title": "cat > /workspace/manual_aia-eia.json << 'EOF'\n{\n  \"bilingual\": \"Yes\",\n  \"readme_clarity\": \"Good\",\n  \"security_policy\": \"Present\",\n  \"issue_response_quality\": \"Stale\",\n  \"release_notes_quality\": \"No Releases\"\n}\nEOF",
+              "time": {
+                "start": 1783960497041,
+                "end": 1783960527994
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_167bd032d1cb4af1b50d57d46a247bbb"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c55eea6001c2kcP5Gq1YmcOL",
+          "message_id": "msg_f5c54b449001U3u0HqJfPZGol9",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960563366,
+          "time_updated": 1783960563367,
+          "data": {
+            "reason": "tool-calls",
+            "snapshot": "d8f2c29431c50d29eb4c59e5a573fc1e547bb09b",
+            "type": "step-finish",
+            "tokens": {
+              "total": 10646,
+              "input": 6090,
+              "output": 385,
+              "reasoning": 0,
+              "cache": {
+                "write": 0,
+                "read": 4171
+              }
+            },
+            "cost": 0
+          }
+        },
+        {
+          "id": "prt_f5c55eec90015PCHR7TEyuYnpR",
+          "message_id": "msg_f5c54b449001U3u0HqJfPZGol9",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960563401,
+          "time_updated": 1783960563401,
+          "data": {
+            "type": "patch",
+            "hash": "34dd619e22765703c891f7a5226cff78da7076dd",
+            "files": [
+              "/workspace/manual_aia-eia.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "msg_f5c55eecf001WIOleijnhgVeTU",
+      "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+      "time_created": 1783960563407,
+      "time_updated": 1783960581188,
+      "data": {
+        "parentID": "msg_f5c513555001cPmAiS1ug6XLGY",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "/workspace",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 10457,
+          "input": 106,
+          "output": 91,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 10260
+          }
+        },
+        "modelID": "accounts/fireworks/models/kimi-k2p6",
+        "providerID": "openai",
+        "time": {
+          "created": 1783960563407,
+          "completed": 1783960581187
+        },
+        "finish": "tool-calls"
+      },
+      "parts": [
+        {
+          "id": "prt_f5c55f1ba00131XbQnMdBIE6qt",
+          "message_id": "msg_f5c55eecf001WIOleijnhgVeTU",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960564154,
+          "time_updated": 1783960564155,
+          "data": {
+            "snapshot": "d8f2c29431c50d29eb4c59e5a573fc1e547bb09b",
+            "type": "step-start"
+          }
+        },
+        {
+          "id": "prt_f5c55f676001tEeHFsWCI802TD",
+          "message_id": "msg_f5c55eecf001WIOleijnhgVeTU",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960565366,
+          "time_updated": 1783960567947,
+          "data": {
+            "type": "reasoning",
+            "text": "The task is to inspect the GitHub repository `canada-ca/aia-eia` and write the content judgments to `/workspace/manual_aia-eia.json`. I have already gathered all the necessary data from the repository and generated the JSON file. Let me verify the content is correct and then provide the final JSON in the message.",
+            "time": {
+              "start": 1783960565366,
+              "end": 1783960567946
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "rs_3fe74dd8e05e4a8498b6fe37cdea6c0f",
+                "reasoningEncryptedContent": null
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c56007d001CJtLkvyKc2QUuA",
+          "message_id": "msg_f5c55eecf001WIOleijnhgVeTU",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960567934,
+          "time_updated": 1783960568963,
+          "data": {
+            "type": "tool",
+            "tool": "read",
+            "callID": "read_9",
+            "state": {
+              "status": "completed",
+              "input": {
+                "filePath": "/workspace/manual_aia-eia.json"
+              },
+              "output": "<path>/workspace/manual_aia-eia.json</path>\n<type>file</type>\n<content>\n1: {\n2:   \"bilingual\": \"Yes\",\n3:   \"readme_clarity\": \"Good\",\n4:   \"security_policy\": \"Present\",\n5:   \"issue_response_quality\": \"Stale\",\n6:   \"release_notes_quality\": \"No Releases\"\n7: }\n\n(End of file - total 7 lines)\n</content>",
+              "metadata": {
+                "preview": "{\n  \"bilingual\": \"Yes\",\n  \"readme_clarity\": \"Good\",\n  \"security_policy\": \"Present\",\n  \"issue_response_quality\": \"Stale\",\n  \"release_notes_quality\": \"No Releases\"\n}",
+                "truncated": false,
+                "loaded": [],
+                "display": {
+                  "type": "file",
+                  "path": "/workspace/manual_aia-eia.json",
+                  "text": "{\n  \"bilingual\": \"Yes\",\n  \"readme_clarity\": \"Good\",\n  \"security_policy\": \"Present\",\n  \"issue_response_quality\": \"Stale\",\n  \"release_notes_quality\": \"No Releases\"\n}",
+                  "lineStart": 1,
+                  "lineEnd": 7,
+                  "totalLines": 7,
+                  "truncated": false
+                }
+              },
+              "title": "workspace/manual_aia-eia.json",
+              "time": {
+                "start": 1783960567951,
+                "end": 1783960568962
+              }
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "fc_6fe2162a4c614b268faeb78251d7c49d"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c5633e1001lThE6xza63sGU2",
+          "message_id": "msg_f5c55eecf001WIOleijnhgVeTU",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960581089,
+          "time_updated": 1783960581090,
+          "data": {
+            "reason": "tool-calls",
+            "snapshot": "fbc7a96fd4b052e151e7d5cdee164847b2d5c78b",
+            "type": "step-finish",
+            "tokens": {
+              "total": 10457,
+              "input": 106,
+              "output": 91,
+              "reasoning": 0,
+              "cache": {
+                "write": 0,
+                "read": 10260
+              }
+            },
+            "cost": 0
+          }
+        },
+        {
+          "id": "prt_f5c563440001jyruGLHZ2DmYvb",
+          "message_id": "msg_f5c55eecf001WIOleijnhgVeTU",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960581184,
+          "time_updated": 1783960581185,
+          "data": {
+            "type": "patch",
+            "hash": "d8f2c29431c50d29eb4c59e5a573fc1e547bb09b",
+            "files": [
+              "/workspace/contents_api.json"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "msg_f5c56344b001jjsXtVAFy0BdUs",
+      "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+      "time_created": 1783960581195,
+      "time_updated": 1783960610359,
+      "data": {
+        "parentID": "msg_f5c513555001cPmAiS1ug6XLGY",
+        "role": "assistant",
+        "mode": "explore",
+        "agent": "explore",
+        "path": {
+          "cwd": "/workspace",
+          "root": "/"
+        },
+        "cost": 0,
+        "tokens": {
+          "total": 10927,
+          "input": 135,
+          "output": 427,
+          "reasoning": 0,
+          "cache": {
+            "write": 0,
+            "read": 10365
+          }
+        },
+        "modelID": "accounts/fireworks/models/kimi-k2p6",
+        "providerID": "openai",
+        "time": {
+          "created": 1783960581195,
+          "completed": 1783960610358
+        },
+        "finish": "stop"
+      },
+      "parts": [
+        {
+          "id": "prt_f5c563a1c0017cCGKwcz2SGJSm",
+          "message_id": "msg_f5c56344b001jjsXtVAFy0BdUs",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960582687,
+          "time_updated": 1783960582698,
+          "data": {
+            "snapshot": "fbc7a96fd4b052e151e7d5cdee164847b2d5c78b",
+            "type": "step-start"
+          }
+        },
+        {
+          "id": "prt_f5c563c8a001Y700LnmyJWVHnX",
+          "message_id": "msg_f5c56344b001jjsXtVAFy0BdUs",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960583306,
+          "time_updated": 1783960589383,
+          "data": {
+            "type": "reasoning",
+            "text": "The task is complete. I have inspected the repository and written the JSON to /workspace/manual_aia-eia.json. Let me provide a summary of the findings and the final JSON content.",
+            "time": {
+              "start": 1783960583306,
+              "end": 1783960589380
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "rs_2a7e1fe89b4e4f34852db549405627f6",
+                "reasoningEncryptedContent": null
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c563d7b001WIOdRLwrjBcSBU",
+          "message_id": "msg_f5c56344b001jjsXtVAFy0BdUs",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960583547,
+          "time_updated": 1783960589672,
+          "data": {
+            "type": "text",
+            "text": "The inspection is complete and the results have been written to `/workspace/manual_aia-eia.json`.\n\nHere are the judgments and the rationale behind each:\n\n- **bilingual**: `Yes` \u2014 The README clearly contains both English and French content. It has a full English section (\u201cAlgorithmic Impact Assessment\u201d, \u201cGetting Started\u201d, \u201cHow to Contribute\u201d, \u201cLicense\u201d) and a matching French section (\u201c\u00c9valuation de l\u2019incidence algorithmique\u201d, \u201cComment utiliser\u201d, \u201cComment contribuer\u201d, \u201cLicence\u201d).\n\n- **readme_clarity**: `Good` \u2014 The README clearly explains what the project is (a web-based questionnaire for assessing automated decision-making systems), who it is for (Government of Canada employees and potentially others), and how to get started (links to the Wiki and CONTRIBUTING.md).\n\n- **security_policy**: `Present` \u2014 `SECURITY.md` exists at the root. It contains real responsible disclosure instructions: contact email (guillaume.charest@tbs-sct.gc.ca), a clear warning not to post security issues publicly, and a bilingual French equivalent with the same instructions.\n\n- **issue_response_quality**: `Stale` \u2014 There are 6 open issues, all opened by `gcharest` in March 2019 and all updated no later than March 2019. The repository was archived on April 26, 2019, so there are no comments from anyone within the last 6 months (since July 13, 2026).\n\n- **release_notes_quality**: `No Releases` \u2014 The Releases page shows \u201cThere aren\u2019t any releases here\u201d and the repository has no published releases.\n\n---\n\n**Final JSON content:**\n\n```json\n{\n  \"bilingual\": \"Yes\",\n  \"readme_clarity\": \"Good\",\n  \"security_policy\": \"Present\",\n  \"issue_response_quality\": \"Stale\",\n  \"release_notes_quality\": \"No Releases\"\n}\n```",
+            "time": {
+              "start": 1783960583547,
+              "end": 1783960589659
+            },
+            "metadata": {
+              "openai": {
+                "itemId": "msg_d7f3a91d555843e18005be38018bff78"
+              }
+            }
+          }
+        },
+        {
+          "id": "prt_f5c56a59a001JHn5V3fdbV9Jqs",
+          "message_id": "msg_f5c56344b001jjsXtVAFy0BdUs",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960610202,
+          "time_updated": 1783960610203,
+          "data": {
+            "reason": "stop",
+            "snapshot": "020a609516a79303f752f03b32dab5d4cfbdb191",
+            "type": "step-finish",
+            "tokens": {
+              "total": 10927,
+              "input": 135,
+              "output": 427,
+              "reasoning": 0,
+              "cache": {
+                "write": 0,
+                "read": 10365
+              }
+            },
+            "cost": 0
+          }
+        },
+        {
+          "id": "prt_f5c56a5f7001n4BzYyJxFoOaJk",
+          "message_id": "msg_f5c56344b001jjsXtVAFy0BdUs",
+          "session_id": "ses_0a3aecab5ffePNSts4W0YCO60f",
+          "time_created": 1783960610296,
+          "time_updated": 1783960610296,
+          "data": {
+            "type": "patch",
+            "hash": "fbc7a96fd4b052e151e7d5cdee164847b2d5c78b",
+            "files": [
+              "/workspace/manual_GC_Reference_Architecture.json",
+              "/workspace/manual_aia-eia-net.json",
+              "/workspace/manual_alexapoc-ccbpaymentdates.json"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

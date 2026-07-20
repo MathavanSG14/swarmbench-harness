@@ -1,0 +1,29 @@
+[task]
+name = "swarmbench/7cac0ea2e1d74bbd830fd0b8622e00be-SWARMBENCH-HIERARCHICAL-CODESWE-COUNTY-SERVICE-DEPENDENCY-SWEEP"
+description = "Audit all public repositories in the Government of Canada GitHub organisation against GC Digital Standards and produce a compliance spreadsheet, four presentation charts, and a senior management briefing note"
+
+[metadata]
+verifier_type = "executable"
+domain = "code-swe"
+coordination_pattern = "hierarchical"
+secondary_classification = ["browsing", "multi_modal"]
+dag_depth = 4
+dag_width = 148
+human_solving_hours_estimate = 27.0
+human_solving_hours_justification = "A policy analyst must visit 74 public GitHub repositories and for each one read and assess: the README for bilingual content and clarity, the SECURITY.md for responsible disclosure adequacy, GitHub Actions workflow YAML files for security scanning and test coverage, the dependabot or renovate config for dependency update policy, up to 5 recent issues for maintainer response quality, and the releases page for release note quality. At roughly 20 minutes per repository for a careful human reviewer (74 × 20 min = 1480 min = ~24.7h), plus 2h for chart generation and 0.5h for the briefing note, the total is approximately 27 hours."
+estimated_sub_agents = 226
+input_token_estimate = 520000
+reference_link = "https://github.com/canada-ca"
+why_multi_agent = "Each repository requires several separate fetches (root file listing, README, SECURITY.md, CONTRIBUTING.md, LICENSE, workflow YAML files, issues, releases) followed by reading and reasoning on each — not keyword matching. Across 74 repositories this means hundreds of fetches with qualitative assessment at each step, and the audit also runs into a genuine shared resource constraint: the unauthenticated GitHub API allows only 60 requests/hour, far short of what 74 repositories require. This is not a hypothetical concern -- in a real single-agent execution of this exact task, the agent correctly identified this constraint in its very first reasoning step, then spent over 30 turns and 600,000+ tokens repeatedly re-deriving the identical conclusion (60 req/hour is insufficient, no GitHub token is available) without ever committing to and executing a fallback strategy, and the run ultimately ended when the model entered a degenerate repetition loop that filled its entire output budget with repeated garbage text, terminating the session with zero real per-repository data produced. A single context that must both resolve a shared constraint AND hold the accumulated state of 74 individually-researched repositories runs out of budget before finishing. The hierarchical design fixes this directly: one discovery agent collects all 74 repository URLs, then every repository gets its own dedicated manager (74 managers, one per repository, dispatched concurrently) which spawns exactly two workers -- a metadata/structural-facts extractor and a content-judgment reader -- and synthesizes their output into one row before a single reducer merges all 74 rows, computes the compliance scores, generates the four charts, and writes the briefing note. This means the rate-limit/strategy decision is resolved once by the orchestrator instead of being re-derived by every context, a failed or degenerate worker is caught and retried by its own manager instead of corrupting or ending the entire run, and no single context ever needs to hold more than one repository's worth of fetched content at a time. In real execution this design reached complete, individually-researched coverage of all 74 repositories, where the equivalent single-agent run reached none."
+
+
+[agent]
+timeout_sec = 360
+
+[verifier]
+timeout_sec = 1800
+
+[environment]
+cpus = 2
+memory_mb = 4096
+build_timeout_sec = 600
