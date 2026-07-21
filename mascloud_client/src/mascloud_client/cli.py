@@ -14,12 +14,15 @@ from __future__ import annotations
 import io
 import os
 import re
+import threading
+import time
 import zipfile
 from pathlib import Path
 
 import httpx
 import typer
 from rich.console import Console
+from rich.live import Live
 from rich.table import Table
 
 from . import session
@@ -139,27 +142,53 @@ def run(
             _download(run_id, task_folder.parent)   # save the result zip beside the task folder
 
 
+def _elapsed(start: float) -> str:
+    secs = int(time.monotonic() - start)
+    mins, secs = divmod(secs, 60)
+    hours, mins = divmod(mins, 60)
+    return f"{hours:d}:{mins:02d}:{secs:02d}" if hours else f"{mins:02d}:{secs:02d}"
+
+
 def _follow(run_id: str) -> None:
-    """Stream SSE progress until the run reaches a terminal marker."""
+    """Stream SSE progress until the run reaches a terminal marker.
+
+    Ticks a live "Elapsed: MM:SS" line the moment the run starts, independent
+    of when the first server log line actually arrives (queueing/environment
+    build can take a while with nothing to show otherwise) -- purely cosmetic,
+    doesn't affect the streamed output itself.
+    """
     token = session.load().get("token")
     url = f"{_endpoint()}/runs/{run_id}/stream"
     headers = {"Authorization": f"Bearer {token}"}
-    try:
-        with httpx.Client(timeout=None) as c:
-            with c.stream("GET", url, headers=headers) as resp:
-                if resp.status_code != 200:
-                    console.print(f"[red]Could not stream ({resp.status_code}).[/red]")
-                    return
-                for line in resp.iter_lines():
-                    if not line or not line.startswith("data: "):
-                        continue
-                    import json as _json
+    start = time.monotonic()
+    stop = threading.Event()
 
-                    payload = _json.loads(line[6:])
-                    text = payload.get("line", "")
-                    console.print(text)
-                    if text.startswith("[DONE"):
-                        return
+    def _tick(live: Live) -> None:
+        while not stop.wait(1):
+            live.update(f"[dim]Elapsed: {_elapsed(start)}[/dim]")
+
+    try:
+        with Live(f"[dim]Elapsed: {_elapsed(start)}[/dim]", console=console, refresh_per_second=1, transient=True) as live:
+            ticker = threading.Thread(target=_tick, args=(live,), daemon=True)
+            ticker.start()
+            try:
+                with httpx.Client(timeout=None) as c:
+                    with c.stream("GET", url, headers=headers) as resp:
+                        if resp.status_code != 200:
+                            console.print(f"[red]Could not stream ({resp.status_code}).[/red]")
+                            return
+                        for line in resp.iter_lines():
+                            if not line or not line.startswith("data: "):
+                                continue
+                            import json as _json
+
+                            payload = _json.loads(line[6:])
+                            text = payload.get("line", "")
+                            console.print(text)
+                            if text.startswith("[DONE"):
+                                return
+            finally:
+                stop.set()
     except KeyboardInterrupt:
         console.print("[yellow]Ctrl-C — cancelling run on the server…[/yellow]")
         with _client() as c:
@@ -167,12 +196,40 @@ def _follow(run_id: str) -> None:
         raise typer.Exit(130)
 
 
+_DOWNLOAD_RETRIES = 3
+_DOWNLOAD_BACKOFF_SEC = 2
+
+
 def _download(run_id: str, out_dir: Path) -> None:
     """Save the result package (the whole task folder + execution_logs, zipped)
     into out_dir. We save the zip as-is rather than extracting — it's a
-    self-contained package the trainer can keep or unzip anywhere."""
-    with _client() as c:
-        resp = c.get(f"/runs/{run_id}/artifact")
+    self-contained package the trainer can keep or unzip anywhere.
+
+    Trainers connect from all over the world over whatever network they have,
+    and a multi-MB transfer over a marginal connection can drop mid-stream
+    (ReadTimeout, RemoteProtocolError) even though the file on the server is
+    fine and re-downloadable at any time within the 24h TTL -- retry a few
+    times before giving up, instead of crashing on a transient blip.
+    """
+    resp = None
+    for attempt in range(1, _DOWNLOAD_RETRIES + 1):
+        try:
+            with _client() as c:
+                resp = c.get(f"/runs/{run_id}/artifact")
+            break
+        except httpx.TransportError as exc:
+            if attempt == _DOWNLOAD_RETRIES:
+                console.print(
+                    f"[red]Download failed after {_DOWNLOAD_RETRIES} attempts "
+                    f"({exc.__class__.__name__}): {exc}[/red]"
+                )
+                return
+            console.print(
+                f"[yellow]Download interrupted ({exc.__class__.__name__}) -- "
+                f"retrying ({attempt}/{_DOWNLOAD_RETRIES})…[/yellow]"
+            )
+            time.sleep(_DOWNLOAD_BACKOFF_SEC * attempt)
+    assert resp is not None
     if resp.status_code != 200:
         try:
             detail = resp.json().get("detail", "")
