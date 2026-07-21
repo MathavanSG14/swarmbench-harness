@@ -675,10 +675,10 @@ index 00000000..3ac00b4d
 \ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/multi_opencode.py b/src/harbor/agents/installed/swarmbench/multi_opencode.py
 new file mode 100644
-index 00000000..682c1cf0
+index 00000000..aa7932f2
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/multi_opencode.py
-@@ -0,0 +1,994 @@
+@@ -0,0 +1,1022 @@
 +import asyncio
 +import copy
 +import json
@@ -1271,7 +1271,31 @@ index 00000000..682c1cf0
 +                f"output={raw_totals['n_output_tokens']}"
 +            )
 +
-+    def _opencode_run_errored(self) -> bool:
++    async def _sync_output_file(self, environment: BaseEnvironment) -> None:
++        """Pull the sandbox's opencode.txt onto the host before inspecting it.
++
++        self.logs_dir is only a live view of the sandbox's /logs/agent under
++        mounted environments (e.g. local Docker's bind mount). Non-mounted
++        environments (e.g. Daytona) only copy sandbox files to the host in
++        trial.py's post-run _maybe_download_logs -- which runs after run()
++        returns, too late for the retry checks below. Without this, every
++        _opencode_run_errored/_opencode_stopped_with_open_question call sees
++        a missing local file and silently returns False, permanently
++        disabling both retry paths on non-mounted backends.
++        """
++        if environment.capabilities.mounted:
++            return
++        remote_path = (environment.env_paths.agent_dir / self._OUTPUT_FILENAME).as_posix()
++        local_path = self.logs_dir / self._OUTPUT_FILENAME
++        try:
++            await environment.download_file(remote_path, local_path)
++        except Exception:
++            self.logger.debug(
++                "Could not sync opencode.txt from sandbox for retry check",
++                exc_info=True,
++            )
++
++    async def _opencode_run_errored(self, environment: BaseEnvironment) -> bool:
 +        """True if opencode's last emitted --format=json line was step_finish
 +        reason="error" (see _MAX_CONTINUE_ATTEMPTS comment above).
 +
@@ -1283,6 +1307,7 @@ index 00000000..682c1cf0
 +        own stream regardless of how many sub-agents it spawned internally, since a
 +        sub-agent's failure surfaces back to the root session before the CLI exits.
 +        """
++        await self._sync_output_file(environment)
 +        output_path = self.logs_dir / self._OUTPUT_FILENAME
 +        if not output_path.exists():
 +            return False
@@ -1302,7 +1327,9 @@ index 00000000..682c1cf0
 +            )
 +        return False
 +
-+    def _opencode_stopped_with_open_question(self) -> bool:
++    async def _opencode_stopped_with_open_question(
++        self, environment: BaseEnvironment
++    ) -> bool:
 +        """True if opencode ended cleanly (step_finish reason="stop") right after the
 +        model's own reply text ends in a question mark -- e.g. opencode's auto-compaction
 +        nudge ("Continue if you have next steps, or stop and ask for clarification...")
@@ -1317,6 +1344,7 @@ index 00000000..682c1cf0
 +        text that happens to end in "?"). Cheap either way: see _CONTINUE_PROMPT, which
 +        handles a false-positive retry by just letting the model confirm and stop again.
 +        """
++        await self._sync_output_file(environment)
 +        output_path = self.logs_dir / self._OUTPUT_FILENAME
 +        if not output_path.exists():
 +            return False
@@ -1451,7 +1479,7 @@ index 00000000..682c1cf0
 +        while True:
 +            if (
 +                attempts_errored < _MAX_CONTINUE_ATTEMPTS
-+                and self._opencode_run_errored()
++                and await self._opencode_run_errored(environment)
 +            ):
 +                attempts_errored += 1
 +                prompt = _CONTINUE_PROMPT
@@ -1464,7 +1492,7 @@ index 00000000..682c1cf0
 +                )
 +            elif (
 +                attempts_open_question < _MAX_OPEN_QUESTION_ATTEMPTS
-+                and self._opencode_stopped_with_open_question()
++                and await self._opencode_stopped_with_open_question(environment)
 +            ):
 +                attempts_open_question += 1
 +                prompt = _CONTINUE_PROMPT_NO_QUESTIONS
@@ -2802,10 +2830,10 @@ index 00000000..1e4cb19b
 +        )
 diff --git a/src/harbor/agents/installed/swarmbench/single_opencode.py b/src/harbor/agents/installed/swarmbench/single_opencode.py
 new file mode 100644
-index 00000000..78178880
+index 00000000..ed1f0be4
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/single_opencode.py
-@@ -0,0 +1,814 @@
+@@ -0,0 +1,842 @@
 +import asyncio
 +import copy
 +import json
@@ -3225,7 +3253,31 @@ index 00000000..78178880
 +            context.n_output_tokens = fm.total_completion_tokens or 0
 +            context.n_cache_tokens = fm.total_cached_tokens or 0
 +
-+    def _opencode_run_errored(self) -> bool:
++    async def _sync_output_file(self, environment: BaseEnvironment) -> None:
++        """Pull the sandbox's opencode.txt onto the host before inspecting it.
++
++        self.logs_dir is only a live view of the sandbox's /logs/agent under
++        mounted environments (e.g. local Docker's bind mount). Non-mounted
++        environments (e.g. Daytona) only copy sandbox files to the host in
++        trial.py's post-run _maybe_download_logs -- which runs after run()
++        returns, too late for the retry checks below. Without this, every
++        _opencode_run_errored/_opencode_stopped_with_open_question call sees
++        a missing local file and silently returns False, permanently
++        disabling both retry paths on non-mounted backends.
++        """
++        if environment.capabilities.mounted:
++            return
++        remote_path = (environment.env_paths.agent_dir / self._OUTPUT_FILENAME).as_posix()
++        local_path = self.logs_dir / self._OUTPUT_FILENAME
++        try:
++            await environment.download_file(remote_path, local_path)
++        except Exception:
++            self.logger.debug(
++                "Could not sync opencode.txt from sandbox for retry check",
++                exc_info=True,
++            )
++
++    async def _opencode_run_errored(self, environment: BaseEnvironment) -> bool:
 +        """True if opencode's last emitted --format=json line was step_finish
 +        reason="error" (see _MAX_CONTINUE_ATTEMPTS comment above).
 +
@@ -3235,6 +3287,7 @@ index 00000000..78178880
 +        opencode's CLI process exits right after this event, so it's always the last
 +        parseable line in opencode.txt when it occurs.
 +        """
++        await self._sync_output_file(environment)
 +        output_path = self.logs_dir / self._OUTPUT_FILENAME
 +        if not output_path.exists():
 +            return False
@@ -3254,7 +3307,9 @@ index 00000000..78178880
 +            )
 +        return False
 +
-+    def _opencode_stopped_with_open_question(self) -> bool:
++    async def _opencode_stopped_with_open_question(
++        self, environment: BaseEnvironment
++    ) -> bool:
 +        """True if opencode ended cleanly (step_finish reason="stop") right after the
 +        model's own reply text ends in a question mark -- e.g. opencode's auto-compaction
 +        nudge ("Continue if you have next steps, or stop and ask for clarification...")
@@ -3267,6 +3322,7 @@ index 00000000..78178880
 +        text that happens to end in "?"). Cheap either way: see _CONTINUE_PROMPT, which
 +        handles a false-positive retry by just letting the model confirm and stop again.
 +        """
++        await self._sync_output_file(environment)
 +        output_path = self.logs_dir / self._OUTPUT_FILENAME
 +        if not output_path.exists():
 +            return False
@@ -3582,7 +3638,7 @@ index 00000000..78178880
 +        while True:
 +            if (
 +                attempts_errored < _MAX_CONTINUE_ATTEMPTS
-+                and self._opencode_run_errored()
++                and await self._opencode_run_errored(environment)
 +            ):
 +                attempts_errored += 1
 +                prompt = _CONTINUE_PROMPT
@@ -3595,7 +3651,7 @@ index 00000000..78178880
 +                )
 +            elif (
 +                attempts_open_question < _MAX_OPEN_QUESTION_ATTEMPTS
-+                and self._opencode_stopped_with_open_question()
++                and await self._opencode_stopped_with_open_question(environment)
 +            ):
 +                attempts_open_question += 1
 +                prompt = _CONTINUE_PROMPT_NO_QUESTIONS
