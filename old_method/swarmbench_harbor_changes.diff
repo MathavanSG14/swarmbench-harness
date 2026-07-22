@@ -675,10 +675,10 @@ index 00000000..3ac00b4d
 \ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/multi_opencode.py b/src/harbor/agents/installed/swarmbench/multi_opencode.py
 new file mode 100644
-index 00000000..aa7932f2
+index 00000000..109d5a2f
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/multi_opencode.py
-@@ -0,0 +1,1022 @@
+@@ -0,0 +1,1055 @@
 +import asyncio
 +import copy
 +import json
@@ -708,6 +708,15 @@ index 00000000..aa7932f2
 +_OUTPUT_FILENAME = "opencode.txt"
 +_PROMPTS_DIR = Path(__file__).parent / "prompts"
 +_FIREWORKS_BASE_URL = "https://api.fireworks.ai/inference/v1"
++
++# Default install target when a job doesn't explicitly pin a version via the
++# agent's `version` kwarg. Pinning instead of falling back to "@latest" avoids
++# silently picking up a newer opencode CLI (with different config schema, event
++# shapes, or retry behavior) between benchmark runs. Bump deliberately after
++# re-auditing multi_opencode.py's opencode-version-sensitive assumptions against
++# the new release -- last audited against opencode-ai 1.18.4 (origin/dev commit
++# 0a601cf334).
++_PINNED_OPENCODE_VERSION = "1.18.4"
 +
 +# Must match the OPENCODE_EXPERIMENTAL_OUTPUT_TOKEN_MAX env var below -- this
 +# is the actual enforced per-request output cap, not the model's raw context
@@ -829,6 +838,18 @@ index 00000000..aa7932f2
 +    "plan_exit": "deny",
 +}
 +
++# opencode's default subagent_depth (1) caps nesting so severely that even the
++# advertised orchestrator -> general manager -> explore leaf 2-tier flow breaks:
++# task.ts's depth check (walking parentID hops from the CALLING session) applies to
++# EVERY task-tool call regardless of subagent_type, so a manager's very first spawn
++# attempt -- even a leaf "explore" worker -- is already at depth 1 and gets rejected
++# with "Subagent depth limit reached (1)...". Hierarchical tasks' decomposition.yaml
++# (injected into the instruction -- see "Gold Decomposition Guide" below) can specify
++# trees several tiers deep, so this is set generously high rather than derived per-task.
++# The "general" agent's ANTI-RECURSION RULE prompt below is what actually bounds
++# runaway self-delegation, not this number.
++_MULTI_AGENT_SUBAGENT_DEPTH = 25
++
 +_EXPORT_SCRIPT = r"""
 +import sqlite3, json, os, pathlib
 +
@@ -912,7 +933,9 @@ index 00000000..aa7932f2
 +            command="apt-get update && apt-get install -y curl",
 +            env={"DEBIAN_FRONTEND": "noninteractive"},
 +        )
-+        version_spec = f"@{self._version}" if self._version else "@latest"
++        version_spec = (
++            f"@{self._version}" if self._version else f"@{_PINNED_OPENCODE_VERSION}"
++        )
 +        await self.exec_as_agent(
 +            environment,
 +            command=(
@@ -1101,6 +1124,10 @@ index 00000000..aa7932f2
 +        # Multi-agent: allow task permission so the orchestrator can spawn sub-agents.
 +        config["permission"] = _MULTI_AGENT_PERMISSION
 +
++        # Raise opencode's nesting cap so managers can spawn further sub-agents
++        # (leaves or deeper managers) instead of hitting the default depth-1 limit.
++        config["subagent_depth"] = _MULTI_AGENT_SUBAGENT_DEPTH
++
 +        # Two-tier agent type contract (config-enforced):
 +        #   general  → coordinator/manager; may spawn explore sub-agents via task tool.
 +        #   explore  → leaf worker; task tool is hard-blocked at config level.
@@ -1285,7 +1312,9 @@ index 00000000..aa7932f2
 +        """
 +        if environment.capabilities.mounted:
 +            return
-+        remote_path = (environment.env_paths.agent_dir / self._OUTPUT_FILENAME).as_posix()
++        remote_path = (
++            environment.env_paths.agent_dir / self._OUTPUT_FILENAME
++        ).as_posix()
 +        local_path = self.logs_dir / self._OUTPUT_FILENAME
 +        try:
 +            await environment.download_file(remote_path, local_path)
@@ -1311,7 +1340,11 @@ index 00000000..aa7932f2
 +        output_path = self.logs_dir / self._OUTPUT_FILENAME
 +        if not output_path.exists():
 +            return False
-+        for line in reversed(output_path.read_text().splitlines()):
++        # errors="replace": concurrent writes from opencode's own JSON-event and
++        # logfmt-debug output streams can occasionally splice a multi-byte UTF-8
++        # character in half. Tolerate that here rather than crashing the whole
++        # trial over one corrupted byte in a line we're likely to skip anyway.
++        for line in reversed(output_path.read_text(errors="replace").splitlines()):
 +            line = line.strip()
 +            if not line:
 +                continue
@@ -1349,7 +1382,7 @@ index 00000000..aa7932f2
 +        if not output_path.exists():
 +            return False
 +        found_stop = False
-+        for line in reversed(output_path.read_text().splitlines()):
++        for line in reversed(output_path.read_text(errors="replace").splitlines()):
 +            line = line.strip()
 +            if not line:
 +                continue
@@ -1523,7 +1556,7 @@ index 00000000..aa7932f2
 +        if not output_path.exists():
 +            return []
 +        events: list[dict[str, Any]] = []
-+        for line in output_path.read_text().splitlines():
++        for line in output_path.read_text(errors="replace").splitlines():
 +            line = line.strip()
 +            if not line:
 +                continue
@@ -2830,10 +2863,10 @@ index 00000000..1e4cb19b
 +        )
 diff --git a/src/harbor/agents/installed/swarmbench/single_opencode.py b/src/harbor/agents/installed/swarmbench/single_opencode.py
 new file mode 100644
-index 00000000..ed1f0be4
+index 00000000..817b7858
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/single_opencode.py
-@@ -0,0 +1,842 @@
+@@ -0,0 +1,859 @@
 +import asyncio
 +import copy
 +import json
@@ -2863,6 +2896,15 @@ index 00000000..ed1f0be4
 +_OUTPUT_FILENAME = "opencode.txt"
 +_PROMPTS_DIR = Path(__file__).parent / "prompts"
 +_FIREWORKS_BASE_URL = "https://api.fireworks.ai/inference/v1"
++
++# Default install target when a job doesn't explicitly pin a version via the
++# agent's `version` kwarg. Pinning instead of falling back to "@latest" avoids
++# silently picking up a newer opencode CLI (with different config schema, event
++# shapes, or retry behavior) between benchmark runs. Bump deliberately after
++# re-auditing this file's opencode-version-sensitive assumptions against the new
++# release -- last audited against opencode-ai 1.18.4 (origin/dev commit
++# 0a601cf334).
++_PINNED_OPENCODE_VERSION = "1.18.4"
 +
 +# Must match the OPENCODE_EXPERIMENTAL_OUTPUT_TOKEN_MAX env var below -- this
 +# is the actual enforced per-request output cap, not the model's raw context
@@ -3041,7 +3083,9 @@ index 00000000..ed1f0be4
 +            command="apt-get update && apt-get install -y curl",
 +            env={"DEBIAN_FRONTEND": "noninteractive"},
 +        )
-+        version_spec = f"@{self._version}" if self._version else "@latest"
++        version_spec = (
++            f"@{self._version}" if self._version else f"@{_PINNED_OPENCODE_VERSION}"
++        )
 +        await self.exec_as_agent(
 +            environment,
 +            command=(
@@ -3267,7 +3311,9 @@ index 00000000..ed1f0be4
 +        """
 +        if environment.capabilities.mounted:
 +            return
-+        remote_path = (environment.env_paths.agent_dir / self._OUTPUT_FILENAME).as_posix()
++        remote_path = (
++            environment.env_paths.agent_dir / self._OUTPUT_FILENAME
++        ).as_posix()
 +        local_path = self.logs_dir / self._OUTPUT_FILENAME
 +        try:
 +            await environment.download_file(remote_path, local_path)
@@ -3291,7 +3337,11 @@ index 00000000..ed1f0be4
 +        output_path = self.logs_dir / self._OUTPUT_FILENAME
 +        if not output_path.exists():
 +            return False
-+        for line in reversed(output_path.read_text().splitlines()):
++        # errors="replace": concurrent writes from opencode's own JSON-event and
++        # logfmt-debug output streams can occasionally splice a multi-byte UTF-8
++        # character in half. Tolerate that here rather than crashing the whole
++        # trial over one corrupted byte in a line we're likely to skip anyway.
++        for line in reversed(output_path.read_text(errors="replace").splitlines()):
 +            line = line.strip()
 +            if not line:
 +                continue
@@ -3327,7 +3377,7 @@ index 00000000..ed1f0be4
 +        if not output_path.exists():
 +            return False
 +        found_stop = False
-+        for line in reversed(output_path.read_text().splitlines()):
++        for line in reversed(output_path.read_text(errors="replace").splitlines()):
 +            line = line.strip()
 +            if not line:
 +                continue
@@ -3380,7 +3430,7 @@ index 00000000..ed1f0be4
 +        if not output_path.exists():
 +            return []
 +        events: list[dict[str, Any]] = []
-+        for line in output_path.read_text().splitlines():
++        for line in output_path.read_text(errors="replace").splitlines():
 +            line = line.strip()
 +            if not line:
 +                continue
@@ -3676,6 +3726,52 @@ index 00000000..ed1f0be4
 +                f"2>&1 </dev/null | stdbuf -oL tee -a /logs/agent/{_OUTPUT_FILENAME}"
 +            )
 +            await self._exec_opencode(environment, continue_command, env, _export_cmd)
+diff --git a/src/harbor/environments/base.py b/src/harbor/environments/base.py
+index 04c934ce..43ad7572 100644
+--- a/src/harbor/environments/base.py
++++ b/src/harbor/environments/base.py
+@@ -6,6 +6,7 @@ import warnings
+ from abc import ABC, abstractmethod
+ from pathlib import Path, PurePath
+ from collections.abc import Sequence
++from typing import Any
+ 
+ from pydantic import BaseModel
+ 
+@@ -526,3 +527,8 @@ class BaseEnvironment(ABC):
+     async def attach(self) -> None:
+         """Attaches to the environment using os.execvp."""
+         raise NotImplementedError("This environment does not support attaching.")
++
++    def environment_metadata(self) -> dict[str, Any] | None:
++        """Provider-specific info to persist into the trial result (e.g. a cloud
++        sandbox/container id). Override in subclasses; default is None."""
++        return None
+diff --git a/src/harbor/environments/daytona.py b/src/harbor/environments/daytona.py
+index 5041cb94..04f8e31b 100644
+--- a/src/harbor/environments/daytona.py
++++ b/src/harbor/environments/daytona.py
+@@ -6,7 +6,7 @@ import os
+ import shlex
+ from abc import abstractmethod
+ from pathlib import Path
+-from typing import TYPE_CHECKING, Union
++from typing import TYPE_CHECKING, Any, Union
+ from uuid import uuid4
+ 
+ from tenacity import retry, stop_after_attempt, wait_exponential
+@@ -1153,6 +1153,11 @@ class DaytonaEnvironment(BaseEnvironment):
+     async def stop(self, delete: bool):
+         return await self._strategy.stop(delete)
+ 
++    def environment_metadata(self) -> dict[str, Any] | None:
++        if self._sandbox is None:
++            return None
++        return {"sandbox_id": self._sandbox.id}
++
+     async def exec(
+         self,
+         command: str,
 diff --git a/src/harbor/models/agent/name.py b/src/harbor/models/agent/name.py
 index 4b252a9e..249d69c9 100644
 --- a/src/harbor/models/agent/name.py
@@ -3691,8 +3787,27 @@ index 4b252a9e..249d69c9 100644
      PI = "pi"
      QWEN_CODE = "qwen-coder"
      COPILOT_CLI = "copilot-cli"
+diff --git a/src/harbor/models/trial/result.py b/src/harbor/models/trial/result.py
+index a9d72881..c5db9155 100644
+--- a/src/harbor/models/trial/result.py
++++ b/src/harbor/models/trial/result.py
+@@ -1,5 +1,6 @@
+ import traceback
+ from datetime import datetime
++from typing import Any
+ from uuid import UUID, uuid4
+ 
+ from pydantic import BaseModel, Field
+@@ -86,6 +87,7 @@ class TrialResult(BaseModel):
+     agent_execution: TimingInfo | None = None
+     verifier: TimingInfo | None = None
+     step_results: list[StepResult] | None = None
++    environment_metadata: dict[str, Any] | None = None
+ 
+     def compute_token_cost_totals(
+         self,
 diff --git a/src/harbor/trial/trial.py b/src/harbor/trial/trial.py
-index 4d0f4ee2..9cd9a2ae 100644
+index 4d0f4ee2..44197e41 100644
 --- a/src/harbor/trial/trial.py
 +++ b/src/harbor/trial/trial.py
 @@ -185,6 +185,11 @@ class Trial:
@@ -3707,3 +3822,11 @@ index 4d0f4ee2..9cd9a2ae 100644
          if self._task.config.environment.mcp_servers:
              extra_kwargs["mcp_servers"] = self._task.config.environment.mcp_servers
          if self._task.config.environment.skills_dir:
+@@ -419,6 +424,7 @@ class Trial:
+             ) from e
+ 
+     async def _cleanup_and_finalize(self) -> None:
++        self.result.environment_metadata = self._environment.environment_metadata()
+         try:
+             await asyncio.shield(
+                 self._environment.stop(delete=self.config.environment.delete)
