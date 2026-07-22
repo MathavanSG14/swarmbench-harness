@@ -30,7 +30,13 @@ from . import session
 app = typer.Typer(add_completion=False, help="MAS Cloud Run trainer client")
 console = Console()
 
-_EXCLUDE_DIRS = {".git", "__pycache__", "node_modules", "execution_logs", "daytona_test_logs"}
+_EXCLUDE_DIRS = {
+    ".git",
+    "__pycache__",
+    "node_modules",
+    "execution_logs",
+    "daytona_test_logs",
+}
 
 # Production control plane. Override locally with MASCLOUD_ENDPOINT if needed
 # (e.g. testing against a dev server) — trainers never need to set this.
@@ -77,7 +83,9 @@ def login(
         _die(resp)
     data = resp.json()
     session.save({"endpoint": base, "token": data["token"], "email": data["email"]})
-    console.print(f"[green]Connected as {data['display_name']} ({data['email']}).[/green]")
+    console.print(
+        f"[green]Connected as {data['display_name']} ({data['email']}).[/green]"
+    )
 
 
 @app.command()
@@ -112,7 +120,10 @@ def _zip_task(task_folder: Path) -> bytes:
 @app.command()
 def run(
     task_folder: Path = typer.Argument(..., exists=True, file_okay=False),
-    mode: str = typer.Option(None, help="single | multi (prompted if omitted). Run the other in a second terminal."),
+    mode: str = typer.Option(
+        None,
+        help="single | multi (prompted if omitted). Run the other in a second terminal.",
+    ),
     download_result: bool = typer.Option(True, "--download/--no-download"),
 ) -> None:
     """Upload a task folder, run it in the cloud, and stream progress live."""
@@ -139,7 +150,9 @@ def run(
         console.rule(f"[bold]{run_id}[/bold]")
         _follow(run_id)
         if download_result:
-            _download(run_id, task_folder.parent)   # save the result zip beside the task folder
+            _download(
+                run_id, task_folder.parent
+            )  # save the result zip beside the task folder
 
 
 def _elapsed(start: float) -> str:
@@ -168,14 +181,21 @@ def _follow(run_id: str) -> None:
             live.update(f"[dim]Elapsed: {_elapsed(start)}[/dim]")
 
     try:
-        with Live(f"[dim]Elapsed: {_elapsed(start)}[/dim]", console=console, refresh_per_second=1, transient=True) as live:
+        with Live(
+            f"[dim]Elapsed: {_elapsed(start)}[/dim]",
+            console=console,
+            refresh_per_second=1,
+            transient=True,
+        ) as live:
             ticker = threading.Thread(target=_tick, args=(live,), daemon=True)
             ticker.start()
             try:
                 with httpx.Client(timeout=None) as c:
                     with c.stream("GET", url, headers=headers) as resp:
                         if resp.status_code != 200:
-                            console.print(f"[red]Could not stream ({resp.status_code}).[/red]")
+                            console.print(
+                                f"[red]Could not stream ({resp.status_code}).[/red]"
+                            )
                             return
                         for line in resp.iter_lines():
                             if not line or not line.startswith("data: "):
@@ -235,7 +255,9 @@ def _download(run_id: str, out_dir: Path) -> None:
             detail = resp.json().get("detail", "")
         except Exception:
             detail = ""
-        console.print(f"[yellow]No result package: {detail or resp.status_code}[/yellow]")
+        console.print(
+            f"[yellow]No result package: {detail or resp.status_code}[/yellow]"
+        )
         return
     # Prefer the server's suggested filename (<task-slug>-<mode>.zip).
     cd = resp.headers.get("content-disposition", "")
@@ -259,14 +281,33 @@ def runs() -> None:
         console.print("No runs yet.")
         return
     table = Table(show_lines=False)
-    for col in ("run_id", "mode", "status", "reward", "in_tok", "out_tok", "cost_usd", "task"):
+    for col in (
+        "run_id",
+        "mode",
+        "model",
+        "status",
+        "reward",
+        "in_tok",
+        "out_tok",
+        "cost_usd",
+        "task",
+    ):
         table.add_column(col)
     for r in rows:
+        # Show just the bare model name (e.g. "kimi-k2p6") -- the full
+        # "fireworks_ai/accounts/fireworks/models/..." path is too wide for
+        # this table, and the trailing segment is what trainers recognize.
+        model_id = r.get("model_id") or ""
+        model_short = model_id.rsplit("/", 1)[-1] if model_id else "-"
         table.add_row(
-            r["run_id"], r["mode"], r["status"],
-            str(r["reward"]), str(r["n_input_tokens"] or "-"),
+            r["run_id"],
+            r["mode"],
+            model_short,
+            r["status"],
+            str(r["reward"]),
+            str(r["n_input_tokens"] or "-"),
             str(r["n_output_tokens"] or "-"),
-            f'{r["total_cost_usd"]:.4f}' if r["total_cost_usd"] else "-",
+            f"{r['total_cost_usd']:.4f}" if r["total_cost_usd"] else "-",
             (r["task_slug"] or "")[:40],
         )
     console.print(table)
