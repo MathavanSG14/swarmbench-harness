@@ -273,7 +273,11 @@ def _download(run_id: str, out_dir: Path) -> None:
 def runs() -> None:
     """List my runs with tokens and cost."""
     with _client() as c:
+        me_resp = c.get("/me")
         resp = c.get("/runs")
+    if me_resp.status_code == 200:
+        me = me_resp.json()
+        console.print(f"Today: {me['runs_today']}/{me['daily_quota']} runs used")
     if resp.status_code != 200:
         _die(resp)
     rows = resp.json()["runs"]
