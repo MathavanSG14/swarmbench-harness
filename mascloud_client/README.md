@@ -27,6 +27,34 @@ mascloud --help
 
 ---
 
+## Upgrading
+
+When there's a new `mascloud` update, **pulling the latest code is not enough** —
+`pipx`/`pip` see the package version (`0.1.0`) hasn't changed and skip reinstalling,
+so you keep running the old CLI even after `git pull`. Force it:
+
+```bash
+cd swarmbench-harness
+git pull
+cd mascloud_client
+pipx install --force .
+```
+
+If you installed with plain `pip` instead of `pipx` (e.g. into your own venv), the
+equivalent is:
+
+```bash
+pip install --force-reinstall --no-deps .
+```
+
+Verify the update actually took by running `mascloud runs` — updated versions show
+a `model` column and a `Today: X/Y runs used` line above the table. If you don't see
+those, the reinstall didn't take effect — double check you forced it, and that
+`which mascloud` points at the environment you just reinstalled into (not a leftover
+install elsewhere on your `PATH`).
+
+---
+
 ## The 5 commands
 
 | Command                                             | What it does                                                                       | Required?                             |
