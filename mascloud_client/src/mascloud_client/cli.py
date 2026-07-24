@@ -51,14 +51,14 @@ def _endpoint() -> str:
     ).rstrip("/")
 
 
-def _client(auth: bool = True) -> httpx.Client:
+def _client(auth: bool = True, timeout: httpx.Timeout | float = 60) -> httpx.Client:
     headers = {}
     if auth:
         token = session.load().get("token")
         if not token:
             raise typer.Exit("Not logged in — run `mascloud login` first.")
         headers["Authorization"] = f"Bearer {token}"
-    return httpx.Client(base_url=_endpoint(), headers=headers, timeout=60)
+    return httpx.Client(base_url=_endpoint(), headers=headers, timeout=timeout)
 
 
 def _die(resp: httpx.Response) -> None:
@@ -135,7 +135,12 @@ def run(
     console.print(f"Packaging {task_folder}…")
     zip_bytes = _zip_task(task_folder.resolve())
 
-    with _client() as c:
+    # Large task folders (e.g. figure/image-heavy packs) can take well over
+    # 60s to upload on a slow connection -- uncap the write timeout the same
+    # way _follow()/_download() already uncap read, instead of failing the
+    # upload arbitrarily partway through a good-faith transfer.
+    upload_timeout = httpx.Timeout(60.0, write=None)
+    with _client(timeout=upload_timeout) as c:
         resp = c.post(
             "/runs",
             files={"file": (f"{task_folder.name}.zip", zip_bytes, "application/zip")},
