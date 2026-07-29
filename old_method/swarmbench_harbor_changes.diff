@@ -675,10 +675,10 @@ index 00000000..3ac00b4d
 \ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/multi_opencode.py b/src/harbor/agents/installed/swarmbench/multi_opencode.py
 new file mode 100644
-index 00000000..0e48f445
+index 00000000..3d82ca2e
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/multi_opencode.py
-@@ -0,0 +1,1110 @@
+@@ -0,0 +1,1123 @@
 +import asyncio
 +import copy
 +import json
@@ -1346,20 +1346,31 @@ index 00000000..0e48f445
 +
 +    async def _opencode_run_incomplete(self, environment: BaseEnvironment) -> bool:
 +        """True if opencode's CLI process exited without a step_finish Part as the
-+        last emitted --format=json line (see _MAX_CONTINUE_ATTEMPTS comment above).
++        last emitted --format=json line, or with one carrying reason="unknown"
++        (see _MAX_CONTINUE_ATTEMPTS comment above).
 +
-+        Every clean finish (reason="stop"/"length"/"content-filter" -- "tool-calls"/
-+        "unknown" can't be the true last line, since those keep the internal step
-+        loop running) ends in a step_finish Part right before the CLI process exits
-+        -- true for the orchestrator's own stream regardless of how many sub-agents
-+        it spawned internally, since a sub-agent's failure surfaces back to the root
-+        session before the CLI exits. Failures that skip it entirely -- a
-+        provider-side error/connection-reset (session/processor.ts's halt(), which
-+        emits a bare `{"type":"error",...}` instead) or an uncaught crash mid-turn --
-+        are exactly what this needs to catch, so checking for "no step_finish at
-+        all" is deliberately more general than matching one specific error shape
-+        (e.g. a literal reason="error", which tracing opencode's own finish-reason
++        Every clean finish (reason="stop"/"length"/"content-filter" -- "tool-calls"
++        can't be the true last line, since it keeps the internal step loop running)
++        ends in a step_finish Part right before the CLI process exits -- true for
++        the orchestrator's own stream regardless of how many sub-agents it spawned
++        internally, since a sub-agent's failure surfaces back to the root session
++        before the CLI exits. Failures that skip it entirely -- a provider-side
++        error/connection-reset (session/processor.ts's halt(), which emits a bare
++        `{"type":"error",...}` instead) or an uncaught crash mid-turn -- are exactly
++        what this needs to catch, so checking for "no step_finish at all" is
++        deliberately more general than matching one specific error shape (e.g. a
++        literal reason="error", which tracing opencode's own finish-reason
 +        classifier shows a step_finish Part can essentially never carry).
++
++        reason="unknown" gets the same treatment even though it IS a real
++        step_finish: opencode's own run loop treats "unknown" exactly like
++        "tool-calls" (keeps looping), so it should never legitimately be the last
++        line either -- if it is, something else silently killed the loop instead.
++        Confirmed root cause: a provider stream that dies mid-generation with no
++        error at all (an idle/keepalive timeout on a long SSE connection), which
++        opencode's own classifier can only shrug at as "unknown" with all-zero
++        token usage, then exits clean (code 0) -- invisible to both
++        NonZeroAgentExitCodeError triage and a step_finish-existence check alone.
 +
 +        Deliberately independent of _parse_stdout()/_convert_events_to_trajectory():
 +        this only needs to know whether to retry, not build the trajectory, and it
@@ -1383,7 +1394,9 @@ index 00000000..0e48f445
 +                # OPENCODE_PRINT_LOGS=1 interleaves plain logfmt lines into this
 +                # same file; skip back past them to the last JSON event.
 +                continue
-+            return event.get("type") != "step_finish"
++            if event.get("type") != "step_finish":
++                return True
++            return event.get("part", {}).get("reason") == "unknown"
 +        # No parseable JSON line found at all -- e.g. opencode crashed before
 +        # emitting anything recognizable. That's exactly the "we lost everything"
 +        # case this check exists to catch.
@@ -2918,10 +2931,10 @@ index 00000000..1e4cb19b
 +        )
 diff --git a/src/harbor/agents/installed/swarmbench/single_opencode.py b/src/harbor/agents/installed/swarmbench/single_opencode.py
 new file mode 100644
-index 00000000..dafa8d66
+index 00000000..ca9746cd
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/single_opencode.py
-@@ -0,0 +1,912 @@
+@@ -0,0 +1,925 @@
 +import asyncio
 +import copy
 +import json
@@ -3399,18 +3412,29 @@ index 00000000..dafa8d66
 +
 +    async def _opencode_run_incomplete(self, environment: BaseEnvironment) -> bool:
 +        """True if opencode's CLI process exited without a step_finish Part as the
-+        last emitted --format=json line (see _MAX_CONTINUE_ATTEMPTS comment above).
++        last emitted --format=json line, or with one carrying reason="unknown"
++        (see _MAX_CONTINUE_ATTEMPTS comment above).
 +
-+        Every clean finish (reason="stop"/"length"/"content-filter" -- "tool-calls"/
-+        "unknown" can't be the true last line, since those keep the internal step
-+        loop running) ends in a step_finish Part right before the CLI process exits.
-+        Failures that skip it entirely -- a provider-side error/connection-reset
++        Every clean finish (reason="stop"/"length"/"content-filter" -- "tool-calls"
++        can't be the true last line, since it keeps the internal step loop running)
++        ends in a step_finish Part right before the CLI process exits. Failures
++        that skip it entirely -- a provider-side error/connection-reset
 +        (session/processor.ts's halt(), which emits a bare `{"type":"error",...}`
 +        instead) or an uncaught crash mid-turn -- are exactly what this needs to
 +        catch, so checking for "no step_finish at all" is deliberately more general
 +        than matching one specific error shape (e.g. a literal reason="error", which
 +        tracing opencode's own finish-reason classifier shows a step_finish Part can
 +        essentially never carry).
++
++        reason="unknown" gets the same treatment even though it IS a real
++        step_finish: opencode's own run loop treats "unknown" exactly like
++        "tool-calls" (keeps looping), so it should never legitimately be the last
++        line either -- if it is, something else silently killed the loop instead.
++        Confirmed root cause: a provider stream that dies mid-generation with no
++        error at all (an idle/keepalive timeout on a long SSE connection), which
++        opencode's own classifier can only shrug at as "unknown" with all-zero
++        token usage, then exits clean (code 0) -- invisible to both
++        NonZeroAgentExitCodeError triage and a step_finish-existence check alone.
 +
 +        Deliberately independent of _parse_stdout()/_convert_events_to_trajectory():
 +        this only needs to know whether to retry, not build the trajectory, and it
@@ -3434,7 +3458,9 @@ index 00000000..dafa8d66
 +                # OPENCODE_PRINT_LOGS=1 interleaves plain logfmt lines into this
 +                # same file; skip back past them to the last JSON event.
 +                continue
-+            return event.get("type") != "step_finish"
++            if event.get("type") != "step_finish":
++                return True
++            return event.get("part", {}).get("reason") == "unknown"
 +        # No parseable JSON line found at all -- e.g. opencode crashed before
 +        # emitting anything recognizable. That's exactly the "we lost everything"
 +        # case this check exists to catch.
