@@ -675,10 +675,10 @@ index 00000000..3ac00b4d
 \ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/multi_opencode.py b/src/harbor/agents/installed/swarmbench/multi_opencode.py
 new file mode 100644
-index 00000000..a8a54d08
+index 00000000..0e48f445
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/multi_opencode.py
-@@ -0,0 +1,1067 @@
+@@ -0,0 +1,1110 @@
 +import asyncio
 +import copy
 +import json
@@ -689,7 +689,10 @@ index 00000000..a8a54d08
 +from pathlib import Path
 +from typing import Any
 +
-+from harbor.agents.installed.base import BaseInstalledAgent
++from harbor.agents.installed.base import (
++    BaseInstalledAgent,
++    NonZeroAgentExitCodeError,
++)
 +from harbor.environments.base import BaseEnvironment
 +from harbor.models.agent.context import AgentContext
 +from harbor.models.agent.name import AgentName
@@ -747,19 +750,24 @@ index 00000000..a8a54d08
 +# opencode's retry.ts only retries an APIError when its statusCode >= 500 or the
 +# provider SDK explicitly marked it isRetryable=true. Neither @ai-sdk/openai nor
 +# @ai-sdk/openai-compatible (what Fireworks uses here, registered under the generic
-+# "openai" provider bucket) ever sets isRetryable for a 429 -- so a Fireworks rate
-+# limit is never retried by opencode itself: the session ends instantly with a
-+# step_finish reason="error" carrying zero tokens, and the CLI process exits cleanly
-+# with no error text on stdout/stderr (prompt.ts's finish-surfacing branch only
-+# handles "content-filter" and structured-output failures, not "error"). Since this
-+# can silently drop an entire trial's work (including every sub-agent spawned so far)
-+# after just one transient provider error on the orchestrator's own stream, detect
-+# that exact signature after the run and resume the SAME opencode session via
-+# `run --continue` instead of losing everything. Confirmed via run.ts's session()
-+# helper: --continue (without --fork) reuses the existing root session's ID rather
-+# than creating a new one, so the resumed session keeps full prior context and our
-+# per-session-id SQLite export just overwrites the same file with more messages.
-+_MAX_CONTINUE_ATTEMPTS = 2
++# "openai" provider bucket) ever sets isRetryable for a 429, and a mid-stream
++# provider failure (e.g. a Fireworks/upstream TCP connection reset) gets thrown as a
++# bare JS Error that opencode's own error classifier can't recognize as retryable
++# either -- so neither case is ever retried by opencode itself. Both end the CLI
++# process with no error text on stdout/stderr (prompt.ts's finish-surfacing branch
++# only handles "content-filter" and structured-output failures) and, critically,
++# WITHOUT ever emitting a step_finish Part for that turn -- confirmed by tracing
++# opencode's own event loop (cli/cmd/run.ts): these failures surface as a bare
++# `{"type":"error",...}` event instead. Since this can silently drop an entire
++# trial's work (including every sub-agent spawned so far) after just one transient
++# provider error on the orchestrator's own stream, detect "the run ended without a
++# clean step_finish" after the run and resume the SAME opencode session via
++# `run --continue` instead of losing everything (see _opencode_run_incomplete).
++# Confirmed via run.ts's session() helper: --continue (without --fork) reuses the
++# existing root session's ID rather than creating a new one, so the resumed session
++# keeps full prior context and our per-session-id SQLite export just overwrites the
++# same file with more messages.
++_MAX_CONTINUE_ATTEMPTS = 4
 +_CONTINUE_BACKOFF_SEC = 30
 +
 +# This is a genuine infra-recovery resume, not a model decision -- resuming a session
@@ -1318,7 +1326,7 @@ index 00000000..a8a54d08
 +        environments (e.g. Daytona) only copy sandbox files to the host in
 +        trial.py's post-run _maybe_download_logs -- which runs after run()
 +        returns, too late for the retry checks below. Without this, every
-+        _opencode_run_errored/_opencode_stopped_with_open_question call sees
++        _opencode_run_incomplete/_opencode_stopped_with_open_question call sees
 +        a missing local file and silently returns False, permanently
 +        disabling both retry paths on non-mounted backends.
 +        """
@@ -1336,17 +1344,26 @@ index 00000000..a8a54d08
 +                exc_info=True,
 +            )
 +
-+    async def _opencode_run_errored(self, environment: BaseEnvironment) -> bool:
-+        """True if opencode's last emitted --format=json line was step_finish
-+        reason="error" (see _MAX_CONTINUE_ATTEMPTS comment above).
++    async def _opencode_run_incomplete(self, environment: BaseEnvironment) -> bool:
++        """True if opencode's CLI process exited without a step_finish Part as the
++        last emitted --format=json line (see _MAX_CONTINUE_ATTEMPTS comment above).
++
++        Every clean finish (reason="stop"/"length"/"content-filter" -- "tool-calls"/
++        "unknown" can't be the true last line, since those keep the internal step
++        loop running) ends in a step_finish Part right before the CLI process exits
++        -- true for the orchestrator's own stream regardless of how many sub-agents
++        it spawned internally, since a sub-agent's failure surfaces back to the root
++        session before the CLI exits. Failures that skip it entirely -- a
++        provider-side error/connection-reset (session/processor.ts's halt(), which
++        emits a bare `{"type":"error",...}` instead) or an uncaught crash mid-turn --
++        are exactly what this needs to catch, so checking for "no step_finish at
++        all" is deliberately more general than matching one specific error shape
++        (e.g. a literal reason="error", which tracing opencode's own finish-reason
++        classifier shows a step_finish Part can essentially never carry).
 +
 +        Deliberately independent of _parse_stdout()/_convert_events_to_trajectory():
 +        this only needs to know whether to retry, not build the trajectory, and it
 +        runs inside run() -- before populate_context_post_run ever touches the file.
-+        opencode's CLI process exits right after this event, so it's always the last
-+        parseable line in opencode.txt when it occurs -- true for the orchestrator's
-+        own stream regardless of how many sub-agents it spawned internally, since a
-+        sub-agent's failure surfaces back to the root session before the CLI exits.
 +        """
 +        await self._sync_output_file(environment)
 +        output_path = self.logs_dir / self._OUTPUT_FILENAME
@@ -1366,11 +1383,11 @@ index 00000000..a8a54d08
 +                # OPENCODE_PRINT_LOGS=1 interleaves plain logfmt lines into this
 +                # same file; skip back past them to the last JSON event.
 +                continue
-+            return (
-+                event.get("type") == "step_finish"
-+                and event.get("part", {}).get("reason") == "error"
-+            )
-+        return False
++            return event.get("type") != "step_finish"
++        # No parseable JSON line found at all -- e.g. opencode crashed before
++        # emitting anything recognizable. That's exactly the "we lost everything"
++        # case this check exists to catch.
++        return True
 +
 +    async def _opencode_stopped_with_open_question(
 +        self, environment: BaseEnvironment
@@ -1421,7 +1438,10 @@ index 00000000..a8a54d08
 +        export_cmd: str,
 +    ) -> None:
 +        """Run one opencode invocation, always exporting SQLite trajectories and
-+        internal logs afterward -- even if Harbor's own timeout cancels mid-flight."""
++        internal logs afterward -- even if Harbor's own timeout cancels mid-flight,
++        or opencode's own sticky exit-code bug reports failure despite the session
++        having actually finished cleanly (see the NonZeroAgentExitCodeError branch
++        below and _opencode_run_incomplete's docstring)."""
 +        try:
 +            await self.exec_as_agent(environment, command=command, env=env)
 +        except asyncio.CancelledError:
@@ -1439,6 +1459,28 @@ index 00000000..a8a54d08
 +                if _task is not None:
 +                    _task.cancel()
 +            raise
++        except NonZeroAgentExitCodeError:
++            # opencode's CLI process can exit non-zero even after the session itself
++            # finished cleanly -- a mid-run error it fully recovered from (e.g. an
++            # auto-compacted ContextOverflowError, or the same on any spawned
++            # sub-agent that surfaced back to the root session) still sticks the
++            # final exit code at 1 no matter how the session actually ends. Before
++            # this branch existed, that exception propagated straight out of run()
++            # (this is the very first command run() executes, before the retry loop
++            # below even starts), so a fully successful run's raw_trajectory/ export
++            # and opencode-internal.log copy never happened, and the whole trial got
++            # marked a false-positive infra failure. Always export first -- this
++            # capture must happen regardless of what we decide next -- then use the
++            # exact same signal the retry loop already trusts
++            # (_opencode_run_incomplete: did the session actually end in a clean
++            # step_finish?) to tell a real failure from this false positive. A real
++            # failure re-raises here, unchanged from before this fix; a false
++            # positive is swallowed, and run()'s own retry loop -- which reads that
++            # same clean step_finish and finds nothing to do -- simply completes.
++            await self.exec_as_agent(environment, command=export_cmd, env={})
++            if await self._opencode_run_incomplete(environment):
++                raise
++            return
 +        # Normal completion: export runs after opencode finishes.
 +        await self.exec_as_agent(environment, command=export_cmd, env={})
 +
@@ -1524,14 +1566,15 @@ index 00000000..a8a54d08
 +        while True:
 +            if (
 +                attempts_errored < _MAX_CONTINUE_ATTEMPTS
-+                and await self._opencode_run_errored(environment)
++                and await self._opencode_run_incomplete(environment)
 +            ):
 +                attempts_errored += 1
 +                prompt = _CONTINUE_PROMPT
 +                self.logger.warning(
-+                    "opencode session ended with step_finish reason='error' (likely an "
-+                    "unretried provider-side error, e.g. a Fireworks rate limit -- see "
-+                    "_CONTINUE_PROMPT comment above); resuming via --continue, "
++                    "opencode session ended without a step_finish Part as the last "
++                    "event (likely an unretried provider-side error, a connection "
++                    "reset, or an uncaught crash -- see _opencode_run_incomplete/"
++                    "_CONTINUE_PROMPT comments above); resuming via --continue, "
 +                    f"attempt {attempts_errored}/{_MAX_CONTINUE_ATTEMPTS} after "
 +                    f"{_CONTINUE_BACKOFF_SEC}s backoff"
 +                )
@@ -2875,10 +2918,10 @@ index 00000000..1e4cb19b
 +        )
 diff --git a/src/harbor/agents/installed/swarmbench/single_opencode.py b/src/harbor/agents/installed/swarmbench/single_opencode.py
 new file mode 100644
-index 00000000..fe7d0279
+index 00000000..dafa8d66
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/single_opencode.py
-@@ -0,0 +1,871 @@
+@@ -0,0 +1,912 @@
 +import asyncio
 +import copy
 +import json
@@ -2889,7 +2932,10 @@ index 00000000..fe7d0279
 +from pathlib import Path
 +from typing import Any
 +
-+from harbor.agents.installed.base import BaseInstalledAgent
++from harbor.agents.installed.base import (
++    BaseInstalledAgent,
++    NonZeroAgentExitCodeError,
++)
 +from harbor.environments.base import BaseEnvironment
 +from harbor.models.agent.context import AgentContext
 +from harbor.models.agent.name import AgentName
@@ -2947,15 +2993,19 @@ index 00000000..fe7d0279
 +# opencode's retry.ts only retries an APIError when its statusCode >= 500 or the
 +# provider SDK explicitly marked it isRetryable=true. Neither @ai-sdk/openai nor
 +# @ai-sdk/openai-compatible (what Fireworks uses here, registered under the generic
-+# "openai" provider bucket) ever sets isRetryable for a 429 -- so a Fireworks rate
-+# limit is never retried by opencode itself: the session ends instantly with a
-+# step_finish reason="error" carrying zero tokens, and the CLI process exits cleanly
-+# with no error text on stdout/stderr (prompt.ts's finish-surfacing branch only
-+# handles "content-filter" and structured-output failures, not "error"). Since this
-+# can silently drop an entire trial's work after just one transient provider error,
-+# detect that exact signature after the run and resume the SAME opencode session via
-+# `run --continue` instead of losing everything.
-+_MAX_CONTINUE_ATTEMPTS = 2
++# "openai" provider bucket) ever sets isRetryable for a 429, and a mid-stream
++# provider failure (e.g. a Fireworks/upstream TCP connection reset) gets thrown as a
++# bare JS Error that opencode's own error classifier can't recognize as retryable
++# either -- so neither case is ever retried by opencode itself. Both end the CLI
++# process with no error text on stdout/stderr (prompt.ts's finish-surfacing branch
++# only handles "content-filter" and structured-output failures) and, critically,
++# WITHOUT ever emitting a step_finish Part for that turn -- confirmed by tracing
++# opencode's own event loop (cli/cmd/run.ts): these failures surface as a bare
++# `{"type":"error",...}` event instead. Since this can silently drop an entire
++# trial's work after just one transient provider error, detect "the run ended
++# without a clean step_finish" after the run and resume the SAME opencode session
++# via `run --continue` instead of losing everything (see _opencode_run_incomplete).
++_MAX_CONTINUE_ATTEMPTS = 4
 +_CONTINUE_BACKOFF_SEC = 30
 +
 +# This is a genuine infra-recovery resume, not a model decision -- resuming a session
@@ -3329,7 +3379,7 @@ index 00000000..fe7d0279
 +        environments (e.g. Daytona) only copy sandbox files to the host in
 +        trial.py's post-run _maybe_download_logs -- which runs after run()
 +        returns, too late for the retry checks below. Without this, every
-+        _opencode_run_errored/_opencode_stopped_with_open_question call sees
++        _opencode_run_incomplete/_opencode_stopped_with_open_question call sees
 +        a missing local file and silently returns False, permanently
 +        disabling both retry paths on non-mounted backends.
 +        """
@@ -3347,15 +3397,24 @@ index 00000000..fe7d0279
 +                exc_info=True,
 +            )
 +
-+    async def _opencode_run_errored(self, environment: BaseEnvironment) -> bool:
-+        """True if opencode's last emitted --format=json line was step_finish
-+        reason="error" (see _MAX_CONTINUE_ATTEMPTS comment above).
++    async def _opencode_run_incomplete(self, environment: BaseEnvironment) -> bool:
++        """True if opencode's CLI process exited without a step_finish Part as the
++        last emitted --format=json line (see _MAX_CONTINUE_ATTEMPTS comment above).
++
++        Every clean finish (reason="stop"/"length"/"content-filter" -- "tool-calls"/
++        "unknown" can't be the true last line, since those keep the internal step
++        loop running) ends in a step_finish Part right before the CLI process exits.
++        Failures that skip it entirely -- a provider-side error/connection-reset
++        (session/processor.ts's halt(), which emits a bare `{"type":"error",...}`
++        instead) or an uncaught crash mid-turn -- are exactly what this needs to
++        catch, so checking for "no step_finish at all" is deliberately more general
++        than matching one specific error shape (e.g. a literal reason="error", which
++        tracing opencode's own finish-reason classifier shows a step_finish Part can
++        essentially never carry).
 +
 +        Deliberately independent of _parse_stdout()/_convert_events_to_trajectory():
 +        this only needs to know whether to retry, not build the trajectory, and it
 +        runs inside run() -- before populate_context_post_run ever touches the file.
-+        opencode's CLI process exits right after this event, so it's always the last
-+        parseable line in opencode.txt when it occurs.
 +        """
 +        await self._sync_output_file(environment)
 +        output_path = self.logs_dir / self._OUTPUT_FILENAME
@@ -3375,11 +3434,11 @@ index 00000000..fe7d0279
 +                # OPENCODE_PRINT_LOGS=1 interleaves plain logfmt lines into this
 +                # same file; skip back past them to the last JSON event.
 +                continue
-+            return (
-+                event.get("type") == "step_finish"
-+                and event.get("part", {}).get("reason") == "error"
-+            )
-+        return False
++            return event.get("type") != "step_finish"
++        # No parseable JSON line found at all -- e.g. opencode crashed before
++        # emitting anything recognizable. That's exactly the "we lost everything"
++        # case this check exists to catch.
++        return True
 +
 +    async def _opencode_stopped_with_open_question(
 +        self, environment: BaseEnvironment
@@ -3428,7 +3487,10 @@ index 00000000..fe7d0279
 +        export_cmd: str,
 +    ) -> None:
 +        """Run one opencode invocation, always exporting SQLite trajectories and
-+        internal logs afterward -- even if Harbor's own timeout cancels mid-flight."""
++        internal logs afterward -- even if Harbor's own timeout cancels mid-flight,
++        or opencode's own sticky exit-code bug reports failure despite the session
++        having actually finished cleanly (see the NonZeroAgentExitCodeError branch
++        below and _opencode_run_incomplete's docstring)."""
 +        try:
 +            await self.exec_as_agent(environment, command=command, env=env)
 +        except asyncio.CancelledError:
@@ -3446,6 +3508,27 @@ index 00000000..fe7d0279
 +                if _task is not None:
 +                    _task.cancel()
 +            raise
++        except NonZeroAgentExitCodeError:
++            # opencode's CLI process can exit non-zero even after the session itself
++            # finished cleanly -- a mid-run error it fully recovered from (e.g. an
++            # auto-compacted ContextOverflowError) still sticks the final exit code
++            # at 1 no matter how the session actually ends. Before this branch
++            # existed, that exception propagated straight out of run() (this is
++            # the very first command run() executes, before the retry loop below
++            # even starts), so a fully successful run's raw_trajectory/ export and
++            # opencode-internal.log copy never happened, and the whole trial got
++            # marked a false-positive infra failure. Always export first -- this
++            # capture must happen regardless of what we decide next -- then use
++            # the exact same signal the retry loop already trusts
++            # (_opencode_run_incomplete: did the session actually end in a clean
++            # step_finish?) to tell a real failure from this false positive. A real
++            # failure re-raises here, unchanged from before this fix; a false
++            # positive is swallowed, and run()'s own retry loop -- which reads that
++            # same clean step_finish and finds nothing to do -- simply completes.
++            await self.exec_as_agent(environment, command=export_cmd, env={})
++            if await self._opencode_run_incomplete(environment):
++                raise
++            return
 +        # Normal completion: export runs after opencode finishes.
 +        await self.exec_as_agent(environment, command=export_cmd, env={})
 +
@@ -3712,14 +3795,15 @@ index 00000000..fe7d0279
 +        while True:
 +            if (
 +                attempts_errored < _MAX_CONTINUE_ATTEMPTS
-+                and await self._opencode_run_errored(environment)
++                and await self._opencode_run_incomplete(environment)
 +            ):
 +                attempts_errored += 1
 +                prompt = _CONTINUE_PROMPT
 +                self.logger.warning(
-+                    "opencode session ended with step_finish reason='error' (likely an "
-+                    "unretried provider-side error, e.g. a Fireworks rate limit -- see "
-+                    "_CONTINUE_PROMPT comment above); resuming via --continue, "
++                    "opencode session ended without a step_finish Part as the last "
++                    "event (likely an unretried provider-side error, a connection "
++                    "reset, or an uncaught crash -- see _opencode_run_incomplete/"
++                    "_CONTINUE_PROMPT comments above); resuming via --continue, "
 +                    f"attempt {attempts_errored}/{_MAX_CONTINUE_ATTEMPTS} after "
 +                    f"{_CONTINUE_BACKOFF_SEC}s backoff"
 +                )
