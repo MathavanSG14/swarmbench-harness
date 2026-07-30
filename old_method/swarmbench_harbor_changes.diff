@@ -675,10 +675,10 @@ index 00000000..3ac00b4d
 \ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/multi_opencode.py b/src/harbor/agents/installed/swarmbench/multi_opencode.py
 new file mode 100644
-index 00000000..3d82ca2e
+index 00000000..93c2dcb4
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/multi_opencode.py
-@@ -0,0 +1,1123 @@
+@@ -0,0 +1,1134 @@
 +import asyncio
 +import copy
 +import json
@@ -908,6 +908,8 @@ index 00000000..3d82ca2e
 +    - Loads coordination prompt based on task.toml coordination_pattern
 +    - Writes permission: allow-task to opencode.json (enables sub-agent spawning)
 +    - Adds Fireworks as a supported provider (mapped to openai-compatible)
++    - Adds Moonshot AI (Kimi) as a supported provider (a first-class
++      models.dev catalog entry -- no remapping needed)
 +    - Uploads instruction via file to avoid the Windows 32 767-char CLI limit
 +    - Exports SQLite trajectories (orchestrator + all sub-agents) post-run
 +    """
@@ -1020,6 +1022,15 @@ index 00000000..3d82ca2e
 +            fw_key = os.environ.get("FIREWORKS_API_KEY")
 +            if fw_key:
 +                env["OPENAI_API_KEY"] = fw_key
++        elif provider == "moonshotai":
++            # Moonshot AI (Kimi) is a first-class models.dev catalog provider --
++            # unlike Fireworks' account deployments, no baseURL/context-limit
++            # override or generic "openai" bucket remap is needed; opencode's
++            # own catalog entry already has the correct base URL + limits, and
++            # expects the key under this exact env var name.
++            mk_key = os.environ.get("MOONSHOT_API_KEY")
++            if mk_key:
++                env["MOONSHOT_API_KEY"] = mk_key
 +        elif provider == "github-copilot":
 +            keys.append("GITHUB_TOKEN")
 +        elif provider == "google":
@@ -2931,10 +2942,10 @@ index 00000000..1e4cb19b
 +        )
 diff --git a/src/harbor/agents/installed/swarmbench/single_opencode.py b/src/harbor/agents/installed/swarmbench/single_opencode.py
 new file mode 100644
-index 00000000..ca9746cd
+index 00000000..62654513
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/single_opencode.py
-@@ -0,0 +1,925 @@
+@@ -0,0 +1,936 @@
 +import asyncio
 +import copy
 +import json
@@ -3132,6 +3143,8 @@ index 00000000..ca9746cd
 +    - Prepends single_agent.md system prompt to the instruction
 +    - Writes permission: deny-task to opencode.json (blocks sub-agent spawning)
 +    - Adds Fireworks as a supported provider (mapped to openai-compatible)
++    - Adds Moonshot AI (Kimi) as a supported provider (a first-class
++      models.dev catalog entry -- no remapping needed)
 +    - Uploads instruction via file to avoid the Windows 32 767-char CLI limit
 +    - Exports SQLite trajectories to /logs/agent/raw_trajectory/ post-run
 +    """
@@ -3215,6 +3228,15 @@ index 00000000..ca9746cd
 +            fw_key = os.environ.get("FIREWORKS_API_KEY")
 +            if fw_key:
 +                env["OPENAI_API_KEY"] = fw_key
++        elif provider == "moonshotai":
++            # Moonshot AI (Kimi) is a first-class models.dev catalog provider --
++            # unlike Fireworks' account deployments, no baseURL/context-limit
++            # override or generic "openai" bucket remap is needed; opencode's
++            # own catalog entry already has the correct base URL + limits, and
++            # expects the key under this exact env var name.
++            mk_key = os.environ.get("MOONSHOT_API_KEY")
++            if mk_key:
++                env["MOONSHOT_API_KEY"] = mk_key
 +        elif provider == "github-copilot":
 +            keys.append("GITHUB_TOKEN")
 +        elif provider == "google":
