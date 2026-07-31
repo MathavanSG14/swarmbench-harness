@@ -675,10 +675,10 @@ index 00000000..3ac00b4d
 \ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/multi_opencode.py b/src/harbor/agents/installed/swarmbench/multi_opencode.py
 new file mode 100644
-index 00000000..93c2dcb4
+index 00000000..1e76e1a8
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/multi_opencode.py
-@@ -0,0 +1,1134 @@
+@@ -0,0 +1,1219 @@
 +import asyncio
 +import copy
 +import json
@@ -745,6 +745,21 @@ index 00000000..93c2dcb4
 +    "accounts/fireworks/models/kimi-k2p5": 262144,
 +    "accounts/fireworks/models/kimi-k2p6": 262144,
 +    "accounts/fireworks/models/kimi-k2p7-code": 262144,
++}
++
++_WANDB_BASE_URL = "https://api.inference.wandb.ai/v1"
++
++# W&B Inference (CoreWeave-hosted) has no models.dev catalog entry either -- same
++# provider.ts limit.context=0/no-compaction problem as Fireworks above, so this
++# needs the same explicit override. Unlike _FIREWORKS_OUTPUT_TOKEN_MAX (a
++# fractional cap specific to Fireworks' documented shared input/output pool),
++# this model's real models.dev catalog entry (moonshotai/kimi-k2.6, used by the
++# direct Moonshot provider branch below) declares output == context == 262000 --
++# verified directly against models.dev/api.json, not assumed -- and that exact
++# catalog entry runs in production today via the "moonshotai" branch with no
++# compaction issues, so both limits use the same value here too.
++_WANDB_MODEL_LIMITS: dict[str, int] = {
++    "moonshotai/Kimi-K2.6": 262144,
 +}
 +
 +# opencode's retry.ts only retries an APIError when its statusCode >= 500 or the
@@ -907,9 +922,14 @@ index 00000000..93c2dcb4
 +    - Reads decomposition.yaml from task dir and injects into instruction
 +    - Loads coordination prompt based on task.toml coordination_pattern
 +    - Writes permission: allow-task to opencode.json (enables sub-agent spawning)
-+    - Adds Fireworks as a supported provider (mapped to openai-compatible)
++    - Adds Fireworks as a supported provider (own custom provider ID, using
++      the @ai-sdk/openai-compatible SDK -- NOT opencode's built-in "openai"
++      provider ID, which hardcodes the Responses API; see
++      _effective_provider_and_model's docstring)
 +    - Adds Moonshot AI (Kimi) as a supported provider (a first-class
-+      models.dev catalog entry -- no remapping needed)
++      models.dev catalog entry -- no custom provider registration needed)
++    - Adds W&B Inference (CoreWeave-hosted Kimi) as a supported provider
++      (same own-custom-provider-ID treatment as Fireworks)
 +    - Uploads instruction via file to avoid the Windows 32 767-char CLI limit
 +    - Exports SQLite trajectories (orchestrator + all sub-agents) post-run
 +    """
@@ -1018,10 +1038,14 @@ index 00000000..93c2dcb4
 +        elif provider == "deepseek":
 +            keys.append("DEEPSEEK_API_KEY")
 +        elif provider == "fireworks_ai":
-+            # Fireworks is openai-compatible; surfaced as OPENAI_API_KEY in the container
++            # Forwarded under its own name -- NOT remapped to OPENAI_API_KEY.
++            # See _effective_provider_and_model's docstring: remapping to
++            # opencode's literal "openai" provider ID forces every call through
++            # the Responses API regardless of baseURL, which 3rd-party
++            # Chat-Completions-only backends (Fireworks included) 404 on.
 +            fw_key = os.environ.get("FIREWORKS_API_KEY")
 +            if fw_key:
-+                env["OPENAI_API_KEY"] = fw_key
++                env["FIREWORKS_API_KEY"] = fw_key
 +        elif provider == "moonshotai":
 +            # Moonshot AI (Kimi) is a first-class models.dev catalog provider --
 +            # unlike Fireworks' account deployments, no baseURL/context-limit
@@ -1031,6 +1055,14 @@ index 00000000..93c2dcb4
 +            mk_key = os.environ.get("MOONSHOT_API_KEY")
 +            if mk_key:
 +                env["MOONSHOT_API_KEY"] = mk_key
++        elif provider == "wandb":
++            # W&B (Weights & Biases) Serverless Inference, CoreWeave-hosted --
++            # like Fireworks, this has no models.dev catalog entry, so it's
++            # remapped to the generic "openai" bucket with an explicit baseURL
++            # + context-limit override (see _build_register_config_command).
++            wb_key = os.environ.get("WANDB_API_KEY")
++            if wb_key:
++                env["OPENAI_API_KEY"] = wb_key
 +        elif provider == "github-copilot":
 +            keys.append("GITHUB_TOKEN")
 +        elif provider == "google":
@@ -1083,12 +1115,26 @@ index 00000000..93c2dcb4
 +        return env
 +
 +    def _effective_provider_and_model(self) -> tuple[str, str] | None:
-+        """Return (opencode_provider, model_id), remapping fireworks_ai → openai."""
++        """Return (opencode_provider, model_id) unchanged -- no remapping.
++
++        fireworks_ai/wandb used to be remapped to opencode's literal "openai"
++        provider ID here, to reuse its baseURL-override support. That was
++        wrong: provider.ts's custom() dispatch table hardcodes ANY model
++        registered under literal ID "openai" to sdk.responses(modelID) -- the
++        Responses API -- unconditionally, regardless of baseURL. Fireworks/W&B
++        (like virtually every "OpenAI-compatible" 3rd party -- W&B's backend
++        is vLLM, confirmed via its system_fingerprint) only implement Chat
++        Completions, so that forced route 404s -- confirmed live against W&B:
++        the same key succeeds via curl to /v1/chat/completions but 404s on
++        /v1/responses. Registering these under their own custom provider ID
++        instead (see _build_register_config_command's npm/env/baseURL/limit
++        declarations) falls through to opencode's correct
++        @ai-sdk/openai-compatible default and avoids that hardcoded rule
++        entirely.
++        """
 +        if not self.model_name or "/" not in self.model_name:
 +            return None
 +        provider, model_id = self.model_name.split("/", 1)
-+        if provider == "fireworks_ai":
-+            return "openai", model_id
 +        return provider, model_id
 +
 +    def _effective_model_flag(self) -> str:
@@ -1125,6 +1171,16 @@ index 00000000..93c2dcb4
 +            provider_config: dict[str, Any] = {"models": {model_id: {}}}
 +            orig_provider = (self.model_name or "").split("/", 1)[0]
 +            if orig_provider == "fireworks_ai":
++                # Registered under our own custom provider ID ("fireworks_ai",
++                # not opencode's literal "openai") -- see
++                # _effective_provider_and_model's docstring for why. npm/env
++                # here make opencode treat this like any other config-declared
++                # provider: @ai-sdk/openai-compatible (proper Chat
++                # Completions), API key auto-discovered from the declared env
++                # var (forwarded by _build_env()) exactly like moonshotai's
++                # real catalog entry already does.
++                provider_config["npm"] = "@ai-sdk/openai-compatible"
++                provider_config["env"] = ["FIREWORKS_API_KEY"]
 +                provider_config.setdefault("options", {})["baseURL"] = (
 +                    _FIREWORKS_BASE_URL
 +                )
@@ -1134,6 +1190,18 @@ index 00000000..93c2dcb4
 +                        "context": context_limit,
 +                        "output": _FIREWORKS_OUTPUT_TOKEN_MAX,
 +                    }
++            elif orig_provider == "wandb":
++                # Same npm/env treatment as fireworks_ai above -- see
++                # _effective_provider_and_model's docstring.
++                provider_config["npm"] = "@ai-sdk/openai-compatible"
++                provider_config["env"] = ["WANDB_API_KEY"]
++                provider_config.setdefault("options", {})["baseURL"] = _WANDB_BASE_URL
++                limit = _WANDB_MODEL_LIMITS.get(model_id)
++                if limit:
++                    provider_config["models"][model_id]["limit"] = {
++                        "context": limit,
++                        "output": limit,
++                    }
 +            elif orig_provider == "openai":
 +                base_url = os.environ.get("OPENAI_BASE_URL")
 +                if base_url:
@@ -1141,14 +1209,12 @@ index 00000000..93c2dcb4
 +            config["provider"] = {oc_provider: provider_config}
 +            # Without this, opencode's background "title"/"summary" agents (which have
 +            # no explicit model configured) fall back to Provider.getSmallModel(oc_provider).
-+            # Since Fireworks/custom models get registered under the built-in "openai"
-+            # provider bucket above, that bucket still carries the full models.dev catalog
-+            # for "openai" (gpt-5, gpt-5.4-nano, ...) merged alongside our model -- and
-+            # getSmallModel() picks the newest "gpt-nano"-family entry from that catalog,
-+            # not our model. That model isn't actually reachable through the
-+            # Fireworks/custom baseURL, so the title-generation call 404s with
-+            # "Model not found, inaccessible, and/or not deployed". Setting small_model
-+            # explicitly short-circuits that catalog scan (see provider.ts's
++            # Now that Fireworks/W&B are registered under their own custom provider ID
++            # (not opencode's built-in "openai" bucket -- see
++            # _effective_provider_and_model's docstring), that bucket has no models.dev
++            # catalog merged in, so this specific gpt-5/gpt-nano collision can no longer
++            # happen. Still set explicitly as defense-in-depth: it avoids relying on
++            # getSmallModel()'s bucket-scan heuristic at all (see provider.ts's
 +            # Provider.getSmallModel: `if (cfg.small_model) { ... }`).
 +            config["small_model"] = self._effective_model_flag()
 +
@@ -1484,26 +1550,29 @@ index 00000000..93c2dcb4
 +                    _task.cancel()
 +            raise
 +        except NonZeroAgentExitCodeError:
-+            # opencode's CLI process can exit non-zero even after the session itself
-+            # finished cleanly -- a mid-run error it fully recovered from (e.g. an
-+            # auto-compacted ContextOverflowError, or the same on any spawned
-+            # sub-agent that surfaced back to the root session) still sticks the
-+            # final exit code at 1 no matter how the session actually ends. Before
-+            # this branch existed, that exception propagated straight out of run()
-+            # (this is the very first command run() executes, before the retry loop
-+            # below even starts), so a fully successful run's raw_trajectory/ export
-+            # and opencode-internal.log copy never happened, and the whole trial got
-+            # marked a false-positive infra failure. Always export first -- this
-+            # capture must happen regardless of what we decide next -- then use the
-+            # exact same signal the retry loop already trusts
-+            # (_opencode_run_incomplete: did the session actually end in a clean
-+            # step_finish?) to tell a real failure from this false positive. A real
-+            # failure re-raises here, unchanged from before this fix; a false
-+            # positive is swallowed, and run()'s own retry loop -- which reads that
-+            # same clean step_finish and finds nothing to do -- simply completes.
++            # opencode's CLI process can exit non-zero for two very different reasons:
++            # (a) a mid-run error it fully recovered from (e.g. an auto-compacted
++            # ContextOverflowError, or the same on any spawned sub-agent that surfaced
++            # back to the root session) still sticks the final exit code at 1 no
++            # matter how the session actually ends -- a false positive; or (b) a
++            # genuine, unrecovered failure (rate limit, connection reset, a
++            # provider-side 400 like Moonshot's "message ... must not be empty", an
++            # uncaught compaction crash, etc). Always export first -- this capture
++            # must happen regardless of which case this is -- then always swallow and
++            # return here rather than deciding case (a) vs (b) on the spot. That
++            # decision now belongs solely to run()'s own retry loop, via the exact
++            # same _opencode_run_incomplete signal: a false positive reads back as a
++            # clean step_finish and the loop finds nothing to do; a genuine failure
++            # reads back as incomplete and the loop retries it via --continue, up to
++            # _MAX_CONTINUE_ATTEMPTS times, before finally raising if it's still
++            # incomplete once those are exhausted (see the check right after the loop
++            # in run()). Previously this branch raised immediately for case (b) -- but
++            # that raise happened on the very first command run() executes, before
++            # the retry loop even starts (and, for a failure on a later --continue
++            # attempt, before the loop's own next check could run either) -- so
++            # genuine failures got zero retries instead of the up-to-
++            # _MAX_CONTINUE_ATTEMPTS the loop was built to give them.
 +            await self.exec_as_agent(environment, command=export_cmd, env={})
-+            if await self._opencode_run_incomplete(environment):
-+                raise
 +            return
 +        # Normal completion: export runs after opencode finishes.
 +        await self.exec_as_agent(environment, command=export_cmd, env={})
@@ -1629,6 +1698,22 @@ index 00000000..93c2dcb4
 +                f"2>&1 </dev/null | stdbuf -oL tee -a /logs/agent/{_OUTPUT_FILENAME}"
 +            )
 +            await self._exec_opencode(environment, continue_command, env, _export_cmd)
++
++        # attempts_errored only reaches _MAX_CONTINUE_ATTEMPTS when the loop's own
++        # incomplete-check kept firing True on every retry -- i.e. the session is
++        # still broken after every --continue attempt was spent. Re-check once more
++        # (cheap: just re-reads opencode.txt) and raise here so a genuinely
++        # unrecoverable run still surfaces as NonZeroAgentExitCodeError / a
++        # job-level-retry-eligible infra failure, instead of silently falling
++        # through to the verifier scoring whatever partial trajectory is left.
++        if (
++            attempts_errored >= _MAX_CONTINUE_ATTEMPTS
++            and await self._opencode_run_incomplete(environment)
++        ):
++            raise NonZeroAgentExitCodeError(
++                f"opencode session never reached a clean step_finish after "
++                f"{attempts_errored} --continue retry attempt(s); giving up."
++            )
 +
 +    def _parse_stdout(self) -> list[dict[str, Any]]:
 +        output_path = self.logs_dir / self._OUTPUT_FILENAME
@@ -2942,10 +3027,10 @@ index 00000000..1e4cb19b
 +        )
 diff --git a/src/harbor/agents/installed/swarmbench/single_opencode.py b/src/harbor/agents/installed/swarmbench/single_opencode.py
 new file mode 100644
-index 00000000..62654513
+index 00000000..f2cfaa25
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/single_opencode.py
-@@ -0,0 +1,936 @@
+@@ -0,0 +1,1030 @@
 +import asyncio
 +import copy
 +import json
@@ -3012,6 +3097,21 @@ index 00000000..62654513
 +    "accounts/fireworks/models/kimi-k2p5": 262144,
 +    "accounts/fireworks/models/kimi-k2p6": 262144,
 +    "accounts/fireworks/models/kimi-k2p7-code": 262144,
++}
++
++_WANDB_BASE_URL = "https://api.inference.wandb.ai/v1"
++
++# W&B Inference (CoreWeave-hosted) has no models.dev catalog entry either -- same
++# provider.ts limit.context=0/no-compaction problem as Fireworks above, so this
++# needs the same explicit override. Unlike _FIREWORKS_OUTPUT_TOKEN_MAX (a
++# fractional cap specific to Fireworks' documented shared input/output pool),
++# this model's real models.dev catalog entry (moonshotai/kimi-k2.6, used by the
++# direct Moonshot provider branch below) declares output == context == 262000 --
++# verified directly against models.dev/api.json, not assumed -- and that exact
++# catalog entry runs in production today via the "moonshotai" branch with no
++# compaction issues, so both limits use the same value here too.
++_WANDB_MODEL_LIMITS: dict[str, int] = {
++    "moonshotai/Kimi-K2.6": 262144,
 +}
 +
 +# opencode's retry.ts only retries an APIError when its statusCode >= 500 or the
@@ -3142,9 +3242,14 @@ index 00000000..62654513
 +    Identical to the standard OpenCode agent but:
 +    - Prepends single_agent.md system prompt to the instruction
 +    - Writes permission: deny-task to opencode.json (blocks sub-agent spawning)
-+    - Adds Fireworks as a supported provider (mapped to openai-compatible)
++    - Adds Fireworks as a supported provider (own custom provider ID, using
++      the @ai-sdk/openai-compatible SDK -- NOT opencode's built-in "openai"
++      provider ID, which hardcodes the Responses API; see
++      _effective_provider_and_model's docstring)
 +    - Adds Moonshot AI (Kimi) as a supported provider (a first-class
-+      models.dev catalog entry -- no remapping needed)
++      models.dev catalog entry -- no custom provider registration needed)
++    - Adds W&B Inference (CoreWeave-hosted Kimi) as a supported provider
++      (same own-custom-provider-ID treatment as Fireworks)
 +    - Uploads instruction via file to avoid the Windows 32 767-char CLI limit
 +    - Exports SQLite trajectories to /logs/agent/raw_trajectory/ post-run
 +    """
@@ -3224,10 +3329,14 @@ index 00000000..62654513
 +        elif provider == "deepseek":
 +            keys.append("DEEPSEEK_API_KEY")
 +        elif provider == "fireworks_ai":
-+            # Fireworks is openai-compatible; surfaced as OPENAI_API_KEY in the container
++            # Forwarded under its own name -- NOT remapped to OPENAI_API_KEY.
++            # See _effective_provider_and_model's docstring: remapping to
++            # opencode's literal "openai" provider ID forces every call through
++            # the Responses API regardless of baseURL, which 3rd-party
++            # Chat-Completions-only backends (Fireworks included) 404 on.
 +            fw_key = os.environ.get("FIREWORKS_API_KEY")
 +            if fw_key:
-+                env["OPENAI_API_KEY"] = fw_key
++                env["FIREWORKS_API_KEY"] = fw_key
 +        elif provider == "moonshotai":
 +            # Moonshot AI (Kimi) is a first-class models.dev catalog provider --
 +            # unlike Fireworks' account deployments, no baseURL/context-limit
@@ -3237,6 +3346,24 @@ index 00000000..62654513
 +            mk_key = os.environ.get("MOONSHOT_API_KEY")
 +            if mk_key:
 +                env["MOONSHOT_API_KEY"] = mk_key
++        elif provider == "wandb":
++            # W&B (Weights & Biases) Serverless Inference, CoreWeave-hosted,
++            # vLLM-backed (confirmed via a live response's
++            # system_fingerprint="vllm-..."). Forwarded under its own name --
++            # NOT remapped to OPENAI_API_KEY. Registering this as opencode's
++            # literal "openai" provider ID was tried first and confirmed
++            # broken: that ID has a hardcoded opencode dispatch rule forcing
++            # every call through the Responses API (sdk.responses(modelID))
++            # regardless of baseURL, and W&B's vLLM backend only implements
++            # Chat Completions -- confirmed live: a raw curl to
++            # /v1/chat/completions with this exact key returned HTTP 200, but
++            # /v1/responses returned 404 "resource was not found". Registering
++            # under our own custom provider ID ("wandb", declared with its own
++            # npm/env in _build_register_config_command) avoids that hardcoded
++            # rule and uses the correct Chat-Completions-speaking SDK.
++            wb_key = os.environ.get("WANDB_API_KEY")
++            if wb_key:
++                env["WANDB_API_KEY"] = wb_key
 +        elif provider == "github-copilot":
 +            keys.append("GITHUB_TOKEN")
 +        elif provider == "google":
@@ -3289,12 +3416,26 @@ index 00000000..62654513
 +        return env
 +
 +    def _effective_provider_and_model(self) -> tuple[str, str] | None:
-+        """Return (opencode_provider, model_id), remapping fireworks_ai → openai."""
++        """Return (opencode_provider, model_id) unchanged -- no remapping.
++
++        fireworks_ai/wandb used to be remapped to opencode's literal "openai"
++        provider ID here, to reuse its baseURL-override support. That was
++        wrong: provider.ts's custom() dispatch table hardcodes ANY model
++        registered under literal ID "openai" to sdk.responses(modelID) -- the
++        Responses API -- unconditionally, regardless of baseURL. Fireworks/W&B
++        (like virtually every "OpenAI-compatible" 3rd party -- W&B's backend
++        is vLLM, confirmed via its system_fingerprint) only implement Chat
++        Completions, so that forced route 404s -- confirmed live against W&B:
++        the same key succeeds via curl to /v1/chat/completions but 404s on
++        /v1/responses. Registering these under their own custom provider ID
++        instead (see _build_register_config_command's npm/env/baseURL/limit
++        declarations) falls through to opencode's correct
++        @ai-sdk/openai-compatible default and avoids that hardcoded rule
++        entirely.
++        """
 +        if not self.model_name or "/" not in self.model_name:
 +            return None
 +        provider, model_id = self.model_name.split("/", 1)
-+        if provider == "fireworks_ai":
-+            return "openai", model_id
 +        return provider, model_id
 +
 +    def _effective_model_flag(self) -> str:
@@ -3331,6 +3472,16 @@ index 00000000..62654513
 +            provider_config: dict[str, Any] = {"models": {model_id: {}}}
 +            orig_provider = (self.model_name or "").split("/", 1)[0]
 +            if orig_provider == "fireworks_ai":
++                # Registered under our own custom provider ID ("fireworks_ai",
++                # not opencode's literal "openai") -- see
++                # _effective_provider_and_model's docstring for why. npm/env
++                # here make opencode treat this like any other config-declared
++                # provider: @ai-sdk/openai-compatible (proper Chat
++                # Completions), API key auto-discovered from the declared env
++                # var (forwarded by _build_env()) exactly like moonshotai's
++                # real catalog entry already does.
++                provider_config["npm"] = "@ai-sdk/openai-compatible"
++                provider_config["env"] = ["FIREWORKS_API_KEY"]
 +                provider_config.setdefault("options", {})["baseURL"] = (
 +                    _FIREWORKS_BASE_URL
 +                )
@@ -3340,6 +3491,18 @@ index 00000000..62654513
 +                        "context": context_limit,
 +                        "output": _FIREWORKS_OUTPUT_TOKEN_MAX,
 +                    }
++            elif orig_provider == "wandb":
++                # Same npm/env treatment as fireworks_ai above -- see
++                # _effective_provider_and_model's docstring.
++                provider_config["npm"] = "@ai-sdk/openai-compatible"
++                provider_config["env"] = ["WANDB_API_KEY"]
++                provider_config.setdefault("options", {})["baseURL"] = _WANDB_BASE_URL
++                limit = _WANDB_MODEL_LIMITS.get(model_id)
++                if limit:
++                    provider_config["models"][model_id]["limit"] = {
++                        "context": limit,
++                        "output": limit,
++                    }
 +            elif orig_provider == "openai":
 +                base_url = os.environ.get("OPENAI_BASE_URL")
 +                if base_url:
@@ -3347,14 +3510,12 @@ index 00000000..62654513
 +            config["provider"] = {oc_provider: provider_config}
 +            # Without this, opencode's background "title"/"summary" agents (which have
 +            # no explicit model configured) fall back to Provider.getSmallModel(oc_provider).
-+            # Since Fireworks/custom models get registered under the built-in "openai"
-+            # provider bucket above, that bucket still carries the full models.dev catalog
-+            # for "openai" (gpt-5, gpt-5.4-nano, ...) merged alongside our model -- and
-+            # getSmallModel() picks the newest "gpt-nano"-family entry from that catalog,
-+            # not our model. That model isn't actually reachable through the
-+            # Fireworks/custom baseURL, so the title-generation call 404s with
-+            # "Model not found, inaccessible, and/or not deployed". Setting small_model
-+            # explicitly short-circuits that catalog scan (see provider.ts's
++            # Now that Fireworks/W&B are registered under their own custom provider ID
++            # (not opencode's built-in "openai" bucket -- see
++            # _effective_provider_and_model's docstring), that bucket has no models.dev
++            # catalog merged in, so this specific gpt-5/gpt-nano collision can no longer
++            # happen. Still set explicitly as defense-in-depth: it avoids relying on
++            # getSmallModel()'s bucket-scan heuristic at all (see provider.ts's
 +            # Provider.getSmallModel: `if (cfg.small_model) { ... }`).
 +            config["small_model"] = self._effective_model_flag()
 +
@@ -3557,25 +3718,27 @@ index 00000000..62654513
 +                    _task.cancel()
 +            raise
 +        except NonZeroAgentExitCodeError:
-+            # opencode's CLI process can exit non-zero even after the session itself
-+            # finished cleanly -- a mid-run error it fully recovered from (e.g. an
-+            # auto-compacted ContextOverflowError) still sticks the final exit code
-+            # at 1 no matter how the session actually ends. Before this branch
-+            # existed, that exception propagated straight out of run() (this is
-+            # the very first command run() executes, before the retry loop below
-+            # even starts), so a fully successful run's raw_trajectory/ export and
-+            # opencode-internal.log copy never happened, and the whole trial got
-+            # marked a false-positive infra failure. Always export first -- this
-+            # capture must happen regardless of what we decide next -- then use
-+            # the exact same signal the retry loop already trusts
-+            # (_opencode_run_incomplete: did the session actually end in a clean
-+            # step_finish?) to tell a real failure from this false positive. A real
-+            # failure re-raises here, unchanged from before this fix; a false
-+            # positive is swallowed, and run()'s own retry loop -- which reads that
-+            # same clean step_finish and finds nothing to do -- simply completes.
++            # opencode's CLI process can exit non-zero for two very different reasons:
++            # (a) a mid-run error it fully recovered from (e.g. an auto-compacted
++            # ContextOverflowError) still sticks the final exit code at 1 no matter
++            # how the session actually ends -- a false positive; or (b) a genuine,
++            # unrecovered failure (rate limit, connection reset, a provider-side 400
++            # like Moonshot's "message ... must not be empty", an uncaught compaction
++            # crash, etc). Always export first -- this capture must happen regardless
++            # of which case this is -- then always swallow and return here rather than
++            # deciding case (a) vs (b) on the spot. That decision now belongs solely to
++            # run()'s own retry loop, via the exact same _opencode_run_incomplete signal:
++            # a false positive reads back as a clean step_finish and the loop finds
++            # nothing to do; a genuine failure reads back as incomplete and the loop
++            # retries it via --continue, up to _MAX_CONTINUE_ATTEMPTS times, before
++            # finally raising if it's still incomplete once those are exhausted (see
++            # the check right after the loop in run()). Previously this branch raised
++            # immediately for case (b) -- but that raise happened on the very first
++            # command run() executes, before the retry loop even starts (and, for a
++            # failure on a later --continue attempt, before the loop's own next check
++            # could run either) -- so genuine failures got zero retries instead of the
++            # up-to-_MAX_CONTINUE_ATTEMPTS the loop was built to give them.
 +            await self.exec_as_agent(environment, command=export_cmd, env={})
-+            if await self._opencode_run_incomplete(environment):
-+                raise
 +            return
 +        # Normal completion: export runs after opencode finishes.
 +        await self.exec_as_agent(environment, command=export_cmd, env={})
@@ -3882,6 +4045,22 @@ index 00000000..62654513
 +                f"2>&1 </dev/null | stdbuf -oL tee -a /logs/agent/{_OUTPUT_FILENAME}"
 +            )
 +            await self._exec_opencode(environment, continue_command, env, _export_cmd)
++
++        # attempts_errored only reaches _MAX_CONTINUE_ATTEMPTS when the loop's own
++        # incomplete-check kept firing True on every retry -- i.e. the session is
++        # still broken after every --continue attempt was spent. Re-check once more
++        # (cheap: just re-reads opencode.txt) and raise here so a genuinely
++        # unrecoverable run still surfaces as NonZeroAgentExitCodeError / a
++        # job-level-retry-eligible infra failure, instead of silently falling
++        # through to the verifier scoring whatever partial trajectory is left.
++        if (
++            attempts_errored >= _MAX_CONTINUE_ATTEMPTS
++            and await self._opencode_run_incomplete(environment)
++        ):
++            raise NonZeroAgentExitCodeError(
++                f"opencode session never reached a clean step_finish after "
++                f"{attempts_errored} --continue retry attempt(s); giving up."
++            )
 diff --git a/src/harbor/environments/base.py b/src/harbor/environments/base.py
 index 04c934ce..43ad7572 100644
 --- a/src/harbor/environments/base.py
