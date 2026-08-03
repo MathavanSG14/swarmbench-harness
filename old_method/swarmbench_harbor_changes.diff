@@ -675,10 +675,10 @@ index 00000000..3ac00b4d
 \ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/multi_opencode.py b/src/harbor/agents/installed/swarmbench/multi_opencode.py
 new file mode 100644
-index 00000000..1e76e1a8
+index 00000000..aa480943
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/multi_opencode.py
-@@ -0,0 +1,1219 @@
+@@ -0,0 +1,1232 @@
 +import asyncio
 +import copy
 +import json
@@ -1195,7 +1195,20 @@ index 00000000..1e76e1a8
 +                # _effective_provider_and_model's docstring.
 +                provider_config["npm"] = "@ai-sdk/openai-compatible"
 +                provider_config["env"] = ["WANDB_API_KEY"]
-+                provider_config.setdefault("options", {})["baseURL"] = _WANDB_BASE_URL
++                options = provider_config.setdefault("options", {})
++                options["baseURL"] = _WANDB_BASE_URL
++                # W&B's own docs show `project=` passed to the official openai
++                # Python SDK's client constructor for "Team and project for
++                # usage tracking" -- tracing that SDK's source shows this is
++                # just sugar for an OpenAI-Project HTTP header, not a special
++                # API concept. @ai-sdk/openai-compatible has no dedicated
++                # "project" field, but it does forward arbitrary `headers`, so
++                # this reproduces the exact same header the Python SDK would
++                # send. Purely for W&B's dashboard usage attribution -- not
++                # required for requests to succeed.
++                options["headers"] = {
++                    "OpenAI-Project": "meta-hopfield/multi-agent-swarm"
++                }
 +                limit = _WANDB_MODEL_LIMITS.get(model_id)
 +                if limit:
 +                    provider_config["models"][model_id]["limit"] = {
@@ -3027,10 +3040,10 @@ index 00000000..1e4cb19b
 +        )
 diff --git a/src/harbor/agents/installed/swarmbench/single_opencode.py b/src/harbor/agents/installed/swarmbench/single_opencode.py
 new file mode 100644
-index 00000000..f2cfaa25
+index 00000000..fbbbbb2c
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/single_opencode.py
-@@ -0,0 +1,1030 @@
+@@ -0,0 +1,1043 @@
 +import asyncio
 +import copy
 +import json
@@ -3496,7 +3509,20 @@ index 00000000..f2cfaa25
 +                # _effective_provider_and_model's docstring.
 +                provider_config["npm"] = "@ai-sdk/openai-compatible"
 +                provider_config["env"] = ["WANDB_API_KEY"]
-+                provider_config.setdefault("options", {})["baseURL"] = _WANDB_BASE_URL
++                options = provider_config.setdefault("options", {})
++                options["baseURL"] = _WANDB_BASE_URL
++                # W&B's own docs show `project=` passed to the official openai
++                # Python SDK's client constructor for "Team and project for
++                # usage tracking" -- tracing that SDK's source shows this is
++                # just sugar for an OpenAI-Project HTTP header, not a special
++                # API concept. @ai-sdk/openai-compatible has no dedicated
++                # "project" field, but it does forward arbitrary `headers`, so
++                # this reproduces the exact same header the Python SDK would
++                # send. Purely for W&B's dashboard usage attribution -- not
++                # required for requests to succeed.
++                options["headers"] = {
++                    "OpenAI-Project": "meta-hopfield/multi-agent-swarm"
++                }
 +                limit = _WANDB_MODEL_LIMITS.get(model_id)
 +                if limit:
 +                    provider_config["models"][model_id]["limit"] = {
