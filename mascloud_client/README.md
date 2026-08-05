@@ -60,7 +60,7 @@ install elsewhere on your `PATH`).
 | Command                                             | What it does                                                                       | Required?                             |
 | --------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------- |
 | `mascloud login --email <you@turing.com>`           | Authenticate (prompts for password), store a session token                        | **Must** — first, once per session    |
-| `mascloud run <task_folder> [--mode single\|multi]` | Zip the folder → upload → run in the cloud → stream progress → save the result zip | **Must** — this is the job            |
+| `mascloud run <task_folder> [--mode single\|multi\|multi_noplan]` | Zip the folder → upload → run in the cloud → stream progress → save the result zip | **Must** — this is the job            |
 | `mascloud runs`                                     | List **your** runs with status, reward, tokens, and cost                           | Optional (monitoring)                 |
 | `mascloud download <run_id> [folder]`               | Re-fetch a run's result zip (task + `execution_logs/`)                             | Optional (auto-downloads after `run`) |
 | `mascloud logout`                                   | Clear your local token                                                             | Optional                              |
@@ -76,9 +76,12 @@ install elsewhere on your `PATH`).
 # 1. Log in once (your password is in the credentials sheet)
 mascloud login --email you@turing.com
 
-# 2. Run BOTH modes for each task — SwarmBench delivery needs single AND multi logs
+# 2. Run ALL THREE modes for each task — SwarmBench delivery needs single, multi,
+#    AND multi_noplan logs. Only one of your runs can be QUEUED/RUNNING at a time --
+#    wait for one to finish (or let --download auto-wait) before submitting the next.
 mascloud run ./my-task --mode single
-mascloud run ./my-task --mode multi     # (or run this in a second terminal, in parallel)
+mascloud run ./my-task --mode multi
+mascloud run ./my-task --mode multi_noplan
 ```
 
 Each `run`:
@@ -87,17 +90,21 @@ Each `run`:
 2. uploads and runs it on a managed cloud sandbox,
 3. streams progress to your terminal,
 4. saves a result zip **beside your task folder** — e.g. `my-task-single.zip`,
-   `my-task-multi.zip` — containing the full task **plus** the fresh `execution_logs/`.
+   `my-task-multi.zip`, `my-task-multi_noplan.zip` — containing the full task
+   **plus** the fresh `execution_logs/`.
 
-Because delivery requires **both** the single-agent and multi-agent execution
-logs, running both modes for every task is the real deliverable.
+Because delivery requires the single-agent, multi-agent, AND multi-agent-no-plan
+execution logs, running all three modes for every task is the real deliverable.
 
 ---
 
 ## What you CAN do (optional)
 
-- **Pick the mode**: `--mode single` or `--mode multi` (you're prompted if you omit it).
-  To run both, just run the command twice — separate terminals run them in parallel.
+- **Pick the mode**: `--mode single`, `--mode multi`, or `--mode multi_noplan` (you're
+  prompted if you omit it). `multi_noplan` runs the same multi-agent swarm without
+  `decomposition.yaml` injected — required for delivery alongside single and multi.
+  To run more than one mode, run the command again after the first finishes — only
+  one of your runs can be active at a time, even across two terminals.
 - **Skip the auto-download**: `--no-download` (the result stays on the server; fetch it
   later with `mascloud download <run_id>`).
 - **Check history & cost anytime**: `mascloud runs` shows your runs with token counts
@@ -112,8 +119,8 @@ logs, running both modes for every task is the real deliverable.
 - **Never see or handle the Fireworks/Daytona keys** — they exist only on the server.
 - **Only your own runs** — you can view, cancel, and download only runs you started;
   another trainer's run is not visible to you.
-- **No model/topology choice beyond single vs multi** — the model is fixed and there are
-  no arbitrary execution flags.
+- **No model/topology choice beyond single vs multi vs multi_noplan** — the model is
+  fixed and there are no arbitrary execution flags.
 - **No admin access** — you cannot manage users or see other people's runs or costs.
 
 ---

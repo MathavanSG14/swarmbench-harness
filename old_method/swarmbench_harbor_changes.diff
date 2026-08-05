@@ -1,8 +1,8 @@
 diff --git a/src/harbor/agents/factory.py b/src/harbor/agents/factory.py
-index 45c20fcd..7874cb31 100644
+index 45c20fcd..44b931d8 100644
 --- a/src/harbor/agents/factory.py
 +++ b/src/harbor/agents/factory.py
-@@ -13,6 +13,10 @@ from harbor.agents.installed.rovodev_cli import RovodevCli
+@@ -13,6 +13,13 @@ from harbor.agents.installed.rovodev_cli import RovodevCli
  from harbor.agents.installed.goose import Goose
  from harbor.agents.installed.hermes import Hermes
  from harbor.agents.installed.kimi_cli import KimiCli
@@ -10,10 +10,13 @@ index 45c20fcd..7874cb31 100644
 +from harbor.agents.installed.swarmbench.multi_kimi import SwarmbenchKimiMulti
 +from harbor.agents.installed.swarmbench.single_opencode import SwarmbenchOpenCodeSingle
 +from harbor.agents.installed.swarmbench.multi_opencode import SwarmbenchOpenCodeMulti
++from harbor.agents.installed.swarmbench.multi_opencode_no_plan import (
++    SwarmbenchOpenCodeMultiNoPlan,
++)
  from harbor.agents.installed.mini_swe_agent import MiniSweAgent
  from harbor.agents.installed.nemo_agent import NemoAgent
  from harbor.agents.installed.opencode import OpenCode
-@@ -46,6 +50,10 @@ class AgentFactory:
+@@ -46,6 +53,11 @@ class AgentFactory:
          Goose,
          Hermes,
          KimiCli,
@@ -21,6 +24,7 @@ index 45c20fcd..7874cb31 100644
 +        SwarmbenchKimiMulti,
 +        SwarmbenchOpenCodeSingle,
 +        SwarmbenchOpenCodeMulti,
++        SwarmbenchOpenCodeMultiNoPlan,
          MiniSweAgent,
          NemoAgent,
          SweAgent,
@@ -675,7 +679,7 @@ index 00000000..3ac00b4d
 \ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/multi_opencode.py b/src/harbor/agents/installed/swarmbench/multi_opencode.py
 new file mode 100644
-index 00000000..aa480943
+index 00000000..2d3658e6
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/multi_opencode.py
 @@ -0,0 +1,1232 @@
@@ -1904,13 +1908,35 @@ index 00000000..aa480943
 +            schema_version="ATIF-v1.6",
 +            session_id=session_id or "unknown",
 +            agent=Agent(
-+                name=AgentName.SWARM_OPENCODE_MULTI.value,
++                name=self.name(),
 +                version=self.version() or "unknown",
 +                model_name=self.model_name,
 +            ),
 +            steps=steps,
 +            final_metrics=final_metrics,
 +        )
+diff --git a/src/harbor/agents/installed/swarmbench/multi_opencode_no_plan.py b/src/harbor/agents/installed/swarmbench/multi_opencode_no_plan.py
+new file mode 100644
+index 00000000..e582666a
+--- /dev/null
++++ b/src/harbor/agents/installed/swarmbench/multi_opencode_no_plan.py
+@@ -0,0 +1,16 @@
++from harbor.agents.installed.swarmbench.multi_opencode import SwarmbenchOpenCodeMulti
++from harbor.models.agent.name import AgentName
++
++
++class SwarmbenchOpenCodeMultiNoPlan(SwarmbenchOpenCodeMulti):
++    """Identical to SwarmbenchOpenCodeMulti but never injects decomposition.yaml as a
++    'Gold Decomposition Guide' -- the swarm gets the coordination-pattern prompt and the raw
++    instruction only, and must self-organize without the pre-authored task split. Sub-agent
++    spawning (depth, permissions, general/explore prompts) is inherited unchanged."""
++
++    @staticmethod
++    def name() -> str:
++        return AgentName.SWARM_OPENCODE_MULTI_NOPLAN.value
++
++    def _load_decomposition(self) -> str:
++        return ""
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/AGENTS.md b/src/harbor/agents/installed/swarmbench/prompts/AGENTS.md
 new file mode 100644
 index 00000000..31b06500
@@ -4134,10 +4160,10 @@ index 5041cb94..04f8e31b 100644
          self,
          command: str,
 diff --git a/src/harbor/models/agent/name.py b/src/harbor/models/agent/name.py
-index 4b252a9e..249d69c9 100644
+index 4b252a9e..e6e7cf1f 100644
 --- a/src/harbor/models/agent/name.py
 +++ b/src/harbor/models/agent/name.py
-@@ -23,6 +23,10 @@ class AgentName(str, Enum):
+@@ -23,6 +23,11 @@ class AgentName(str, Enum):
      OPENHANDS = "openhands"
      OPENHANDS_SDK = "openhands-sdk"
      KIMI_CLI = "kimi-cli"
@@ -4145,6 +4171,7 @@ index 4b252a9e..249d69c9 100644
 +    SWARM_KIMI_MULTI = "swarm-kimi-multi"
 +    SWARM_OPENCODE_SINGLE = "swarm-opencode-single"
 +    SWARM_OPENCODE_MULTI = "swarm-opencode-multi"
++    SWARM_OPENCODE_MULTI_NOPLAN = "swarm-opencode-multi-noplan"
      PI = "pi"
      QWEN_CODE = "qwen-coder"
      COPILOT_CLI = "copilot-cli"
@@ -4168,22 +4195,23 @@ index a9d72881..c5db9155 100644
      def compute_token_cost_totals(
          self,
 diff --git a/src/harbor/trial/trial.py b/src/harbor/trial/trial.py
-index 4d0f4ee2..44197e41 100644
+index 4d0f4ee2..cf132ca2 100644
 --- a/src/harbor/trial/trial.py
 +++ b/src/harbor/trial/trial.py
-@@ -185,6 +185,11 @@ class Trial:
+@@ -185,6 +185,12 @@ class Trial:
                  "trial_paths": self._trial_paths,
                  "agent_timeout_sec": self._agent_timeout_sec,
              }
 +        if config.agent.name in (
 +            AgentName.SWARM_KIMI_MULTI.value,
 +            AgentName.SWARM_OPENCODE_MULTI.value,
++            AgentName.SWARM_OPENCODE_MULTI_NOPLAN.value,
 +        ):
 +            extra_kwargs["task_dir"] = self._task._task_dir
          if self._task.config.environment.mcp_servers:
              extra_kwargs["mcp_servers"] = self._task.config.environment.mcp_servers
          if self._task.config.environment.skills_dir:
-@@ -419,6 +424,7 @@ class Trial:
+@@ -419,6 +425,7 @@ class Trial:
              ) from e
  
      async def _cleanup_and_finalize(self) -> None:

@@ -1,7 +1,7 @@
 """`mascloud` — the trainer's terminal client.
 
     mascloud login                       sign in (Turing email + password)
-    mascloud run <task_folder>           pick single/multi, stream live, download
+    mascloud run <task_folder>           pick single/multi/multi_noplan, stream live, download
     mascloud runs                        my run history (tokens + cost)
     mascloud download <run_id> [folder]  fetch the result zip (task + execution_logs)
     mascloud logout
@@ -122,15 +122,19 @@ def run(
     task_folder: Path = typer.Argument(..., exists=True, file_okay=False),
     mode: str = typer.Option(
         None,
-        help="single | multi (prompted if omitted). Run the other in a second terminal.",
+        help=(
+            "single | multi | multi_noplan (prompted if omitted). multi_noplan runs "
+            "the same multi-agent swarm without decomposition.yaml injected. Only "
+            "one run at a time per trainer -- submit a run in each mode separately."
+        ),
     ),
     download_result: bool = typer.Option(True, "--download/--no-download"),
 ) -> None:
     """Upload a task folder, run it in the cloud, and stream progress live."""
     if mode is None:
-        mode = typer.prompt("Run mode [single/multi]", default="multi")
-    if mode not in {"single", "multi"}:
-        raise typer.Exit("mode must be single or multi")
+        mode = typer.prompt("Run mode [single/multi/multi_noplan]", default="multi")
+    if mode not in {"single", "multi", "multi_noplan"}:
+        raise typer.Exit("mode must be single, multi, or multi_noplan")
 
     console.print(f"Packaging {task_folder}…")
     zip_bytes = _zip_task(task_folder.resolve())
