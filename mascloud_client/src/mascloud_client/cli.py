@@ -2,6 +2,9 @@
 
     mascloud login                       sign in (Turing email + password)
     mascloud run <task_folder>           pick single/multi/multi_noplan, stream live, download
+    mascloud verify-only <task_folder>   replay verification for an existing
+                                          execution_logs/<target_mode>/ run --
+                                          no agent re-run, just a fresh reward
     mascloud runs                        my run history (tokens + cost)
     mascloud download <run_id> [folder]  fetch the result zip (task + execution_logs)
     mascloud logout
@@ -117,6 +120,28 @@ def _zip_task(task_folder: Path) -> bytes:
     return buf.getvalue()
 
 
+# `run`'s upload deliberately strips execution_logs/ (a fresh agent run will
+# produce its own). `verify-only`'s upload needs the opposite: its entire
+# point is replaying against an execution_logs/<target_mode>/ folder that's
+# already there, so it keeps everything `run` excludes.
+_VERIFY_ONLY_EXCLUDE_DIRS = _EXCLUDE_DIRS - {"execution_logs"}
+
+
+def _zip_task_including_execution_logs(task_folder: Path) -> bytes:
+    if not (task_folder / "task.toml").exists():
+        raise typer.Exit(f"Task folder must contain task.toml: {task_folder}")
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as zf:
+        for path in task_folder.rglob("*"):
+            if not path.is_file():
+                continue
+            rel = path.relative_to(task_folder)
+            if any(part in _VERIFY_ONLY_EXCLUDE_DIRS for part in rel.parts):
+                continue
+            zf.write(path, arcname=(Path(task_folder.name) / rel).as_posix())
+    return buf.getvalue()
+
+
 @app.command()
 def run(
     task_folder: Path = typer.Argument(..., exists=True, file_okay=False),
@@ -162,6 +187,55 @@ def run(
             _download(
                 run_id, task_folder.parent
             )  # save the result zip beside the task folder
+
+
+@app.command("verify-only")
+def verify_only(
+    task_folder: Path = typer.Argument(..., exists=True, file_okay=False),
+    target_mode: str = typer.Option(
+        ...,
+        "--target-mode",
+        help=(
+            "single | multi | multi_noplan -- which execution_logs/ folder "
+            "already present in task_folder should be re-verified. No opencode "
+            "agent runs at all; the server replays verification via Harbor's "
+            "built-in oracle agent against that mode's existing agent output "
+            "and patches the new reward into the same folder."
+        ),
+    ),
+    download_result: bool = typer.Option(True, "--download/--no-download"),
+) -> None:
+    """Re-run only the verifier for an existing execution_logs/<target_mode>/
+    run, without re-running the agent (no inference cost). Unlike `run`,
+    this uploads execution_logs/ too -- it's the input, not the output."""
+    if target_mode not in {"single", "multi", "multi_noplan"}:
+        raise typer.Exit("target_mode must be single, multi, or multi_noplan")
+
+    console.print(f"Packaging {task_folder} (including execution_logs/)…")
+    zip_bytes = _zip_task_including_execution_logs(task_folder.resolve())
+
+    # write=None uncaps the upload leg -- this payload includes the whole
+    # execution_logs/<target_mode>/ tree (raw trajectory JSON, opencode logs,
+    # etc.), typically much larger than `run`'s bare task-definition upload.
+    # The 60s read timeout only covers the immediate {"run_ids": [...]}
+    # response -- the actual replay runs asynchronously in the job queue.
+    upload_timeout = httpx.Timeout(60.0, write=None)
+    with _client(timeout=upload_timeout) as c:
+        resp = c.post(
+            "/runs/verify-only",
+            files={"file": (f"{task_folder.name}.zip", zip_bytes, "application/zip")},
+            data={"target_mode": target_mode},
+        )
+    if resp.status_code != 200:
+        _die(resp)
+    run_ids = resp.json()["run_ids"]
+    console.print(f"[green]Queued:[/green] {', '.join(run_ids)}")
+
+    for run_id in run_ids:
+        console.rule(f"[bold]{run_id}[/bold]")
+        _follow(run_id)
+        if download_result:
+            _download(run_id, task_folder.parent)
 
 
 def _elapsed(start: float) -> str:

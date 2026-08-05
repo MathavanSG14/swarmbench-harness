@@ -55,12 +55,13 @@ install elsewhere on your `PATH`).
 
 ---
 
-## The 5 commands
+## The 6 commands
 
 | Command                                             | What it does                                                                       | Required?                             |
 | --------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------- |
 | `mascloud login --email <you@turing.com>`           | Authenticate (prompts for password), store a session token                        | **Must** — first, once per session    |
 | `mascloud run <task_folder> [--mode single\|multi\|multi_noplan]` | Zip the folder → upload → run in the cloud → stream progress → save the result zip | **Must** — this is the job            |
+| `mascloud verify-only <task_folder> --target-mode single\|multi\|multi_noplan` | Re-run **only the verifier** against an execution log you already have — no agent, no inference cost | Optional (see below) |
 | `mascloud runs`                                     | List **your** runs with status, reward, tokens, and cost                           | Optional (monitoring)                 |
 | `mascloud download <run_id> [folder]`               | Re-fetch a run's result zip (task + `execution_logs/`)                             | Optional (auto-downloads after `run`) |
 | `mascloud logout`                                   | Clear your local token                                                             | Optional                              |
@@ -95,6 +96,35 @@ Each `run`:
 
 Because delivery requires the single-agent, multi-agent, AND multi-agent-no-plan
 execution logs, running all three modes for every task is the real deliverable.
+
+---
+
+## `verify-only`: fixing a stale reward without re-running the agent
+
+If your task's `tests/verify.py` gets fixed *after* you already ran `single`/`multi`/
+`multi_noplan` (e.g. a reward-format fix), you do **not** need to re-run the agent to
+get an updated `reward.json` — that would re-spend the same inference cost for no
+reason, since the agent's own output hasn't changed.
+
+```bash
+# your task_folder already has execution_logs/multi-opencode-agent/ from a prior run
+mascloud verify-only ./my-task --target-mode multi
+```
+
+This uploads your task folder **including** its existing `execution_logs/` (unlike
+`run`, which strips it), and the server:
+
+1. copies the existing `multi-opencode-agent` trial's agent output into `solution/`,
+2. replays verification via Harbor's built-in oracle agent against the **current**
+   `tests/verify.py` — no opencode agent runs, no inference cost,
+3. patches the new `reward.json`/`test-stdout.txt` and `result.json` back into the
+   **same** `execution_logs/multi-opencode-agent/` folder, and
+4. hands back the whole task folder zipped, same as `run` does.
+
+The original agent trajectory (`trajectory.json`, `raw_trajectory/`, `opencode.txt`)
+is never touched — only the verifier's output and the recorded reward change. If the
+task folder you upload doesn't actually have a populated `execution_logs/<target_mode>/`
+run in it, the server rejects the request immediately (400) rather than queuing a job.
 
 ---
 
