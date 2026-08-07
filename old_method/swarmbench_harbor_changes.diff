@@ -679,10 +679,10 @@ index 00000000..3ac00b4d
 \ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/multi_opencode.py b/src/harbor/agents/installed/swarmbench/multi_opencode.py
 new file mode 100644
-index 00000000..2d3658e6
+index 00000000..598254dd
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/multi_opencode.py
-@@ -0,0 +1,1232 @@
+@@ -0,0 +1,1263 @@
 +import asyncio
 +import copy
 +import json
@@ -765,6 +765,19 @@ index 00000000..2d3658e6
 +_WANDB_MODEL_LIMITS: dict[str, int] = {
 +    "moonshotai/Kimi-K2.6": 262144,
 +}
++
++# W&B Weave tracing, independent of which model provider actually serves inference --
++# Fireworks/Moonshot/etc. runs can still be traced into the same W&B project. opencode
++# core has no built-in knowledge of these OPENCODE_* names (verified against opencode's
++# own source: its built-in OTLP exporter only reads the standard OTEL_EXPORTER_OTLP_*
++# env vars, hardcoded to protobuf/HTTP); @devtheops/opencode-plugin-otel (registered in
++# _build_register_config_command below) reads these itself -- confirmed working
++# empirically. Gated on WANDB_API_KEY being set, same as every other provider key below,
++# so runs without it see zero behavior change.
++_WANDB_OTLP_ENDPOINT = "https://trace.wandb.ai/otel"
++_WANDB_ENTITY = "meta-hopfield"
++_WANDB_PROJECT = "multi-agent-swarm"
++_WANDB_OTEL_PLUGIN = "@devtheops/opencode-plugin-otel"
 +
 +# opencode's retry.ts only retries an APIError when its statusCode >= 500 or the
 +# provider SDK explicitly marked it isRetryable=true. Neither @ai-sdk/openai nor
@@ -1116,6 +1129,18 @@ index 00000000..2d3658e6
 +        # This makes opencode print it to stderr synchronously, which the run command's
 +        # `2>&1 | tee` already captures into opencode.txt for later inspection.
 +        env["OPENCODE_PRINT_LOGS"] = "1"
++        # See _WANDB_OTLP_ENDPOINT's comment above -- W&B Weave tracing, gated on
++        # WANDB_API_KEY regardless of which provider is actually serving inference.
++        wb_key = os.environ.get("WANDB_API_KEY")
++        if wb_key:
++            env["WANDB_API_KEY"] = wb_key
++            env["OPENCODE_ENABLE_TELEMETRY"] = "true"
++            env["OPENCODE_OTLP_PROTOCOL"] = "http/protobuf"
++            env["OPENCODE_OTLP_ENDPOINT"] = _WANDB_OTLP_ENDPOINT
++            env["OPENCODE_OTLP_HEADERS"] = f"wandb-api-key={wb_key}"
++            env["OPENCODE_RESOURCE_ATTRIBUTES"] = (
++                f"wandb.entity={_WANDB_ENTITY},wandb.project={_WANDB_PROJECT}"
++            )
 +        return env
 +
 +    def _effective_provider_and_model(self) -> tuple[str, str] | None:
@@ -1211,7 +1236,7 @@ index 00000000..2d3658e6
 +                # send. Purely for W&B's dashboard usage attribution -- not
 +                # required for requests to succeed.
 +                options["headers"] = {
-+                    "OpenAI-Project": "meta-hopfield/multi-agent-swarm"
++                    "OpenAI-Project": f"{_WANDB_ENTITY}/{_WANDB_PROJECT}"
 +                }
 +                limit = _WANDB_MODEL_LIMITS.get(model_id)
 +                if limit:
@@ -1302,6 +1327,12 @@ index 00000000..2d3658e6
 +        # /workspace/AGENTS.md with no config needed; listing it here too is just
 +        # belt-and-suspenders.
 +        config["instructions"] = ["AGENTS.md"]
++
++        # W&B Weave tracing plugin -- see _WANDB_OTLP_ENDPOINT's comment above. Placed
++        # before the merges below so a task's opencode_config kwarg can still override
++        # or drop it per-task, same as permission/agent/instructions above.
++        if os.environ.get("WANDB_API_KEY"):
++            config["plugin"] = [_WANDB_OTEL_PLUGIN]
 +
 +        config = self._deep_merge(copy.deepcopy(self._DEFAULT_CONFIG), config)
 +        config = self._deep_merge(config, self._opencode_config)
@@ -3066,10 +3097,10 @@ index 00000000..1e4cb19b
 +        )
 diff --git a/src/harbor/agents/installed/swarmbench/single_opencode.py b/src/harbor/agents/installed/swarmbench/single_opencode.py
 new file mode 100644
-index 00000000..fbbbbb2c
+index 00000000..c0c29c21
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/single_opencode.py
-@@ -0,0 +1,1043 @@
+@@ -0,0 +1,1074 @@
 +import asyncio
 +import copy
 +import json
@@ -3152,6 +3183,19 @@ index 00000000..fbbbbb2c
 +_WANDB_MODEL_LIMITS: dict[str, int] = {
 +    "moonshotai/Kimi-K2.6": 262144,
 +}
++
++# W&B Weave tracing, independent of which model provider actually serves inference --
++# Fireworks/Moonshot/etc. runs can still be traced into the same W&B project. opencode
++# core has no built-in knowledge of these OPENCODE_* names (verified against opencode's
++# own source: its built-in OTLP exporter only reads the standard OTEL_EXPORTER_OTLP_*
++# env vars, hardcoded to protobuf/HTTP); @devtheops/opencode-plugin-otel (registered in
++# _build_register_config_command below) reads these itself -- confirmed working
++# empirically. Gated on WANDB_API_KEY being set, same as every other provider key below,
++# so runs without it see zero behavior change.
++_WANDB_OTLP_ENDPOINT = "https://trace.wandb.ai/otel"
++_WANDB_ENTITY = "meta-hopfield"
++_WANDB_PROJECT = "multi-agent-swarm"
++_WANDB_OTEL_PLUGIN = "@devtheops/opencode-plugin-otel"
 +
 +# opencode's retry.ts only retries an APIError when its statusCode >= 500 or the
 +# provider SDK explicitly marked it isRetryable=true. Neither @ai-sdk/openai nor
@@ -3452,6 +3496,18 @@ index 00000000..fbbbbb2c
 +        # This makes opencode print it to stderr synchronously, which the run command's
 +        # `2>&1 | tee` already captures into opencode.txt for later inspection.
 +        env["OPENCODE_PRINT_LOGS"] = "1"
++        # See _WANDB_OTLP_ENDPOINT's comment above -- W&B Weave tracing, gated on
++        # WANDB_API_KEY regardless of which provider is actually serving inference.
++        wb_key = os.environ.get("WANDB_API_KEY")
++        if wb_key:
++            env["WANDB_API_KEY"] = wb_key
++            env["OPENCODE_ENABLE_TELEMETRY"] = "true"
++            env["OPENCODE_OTLP_PROTOCOL"] = "http/protobuf"
++            env["OPENCODE_OTLP_ENDPOINT"] = _WANDB_OTLP_ENDPOINT
++            env["OPENCODE_OTLP_HEADERS"] = f"wandb-api-key={wb_key}"
++            env["OPENCODE_RESOURCE_ATTRIBUTES"] = (
++                f"wandb.entity={_WANDB_ENTITY},wandb.project={_WANDB_PROJECT}"
++            )
 +        return env
 +
 +    def _effective_provider_and_model(self) -> tuple[str, str] | None:
@@ -3547,7 +3603,7 @@ index 00000000..fbbbbb2c
 +                # send. Purely for W&B's dashboard usage attribution -- not
 +                # required for requests to succeed.
 +                options["headers"] = {
-+                    "OpenAI-Project": "meta-hopfield/multi-agent-swarm"
++                    "OpenAI-Project": f"{_WANDB_ENTITY}/{_WANDB_PROJECT}"
 +                }
 +                limit = _WANDB_MODEL_LIMITS.get(model_id)
 +                if limit:
@@ -3582,6 +3638,12 @@ index 00000000..fbbbbb2c
 +        # at /workspace/AGENTS.md with no config needed; listing it here too is just
 +        # belt-and-suspenders.
 +        config["instructions"] = ["AGENTS.md"]
++
++        # W&B Weave tracing plugin -- see _WANDB_OTLP_ENDPOINT's comment above. Placed
++        # before the merges below so a task's opencode_config kwarg can still override
++        # or drop it per-task, same as permission/instructions above.
++        if os.environ.get("WANDB_API_KEY"):
++            config["plugin"] = [_WANDB_OTEL_PLUGIN]
 +
 +        config = self._deep_merge(copy.deepcopy(self._DEFAULT_CONFIG), config)
 +        config = self._deep_merge(config, self._opencode_config)
