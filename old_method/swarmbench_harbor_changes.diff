@@ -47,10 +47,10 @@ new file mode 100644
 index 00000000..e69de29b
 diff --git a/src/harbor/agents/installed/swarmbench/multi_kimi.py b/src/harbor/agents/installed/swarmbench/multi_kimi.py
 new file mode 100644
-index 00000000..3ac00b4d
+index 00000000..06c406c7
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/multi_kimi.py
-@@ -0,0 +1,625 @@
+@@ -0,0 +1,627 @@
 +import json
 +import os
 +import shlex
@@ -204,6 +204,7 @@ index 00000000..3ac00b4d
 +
 +        if model_info and self.model_name:
 +            import litellm
++
 +            litellm.register_model({self.model_name: model_info})
 +
 +        self._max_context_size = self._resolve_max_context_size()
@@ -254,6 +255,7 @@ index 00000000..3ac00b4d
 +            return self._DEFAULT_MAX_CONTEXT_SIZE
 +        try:
 +            from litellm.utils import get_model_info
++
 +            info = get_model_info(self.model_name)
 +            return info.get("max_input_tokens") or self._DEFAULT_MAX_CONTEXT_SIZE
 +        except Exception:
@@ -676,13 +678,12 @@ index 00000000..3ac00b4d
 +            steps=steps,
 +            final_metrics=final_metrics,
 +        )
-\ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/multi_opencode.py b/src/harbor/agents/installed/swarmbench/multi_opencode.py
 new file mode 100644
-index 00000000..598254dd
+index 00000000..c2a70afd
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/multi_opencode.py
-@@ -0,0 +1,1263 @@
+@@ -0,0 +1,1268 @@
 +import asyncio
 +import copy
 +import json
@@ -1640,7 +1641,12 @@ index 00000000..598254dd
 +
 +        full_instruction = f"{coordination_prompt}\n\n{instruction}"
 +        if decomp_content:
-+            full_instruction += f"\n\n## Gold Decomposition Guide\n{decomp_content}"
++            full_instruction += (
++                "\n\n## Gold Decomposition Guide\n"
++                "Follow this decomposition exactly -- do not merge, skip, or add "
++                "sub-tasks beyond what it defines.\n\n"
++                f"{decomp_content}"
++            )
 +
 +        env = self._build_env()
 +
@@ -1948,19 +1954,26 @@ index 00000000..598254dd
 +        )
 diff --git a/src/harbor/agents/installed/swarmbench/multi_opencode_no_plan.py b/src/harbor/agents/installed/swarmbench/multi_opencode_no_plan.py
 new file mode 100644
-index 00000000..e582666a
+index 00000000..2f236c7a
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/multi_opencode_no_plan.py
-@@ -0,0 +1,16 @@
-+from harbor.agents.installed.swarmbench.multi_opencode import SwarmbenchOpenCodeMulti
+@@ -0,0 +1,26 @@
++from harbor.agents.installed.swarmbench.multi_opencode import (
++    SwarmbenchOpenCodeMulti,
++    _load_prompt,
++)
 +from harbor.models.agent.name import AgentName
 +
 +
 +class SwarmbenchOpenCodeMultiNoPlan(SwarmbenchOpenCodeMulti):
-+    """Identical to SwarmbenchOpenCodeMulti but never injects decomposition.yaml as a
-+    'Gold Decomposition Guide' -- the swarm gets the coordination-pattern prompt and the raw
-+    instruction only, and must self-organize without the pre-authored task split. Sub-agent
-+    spawning (depth, permissions, general/explore prompts) is inherited unchanged."""
++    """Identical to SwarmbenchOpenCodeMulti but the swarm gets no pre-authored
++    structure at all: no decomposition.yaml, and no pattern-specific coordination
++    prompt (map-reduce/hierarchical/etc. -- task.toml's coordination_pattern is
++    ignored). It only gets a bare, pattern-agnostic prompt (opencode_self_organize.md)
++    stating that sub-agent delegation is available and left entirely to its own
++    judgment -- whether to delegate, how to split the work, and how to coordinate it.
++    Sub-agent spawning capability (task-tool permission, depth, general/explore
++    agent-type prompts) is inherited unchanged."""
 +
 +    @staticmethod
 +    def name() -> str:
@@ -1968,6 +1981,9 @@ index 00000000..e582666a
 +
 +    def _load_decomposition(self) -> str:
 +        return ""
++
++    def _load_coordination_prompt(self) -> str:
++        return _load_prompt("opencode_self_organize.md")
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/AGENTS.md b/src/harbor/agents/installed/swarmbench/prompts/AGENTS.md
 new file mode 100644
 index 00000000..31b06500
@@ -1983,10 +1999,10 @@ index 00000000..31b06500
 +so and stop — do not ask what to do next.
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/multi_agent_debate.md b/src/harbor/agents/installed/swarmbench/prompts/multi_agent_debate.md
 new file mode 100644
-index 00000000..14fd800e
+index 00000000..aee246e4
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/multi_agent_debate.md
-@@ -0,0 +1,22 @@
+@@ -0,0 +1,43 @@
 +You are an orchestrator for a **debate / consensus** workflow.
 +
 +Your working directory is: /workspace
@@ -2003,6 +2019,27 @@ index 00000000..14fd800e
 +- All input data files are in `/input_artifacts/`.
 +- The decomposition guide (`decomposition.yaml`) is provided in your instruction.
 +
++## Output Location — Read Before Writing Files
++
++Your shell's current working directory is `/workspace`. That directory is
++temporary scratch space only — clone repos there, run builds there, do
++whatever intermediate work you need there. Nothing written under
++`/workspace` is preserved after this session ends.
++
++Every deliverable this task asks you to produce — every file, every
++spreadsheet, every chart, every JSON output — MUST be written using the
++full absolute path starting with `/logs/agent/`, e.g. `/logs/agent/<filename>`.
++Do NOT write deliverables to `./`, `~/`, `/workspace/`, or any path that
++is not explicitly under `/logs/agent/`.
++
++If a file is not physically present under `/logs/agent/` when this session
++ends, it does not exist for grading purposes — no partial credit, no
++"it's in /workspace" exception. Before finishing, run `ls -la /logs/agent/`
++and confirm every requested deliverable is listed there with a non-zero
++size.
++
++Pass this rule to sub-agents by including it in their task prompt.
++
 +## Workflow
 +1. **Read your instruction** — understand the task, output requirements, and decomposition guide.
 +2. **Spawn experts**: Dispatch each expert sub-task from `decomposition.yaml` as a separate `Agent` call. Each expert solves the SAME problem independently without seeing others' work.
@@ -2012,10 +2049,10 @@ index 00000000..14fd800e
 \ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/multi_agent_fan_out.md b/src/harbor/agents/installed/swarmbench/prompts/multi_agent_fan_out.md
 new file mode 100644
-index 00000000..cd359e37
+index 00000000..1f3f1f80
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/multi_agent_fan_out.md
-@@ -0,0 +1,22 @@
+@@ -0,0 +1,43 @@
 +You are an orchestrator for a **fan-out and synthesis** workflow.
 +
 +Your working directory is: /workspace
@@ -2032,6 +2069,27 @@ index 00000000..cd359e37
 +- All input data files are in `/input_artifacts/`.
 +- The decomposition guide (`decomposition.yaml`) is provided in your instruction.
 +
++## Output Location — Read Before Writing Files
++
++Your shell's current working directory is `/workspace`. That directory is
++temporary scratch space only — clone repos there, run builds there, do
++whatever intermediate work you need there. Nothing written under
++`/workspace` is preserved after this session ends.
++
++Every deliverable this task asks you to produce — every file, every
++spreadsheet, every chart, every JSON output — MUST be written using the
++full absolute path starting with `/logs/agent/`, e.g. `/logs/agent/<filename>`.
++Do NOT write deliverables to `./`, `~/`, `/workspace/`, or any path that
++is not explicitly under `/logs/agent/`.
++
++If a file is not physically present under `/logs/agent/` when this session
++ends, it does not exist for grading purposes — no partial credit, no
++"it's in /workspace" exception. Before finishing, run `ls -la /logs/agent/`
++and confirm every requested deliverable is listed there with a non-zero
++size.
++
++Pass this rule to sub-agents by including it in their task prompt.
++
 +## Workflow
 +1. **Read your instruction** — understand the task, output requirements, and decomposition guide.
 +2. **Fan-out phase**: Dispatch every `parallel_group: map` sub-task simultaneously using the `Agent` tool. Respect `depends_on` — wait for dependencies before dispatching.
@@ -2040,10 +2098,10 @@ index 00000000..cd359e37
 +5. **Output**: Follow the output instructions exactly as specified in your task instruction.
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/multi_agent_hierarchical.md b/src/harbor/agents/installed/swarmbench/prompts/multi_agent_hierarchical.md
 new file mode 100644
-index 00000000..e449dbb8
+index 00000000..bc55d4d7
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/multi_agent_hierarchical.md
-@@ -0,0 +1,22 @@
+@@ -0,0 +1,43 @@
 +You are a lead orchestrator for a **hierarchical decomposition** workflow.
 +
 +Your working directory is: /workspace
@@ -2060,6 +2118,27 @@ index 00000000..e449dbb8
 +- All input data files are in `/input_artifacts/`.
 +- The decomposition guide (`decomposition.yaml`) is provided in your instruction.
 +
++## Output Location — Read Before Writing Files
++
++Your shell's current working directory is `/workspace`. That directory is
++temporary scratch space only — clone repos there, run builds there, do
++whatever intermediate work you need there. Nothing written under
++`/workspace` is preserved after this session ends.
++
++Every deliverable this task asks you to produce — every file, every
++spreadsheet, every chart, every JSON output — MUST be written using the
++full absolute path starting with `/logs/agent/`, e.g. `/logs/agent/<filename>`.
++Do NOT write deliverables to `./`, `~/`, `/workspace/`, or any path that
++is not explicitly under `/logs/agent/`.
++
++If a file is not physically present under `/logs/agent/` when this session
++ends, it does not exist for grading purposes — no partial credit, no
++"it's in /workspace" exception. Before finishing, run `ls -la /logs/agent/`
++and confirm every requested deliverable is listed there with a non-zero
++size.
++
++Pass this rule to sub-agents by including it in their task prompt.
++
 +## Workflow
 +1. **Read your instruction** — understand the task, output requirements, and decomposition guide.
 +2. **Decompose**: Identify major components from `decomposition.yaml`.
@@ -2069,10 +2148,10 @@ index 00000000..e449dbb8
 \ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/multi_agent_map_reduce.md b/src/harbor/agents/installed/swarmbench/prompts/multi_agent_map_reduce.md
 new file mode 100644
-index 00000000..6716fe4d
+index 00000000..38250398
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/multi_agent_map_reduce.md
-@@ -0,0 +1,24 @@
+@@ -0,0 +1,45 @@
 +You are an orchestrator for a **map-reduce** workflow.
 +
 +Your working directory is: /workspace
@@ -2090,6 +2169,27 @@ index 00000000..6716fe4d
 +- All input data files are in `/input_artifacts/`.
 +- The decomposition guide (`decomposition.yaml`) is provided in your instruction.
 +
++## Output Location — Read Before Writing Files
++
++Your shell's current working directory is `/workspace`. That directory is
++temporary scratch space only — clone repos there, run builds there, do
++whatever intermediate work you need there. Nothing written under
++`/workspace` is preserved after this session ends.
++
++Every deliverable this task asks you to produce — every file, every
++spreadsheet, every chart, every JSON output — MUST be written using the
++full absolute path starting with `/logs/agent/`, e.g. `/logs/agent/<filename>`.
++Do NOT write deliverables to `./`, `~/`, `/workspace/`, or any path that
++is not explicitly under `/logs/agent/`.
++
++If a file is not physically present under `/logs/agent/` when this session
++ends, it does not exist for grading purposes — no partial credit, no
++"it's in /workspace" exception. Before finishing, run `ls -la /logs/agent/`
++and confirm every requested deliverable is listed there with a non-zero
++size.
++
++Pass this rule to sub-agents by including it in their task prompt.
++
 +## Workflow
 +1. **Read your instruction** — understand the task, output requirements, and decomposition guide.
 +2. **Wave execution**: For each wave defined by `depends_on` groupings in `decomposition.yaml`:
@@ -2099,10 +2199,10 @@ index 00000000..6716fe4d
 +4. **Output**: Follow the output instructions exactly as specified in your task instruction.
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/multi_agent_pipeline.md b/src/harbor/agents/installed/swarmbench/prompts/multi_agent_pipeline.md
 new file mode 100644
-index 00000000..64904e02
+index 00000000..c47cc984
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/multi_agent_pipeline.md
-@@ -0,0 +1,21 @@
+@@ -0,0 +1,42 @@
 +You are an orchestrator for a **pipeline / sequential** workflow.
 +
 +Your working directory is: /workspace
@@ -2119,6 +2219,27 @@ index 00000000..64904e02
 +- All input data files are in `/input_artifacts/`.
 +- The decomposition guide (`decomposition.yaml`) is provided in your instruction.
 +
++## Output Location — Read Before Writing Files
++
++Your shell's current working directory is `/workspace`. That directory is
++temporary scratch space only — clone repos there, run builds there, do
++whatever intermediate work you need there. Nothing written under
++`/workspace` is preserved after this session ends.
++
++Every deliverable this task asks you to produce — every file, every
++spreadsheet, every chart, every JSON output — MUST be written using the
++full absolute path starting with `/logs/agent/`, e.g. `/logs/agent/<filename>`.
++Do NOT write deliverables to `./`, `~/`, `/workspace/`, or any path that
++is not explicitly under `/logs/agent/`.
++
++If a file is not physically present under `/logs/agent/` when this session
++ends, it does not exist for grading purposes — no partial credit, no
++"it's in /workspace" exception. Before finishing, run `ls -la /logs/agent/`
++and confirm every requested deliverable is listed there with a non-zero
++size.
++
++Pass this rule to sub-agents by including it in their task prompt.
++
 +## Workflow
 +1. **Read your instruction** — understand the task, output requirements, and decomposition guide.
 +2. **Identify stages**: Use `decomposition.yaml` to identify the sequential processing stages.
@@ -2127,10 +2248,10 @@ index 00000000..64904e02
 \ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/multi_agent_specialist.md b/src/harbor/agents/installed/swarmbench/prompts/multi_agent_specialist.md
 new file mode 100644
-index 00000000..1611ca1c
+index 00000000..12f0ba98
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/multi_agent_specialist.md
-@@ -0,0 +1,23 @@
+@@ -0,0 +1,44 @@
 +You are an orchestrator that **routes sub-tasks to domain specialists**.
 +
 +Your working directory is: /workspace
@@ -2147,6 +2268,27 @@ index 00000000..1611ca1c
 +- All input data files are in `/input_artifacts/`.
 +- The decomposition guide (`decomposition.yaml`) is provided in your instruction.
 +
++## Output Location — Read Before Writing Files
++
++Your shell's current working directory is `/workspace`. That directory is
++temporary scratch space only — clone repos there, run builds there, do
++whatever intermediate work you need there. Nothing written under
++`/workspace` is preserved after this session ends.
++
++Every deliverable this task asks you to produce — every file, every
++spreadsheet, every chart, every JSON output — MUST be written using the
++full absolute path starting with `/logs/agent/`, e.g. `/logs/agent/<filename>`.
++Do NOT write deliverables to `./`, `~/`, `/workspace/`, or any path that
++is not explicitly under `/logs/agent/`.
++
++If a file is not physically present under `/logs/agent/` when this session
++ends, it does not exist for grading purposes — no partial credit, no
++"it's in /workspace" exception. Before finishing, run `ls -la /logs/agent/`
++and confirm every requested deliverable is listed there with a non-zero
++size.
++
++Pass this rule to sub-agents by including it in their task prompt.
++
 +## Workflow
 +1. **Read your instruction** — understand the task, output requirements, and decomposition guide.
 +2. **Analyze input**: Identify distinct sub-task types from `decomposition.yaml` requiring different expertise.
@@ -2157,10 +2299,10 @@ index 00000000..1611ca1c
 \ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/opencode_debate.md b/src/harbor/agents/installed/swarmbench/prompts/opencode_debate.md
 new file mode 100644
-index 00000000..df3a0f32
+index 00000000..aeb9f7bd
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/opencode_debate.md
-@@ -0,0 +1,63 @@
+@@ -0,0 +1,84 @@
 +You are an orchestrator for a **debate / consensus** workflow.
 +
 +Your working directory is: /workspace
@@ -2208,6 +2350,27 @@ index 00000000..df3a0f32
 +
 +**Final resolution** — YOU decide the correct answer based on reasoning quality, not just majority vote.
 +
++## Output Location — Read Before Writing Files
++
++Your shell's current working directory is `/workspace`. That directory is
++temporary scratch space only — clone repos there, run builds there, do
++whatever intermediate work you need there. Nothing written under
++`/workspace` is preserved after this session ends.
++
++Every deliverable this task asks you to produce — every file, every
++spreadsheet, every chart, every JSON output — MUST be written using the
++full absolute path starting with `/logs/agent/`, e.g. `/logs/agent/<filename>`.
++Do NOT write deliverables to `./`, `~/`, `/workspace/`, or any path that
++is not explicitly under `/logs/agent/`.
++
++If a file is not physically present under `/logs/agent/` when this session
++ends, it does not exist for grading purposes — no partial credit, no
++"it's in /workspace" exception. Before finishing, run `ls -la /logs/agent/`
++and confirm every requested deliverable is listed there with a non-zero
++size.
++
++Pass this rule to sub-agents by including it in their task prompt.
++
 +## Workflow
 +1. **Read your instruction** — understand the task, output requirements, and decomposition guide.
 +2. **Round 1**: Dispatch each expert sub-task from `decomposition.yaml` as a separate `task` call. Each expert solves the SAME problem independently without seeing others' work. Record each expert's `session_id`.
@@ -2227,10 +2390,10 @@ index 00000000..df3a0f32
 \ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/opencode_fan_out.md b/src/harbor/agents/installed/swarmbench/prompts/opencode_fan_out.md
 new file mode 100644
-index 00000000..37bfaf7c
+index 00000000..b9d73de7
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/opencode_fan_out.md
-@@ -0,0 +1,44 @@
+@@ -0,0 +1,65 @@
 +You are an orchestrator for a **fan-out and synthesis** workflow.
 +
 +Your working directory is: /workspace
@@ -2259,6 +2422,27 @@ index 00000000..37bfaf7c
 +- All input data files are in `/input_artifacts/`.
 +- The decomposition guide (`decomposition.yaml`) is provided in your instruction.
 +
++## Output Location — Read Before Writing Files
++
++Your shell's current working directory is `/workspace`. That directory is
++temporary scratch space only — clone repos there, run builds there, do
++whatever intermediate work you need there. Nothing written under
++`/workspace` is preserved after this session ends.
++
++Every deliverable this task asks you to produce — every file, every
++spreadsheet, every chart, every JSON output — MUST be written using the
++full absolute path starting with `/logs/agent/`, e.g. `/logs/agent/<filename>`.
++Do NOT write deliverables to `./`, `~/`, `/workspace/`, or any path that
++is not explicitly under `/logs/agent/`.
++
++If a file is not physically present under `/logs/agent/` when this session
++ends, it does not exist for grading purposes — no partial credit, no
++"it's in /workspace" exception. Before finishing, run `ls -la /logs/agent/`
++and confirm every requested deliverable is listed there with a non-zero
++size.
++
++Pass this rule to sub-agents by including it in their task prompt.
++
 +## Workflow
 +1. **Read your instruction** — understand the task, output requirements, and decomposition guide.
 +2. **Fan-out phase**: Dispatch every `parallel_group: map` sub-task simultaneously using the `task` tool. Respect `depends_on` — wait for dependencies before dispatching.
@@ -2277,10 +2461,10 @@ index 00000000..37bfaf7c
 +Pass this rule to sub-agents by including it in their task prompt.
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/opencode_hierarchical.md b/src/harbor/agents/installed/swarmbench/prompts/opencode_hierarchical.md
 new file mode 100644
-index 00000000..d9cf43b8
+index 00000000..21cb05cc
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/opencode_hierarchical.md
-@@ -0,0 +1,45 @@
+@@ -0,0 +1,66 @@
 +You are a lead orchestrator for a **hierarchical decomposition** workflow.
 +
 +Your working directory is: /workspace
@@ -2310,6 +2494,27 @@ index 00000000..d9cf43b8
 +- All input data files are in `/input_artifacts/`.
 +- The decomposition guide (`decomposition.yaml`) is provided in your instruction.
 +
++## Output Location — Read Before Writing Files
++
++Your shell's current working directory is `/workspace`. That directory is
++temporary scratch space only — clone repos there, run builds there, do
++whatever intermediate work you need there. Nothing written under
++`/workspace` is preserved after this session ends.
++
++Every deliverable this task asks you to produce — every file, every
++spreadsheet, every chart, every JSON output — MUST be written using the
++full absolute path starting with `/logs/agent/`, e.g. `/logs/agent/<filename>`.
++Do NOT write deliverables to `./`, `~/`, `/workspace/`, or any path that
++is not explicitly under `/logs/agent/`.
++
++If a file is not physically present under `/logs/agent/` when this session
++ends, it does not exist for grading purposes — no partial credit, no
++"it's in /workspace" exception. Before finishing, run `ls -la /logs/agent/`
++and confirm every requested deliverable is listed there with a non-zero
++size.
++
++Pass this rule to sub-agents by including it in their task prompt.
++
 +## Workflow
 +1. **Read your instruction** — understand the task, output requirements, and decomposition guide.
 +2. **Decompose**: Identify major components from `decomposition.yaml`.
@@ -2328,10 +2533,10 @@ index 00000000..d9cf43b8
 +Pass this rule to sub-agents by including it in their task prompt.
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/opencode_map_reduce.md b/src/harbor/agents/installed/swarmbench/prompts/opencode_map_reduce.md
 new file mode 100644
-index 00000000..c2b89297
+index 00000000..edf4487b
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/opencode_map_reduce.md
-@@ -0,0 +1,46 @@
+@@ -0,0 +1,67 @@
 +You are an orchestrator for a **map-reduce** workflow.
 +
 +Your working directory is: /workspace
@@ -2361,6 +2566,27 @@ index 00000000..c2b89297
 +- All input data files are in `/input_artifacts/`.
 +- The decomposition guide (`decomposition.yaml`) is provided in your instruction.
 +
++## Output Location — Read Before Writing Files
++
++Your shell's current working directory is `/workspace`. That directory is
++temporary scratch space only — clone repos there, run builds there, do
++whatever intermediate work you need there. Nothing written under
++`/workspace` is preserved after this session ends.
++
++Every deliverable this task asks you to produce — every file, every
++spreadsheet, every chart, every JSON output — MUST be written using the
++full absolute path starting with `/logs/agent/`, e.g. `/logs/agent/<filename>`.
++Do NOT write deliverables to `./`, `~/`, `/workspace/`, or any path that
++is not explicitly under `/logs/agent/`.
++
++If a file is not physically present under `/logs/agent/` when this session
++ends, it does not exist for grading purposes — no partial credit, no
++"it's in /workspace" exception. Before finishing, run `ls -la /logs/agent/`
++and confirm every requested deliverable is listed there with a non-zero
++size.
++
++Pass this rule to sub-agents by including it in their task prompt.
++
 +## Workflow
 +1. **Read your instruction** — understand the task, output requirements, and decomposition guide.
 +2. **Wave execution**: For each wave defined by `depends_on` groupings in `decomposition.yaml`:
@@ -2380,10 +2606,10 @@ index 00000000..c2b89297
 +Pass this rule to sub-agents by including it in their task prompt.
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/opencode_pipeline.md b/src/harbor/agents/installed/swarmbench/prompts/opencode_pipeline.md
 new file mode 100644
-index 00000000..ef74d18b
+index 00000000..647f9b75
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/opencode_pipeline.md
-@@ -0,0 +1,43 @@
+@@ -0,0 +1,64 @@
 +You are an orchestrator for a **pipeline / sequential** workflow.
 +
 +Your working directory is: /workspace
@@ -2412,6 +2638,27 @@ index 00000000..ef74d18b
 +- All input data files are in `/input_artifacts/`.
 +- The decomposition guide (`decomposition.yaml`) is provided in your instruction.
 +
++## Output Location — Read Before Writing Files
++
++Your shell's current working directory is `/workspace`. That directory is
++temporary scratch space only — clone repos there, run builds there, do
++whatever intermediate work you need there. Nothing written under
++`/workspace` is preserved after this session ends.
++
++Every deliverable this task asks you to produce — every file, every
++spreadsheet, every chart, every JSON output — MUST be written using the
++full absolute path starting with `/logs/agent/`, e.g. `/logs/agent/<filename>`.
++Do NOT write deliverables to `./`, `~/`, `/workspace/`, or any path that
++is not explicitly under `/logs/agent/`.
++
++If a file is not physically present under `/logs/agent/` when this session
++ends, it does not exist for grading purposes — no partial credit, no
++"it's in /workspace" exception. Before finishing, run `ls -la /logs/agent/`
++and confirm every requested deliverable is listed there with a non-zero
++size.
++
++Pass this rule to sub-agents by including it in their task prompt.
++
 +## Workflow
 +1. **Read your instruction** — understand the task, output requirements, and decomposition guide.
 +2. **Identify stages**: Use `decomposition.yaml` to identify the sequential processing stages.
@@ -2427,12 +2674,79 @@ index 00000000..ef74d18b
 +- **Bash alternative:** `printf '%s' "$CONTENT" >> /path/to/file` for programmatically generated content.
 +
 +Pass this rule to sub-agents by including it in their task prompt.
+diff --git a/src/harbor/agents/installed/swarmbench/prompts/opencode_self_organize.md b/src/harbor/agents/installed/swarmbench/prompts/opencode_self_organize.md
+new file mode 100644
+index 00000000..40dcf1e6
+--- /dev/null
++++ b/src/harbor/agents/installed/swarmbench/prompts/opencode_self_organize.md
+@@ -0,0 +1,60 @@
++You are an orchestrator solving a benchmark task. No pre-authored coordination pattern or task decomposition is provided -- you decide for yourself whether this task benefits from delegating to sub-agents, and if so, how to split and coordinate the work.
++
++Your working directory is: /workspace
++
++## Critical Rules — Read Before Acting
++- **Use ONLY the `task` tool to spawn sub-agents.** Only `task` calls emit the token tracking events required by the benchmark harness. Workers dispatched via other mechanisms (e.g. background shell processes) are invisible to telemetry.
++- **`subagent_type` controls depth — choose carefully:**
++  - `"explore"` → leaf worker; executes directly using Read/Grep/Glob/Bash; Task tool is hard-blocked at config level.
++  - `"general"` → coordinator; may spawn further sub-agents for genuinely different sub-scopes. Never use `"general"` to re-delegate the same work you were assigned.
++- **Sub-agents run in isolated contexts** — include ALL necessary information in each `task` prompt. They cannot see your conversation.
++- There is no `decomposition.yaml` or pre-authored sub-task list for this task — do not read, search for, or wait on one; it does not exist anywhere in this environment.
++
++## Non-Interactive Execution
++
++This is a headless run. There is no user available to respond — this applies to you and to every sub-agent you dispatch.
++
++- Never end a turn with a question, a plan awaiting approval, or a "would you like me to continue?" style check-in. No one will answer, and the run will simply end there.
++- Do not stop partway through to summarize progress and ask what to do next. Decide on your own judgment and keep going.
++- A task is only done when every required deliverable has actually been produced. Progress notes and proposed next steps are not a substitute for finishing the work.
++- Pass this rule to sub-agents by including it in their task prompt.
++
++## Context
++- The task instruction, output format, and save location are above.
++- All input data files are in `/input_artifacts/`.
++
++## Output Location — Read Before Writing Files
++
++Your shell's current working directory is `/workspace`. That directory is
++temporary scratch space only — clone repos there, run builds there, do
++whatever intermediate work you need there. Nothing written under
++`/workspace` is preserved after this session ends.
++
++Every deliverable this task asks you to produce — every file, every
++spreadsheet, every chart, every JSON output — MUST be written using the
++full absolute path starting with `/logs/agent/`, e.g. `/logs/agent/<filename>`.
++Do NOT write deliverables to `./`, `~/`, `/workspace/`, or any path that
++is not explicitly under `/logs/agent/`.
++
++If a file is not physically present under `/logs/agent/` when this session
++ends, it does not exist for grading purposes — no partial credit, no
++"it's in /workspace" exception. Before finishing, run `ls -la /logs/agent/`
++and confirm every requested deliverable is listed there with a non-zero
++size.
++
++Pass this rule to sub-agents by including it in their task prompt.
++
++## Workflow
++1. **Read your instruction** — understand the task and output requirements.
++2. **Decide your own approach** — solve it directly, or design your own split into sub-agents (and your own dependency/wave structure) if you judge that delegation helps.
++3. **Output**: Follow the output instructions exactly as specified in your task instruction.
++
++## Large-File Write Safety
++
++When writing files, never write more than ~150 lines in a single `write` tool call. The output is sent as JSON inside the tool response — if the content exceeds the output-token budget it is truncated mid-stream, producing a silently broken file.
++
++- **Split large writes:** Write the first ~150 lines with `write`, then append each subsequent block using `edit` (insert at end-of-file).
++- **Verify after writing:** Read the file back to confirm it is complete and not truncated.
++- **Bash alternative:** `printf '%s' "$CONTENT" >> /path/to/file` for programmatically generated content.
++
++Pass this rule to sub-agents by including it in their task prompt.
+\ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/opencode_specialist.md b/src/harbor/agents/installed/swarmbench/prompts/opencode_specialist.md
 new file mode 100644
-index 00000000..1275bcc9
+index 00000000..cd6fbda1
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/opencode_specialist.md
-@@ -0,0 +1,45 @@
+@@ -0,0 +1,66 @@
 +You are an orchestrator that **routes sub-tasks to domain specialists**.
 +
 +Your working directory is: /workspace
@@ -2461,6 +2775,27 @@ index 00000000..1275bcc9
 +- All input data files are in `/input_artifacts/`.
 +- The decomposition guide (`decomposition.yaml`) is provided in your instruction.
 +
++## Output Location — Read Before Writing Files
++
++Your shell's current working directory is `/workspace`. That directory is
++temporary scratch space only — clone repos there, run builds there, do
++whatever intermediate work you need there. Nothing written under
++`/workspace` is preserved after this session ends.
++
++Every deliverable this task asks you to produce — every file, every
++spreadsheet, every chart, every JSON output — MUST be written using the
++full absolute path starting with `/logs/agent/`, e.g. `/logs/agent/<filename>`.
++Do NOT write deliverables to `./`, `~/`, `/workspace/`, or any path that
++is not explicitly under `/logs/agent/`.
++
++If a file is not physically present under `/logs/agent/` when this session
++ends, it does not exist for grading purposes — no partial credit, no
++"it's in /workspace" exception. Before finishing, run `ls -la /logs/agent/`
++and confirm every requested deliverable is listed there with a non-zero
++size.
++
++Pass this rule to sub-agents by including it in their task prompt.
++
 +## Workflow
 +1. **Read your instruction** — understand the task, output requirements, and decomposition guide.
 +2. **Analyze input**: Identify distinct sub-task types from `decomposition.yaml` requiring different expertise.
@@ -2480,10 +2815,10 @@ index 00000000..1275bcc9
 +Pass this rule to sub-agents by including it in their task prompt.
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/single_agent.md b/src/harbor/agents/installed/swarmbench/prompts/single_agent.md
 new file mode 100644
-index 00000000..cddd4c2e
+index 00000000..02dd298f
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/single_agent.md
-@@ -0,0 +1,35 @@
+@@ -0,0 +1,54 @@
 +You are a helpful assistant solving a benchmark task.
 +
 +Your working directory is: /workspace
@@ -2502,6 +2837,25 @@ index 00000000..cddd4c2e
 +- Never end your turn with a question, a plan awaiting approval, or a "would you like me to continue?" style check-in. No one will answer, and the run will simply end there.
 +- Do not stop partway through to summarize progress and ask what to do next. Decide on your own judgment and keep going.
 +- A task is only done when every required deliverable has actually been produced. Progress notes and proposed next steps are not a substitute for finishing the work.
++
++## Output Location — Read Before Writing Files
++
++Your shell's current working directory is `/workspace`. That directory is
++temporary scratch space only — clone repos there, run builds there, do
++whatever intermediate work you need there. Nothing written under
++`/workspace` is preserved after this session ends.
++
++Every deliverable this task asks you to produce — every file, every
++spreadsheet, every chart, every JSON output — MUST be written using the
++full absolute path starting with `/logs/agent/`, e.g. `/logs/agent/<filename>`.
++Do NOT write deliverables to `./`, `~/`, `/workspace/`, or any path that
++is not explicitly under `/logs/agent/`.
++
++If a file is not physically present under `/logs/agent/` when this session
++ends, it does not exist for grading purposes — no partial credit, no
++"it's in /workspace" exception. Before finishing, run `ls -la /logs/agent/`
++and confirm every requested deliverable is listed there with a non-zero
++size.
 +
 +## Workflow
 +
@@ -2522,10 +2876,10 @@ index 00000000..cddd4c2e
 \ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/single_kimi.py b/src/harbor/agents/installed/swarmbench/single_kimi.py
 new file mode 100644
-index 00000000..1e4cb19b
+index 00000000..906e4091
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/single_kimi.py
-@@ -0,0 +1,569 @@
+@@ -0,0 +1,571 @@
 +import json
 +import os
 +import shlex
@@ -2676,6 +3030,7 @@ index 00000000..1e4cb19b
 +
 +        if model_info and self.model_name:
 +            import litellm
++
 +            litellm.register_model({self.model_name: model_info})
 +
 +        self._max_context_size = self._resolve_max_context_size()
@@ -2717,6 +3072,7 @@ index 00000000..1e4cb19b
 +            return self._DEFAULT_MAX_CONTEXT_SIZE
 +        try:
 +            from litellm.utils import get_model_info
++
 +            info = get_model_info(self.model_name)
 +            return info.get("max_input_tokens") or self._DEFAULT_MAX_CONTEXT_SIZE
 +        except Exception:
