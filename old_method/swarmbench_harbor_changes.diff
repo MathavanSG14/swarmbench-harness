@@ -1999,10 +1999,10 @@ index 00000000..31b06500
 +so and stop — do not ask what to do next.
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/multi_agent_debate.md b/src/harbor/agents/installed/swarmbench/prompts/multi_agent_debate.md
 new file mode 100644
-index 00000000..aee246e4
+index 00000000..e0f5ea82
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/multi_agent_debate.md
-@@ -0,0 +1,43 @@
+@@ -0,0 +1,49 @@
 +You are an orchestrator for a **debate / consensus** workflow.
 +
 +Your working directory is: /workspace
@@ -2032,11 +2032,17 @@ index 00000000..aee246e4
 +Do NOT write deliverables to `./`, `~/`, `/workspace/`, or any path that
 +is not explicitly under `/logs/agent/`.
 +
++This directory may already contain a file you did not create -- `opencode.txt`.
++This is the benchmark harness's own run log, not your deliverable. Do not delete,
++move, rename, truncate, or overwrite it (via `rm`, shell redirection, `write`,
++`edit`, or any other means) -- leave it exactly as you find it. Its presence does
++not affect grading, and removing it can break how this run is scored.
++
 +If a file is not physically present under `/logs/agent/` when this session
 +ends, it does not exist for grading purposes — no partial credit, no
 +"it's in /workspace" exception. Before finishing, run `ls -la /logs/agent/`
 +and confirm every requested deliverable is listed there with a non-zero
-+size.
++size -- you do not need to remove anything else that's already present.
 +
 +Pass this rule to sub-agents by including it in their task prompt.
 +
@@ -2049,10 +2055,10 @@ index 00000000..aee246e4
 \ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/multi_agent_fan_out.md b/src/harbor/agents/installed/swarmbench/prompts/multi_agent_fan_out.md
 new file mode 100644
-index 00000000..1f3f1f80
+index 00000000..277f964d
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/multi_agent_fan_out.md
-@@ -0,0 +1,43 @@
+@@ -0,0 +1,49 @@
 +You are an orchestrator for a **fan-out and synthesis** workflow.
 +
 +Your working directory is: /workspace
@@ -2082,11 +2088,17 @@ index 00000000..1f3f1f80
 +Do NOT write deliverables to `./`, `~/`, `/workspace/`, or any path that
 +is not explicitly under `/logs/agent/`.
 +
++This directory may already contain a file you did not create -- `opencode.txt`.
++This is the benchmark harness's own run log, not your deliverable. Do not delete,
++move, rename, truncate, or overwrite it (via `rm`, shell redirection, `write`,
++`edit`, or any other means) -- leave it exactly as you find it. Its presence does
++not affect grading, and removing it can break how this run is scored.
++
 +If a file is not physically present under `/logs/agent/` when this session
 +ends, it does not exist for grading purposes — no partial credit, no
 +"it's in /workspace" exception. Before finishing, run `ls -la /logs/agent/`
 +and confirm every requested deliverable is listed there with a non-zero
-+size.
++size -- you do not need to remove anything else that's already present.
 +
 +Pass this rule to sub-agents by including it in their task prompt.
 +
@@ -2098,10 +2110,10 @@ index 00000000..1f3f1f80
 +5. **Output**: Follow the output instructions exactly as specified in your task instruction.
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/multi_agent_hierarchical.md b/src/harbor/agents/installed/swarmbench/prompts/multi_agent_hierarchical.md
 new file mode 100644
-index 00000000..bc55d4d7
+index 00000000..56bc78b3
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/multi_agent_hierarchical.md
-@@ -0,0 +1,43 @@
+@@ -0,0 +1,49 @@
 +You are a lead orchestrator for a **hierarchical decomposition** workflow.
 +
 +Your working directory is: /workspace
@@ -2131,11 +2143,17 @@ index 00000000..bc55d4d7
 +Do NOT write deliverables to `./`, `~/`, `/workspace/`, or any path that
 +is not explicitly under `/logs/agent/`.
 +
++This directory may already contain a file you did not create -- `opencode.txt`.
++This is the benchmark harness's own run log, not your deliverable. Do not delete,
++move, rename, truncate, or overwrite it (via `rm`, shell redirection, `write`,
++`edit`, or any other means) -- leave it exactly as you find it. Its presence does
++not affect grading, and removing it can break how this run is scored.
++
 +If a file is not physically present under `/logs/agent/` when this session
 +ends, it does not exist for grading purposes — no partial credit, no
 +"it's in /workspace" exception. Before finishing, run `ls -la /logs/agent/`
 +and confirm every requested deliverable is listed there with a non-zero
-+size.
++size -- you do not need to remove anything else that's already present.
 +
 +Pass this rule to sub-agents by including it in their task prompt.
 +
@@ -2148,10 +2166,10 @@ index 00000000..bc55d4d7
 \ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/multi_agent_map_reduce.md b/src/harbor/agents/installed/swarmbench/prompts/multi_agent_map_reduce.md
 new file mode 100644
-index 00000000..38250398
+index 00000000..91d9457e
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/multi_agent_map_reduce.md
-@@ -0,0 +1,45 @@
+@@ -0,0 +1,51 @@
 +You are an orchestrator for a **map-reduce** workflow.
 +
 +Your working directory is: /workspace
@@ -2182,11 +2200,17 @@ index 00000000..38250398
 +Do NOT write deliverables to `./`, `~/`, `/workspace/`, or any path that
 +is not explicitly under `/logs/agent/`.
 +
++This directory may already contain a file you did not create -- `opencode.txt`.
++This is the benchmark harness's own run log, not your deliverable. Do not delete,
++move, rename, truncate, or overwrite it (via `rm`, shell redirection, `write`,
++`edit`, or any other means) -- leave it exactly as you find it. Its presence does
++not affect grading, and removing it can break how this run is scored.
++
 +If a file is not physically present under `/logs/agent/` when this session
 +ends, it does not exist for grading purposes — no partial credit, no
 +"it's in /workspace" exception. Before finishing, run `ls -la /logs/agent/`
 +and confirm every requested deliverable is listed there with a non-zero
-+size.
++size -- you do not need to remove anything else that's already present.
 +
 +Pass this rule to sub-agents by including it in their task prompt.
 +
@@ -2199,10 +2223,10 @@ index 00000000..38250398
 +4. **Output**: Follow the output instructions exactly as specified in your task instruction.
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/multi_agent_pipeline.md b/src/harbor/agents/installed/swarmbench/prompts/multi_agent_pipeline.md
 new file mode 100644
-index 00000000..c47cc984
+index 00000000..5a2ad67a
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/multi_agent_pipeline.md
-@@ -0,0 +1,42 @@
+@@ -0,0 +1,48 @@
 +You are an orchestrator for a **pipeline / sequential** workflow.
 +
 +Your working directory is: /workspace
@@ -2232,11 +2256,17 @@ index 00000000..c47cc984
 +Do NOT write deliverables to `./`, `~/`, `/workspace/`, or any path that
 +is not explicitly under `/logs/agent/`.
 +
++This directory may already contain a file you did not create -- `opencode.txt`.
++This is the benchmark harness's own run log, not your deliverable. Do not delete,
++move, rename, truncate, or overwrite it (via `rm`, shell redirection, `write`,
++`edit`, or any other means) -- leave it exactly as you find it. Its presence does
++not affect grading, and removing it can break how this run is scored.
++
 +If a file is not physically present under `/logs/agent/` when this session
 +ends, it does not exist for grading purposes — no partial credit, no
 +"it's in /workspace" exception. Before finishing, run `ls -la /logs/agent/`
 +and confirm every requested deliverable is listed there with a non-zero
-+size.
++size -- you do not need to remove anything else that's already present.
 +
 +Pass this rule to sub-agents by including it in their task prompt.
 +
@@ -2248,10 +2278,10 @@ index 00000000..c47cc984
 \ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/multi_agent_specialist.md b/src/harbor/agents/installed/swarmbench/prompts/multi_agent_specialist.md
 new file mode 100644
-index 00000000..12f0ba98
+index 00000000..daed30e0
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/multi_agent_specialist.md
-@@ -0,0 +1,44 @@
+@@ -0,0 +1,50 @@
 +You are an orchestrator that **routes sub-tasks to domain specialists**.
 +
 +Your working directory is: /workspace
@@ -2281,11 +2311,17 @@ index 00000000..12f0ba98
 +Do NOT write deliverables to `./`, `~/`, `/workspace/`, or any path that
 +is not explicitly under `/logs/agent/`.
 +
++This directory may already contain a file you did not create -- `opencode.txt`.
++This is the benchmark harness's own run log, not your deliverable. Do not delete,
++move, rename, truncate, or overwrite it (via `rm`, shell redirection, `write`,
++`edit`, or any other means) -- leave it exactly as you find it. Its presence does
++not affect grading, and removing it can break how this run is scored.
++
 +If a file is not physically present under `/logs/agent/` when this session
 +ends, it does not exist for grading purposes — no partial credit, no
 +"it's in /workspace" exception. Before finishing, run `ls -la /logs/agent/`
 +and confirm every requested deliverable is listed there with a non-zero
-+size.
++size -- you do not need to remove anything else that's already present.
 +
 +Pass this rule to sub-agents by including it in their task prompt.
 +
@@ -2299,10 +2335,10 @@ index 00000000..12f0ba98
 \ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/opencode_debate.md b/src/harbor/agents/installed/swarmbench/prompts/opencode_debate.md
 new file mode 100644
-index 00000000..aeb9f7bd
+index 00000000..fde4f68e
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/opencode_debate.md
-@@ -0,0 +1,84 @@
+@@ -0,0 +1,90 @@
 +You are an orchestrator for a **debate / consensus** workflow.
 +
 +Your working directory is: /workspace
@@ -2363,11 +2399,17 @@ index 00000000..aeb9f7bd
 +Do NOT write deliverables to `./`, `~/`, `/workspace/`, or any path that
 +is not explicitly under `/logs/agent/`.
 +
++This directory may already contain a file you did not create -- `opencode.txt`.
++This is the benchmark harness's own run log, not your deliverable. Do not delete,
++move, rename, truncate, or overwrite it (via `rm`, shell redirection, `write`,
++`edit`, or any other means) -- leave it exactly as you find it. Its presence does
++not affect grading, and removing it can break how this run is scored.
++
 +If a file is not physically present under `/logs/agent/` when this session
 +ends, it does not exist for grading purposes — no partial credit, no
 +"it's in /workspace" exception. Before finishing, run `ls -la /logs/agent/`
 +and confirm every requested deliverable is listed there with a non-zero
-+size.
++size -- you do not need to remove anything else that's already present.
 +
 +Pass this rule to sub-agents by including it in their task prompt.
 +
@@ -2390,10 +2432,10 @@ index 00000000..aeb9f7bd
 \ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/opencode_fan_out.md b/src/harbor/agents/installed/swarmbench/prompts/opencode_fan_out.md
 new file mode 100644
-index 00000000..b9d73de7
+index 00000000..e6cecc7a
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/opencode_fan_out.md
-@@ -0,0 +1,65 @@
+@@ -0,0 +1,71 @@
 +You are an orchestrator for a **fan-out and synthesis** workflow.
 +
 +Your working directory is: /workspace
@@ -2435,11 +2477,17 @@ index 00000000..b9d73de7
 +Do NOT write deliverables to `./`, `~/`, `/workspace/`, or any path that
 +is not explicitly under `/logs/agent/`.
 +
++This directory may already contain a file you did not create -- `opencode.txt`.
++This is the benchmark harness's own run log, not your deliverable. Do not delete,
++move, rename, truncate, or overwrite it (via `rm`, shell redirection, `write`,
++`edit`, or any other means) -- leave it exactly as you find it. Its presence does
++not affect grading, and removing it can break how this run is scored.
++
 +If a file is not physically present under `/logs/agent/` when this session
 +ends, it does not exist for grading purposes — no partial credit, no
 +"it's in /workspace" exception. Before finishing, run `ls -la /logs/agent/`
 +and confirm every requested deliverable is listed there with a non-zero
-+size.
++size -- you do not need to remove anything else that's already present.
 +
 +Pass this rule to sub-agents by including it in their task prompt.
 +
@@ -2461,10 +2509,10 @@ index 00000000..b9d73de7
 +Pass this rule to sub-agents by including it in their task prompt.
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/opencode_hierarchical.md b/src/harbor/agents/installed/swarmbench/prompts/opencode_hierarchical.md
 new file mode 100644
-index 00000000..21cb05cc
+index 00000000..8d445154
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/opencode_hierarchical.md
-@@ -0,0 +1,66 @@
+@@ -0,0 +1,72 @@
 +You are a lead orchestrator for a **hierarchical decomposition** workflow.
 +
 +Your working directory is: /workspace
@@ -2507,11 +2555,17 @@ index 00000000..21cb05cc
 +Do NOT write deliverables to `./`, `~/`, `/workspace/`, or any path that
 +is not explicitly under `/logs/agent/`.
 +
++This directory may already contain a file you did not create -- `opencode.txt`.
++This is the benchmark harness's own run log, not your deliverable. Do not delete,
++move, rename, truncate, or overwrite it (via `rm`, shell redirection, `write`,
++`edit`, or any other means) -- leave it exactly as you find it. Its presence does
++not affect grading, and removing it can break how this run is scored.
++
 +If a file is not physically present under `/logs/agent/` when this session
 +ends, it does not exist for grading purposes — no partial credit, no
 +"it's in /workspace" exception. Before finishing, run `ls -la /logs/agent/`
 +and confirm every requested deliverable is listed there with a non-zero
-+size.
++size -- you do not need to remove anything else that's already present.
 +
 +Pass this rule to sub-agents by including it in their task prompt.
 +
@@ -2533,10 +2587,10 @@ index 00000000..21cb05cc
 +Pass this rule to sub-agents by including it in their task prompt.
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/opencode_map_reduce.md b/src/harbor/agents/installed/swarmbench/prompts/opencode_map_reduce.md
 new file mode 100644
-index 00000000..edf4487b
+index 00000000..8b450cf8
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/opencode_map_reduce.md
-@@ -0,0 +1,67 @@
+@@ -0,0 +1,73 @@
 +You are an orchestrator for a **map-reduce** workflow.
 +
 +Your working directory is: /workspace
@@ -2579,11 +2633,17 @@ index 00000000..edf4487b
 +Do NOT write deliverables to `./`, `~/`, `/workspace/`, or any path that
 +is not explicitly under `/logs/agent/`.
 +
++This directory may already contain a file you did not create -- `opencode.txt`.
++This is the benchmark harness's own run log, not your deliverable. Do not delete,
++move, rename, truncate, or overwrite it (via `rm`, shell redirection, `write`,
++`edit`, or any other means) -- leave it exactly as you find it. Its presence does
++not affect grading, and removing it can break how this run is scored.
++
 +If a file is not physically present under `/logs/agent/` when this session
 +ends, it does not exist for grading purposes — no partial credit, no
 +"it's in /workspace" exception. Before finishing, run `ls -la /logs/agent/`
 +and confirm every requested deliverable is listed there with a non-zero
-+size.
++size -- you do not need to remove anything else that's already present.
 +
 +Pass this rule to sub-agents by including it in their task prompt.
 +
@@ -2606,10 +2666,10 @@ index 00000000..edf4487b
 +Pass this rule to sub-agents by including it in their task prompt.
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/opencode_pipeline.md b/src/harbor/agents/installed/swarmbench/prompts/opencode_pipeline.md
 new file mode 100644
-index 00000000..647f9b75
+index 00000000..981cba7f
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/opencode_pipeline.md
-@@ -0,0 +1,64 @@
+@@ -0,0 +1,70 @@
 +You are an orchestrator for a **pipeline / sequential** workflow.
 +
 +Your working directory is: /workspace
@@ -2651,11 +2711,17 @@ index 00000000..647f9b75
 +Do NOT write deliverables to `./`, `~/`, `/workspace/`, or any path that
 +is not explicitly under `/logs/agent/`.
 +
++This directory may already contain a file you did not create -- `opencode.txt`.
++This is the benchmark harness's own run log, not your deliverable. Do not delete,
++move, rename, truncate, or overwrite it (via `rm`, shell redirection, `write`,
++`edit`, or any other means) -- leave it exactly as you find it. Its presence does
++not affect grading, and removing it can break how this run is scored.
++
 +If a file is not physically present under `/logs/agent/` when this session
 +ends, it does not exist for grading purposes — no partial credit, no
 +"it's in /workspace" exception. Before finishing, run `ls -la /logs/agent/`
 +and confirm every requested deliverable is listed there with a non-zero
-+size.
++size -- you do not need to remove anything else that's already present.
 +
 +Pass this rule to sub-agents by including it in their task prompt.
 +
@@ -2676,10 +2742,10 @@ index 00000000..647f9b75
 +Pass this rule to sub-agents by including it in their task prompt.
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/opencode_self_organize.md b/src/harbor/agents/installed/swarmbench/prompts/opencode_self_organize.md
 new file mode 100644
-index 00000000..40dcf1e6
+index 00000000..e143a6fc
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/opencode_self_organize.md
-@@ -0,0 +1,60 @@
+@@ -0,0 +1,66 @@
 +You are an orchestrator solving a benchmark task. No pre-authored coordination pattern or task decomposition is provided -- you decide for yourself whether this task benefits from delegating to sub-agents, and if so, how to split and coordinate the work.
 +
 +Your working directory is: /workspace
@@ -2718,11 +2784,17 @@ index 00000000..40dcf1e6
 +Do NOT write deliverables to `./`, `~/`, `/workspace/`, or any path that
 +is not explicitly under `/logs/agent/`.
 +
++This directory may already contain a file you did not create -- `opencode.txt`.
++This is the benchmark harness's own run log, not your deliverable. Do not delete,
++move, rename, truncate, or overwrite it (via `rm`, shell redirection, `write`,
++`edit`, or any other means) -- leave it exactly as you find it. Its presence does
++not affect grading, and removing it can break how this run is scored.
++
 +If a file is not physically present under `/logs/agent/` when this session
 +ends, it does not exist for grading purposes — no partial credit, no
 +"it's in /workspace" exception. Before finishing, run `ls -la /logs/agent/`
 +and confirm every requested deliverable is listed there with a non-zero
-+size.
++size -- you do not need to remove anything else that's already present.
 +
 +Pass this rule to sub-agents by including it in their task prompt.
 +
@@ -2743,10 +2815,10 @@ index 00000000..40dcf1e6
 \ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/opencode_specialist.md b/src/harbor/agents/installed/swarmbench/prompts/opencode_specialist.md
 new file mode 100644
-index 00000000..cd6fbda1
+index 00000000..12e6a1ca
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/opencode_specialist.md
-@@ -0,0 +1,66 @@
+@@ -0,0 +1,72 @@
 +You are an orchestrator that **routes sub-tasks to domain specialists**.
 +
 +Your working directory is: /workspace
@@ -2788,11 +2860,17 @@ index 00000000..cd6fbda1
 +Do NOT write deliverables to `./`, `~/`, `/workspace/`, or any path that
 +is not explicitly under `/logs/agent/`.
 +
++This directory may already contain a file you did not create -- `opencode.txt`.
++This is the benchmark harness's own run log, not your deliverable. Do not delete,
++move, rename, truncate, or overwrite it (via `rm`, shell redirection, `write`,
++`edit`, or any other means) -- leave it exactly as you find it. Its presence does
++not affect grading, and removing it can break how this run is scored.
++
 +If a file is not physically present under `/logs/agent/` when this session
 +ends, it does not exist for grading purposes — no partial credit, no
 +"it's in /workspace" exception. Before finishing, run `ls -la /logs/agent/`
 +and confirm every requested deliverable is listed there with a non-zero
-+size.
++size -- you do not need to remove anything else that's already present.
 +
 +Pass this rule to sub-agents by including it in their task prompt.
 +
@@ -2815,10 +2893,10 @@ index 00000000..cd6fbda1
 +Pass this rule to sub-agents by including it in their task prompt.
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/single_agent.md b/src/harbor/agents/installed/swarmbench/prompts/single_agent.md
 new file mode 100644
-index 00000000..02dd298f
+index 00000000..2d23e1d6
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/prompts/single_agent.md
-@@ -0,0 +1,54 @@
+@@ -0,0 +1,60 @@
 +You are a helpful assistant solving a benchmark task.
 +
 +Your working directory is: /workspace
@@ -2851,11 +2929,17 @@ index 00000000..02dd298f
 +Do NOT write deliverables to `./`, `~/`, `/workspace/`, or any path that
 +is not explicitly under `/logs/agent/`.
 +
++This directory may already contain a file you did not create -- `opencode.txt`.
++This is the benchmark harness's own run log, not your deliverable. Do not delete,
++move, rename, truncate, or overwrite it (via `rm`, shell redirection, `write`,
++`edit`, or any other means) -- leave it exactly as you find it. Its presence does
++not affect grading, and removing it can break how this run is scored.
++
 +If a file is not physically present under `/logs/agent/` when this session
 +ends, it does not exist for grading purposes — no partial credit, no
 +"it's in /workspace" exception. Before finishing, run `ls -la /logs/agent/`
 +and confirm every requested deliverable is listed there with a non-zero
-+size.
++size -- you do not need to remove anything else that's already present.
 +
 +## Workflow
 +
