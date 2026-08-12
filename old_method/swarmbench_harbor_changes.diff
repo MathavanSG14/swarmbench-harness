@@ -1,38 +1,35 @@
 diff --git a/src/harbor/agents/factory.py b/src/harbor/agents/factory.py
-index 45c20fcd..44b931d8 100644
+index 081ff725..f40ece46 100644
 --- a/src/harbor/agents/factory.py
 +++ b/src/harbor/agents/factory.py
-@@ -13,6 +13,13 @@ from harbor.agents.installed.rovodev_cli import RovodevCli
- from harbor.agents.installed.goose import Goose
- from harbor.agents.installed.hermes import Hermes
- from harbor.agents.installed.kimi_cli import KimiCli
-+from harbor.agents.installed.swarmbench.single_kimi import SwarmbenchKimiSingle
-+from harbor.agents.installed.swarmbench.multi_kimi import SwarmbenchKimiMulti
-+from harbor.agents.installed.swarmbench.single_opencode import SwarmbenchOpenCodeSingle
-+from harbor.agents.installed.swarmbench.multi_opencode import SwarmbenchOpenCodeMulti
-+from harbor.agents.installed.swarmbench.multi_opencode_no_plan import (
-+    SwarmbenchOpenCodeMultiNoPlan,
-+)
- from harbor.agents.installed.mini_swe_agent import MiniSweAgent
- from harbor.agents.installed.nemo_agent import NemoAgent
- from harbor.agents.installed.opencode import OpenCode
-@@ -46,6 +53,11 @@ class AgentFactory:
-         Goose,
-         Hermes,
-         KimiCli,
-+        SwarmbenchKimiSingle,
-+        SwarmbenchKimiMulti,
-+        SwarmbenchOpenCodeSingle,
-+        SwarmbenchOpenCodeMulti,
-+        SwarmbenchOpenCodeMultiNoPlan,
-         MiniSweAgent,
-         NemoAgent,
-         SweAgent,
+@@ -47,6 +47,22 @@ class AgentFactory:
+         AgentName.HERMES: "harbor.agents.installed.hermes:Hermes",
+         AgentName.KIMI_CODE: "harbor.agents.installed.kimi_code:KimiCode",
+         AgentName.KIMI_CLI: "harbor.agents.installed.kimi_cli:KimiCli",
++        AgentName.SWARM_KIMI_SINGLE: (
++            "harbor.agents.installed.swarmbench.single_kimi:SwarmbenchKimiSingle"
++        ),
++        AgentName.SWARM_KIMI_MULTI: (
++            "harbor.agents.installed.swarmbench.multi_kimi:SwarmbenchKimiMulti"
++        ),
++        AgentName.SWARM_OPENCODE_SINGLE: (
++            "harbor.agents.installed.swarmbench.single_opencode:SwarmbenchOpenCodeSingle"
++        ),
++        AgentName.SWARM_OPENCODE_MULTI: (
++            "harbor.agents.installed.swarmbench.multi_opencode:SwarmbenchOpenCodeMulti"
++        ),
++        AgentName.SWARM_OPENCODE_MULTI_NOPLAN: (
++            "harbor.agents.installed.swarmbench.multi_opencode_no_plan:"
++            "SwarmbenchOpenCodeMultiNoPlan"
++        ),
+         AgentName.LANGGRAPH: "harbor.agents.installed.langgraph:LangGraph",
+         AgentName.DEERFLOW: "harbor.agents.installed.deerflow:DeerFlow",
+         AgentName.MINI_SWE_AGENT: (
 diff --git a/src/harbor/agents/installed/kimi_cli.py b/src/harbor/agents/installed/kimi_cli.py
-index 65ff951a..2ea5be23 100644
+index 629093ce..71af6f5c 100644
 --- a/src/harbor/agents/installed/kimi_cli.py
 +++ b/src/harbor/agents/installed/kimi_cli.py
-@@ -192,6 +192,9 @@ class KimiCli(BaseInstalledAgent):
+@@ -224,6 +224,9 @@ class KimiCli(BaseInstalledAgent):
                      "max_context_size": self._max_context_size,
                  }
              },
@@ -47,10 +44,10 @@ new file mode 100644
 index 00000000..e69de29b
 diff --git a/src/harbor/agents/installed/swarmbench/multi_kimi.py b/src/harbor/agents/installed/swarmbench/multi_kimi.py
 new file mode 100644
-index 00000000..06c406c7
+index 00000000..004b86d2
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/multi_kimi.py
-@@ -0,0 +1,627 @@
+@@ -0,0 +1,632 @@
 +import json
 +import os
 +import shlex
@@ -58,7 +55,7 @@ index 00000000..06c406c7
 +import tomllib
 +from dataclasses import dataclass, field
 +from pathlib import Path
-+from typing import Any
++from typing import Any, override
 +
 +from harbor.agents.installed.base import (
 +    BaseInstalledAgent,
@@ -187,6 +184,7 @@ index 00000000..06c406c7
 +    - Adds Fireworks as a supported provider
 +    """
 +
++    @override
 +    def get_version_command(self) -> str | None:
 +        return "kimi --version"
 +
@@ -210,9 +208,11 @@ index 00000000..06c406c7
 +        self._max_context_size = self._resolve_max_context_size()
 +
 +    @staticmethod
++    @override
 +    def name() -> str:
 +        return AgentName.SWARM_KIMI_MULTI.value
 +
++    @override
 +    async def install(self, environment: BaseEnvironment) -> None:
 +        # Harbor installs kimi-cli fresh inside the Docker container on each trial:
 +        # Step 1 (root): apt-get install curl  — needed to bootstrap the uv installer.
@@ -344,6 +344,7 @@ index 00000000..06c406c7
 +
 +        return prompt.replace("${ESTIMATED_SUB_AGENTS}", estimated_sub_agents)
 +
++    @override
 +    def populate_context_post_run(self, context: AgentContext) -> None:
 +        events = self._parse_wire_events()
 +        if not events:
@@ -387,6 +388,7 @@ index 00000000..06c406c7
 +        escaped = shlex.quote(mcp_json)
 +        return f"mkdir -p /tmp && echo {escaped} > /tmp/kimi-mcp.json"
 +
++    @override
 +    async def run(
 +        self,
 +        instruction: str,
@@ -680,10 +682,10 @@ index 00000000..06c406c7
 +        )
 diff --git a/src/harbor/agents/installed/swarmbench/multi_opencode.py b/src/harbor/agents/installed/swarmbench/multi_opencode.py
 new file mode 100644
-index 00000000..c2a70afd
+index 00000000..6c1b9ce4
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/multi_opencode.py
-@@ -0,0 +1,1268 @@
+@@ -0,0 +1,1274 @@
 +import asyncio
 +import copy
 +import json
@@ -692,7 +694,7 @@ index 00000000..c2a70afd
 +import tempfile
 +import tomllib
 +from pathlib import Path
-+from typing import Any
++from typing import Any, override
 +
 +from harbor.agents.installed.base import (
 +    BaseInstalledAgent,
@@ -701,6 +703,7 @@ index 00000000..c2a70afd
 +from harbor.environments.base import BaseEnvironment
 +from harbor.models.agent.context import AgentContext
 +from harbor.models.agent.name import AgentName
++from harbor.models.trial.paths import EnvironmentPaths
 +from harbor.models.trajectories import (
 +    Agent,
 +    FinalMetrics,
@@ -969,12 +972,15 @@ index 00000000..c2a70afd
 +        self._opencode_config: dict[str, Any] = opencode_config or {}
 +
 +    @staticmethod
++    @override
 +    def name() -> str:
 +        return AgentName.SWARM_OPENCODE_MULTI.value
 +
++    @override
 +    def get_version_command(self) -> str | None:
 +        return ". ~/.nvm/nvm.sh; opencode --version"
 +
++    @override
 +    async def install(self, environment: BaseEnvironment) -> None:
 +        await self.exec_as_root(
 +            environment,
@@ -1398,6 +1404,7 @@ index 00000000..c2a70afd
 +            "n_sessions": n_sessions,
 +        }
 +
++    @override
 +    def populate_context_post_run(self, context: AgentContext) -> None:
 +        events = self._parse_stdout()
 +        if not events:
@@ -1459,7 +1466,7 @@ index 00000000..c2a70afd
 +        if environment.capabilities.mounted:
 +            return
 +        remote_path = (
-+            environment.env_paths.agent_dir / self._OUTPUT_FILENAME
++            EnvironmentPaths.for_os(environment.os).agent_dir / self._OUTPUT_FILENAME
 +        ).as_posix()
 +        local_path = self.logs_dir / self._OUTPUT_FILENAME
 +        try:
@@ -1626,6 +1633,7 @@ index 00000000..c2a70afd
 +        # Normal completion: export runs after opencode finishes.
 +        await self.exec_as_agent(environment, command=export_cmd, env={})
 +
++    @override
 +    async def run(
 +        self,
 +        instruction: str,
@@ -1954,10 +1962,12 @@ index 00000000..c2a70afd
 +        )
 diff --git a/src/harbor/agents/installed/swarmbench/multi_opencode_no_plan.py b/src/harbor/agents/installed/swarmbench/multi_opencode_no_plan.py
 new file mode 100644
-index 00000000..2f236c7a
+index 00000000..cf828c04
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/multi_opencode_no_plan.py
-@@ -0,0 +1,26 @@
+@@ -0,0 +1,31 @@
++from typing import override
++
 +from harbor.agents.installed.swarmbench.multi_opencode import (
 +    SwarmbenchOpenCodeMulti,
 +    _load_prompt,
@@ -1976,12 +1986,15 @@ index 00000000..2f236c7a
 +    agent-type prompts) is inherited unchanged."""
 +
 +    @staticmethod
++    @override
 +    def name() -> str:
 +        return AgentName.SWARM_OPENCODE_MULTI_NOPLAN.value
 +
++    @override
 +    def _load_decomposition(self) -> str:
 +        return ""
 +
++    @override
 +    def _load_coordination_prompt(self) -> str:
 +        return _load_prompt("opencode_self_organize.md")
 diff --git a/src/harbor/agents/installed/swarmbench/prompts/AGENTS.md b/src/harbor/agents/installed/swarmbench/prompts/AGENTS.md
@@ -2960,17 +2973,17 @@ index 00000000..2d23e1d6
 \ No newline at end of file
 diff --git a/src/harbor/agents/installed/swarmbench/single_kimi.py b/src/harbor/agents/installed/swarmbench/single_kimi.py
 new file mode 100644
-index 00000000..906e4091
+index 00000000..6fd57120
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/single_kimi.py
-@@ -0,0 +1,571 @@
+@@ -0,0 +1,576 @@
 +import json
 +import os
 +import shlex
 +import tempfile
 +from dataclasses import dataclass, field
 +from pathlib import Path
-+from typing import Any
++from typing import Any, override
 +
 +from harbor.agents.installed.base import (
 +    BaseInstalledAgent,
@@ -3099,6 +3112,7 @@ index 00000000..906e4091
 +    - Adds Fireworks as a supported provider
 +    """
 +
++    @override
 +    def get_version_command(self) -> str | None:
 +        return "kimi --version"
 +
@@ -3120,9 +3134,11 @@ index 00000000..906e4091
 +        self._max_context_size = self._resolve_max_context_size()
 +
 +    @staticmethod
++    @override
 +    def name() -> str:
 +        return AgentName.SWARM_KIMI_SINGLE.value
 +
++    @override
 +    async def install(self, environment: BaseEnvironment) -> None:
 +        await self.exec_as_root(
 +            environment,
@@ -3206,6 +3222,7 @@ index 00000000..906e4091
 +            servers[server.name] = entry
 +        return json.dumps({"mcpServers": servers})
 +
++    @override
 +    def populate_context_post_run(self, context: AgentContext) -> None:
 +        events = self._parse_wire_events()
 +        if not events:
@@ -3249,6 +3266,7 @@ index 00000000..906e4091
 +        escaped = shlex.quote(mcp_json)
 +        return f"mkdir -p /tmp && echo {escaped} > /tmp/kimi-mcp.json"
 +
++    @override
 +    async def run(
 +        self,
 +        instruction: str,
@@ -3537,10 +3555,10 @@ index 00000000..906e4091
 +        )
 diff --git a/src/harbor/agents/installed/swarmbench/single_opencode.py b/src/harbor/agents/installed/swarmbench/single_opencode.py
 new file mode 100644
-index 00000000..c0c29c21
+index 00000000..2d076844
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/single_opencode.py
-@@ -0,0 +1,1074 @@
+@@ -0,0 +1,1080 @@
 +import asyncio
 +import copy
 +import json
@@ -3549,7 +3567,7 @@ index 00000000..c0c29c21
 +import tempfile
 +from datetime import datetime, timezone
 +from pathlib import Path
-+from typing import Any
++from typing import Any, override
 +
 +from harbor.agents.installed.base import (
 +    BaseInstalledAgent,
@@ -3558,6 +3576,7 @@ index 00000000..c0c29c21
 +from harbor.environments.base import BaseEnvironment
 +from harbor.models.agent.context import AgentContext
 +from harbor.models.agent.name import AgentName
++from harbor.models.trial.paths import EnvironmentPaths
 +from harbor.models.trajectories import (
 +    Agent,
 +    FinalMetrics,
@@ -3787,12 +3806,15 @@ index 00000000..c0c29c21
 +        self._opencode_config: dict[str, Any] = opencode_config or {}
 +
 +    @staticmethod
++    @override
 +    def name() -> str:
 +        return AgentName.SWARM_OPENCODE_SINGLE.value
 +
++    @override
 +    def get_version_command(self) -> str | None:
 +        return ". ~/.nvm/nvm.sh; opencode --version"
 +
++    @override
 +    async def install(self, environment: BaseEnvironment) -> None:
 +        await self.exec_as_root(
 +            environment,
@@ -4092,6 +4114,7 @@ index 00000000..c0c29c21
 +        escaped = shlex.quote(config_json)
 +        return f"mkdir -p ~/.config/opencode && echo {escaped} > ~/.config/opencode/opencode.json"
 +
++    @override
 +    def populate_context_post_run(self, context: AgentContext) -> None:
 +        events = self._parse_stdout()
 +        if not events:
@@ -4136,7 +4159,7 @@ index 00000000..c0c29c21
 +        if environment.capabilities.mounted:
 +            return
 +        remote_path = (
-+            environment.env_paths.agent_dir / self._OUTPUT_FILENAME
++            EnvironmentPaths.for_os(environment.os).agent_dir / self._OUTPUT_FILENAME
 +        ).as_posix()
 +        local_path = self.logs_dir / self._OUTPUT_FILENAME
 +        try:
@@ -4483,6 +4506,7 @@ index 00000000..c0c29c21
 +            final_metrics=final_metrics,
 +        )
 +
++    @override
 +    async def run(
 +        self,
 +        instruction: str,
@@ -4616,18 +4640,19 @@ index 00000000..c0c29c21
 +                f"{attempts_errored} --continue retry attempt(s); giving up."
 +            )
 diff --git a/src/harbor/environments/base.py b/src/harbor/environments/base.py
-index 04c934ce..43ad7572 100644
+index 9d7ee7b0..8c0be26c 100644
 --- a/src/harbor/environments/base.py
 +++ b/src/harbor/environments/base.py
-@@ -6,6 +6,7 @@ import warnings
- from abc import ABC, abstractmethod
- from pathlib import Path, PurePath
- from collections.abc import Sequence
-+from typing import Any
+@@ -12,7 +12,7 @@ from abc import ABC, abstractmethod
+ from collections.abc import Awaitable, Callable, Generator, Sequence
+ from functools import cached_property
+ from pathlib import Path, PurePath, PurePosixPath
+-from typing import Literal
++from typing import Any, Literal
+ from uuid import UUID
  
  from pydantic import BaseModel
- 
-@@ -526,3 +527,8 @@ class BaseEnvironment(ABC):
+@@ -1383,3 +1383,8 @@ class BaseEnvironment(ABC):
      async def attach(self) -> None:
          """Attaches to the environment using os.execvp."""
          raise NotImplementedError("This environment does not support attaching.")
@@ -4636,39 +4661,31 @@ index 04c934ce..43ad7572 100644
 +        """Provider-specific info to persist into the trial result (e.g. a cloud
 +        sandbox/container id). Override in subclasses; default is None."""
 +        return None
-diff --git a/src/harbor/environments/daytona.py b/src/harbor/environments/daytona.py
-index 5041cb94..04f8e31b 100644
---- a/src/harbor/environments/daytona.py
-+++ b/src/harbor/environments/daytona.py
-@@ -6,7 +6,7 @@ import os
- import shlex
- from abc import abstractmethod
- from pathlib import Path
--from typing import TYPE_CHECKING, Union
-+from typing import TYPE_CHECKING, Any, Union
- from uuid import uuid4
- 
- from tenacity import retry, stop_after_attempt, wait_exponential
-@@ -1153,6 +1153,11 @@ class DaytonaEnvironment(BaseEnvironment):
+diff --git a/src/harbor/environments/daytona/environment.py b/src/harbor/environments/daytona/environment.py
+index 813c8bd5..06f4187a 100644
+--- a/src/harbor/environments/daytona/environment.py
++++ b/src/harbor/environments/daytona/environment.py
+@@ -1910,6 +1910,12 @@ class DaytonaEnvironment(ComposeServiceOpsMixin, BaseEnvironment):
      async def stop(self, delete: bool):
          return await self._strategy.stop(delete)
  
++    @override
 +    def environment_metadata(self) -> dict[str, Any] | None:
 +        if self._sandbox is None:
 +            return None
 +        return {"sandbox_id": self._sandbox.id}
 +
+     @override
      async def exec(
          self,
-         command: str,
 diff --git a/src/harbor/models/agent/name.py b/src/harbor/models/agent/name.py
-index 4b252a9e..e6e7cf1f 100644
+index ce9c5338..35858045 100644
 --- a/src/harbor/models/agent/name.py
 +++ b/src/harbor/models/agent/name.py
-@@ -23,6 +23,11 @@ class AgentName(str, Enum):
-     OPENHANDS = "openhands"
-     OPENHANDS_SDK = "openhands-sdk"
-     KIMI_CLI = "kimi-cli"
+@@ -33,6 +33,11 @@ class AgentName(str, Enum):
+     LANGGRAPH = "langgraph"
+     DEERFLOW = "deerflow"
+     MIMO = "mimo"
 +    SWARM_KIMI_SINGLE = "swarm-kimi-single"
 +    SWARM_KIMI_MULTI = "swarm-kimi-multi"
 +    SWARM_OPENCODE_SINGLE = "swarm-opencode-single"
@@ -4678,17 +4695,17 @@ index 4b252a9e..e6e7cf1f 100644
      QWEN_CODE = "qwen-coder"
      COPILOT_CLI = "copilot-cli"
 diff --git a/src/harbor/models/trial/result.py b/src/harbor/models/trial/result.py
-index a9d72881..c5db9155 100644
+index 0571b25e..e0c37272 100644
 --- a/src/harbor/models/trial/result.py
 +++ b/src/harbor/models/trial/result.py
 @@ -1,5 +1,6 @@
  import traceback
- from datetime import datetime
+ from datetime import datetime, timezone
 +from typing import Any
  from uuid import UUID, uuid4
  
  from pydantic import BaseModel, Field
-@@ -86,6 +87,7 @@ class TrialResult(BaseModel):
+@@ -95,6 +96,7 @@ class TrialResult(BaseModel):
      agent_execution: TimingInfo | None = None
      verifier: TimingInfo | None = None
      step_results: list[StepResult] | None = None
@@ -4697,27 +4714,27 @@ index a9d72881..c5db9155 100644
      def compute_token_cost_totals(
          self,
 diff --git a/src/harbor/trial/trial.py b/src/harbor/trial/trial.py
-index 4d0f4ee2..cf132ca2 100644
+index 0106467b..ec3d0c57 100644
 --- a/src/harbor/trial/trial.py
 +++ b/src/harbor/trial/trial.py
-@@ -185,6 +185,12 @@ class Trial:
-                 "trial_paths": self._trial_paths,
+@@ -414,6 +414,7 @@ class Trial(ABC):
+         self.result.agent_info = self.agent.to_agent_info()
+ 
+     async def _finalize(self) -> None:
++        self.result.environment_metadata = self.agent_environment.environment_metadata()
+         await self._stop_agent_environment()
+         self.result.finished_at = self._now()
+         self.paths.result_path.write_text(self.result.model_dump_json(indent=4))
+@@ -826,6 +827,12 @@ class Trial(ABC):
+                 "trial_paths": self.paths,
                  "agent_timeout_sec": self._agent_timeout_sec,
              }
-+        if config.agent.name in (
++        if self.config.agent.name in (
 +            AgentName.SWARM_KIMI_MULTI.value,
 +            AgentName.SWARM_OPENCODE_MULTI.value,
 +            AgentName.SWARM_OPENCODE_MULTI_NOPLAN.value,
 +        ):
-+            extra_kwargs["task_dir"] = self._task._task_dir
-         if self._task.config.environment.mcp_servers:
-             extra_kwargs["mcp_servers"] = self._task.config.environment.mcp_servers
-         if self._task.config.environment.skills_dir:
-@@ -419,6 +425,7 @@ class Trial:
-             ) from e
- 
-     async def _cleanup_and_finalize(self) -> None:
-+        self.result.environment_metadata = self._environment.environment_metadata()
-         try:
-             await asyncio.shield(
-                 self._environment.stop(delete=self.config.environment.delete)
++            extra_kwargs["task_dir"] = self.task.task_dir
+         mcp_servers = {
+             server.name: server
+             for server in [

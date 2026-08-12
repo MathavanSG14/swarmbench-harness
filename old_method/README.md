@@ -35,7 +35,7 @@ Clone Harbor and pin to the exact commit the diff targets:
 cd swarmbench-harness/old_method
 git clone https://github.com/harbor-framework/harbor.git
 cd harbor
-git checkout e70d5f060ffeb4525f320669d50b290925b55425
+git checkout b7e2f71b4563618af3a42279740f5f412dcf7046
 ```
 
 > The commit SHA is pinned to ensure the diff applies cleanly. Do not skip `git checkout`.
@@ -150,7 +150,7 @@ uv run harbor run \
 ## Troubleshooting
 
 **Patch fails to apply**
-Make sure you ran `git checkout e70d5f060ffeb4525f320669d50b290925b55425` before running `git apply`. The diff must be applied against that exact commit.
+Make sure you ran `git checkout b7e2f71b4563618af3a42279740f5f412dcf7046` before running `git apply`. The diff must be applied against that exact commit.
 
 **`NonZeroAgentExitCodeError` / `curl: (6) Could not resolve host`**
 The Docker container needs outbound internet access to install opencode via `nvm`/`npm`. Check Docker network settings — containers must reach `raw.githubusercontent.com`, `nodejs.org`, and `registry.npmjs.org`.
