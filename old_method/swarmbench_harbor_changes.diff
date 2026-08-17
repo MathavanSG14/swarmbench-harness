@@ -682,10 +682,10 @@ index 00000000..004b86d2
 +        )
 diff --git a/src/harbor/agents/installed/swarmbench/multi_opencode.py b/src/harbor/agents/installed/swarmbench/multi_opencode.py
 new file mode 100644
-index 00000000..6c1b9ce4
+index 00000000..49e3af7e
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/multi_opencode.py
-@@ -0,0 +1,1274 @@
+@@ -0,0 +1,1291 @@
 +import asyncio
 +import copy
 +import json
@@ -1051,7 +1051,7 @@ index 00000000..6c1b9ce4
 +        env: dict[str, str] = {}
 +        if not self.model_name or "/" not in self.model_name:
 +            return env
-+        provider, _ = self.model_name.split("/", 1)
++        provider, model_id = self.model_name.split("/", 1)
 +        keys: list[str] = []
 +        if provider == "amazon-bedrock":
 +            keys.extend(["AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "AWS_REGION"])
@@ -1120,7 +1120,24 @@ index 00000000..6c1b9ce4
 +        for key in keys:
 +            if key in os.environ:
 +                env[key] = os.environ[key]
-+        env["OPENCODE_EXPERIMENTAL_OUTPUT_TOKEN_MAX"] = str(_FIREWORKS_OUTPUT_TOKEN_MAX)
++        # Fireworks' Kimi K2 output isn't a separate quota from input (see
++        # _FIREWORKS_OUTPUT_TOKEN_MAX's comment above), but W&B's moonshotai/Kimi-K2.6
++        # catalog entry has no such shared pool (see _WANDB_MODEL_LIMITS above) and
++        # supports the full context window as output. This env var used to be
++        # hardcoded to _FIREWORKS_OUTPUT_TOKEN_MAX for every provider -- harmless
++        # while Fireworks was the only one, but it silently halved W&B's real output
++        # headroom once the provider migrated to wandb, which is what let long-running
++        # W&B arms hit ContextOverflowError: opencode's compaction only reserves a
++        # small fixed buffer capped at this value (overflow.ts's COMPACTION_BUFFER),
++        # not the model's full output capacity, so an unnecessarily low cap here
++        # starves compaction of the room it needs before the provider's own hard
++        # context-length check rejects the request outright.
++        output_token_max = (
++            _WANDB_MODEL_LIMITS.get(model_id, _FIREWORKS_OUTPUT_TOKEN_MAX)
++            if provider == "wandb"
++            else _FIREWORKS_OUTPUT_TOKEN_MAX
++        )
++        env["OPENCODE_EXPERIMENTAL_OUTPUT_TOKEN_MAX"] = str(output_token_max)
 +        env["OPENCODE_FAKE_VCS"] = "git"
 +        # registry.ts registers the "question" tool whenever flags.client is "app"/"cli"/
 +        # "desktop" (true by default for the opencode CLI) OR OPENCODE_ENABLE_QUESTION_TOOL is
@@ -3555,10 +3572,10 @@ index 00000000..6fd57120
 +        )
 diff --git a/src/harbor/agents/installed/swarmbench/single_opencode.py b/src/harbor/agents/installed/swarmbench/single_opencode.py
 new file mode 100644
-index 00000000..2d076844
+index 00000000..be4f1cbd
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/single_opencode.py
-@@ -0,0 +1,1080 @@
+@@ -0,0 +1,1097 @@
 +import asyncio
 +import copy
 +import json
@@ -3863,7 +3880,7 @@ index 00000000..2d076844
 +        env: dict[str, str] = {}
 +        if not self.model_name or "/" not in self.model_name:
 +            return env
-+        provider, _ = self.model_name.split("/", 1)
++        provider, model_id = self.model_name.split("/", 1)
 +        keys: list[str] = []
 +        if provider == "amazon-bedrock":
 +            keys.extend(["AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "AWS_REGION"])
@@ -3942,7 +3959,24 @@ index 00000000..2d076844
 +        for key in keys:
 +            if key in os.environ:
 +                env[key] = os.environ[key]
-+        env["OPENCODE_EXPERIMENTAL_OUTPUT_TOKEN_MAX"] = str(_FIREWORKS_OUTPUT_TOKEN_MAX)
++        # Fireworks' Kimi K2 output isn't a separate quota from input (see
++        # _FIREWORKS_OUTPUT_TOKEN_MAX's comment above), but W&B's moonshotai/Kimi-K2.6
++        # catalog entry has no such shared pool (see _WANDB_MODEL_LIMITS above) and
++        # supports the full context window as output. This env var used to be
++        # hardcoded to _FIREWORKS_OUTPUT_TOKEN_MAX for every provider -- harmless
++        # while Fireworks was the only one, but it silently halved W&B's real output
++        # headroom once the provider migrated to wandb, which is what let long-running
++        # W&B arms hit ContextOverflowError: opencode's compaction only reserves a
++        # small fixed buffer capped at this value (overflow.ts's COMPACTION_BUFFER),
++        # not the model's full output capacity, so an unnecessarily low cap here
++        # starves compaction of the room it needs before the provider's own hard
++        # context-length check rejects the request outright.
++        output_token_max = (
++            _WANDB_MODEL_LIMITS.get(model_id, _FIREWORKS_OUTPUT_TOKEN_MAX)
++            if provider == "wandb"
++            else _FIREWORKS_OUTPUT_TOKEN_MAX
++        )
++        env["OPENCODE_EXPERIMENTAL_OUTPUT_TOKEN_MAX"] = str(output_token_max)
 +        env["OPENCODE_FAKE_VCS"] = "git"
 +        # registry.ts registers the "question" tool whenever flags.client is "app"/"cli"/
 +        # "desktop" (true by default for the opencode CLI) OR OPENCODE_ENABLE_QUESTION_TOOL is
