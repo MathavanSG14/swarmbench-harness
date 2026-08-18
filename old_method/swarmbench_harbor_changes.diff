@@ -682,10 +682,10 @@ index 00000000..004b86d2
 +        )
 diff --git a/src/harbor/agents/installed/swarmbench/multi_opencode.py b/src/harbor/agents/installed/swarmbench/multi_opencode.py
 new file mode 100644
-index 00000000..49e3af7e
+index 00000000..0d7eccd4
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/multi_opencode.py
-@@ -0,0 +1,1291 @@
+@@ -0,0 +1,1297 @@
 +import asyncio
 +import copy
 +import json
@@ -759,15 +759,21 @@ index 00000000..49e3af7e
 +
 +# W&B Inference (CoreWeave-hosted) has no models.dev catalog entry either -- same
 +# provider.ts limit.context=0/no-compaction problem as Fireworks above, so this
-+# needs the same explicit override. Unlike _FIREWORKS_OUTPUT_TOKEN_MAX (a
-+# fractional cap specific to Fireworks' documented shared input/output pool),
-+# this model's real models.dev catalog entry (moonshotai/kimi-k2.6, used by the
-+# direct Moonshot provider branch below) declares output == context == 262000 --
-+# verified directly against models.dev/api.json, not assumed -- and that exact
-+# catalog entry runs in production today via the "moonshotai" branch with no
-+# compaction issues, so both limits use the same value here too.
++# needs the same explicit override.
++#
++# Was 262144 (== context) briefly: opencode's overflow.ts usable() is
++# `context - maxOutputTokens()` whenever limit.input isn't set (harbor's
++# override here only ever sets context/output, never input) -- output ==
++# context collapses that to usable()=0, meaning compaction can never reach a
++# safe size and every run overflows on the first nonzero prompt, confirmed
++# against a real failed run ("Conversation history too large to compact").
++# 90000 keeps a large, positive compaction margin (262144-90000=172144) while
++# still giving single-agent long-writing tasks headroom to write a large file
++# in one tool call without truncating mid-JSON (the original reason this
++# ceiling was raised past opencode's 32K default in the first place -- see
++# _FIREWORKS_OUTPUT_TOKEN_MAX above, same tradeoff).
 +_WANDB_MODEL_LIMITS: dict[str, int] = {
-+    "moonshotai/Kimi-K2.6": 262144,
++    "moonshotai/Kimi-K2.6": 90000,
 +}
 +
 +# W&B Weave tracing, independent of which model provider actually serves inference --
@@ -3572,10 +3578,10 @@ index 00000000..6fd57120
 +        )
 diff --git a/src/harbor/agents/installed/swarmbench/single_opencode.py b/src/harbor/agents/installed/swarmbench/single_opencode.py
 new file mode 100644
-index 00000000..be4f1cbd
+index 00000000..01fa6d46
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/single_opencode.py
-@@ -0,0 +1,1097 @@
+@@ -0,0 +1,1103 @@
 +import asyncio
 +import copy
 +import json
@@ -3649,15 +3655,21 @@ index 00000000..be4f1cbd
 +
 +# W&B Inference (CoreWeave-hosted) has no models.dev catalog entry either -- same
 +# provider.ts limit.context=0/no-compaction problem as Fireworks above, so this
-+# needs the same explicit override. Unlike _FIREWORKS_OUTPUT_TOKEN_MAX (a
-+# fractional cap specific to Fireworks' documented shared input/output pool),
-+# this model's real models.dev catalog entry (moonshotai/kimi-k2.6, used by the
-+# direct Moonshot provider branch below) declares output == context == 262000 --
-+# verified directly against models.dev/api.json, not assumed -- and that exact
-+# catalog entry runs in production today via the "moonshotai" branch with no
-+# compaction issues, so both limits use the same value here too.
++# needs the same explicit override.
++#
++# Was 262144 (== context) briefly: opencode's overflow.ts usable() is
++# `context - maxOutputTokens()` whenever limit.input isn't set (harbor's
++# override here only ever sets context/output, never input) -- output ==
++# context collapses that to usable()=0, meaning compaction can never reach a
++# safe size and every run overflows on the first nonzero prompt, confirmed
++# against a real failed run ("Conversation history too large to compact").
++# 90000 keeps a large, positive compaction margin (262144-90000=172144) while
++# still giving single-agent long-writing tasks headroom to write a large file
++# in one tool call without truncating mid-JSON (the original reason this
++# ceiling was raised past opencode's 32K default in the first place -- see
++# _FIREWORKS_OUTPUT_TOKEN_MAX above, same tradeoff).
 +_WANDB_MODEL_LIMITS: dict[str, int] = {
-+    "moonshotai/Kimi-K2.6": 262144,
++    "moonshotai/Kimi-K2.6": 90000,
 +}
 +
 +# W&B Weave tracing, independent of which model provider actually serves inference --
