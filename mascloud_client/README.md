@@ -55,7 +55,7 @@ install elsewhere on your `PATH`).
 
 ---
 
-## The 6 commands
+## The 7 commands
 
 | Command                                             | What it does                                                                       | Required?                             |
 | --------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------- |
@@ -64,6 +64,7 @@ install elsewhere on your `PATH`).
 | `mascloud verify-only <task_folder> --target-mode single\|multi\|multi_noplan` | Re-run **only the verifier** against an execution log you already have — no agent, no inference cost | Optional (see below) |
 | `mascloud runs`                                     | List **your** runs with status, reward, tokens, and cost                           | Optional (monitoring)                 |
 | `mascloud download <run_id> [folder]`               | Re-fetch a run's result zip (task + `execution_logs/`)                             | Optional (auto-downloads after `run`) |
+| `mascloud pull-trajectory <run_id> [folder]`        | Pull a fresh trajectory export from a run's **live** sandbox, mid-run — no need to wait for it to finish | Optional (peek at a run in progress) |
 | `mascloud logout`                                   | Clear your local token                                                             | Optional                              |
 
 **Plus one action during a run:** press **`Ctrl-C`** while a run is streaming to

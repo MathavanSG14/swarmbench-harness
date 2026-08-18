@@ -75,9 +75,10 @@ tears down its cloud sandbox).
 ### Other commands
 
 ```bash
-mascloud runs                    # your run history — status, reward, tokens, cost
-mascloud download <run_id> [dir] # re-fetch a past result (kept 24h after the run finishes)
-mascloud logout                  # clear your local session
+mascloud runs                          # your run history — status, reward, tokens, cost
+mascloud download <run_id> [dir]       # re-fetch a past result (kept 24h after the run finishes)
+mascloud pull-trajectory <run_id> [dir]  # fresh trajectory export from a run's LIVE sandbox, mid-run
+mascloud logout                        # clear your local session
 ```
 
 ### Model
@@ -123,6 +124,8 @@ layout (`task.toml`, `instruction.md`, `decomposition.yaml`, `environment/`,
 ├── multi-opencode-agent/
 │   ├── result.json
 │   └── {trial}/
+│       ├── result.json               # environment_metadata.sandbox_id lands here too
+│       ├── environment_metadata.json # written the moment the sandbox exists -- before result.json
 │       ├── agent/
 │       │   ├── opencode.txt          # raw JSON event stream
 │       │   ├── trajectory.json       # ATIF-format trajectory

@@ -7,6 +7,10 @@
                                           no agent re-run, just a fresh reward
     mascloud runs                        my run history (tokens + cost)
     mascloud download <run_id> [folder]  fetch the result zip (task + execution_logs)
+    mascloud pull-trajectory <run_id> [folder]
+                                          fetch a fresh trajectory export from
+                                          the run's LIVE sandbox, mid-run --
+                                          no need to wait for it to finish
     mascloud logout
 
 No Fireworks/Daytona key ever touches this machine — only your session token.
@@ -404,6 +408,29 @@ def runs() -> None:
 def download(run_id: str, folder: Path = typer.Argument(Path("."))) -> None:
     """Download a run's result package (task + execution_logs) as a zip into folder."""
     _download(run_id, folder)
+
+
+@app.command("pull-trajectory")
+def pull_trajectory(run_id: str, folder: Path = typer.Argument(Path("."))) -> None:
+    """Pull a fresh trajectory export from the run's LIVE Daytona sandbox.
+
+    Unlike `download`, this doesn't wait for the run to finish -- the server
+    re-runs the export inside the still-running sandbox on demand and hands
+    back a fresh zip. Only works once the run has progressed far enough for
+    its sandbox id to be known (409 otherwise) and while that sandbox is
+    still alive (404 if it's already been stopped/deleted).
+    """
+    # Uncap the read leg -- the server has to round-trip into the live
+    # sandbox (re-run the export, download the zip) before it can respond,
+    # which can take longer than a plain status/list call.
+    with _client(timeout=httpx.Timeout(60.0, read=120.0)) as c:
+        resp = c.get(f"/runs/{run_id}/sandbox/trajectory-export")
+    if resp.status_code != 200:
+        _die(resp)
+    folder.mkdir(parents=True, exist_ok=True)
+    out_path = folder / f"{run_id}-trajectory.zip"
+    out_path.write_bytes(resp.content)
+    console.print(f"[green]Trajectory export saved to {out_path}[/green]")
 
 
 if __name__ == "__main__":
