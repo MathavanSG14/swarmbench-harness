@@ -4728,6 +4728,24 @@ index ce9c5338..35858045 100644
      PI = "pi"
      QWEN_CODE = "qwen-coder"
      COPILOT_CLI = "copilot-cli"
+diff --git a/src/harbor/models/trial/paths.py b/src/harbor/models/trial/paths.py
+index 7bc43f90..3653940f 100644
+--- a/src/harbor/models/trial/paths.py
++++ b/src/harbor/models/trial/paths.py
+@@ -269,6 +269,13 @@ class TrialPaths:
+         """Result of type TrialResult."""
+         return self.trial_dir / "result.json"
+ 
++    @property
++    def environment_metadata_path(self) -> Path:
++        """Provider-specific environment metadata (e.g. a cloud sandbox id),
++        written as soon as it's available -- well before ``result.json``,
++        which is only written at trial finalize."""
++        return self.trial_dir / "environment_metadata.json"
++
+     @property
+     def exception_message_path(self) -> Path:
+         """
 diff --git a/src/harbor/models/trial/result.py b/src/harbor/models/trial/result.py
 index 0571b25e..e0c37272 100644
 --- a/src/harbor/models/trial/result.py
@@ -4748,18 +4766,52 @@ index 0571b25e..e0c37272 100644
      def compute_token_cost_totals(
          self,
 diff --git a/src/harbor/trial/trial.py b/src/harbor/trial/trial.py
-index 0106467b..ec3d0c57 100644
+index 0106467b..00e2e172 100644
 --- a/src/harbor/trial/trial.py
 +++ b/src/harbor/trial/trial.py
-@@ -414,6 +414,7 @@ class Trial(ABC):
+@@ -2,6 +2,7 @@ from typing import Any, override
+ import asyncio
+ import contextlib
+ import hashlib
++import json
+ import logging
+ import traceback
+ from abc import ABC, abstractmethod
+@@ -407,12 +408,33 @@ class Trial(ABC):
+ 
+     async def _prepare(self) -> None:
+         await self._setup_agent_environment()
++        self._capture_environment_metadata()
+         await self.agent_environment.run_healthcheck()
+         await self._upload_injected_skills()
+         with self.agent_environment.with_default_user(self.task.config.agent.user):
+             await self._setup_agent()
          self.result.agent_info = self.agent.to_agent_info()
  
-     async def _finalize(self) -> None:
++    def _capture_environment_metadata(self) -> None:
++        """Capture provider-specific environment metadata (e.g. a Daytona
++        sandbox id) the moment it's available, and write it to disk right
++        away -- so it's discoverable while the trial is still running, not
++        only once ``result.json`` is written at finalize.
++
++        Must run before the environment can be stopped: some trial flows
++        (e.g. ``SingleStepTrial._run()``'s shared/separate verifier modes)
++        call ``_stop_agent_environment()`` themselves, well before
++        ``_finalize()`` gets a turn, which tears down the underlying sandbox
++        and makes this unreadable again.
++        """
++        if self.result.environment_metadata is not None:
++            return
 +        self.result.environment_metadata = self.agent_environment.environment_metadata()
++        if self.result.environment_metadata is not None:
++            self.paths.environment_metadata_path.write_text(
++                json.dumps(self.result.environment_metadata, indent=4)
++            )
++
+     async def _finalize(self) -> None:
          await self._stop_agent_environment()
          self.result.finished_at = self._now()
-         self.paths.result_path.write_text(self.result.model_dump_json(indent=4))
-@@ -826,6 +827,12 @@ class Trial(ABC):
+@@ -826,6 +848,12 @@ class Trial(ABC):
                  "trial_paths": self.paths,
                  "agent_timeout_sec": self._agent_timeout_sec,
              }
@@ -4772,3 +4824,17 @@ index 0106467b..ec3d0c57 100644
          mcp_servers = {
              server.name: server
              for server in [
+@@ -1254,6 +1282,13 @@ class Trial(ABC):
+         if self._is_agent_environment_stopped:
+             return
+ 
++        # Safety net: normally already captured in _prepare(), right after the
++        # environment starts. Re-check here too, since this is the one choke
++        # point every stop call site (this trial's own _finalize(), plus
++        # SingleStepTrial/MultiStepTrial's mid-_run() stops) goes through --
++        # so nothing can tear the sandbox down before this has a chance to run.
++        self._capture_environment_metadata()
++
+         try:
+             await asyncio.shield(
+                 self.agent_environment.stop(delete=self.config.environment.delete)
