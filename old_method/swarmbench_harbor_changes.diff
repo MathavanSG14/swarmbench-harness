@@ -682,10 +682,10 @@ index 00000000..004b86d2
 +        )
 diff --git a/src/harbor/agents/installed/swarmbench/multi_opencode.py b/src/harbor/agents/installed/swarmbench/multi_opencode.py
 new file mode 100644
-index 00000000..0d7eccd4
+index 00000000..30c90c76
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/multi_opencode.py
-@@ -0,0 +1,1297 @@
+@@ -0,0 +1,1305 @@
 +import asyncio
 +import copy
 +import json
@@ -759,19 +759,24 @@ index 00000000..0d7eccd4
 +
 +# W&B Inference (CoreWeave-hosted) has no models.dev catalog entry either -- same
 +# provider.ts limit.context=0/no-compaction problem as Fireworks above, so this
-+# needs the same explicit override.
-+#
-+# Was 262144 (== context) briefly: opencode's overflow.ts usable() is
++# needs the same explicit override -- context and output as TWO SEPARATE
++# dicts, mirroring _FIREWORKS_MODEL_CONTEXT_LIMITS/_FIREWORKS_OUTPUT_TOKEN_MAX
++# above. They were briefly collapsed into one shared value (both fields read
++# from this same dict): opencode's overflow.ts usable() is
 +# `context - maxOutputTokens()` whenever limit.input isn't set (harbor's
-+# override here only ever sets context/output, never input) -- output ==
-+# context collapses that to usable()=0, meaning compaction can never reach a
-+# safe size and every run overflows on the first nonzero prompt, confirmed
-+# against a real failed run ("Conversation history too large to compact").
-+# 90000 keeps a large, positive compaction margin (262144-90000=172144) while
-+# still giving single-agent long-writing tasks headroom to write a large file
-+# in one tool call without truncating mid-JSON (the original reason this
-+# ceiling was raised past opencode's 32K default in the first place -- see
-+# _FIREWORKS_OUTPUT_TOKEN_MAX above, same tradeoff).
++# register-config override here only ever sets context/output, never input)
++# -- output == context, at ANY shared value, collapses that to usable()=0,
++# meaning compaction can never reach a safe size and fires on essentially
++# every turn instead of only when actually needed. Confirmed on a real run:
++# two auto-compactions inside a 7-step, ~10K-token session, the second one's
++# LLM-generated summary hallucinating an entirely unrelated task. (The
++# originally-reported symptom -- 262144==262144 -- additionally overflowed
++# outright on the first nonzero prompt; 90000==90000 doesn't overflow outright
++# since no single request realistically needs that much output, but the
++# usable()=0 collapse is identical either way.)
++_WANDB_MODEL_CONTEXT_LIMITS: dict[str, int] = {
++    "moonshotai/Kimi-K2.6": 262144,
++}
 +_WANDB_MODEL_LIMITS: dict[str, int] = {
 +    "moonshotai/Kimi-K2.6": 90000,
 +}
@@ -1127,10 +1132,12 @@ index 00000000..0d7eccd4
 +            if key in os.environ:
 +                env[key] = os.environ[key]
 +        # Fireworks' Kimi K2 output isn't a separate quota from input (see
-+        # _FIREWORKS_OUTPUT_TOKEN_MAX's comment above), but W&B's moonshotai/Kimi-K2.6
-+        # catalog entry has no such shared pool (see _WANDB_MODEL_LIMITS above) and
-+        # supports the full context window as output. This env var used to be
-+        # hardcoded to _FIREWORKS_OUTPUT_TOKEN_MAX for every provider -- harmless
++        # _FIREWORKS_OUTPUT_TOKEN_MAX's comment above); W&B's moonshotai/Kimi-K2.6
++        # catalog entry has no such shared pool, so it gets its own modest output
++        # ceiling instead (see _WANDB_MODEL_LIMITS/_WANDB_MODEL_CONTEXT_LIMITS
++        # above -- kept as two separate values, not the model's full context).
++        # This env var used to be hardcoded to _FIREWORKS_OUTPUT_TOKEN_MAX for
++        # every provider -- harmless
 +        # while Fireworks was the only one, but it silently halved W&B's real output
 +        # headroom once the provider migrated to wandb, which is what let long-running
 +        # W&B arms hit ContextOverflowError: opencode's compaction only reserves a
@@ -1268,11 +1275,12 @@ index 00000000..0d7eccd4
 +                options["headers"] = {
 +                    "OpenAI-Project": f"{_WANDB_ENTITY}/{_WANDB_PROJECT}"
 +                }
-+                limit = _WANDB_MODEL_LIMITS.get(model_id)
-+                if limit:
++                context_limit = _WANDB_MODEL_CONTEXT_LIMITS.get(model_id)
++                output_limit = _WANDB_MODEL_LIMITS.get(model_id)
++                if context_limit and output_limit:
 +                    provider_config["models"][model_id]["limit"] = {
-+                        "context": limit,
-+                        "output": limit,
++                        "context": context_limit,
++                        "output": output_limit,
 +                    }
 +            elif orig_provider == "openai":
 +                base_url = os.environ.get("OPENAI_BASE_URL")
@@ -3578,10 +3586,10 @@ index 00000000..6fd57120
 +        )
 diff --git a/src/harbor/agents/installed/swarmbench/single_opencode.py b/src/harbor/agents/installed/swarmbench/single_opencode.py
 new file mode 100644
-index 00000000..01fa6d46
+index 00000000..377f0f84
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/single_opencode.py
-@@ -0,0 +1,1103 @@
+@@ -0,0 +1,1111 @@
 +import asyncio
 +import copy
 +import json
@@ -3655,19 +3663,24 @@ index 00000000..01fa6d46
 +
 +# W&B Inference (CoreWeave-hosted) has no models.dev catalog entry either -- same
 +# provider.ts limit.context=0/no-compaction problem as Fireworks above, so this
-+# needs the same explicit override.
-+#
-+# Was 262144 (== context) briefly: opencode's overflow.ts usable() is
++# needs the same explicit override -- context and output as TWO SEPARATE
++# dicts, mirroring _FIREWORKS_MODEL_CONTEXT_LIMITS/_FIREWORKS_OUTPUT_TOKEN_MAX
++# above. They were briefly collapsed into one shared value (both fields read
++# from this same dict): opencode's overflow.ts usable() is
 +# `context - maxOutputTokens()` whenever limit.input isn't set (harbor's
-+# override here only ever sets context/output, never input) -- output ==
-+# context collapses that to usable()=0, meaning compaction can never reach a
-+# safe size and every run overflows on the first nonzero prompt, confirmed
-+# against a real failed run ("Conversation history too large to compact").
-+# 90000 keeps a large, positive compaction margin (262144-90000=172144) while
-+# still giving single-agent long-writing tasks headroom to write a large file
-+# in one tool call without truncating mid-JSON (the original reason this
-+# ceiling was raised past opencode's 32K default in the first place -- see
-+# _FIREWORKS_OUTPUT_TOKEN_MAX above, same tradeoff).
++# register-config override here only ever sets context/output, never input)
++# -- output == context, at ANY shared value, collapses that to usable()=0,
++# meaning compaction can never reach a safe size and fires on essentially
++# every turn instead of only when actually needed. Confirmed on a real run:
++# two auto-compactions inside a 7-step, ~10K-token session, the second one's
++# LLM-generated summary hallucinating an entirely unrelated task. (The
++# originally-reported symptom -- 262144==262144 -- additionally overflowed
++# outright on the first nonzero prompt; 90000==90000 doesn't overflow outright
++# since no single request realistically needs that much output, but the
++# usable()=0 collapse is identical either way.)
++_WANDB_MODEL_CONTEXT_LIMITS: dict[str, int] = {
++    "moonshotai/Kimi-K2.6": 262144,
++}
 +_WANDB_MODEL_LIMITS: dict[str, int] = {
 +    "moonshotai/Kimi-K2.6": 90000,
 +}
@@ -3972,10 +3985,12 @@ index 00000000..01fa6d46
 +            if key in os.environ:
 +                env[key] = os.environ[key]
 +        # Fireworks' Kimi K2 output isn't a separate quota from input (see
-+        # _FIREWORKS_OUTPUT_TOKEN_MAX's comment above), but W&B's moonshotai/Kimi-K2.6
-+        # catalog entry has no such shared pool (see _WANDB_MODEL_LIMITS above) and
-+        # supports the full context window as output. This env var used to be
-+        # hardcoded to _FIREWORKS_OUTPUT_TOKEN_MAX for every provider -- harmless
++        # _FIREWORKS_OUTPUT_TOKEN_MAX's comment above); W&B's moonshotai/Kimi-K2.6
++        # catalog entry has no such shared pool, so it gets its own modest output
++        # ceiling instead (see _WANDB_MODEL_LIMITS/_WANDB_MODEL_CONTEXT_LIMITS
++        # above -- kept as two separate values, not the model's full context).
++        # This env var used to be hardcoded to _FIREWORKS_OUTPUT_TOKEN_MAX for
++        # every provider -- harmless
 +        # while Fireworks was the only one, but it silently halved W&B's real output
 +        # headroom once the provider migrated to wandb, which is what let long-running
 +        # W&B arms hit ContextOverflowError: opencode's compaction only reserves a
@@ -4113,11 +4128,12 @@ index 00000000..01fa6d46
 +                options["headers"] = {
 +                    "OpenAI-Project": f"{_WANDB_ENTITY}/{_WANDB_PROJECT}"
 +                }
-+                limit = _WANDB_MODEL_LIMITS.get(model_id)
-+                if limit:
++                context_limit = _WANDB_MODEL_CONTEXT_LIMITS.get(model_id)
++                output_limit = _WANDB_MODEL_LIMITS.get(model_id)
++                if context_limit and output_limit:
 +                    provider_config["models"][model_id]["limit"] = {
-+                        "context": limit,
-+                        "output": limit,
++                        "context": context_limit,
++                        "output": output_limit,
 +                    }
 +            elif orig_provider == "openai":
 +                base_url = os.environ.get("OPENAI_BASE_URL")
