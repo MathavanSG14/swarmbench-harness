@@ -682,10 +682,10 @@ index 00000000..004b86d2
 +        )
 diff --git a/src/harbor/agents/installed/swarmbench/multi_opencode.py b/src/harbor/agents/installed/swarmbench/multi_opencode.py
 new file mode 100644
-index 00000000..30c90c76
+index 00000000..f0b4ba87
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/multi_opencode.py
-@@ -0,0 +1,1305 @@
+@@ -0,0 +1,1307 @@
 +import asyncio
 +import copy
 +import json
@@ -1728,6 +1728,8 @@ index 00000000..30c90c76
 +        model_flag = self._effective_model_flag()
 +
 +        _export_cmd = (
++            "command -v python3 >/dev/null 2>&1 || "
++            "apt-get update -qq && apt-get install -y -qq python3-minimal >/dev/null 2>&1; "
 +            f"printf '%s' {shlex.quote(_EXPORT_SCRIPT)} > /tmp/_oc_export.py && "
 +            "python3 /tmp/_oc_export.py; "
 +            # Best-effort: also grab opencode's own internal log (everything
@@ -3586,10 +3588,10 @@ index 00000000..6fd57120
 +        )
 diff --git a/src/harbor/agents/installed/swarmbench/single_opencode.py b/src/harbor/agents/installed/swarmbench/single_opencode.py
 new file mode 100644
-index 00000000..377f0f84
+index 00000000..214b0f4c
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/single_opencode.py
-@@ -0,0 +1,1111 @@
+@@ -0,0 +1,1113 @@
 +import asyncio
 +import copy
 +import json
@@ -4622,6 +4624,8 @@ index 00000000..377f0f84
 +        model_flag = self._effective_model_flag()
 +
 +        _export_cmd = (
++            "command -v python3 >/dev/null 2>&1 || "
++            "apt-get update -qq && apt-get install -y -qq python3-minimal >/dev/null 2>&1; "
 +            f"printf '%s' {shlex.quote(_EXPORT_SCRIPT)} > /tmp/_oc_export.py && "
 +            "python3 /tmp/_oc_export.py; "
 +            # Best-effort: also grab opencode's own internal log (everything
