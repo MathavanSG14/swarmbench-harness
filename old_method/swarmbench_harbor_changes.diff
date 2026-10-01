@@ -682,10 +682,10 @@ index 00000000..004b86d2
 +        )
 diff --git a/src/harbor/agents/installed/swarmbench/multi_opencode.py b/src/harbor/agents/installed/swarmbench/multi_opencode.py
 new file mode 100644
-index 00000000..f0b4ba87
+index 00000000..6f886e12
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/multi_opencode.py
-@@ -0,0 +1,1307 @@
+@@ -0,0 +1,1332 @@
 +import asyncio
 +import copy
 +import json
@@ -763,9 +763,11 @@ index 00000000..f0b4ba87
 +# dicts, mirroring _FIREWORKS_MODEL_CONTEXT_LIMITS/_FIREWORKS_OUTPUT_TOKEN_MAX
 +# above. They were briefly collapsed into one shared value (both fields read
 +# from this same dict): opencode's overflow.ts usable() is
-+# `context - maxOutputTokens()` whenever limit.input isn't set (harbor's
-+# register-config override here only ever sets context/output, never input)
-+# -- output == context, at ANY shared value, collapses that to usable()=0,
++# `context - maxOutputTokens()` whenever limit.input isn't set (this was true
++# when this was written; the register-config override now also sets
++# limit.input = context - output for W&B, see _WANDB_COMPACTION_RESERVED below,
++# so usable() no longer depends on that formula) -- output == context, at ANY
++# shared value, collapses that to usable()=0,
 +# meaning compaction can never reach a safe size and fires on essentially
 +# every turn instead of only when actually needed. Confirmed on a real run:
 +# two auto-compactions inside a 7-step, ~10K-token session, the second one's
@@ -778,8 +780,24 @@ index 00000000..f0b4ba87
 +    "moonshotai/Kimi-K2.6": 262144,
 +}
 +_WANDB_MODEL_LIMITS: dict[str, int] = {
-+    "moonshotai/Kimi-K2.6": 90000,
++    "moonshotai/Kimi-K2.6": 40000,
 +}
++
++# W&B's provider rejects any request whose input + requested max output tokens
++# exceeds the context window (400 "accepts at most 262144 combined input and
++# output tokens"), i.e. input must stay <= context - output. opencode only
++# checks for compaction at the end of a step, using the provider-reported tokens
++# of that LLM call -- which exclude the tool results appended after it. With no
++# limit.input set, usable() is exactly `context - output`, so the compaction
++# trigger equals the provider's refusal point and one step's worth of tool
++# output (observed: ~50K in a single step) jumps straight past it: the request
++# is refused before any step_finish exists, and every --continue retry resends
++# the same history and gets the same 400. Declaring limit.input = context -
++# output and compaction.reserved makes usable() = limit.input - reserved, so
++# compaction fires _WANDB_COMPACTION_RESERVED tokens before the refusal point
++# (200,144 for Kimi-K2.6). Must be a fixed margin, not a collapsed one -- see
++# the context/output comment above.
++_WANDB_COMPACTION_RESERVED = 22000
 +
 +# W&B Weave tracing, independent of which model provider actually serves inference --
 +# Fireworks/Moonshot/etc. runs can still be traced into the same W&B project. opencode
@@ -1144,7 +1162,12 @@ index 00000000..f0b4ba87
 +        # small fixed buffer capped at this value (overflow.ts's COMPACTION_BUFFER),
 +        # not the model's full output capacity, so an unnecessarily low cap here
 +        # starves compaction of the room it needs before the provider's own hard
-+        # context-length check rejects the request outright.
++        # context-length check rejects the request outright. That was before
++        # limit.input/compaction.reserved were declared for W&B: with both set,
++        # usable() = limit.input - reserved no longer depends on this cap, so the
++        # cap can be lowered (40000) without shrinking the compaction margin --
++        # but limit.input = context - this cap must stay in sync with it (both
++        # derive from _WANDB_MODEL_LIMITS).
 +        output_token_max = (
 +            _WANDB_MODEL_LIMITS.get(model_id, _FIREWORKS_OUTPUT_TOKEN_MAX)
 +            if provider == "wandb"
@@ -1280,8 +1303,10 @@ index 00000000..f0b4ba87
 +                if context_limit and output_limit:
 +                    provider_config["models"][model_id]["limit"] = {
 +                        "context": context_limit,
++                        "input": context_limit - output_limit,
 +                        "output": output_limit,
 +                    }
++                    config["compaction"] = {"reserved": _WANDB_COMPACTION_RESERVED}
 +            elif orig_provider == "openai":
 +                base_url = os.environ.get("OPENAI_BASE_URL")
 +                if base_url:
@@ -3588,10 +3613,10 @@ index 00000000..6fd57120
 +        )
 diff --git a/src/harbor/agents/installed/swarmbench/single_opencode.py b/src/harbor/agents/installed/swarmbench/single_opencode.py
 new file mode 100644
-index 00000000..214b0f4c
+index 00000000..3c9fa6f9
 --- /dev/null
 +++ b/src/harbor/agents/installed/swarmbench/single_opencode.py
-@@ -0,0 +1,1113 @@
+@@ -0,0 +1,1138 @@
 +import asyncio
 +import copy
 +import json
@@ -3669,9 +3694,11 @@ index 00000000..214b0f4c
 +# dicts, mirroring _FIREWORKS_MODEL_CONTEXT_LIMITS/_FIREWORKS_OUTPUT_TOKEN_MAX
 +# above. They were briefly collapsed into one shared value (both fields read
 +# from this same dict): opencode's overflow.ts usable() is
-+# `context - maxOutputTokens()` whenever limit.input isn't set (harbor's
-+# register-config override here only ever sets context/output, never input)
-+# -- output == context, at ANY shared value, collapses that to usable()=0,
++# `context - maxOutputTokens()` whenever limit.input isn't set (this was true
++# when this was written; the register-config override now also sets
++# limit.input = context - output for W&B, see _WANDB_COMPACTION_RESERVED below,
++# so usable() no longer depends on that formula) -- output == context, at ANY
++# shared value, collapses that to usable()=0,
 +# meaning compaction can never reach a safe size and fires on essentially
 +# every turn instead of only when actually needed. Confirmed on a real run:
 +# two auto-compactions inside a 7-step, ~10K-token session, the second one's
@@ -3684,8 +3711,24 @@ index 00000000..214b0f4c
 +    "moonshotai/Kimi-K2.6": 262144,
 +}
 +_WANDB_MODEL_LIMITS: dict[str, int] = {
-+    "moonshotai/Kimi-K2.6": 90000,
++    "moonshotai/Kimi-K2.6": 40000,
 +}
++
++# W&B's provider rejects any request whose input + requested max output tokens
++# exceeds the context window (400 "accepts at most 262144 combined input and
++# output tokens"), i.e. input must stay <= context - output. opencode only
++# checks for compaction at the end of a step, using the provider-reported tokens
++# of that LLM call -- which exclude the tool results appended after it. With no
++# limit.input set, usable() is exactly `context - output`, so the compaction
++# trigger equals the provider's refusal point and one step's worth of tool
++# output (observed: ~50K in a single step) jumps straight past it: the request
++# is refused before any step_finish exists, and every --continue retry resends
++# the same history and gets the same 400. Declaring limit.input = context -
++# output and compaction.reserved makes usable() = limit.input - reserved, so
++# compaction fires _WANDB_COMPACTION_RESERVED tokens before the refusal point
++# (200,144 for Kimi-K2.6). Must be a fixed margin, not a collapsed one -- see
++# the context/output comment above.
++_WANDB_COMPACTION_RESERVED = 22000
 +
 +# W&B Weave tracing, independent of which model provider actually serves inference --
 +# Fireworks/Moonshot/etc. runs can still be traced into the same W&B project. opencode
@@ -3999,7 +4042,12 @@ index 00000000..214b0f4c
 +        # small fixed buffer capped at this value (overflow.ts's COMPACTION_BUFFER),
 +        # not the model's full output capacity, so an unnecessarily low cap here
 +        # starves compaction of the room it needs before the provider's own hard
-+        # context-length check rejects the request outright.
++        # context-length check rejects the request outright. That was before
++        # limit.input/compaction.reserved were declared for W&B: with both set,
++        # usable() = limit.input - reserved no longer depends on this cap, so the
++        # cap can be lowered (40000) without shrinking the compaction margin --
++        # but limit.input = context - this cap must stay in sync with it (both
++        # derive from _WANDB_MODEL_LIMITS).
 +        output_token_max = (
 +            _WANDB_MODEL_LIMITS.get(model_id, _FIREWORKS_OUTPUT_TOKEN_MAX)
 +            if provider == "wandb"
@@ -4135,8 +4183,10 @@ index 00000000..214b0f4c
 +                if context_limit and output_limit:
 +                    provider_config["models"][model_id]["limit"] = {
 +                        "context": context_limit,
++                        "input": context_limit - output_limit,
 +                        "output": output_limit,
 +                    }
++                    config["compaction"] = {"reserved": _WANDB_COMPACTION_RESERVED}
 +            elif orig_provider == "openai":
 +                base_url = os.environ.get("OPENAI_BASE_URL")
 +                if base_url:
